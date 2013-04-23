@@ -1,11 +1,11 @@
 <?php
 /*
-Template Name: IML Home
+Template Name: Heartworks
 */
 ?>
 
 <?php
-define("THISPAGE", "home");
+define("THISPAGE", "heartworks");
 ?>
 
 <?php get_header(); ?>
@@ -13,7 +13,7 @@ define("THISPAGE", "home");
 <div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 
-			<?php the_post(); ?>	
+			 <?php the_post(); ?>	
 			<?php the_content(); ?>
 
 				</div><!-- #content -->
