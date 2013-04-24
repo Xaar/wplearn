@@ -1,11 +1,11 @@
 <?php
 /*
-Template Name: News
+Template Name: News & Events
 */
 ?>
 
 <?php
-define("THISPAGE", "news");
+define("THISPAGE", "news-events");
 ?>
 
 <?php get_header(); ?>
