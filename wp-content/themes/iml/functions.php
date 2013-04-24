@@ -144,3 +144,17 @@ add_action( 'wp_enqueue_scripts', 'IML_scripts' );
  * Implement the Custom Header feature
  */
 //require( get_template_directory() . '/inc/custom-header.php' );
+
+/*
+*Implement custom slider theme
+*/
+
+add_filter('new_royalslider_skins', 'new_royalslider_add_custom_skin', 10, 2);
+
+function new_royalslider_add_custom_skin($skins) {
+      $skins['imlSliderSkin'] = array(
+           'label' => 'IML slider skin',
+           'path' => get_template_directory_uri() . '/imlSliderSkin.css'
+      );
+      return $skins;
+}

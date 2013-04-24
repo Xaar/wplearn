@@ -29,10 +29,11 @@
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> class="gradient">
 
 	<?php do_action( 'before' ); ?>
 	<header id="masthead" class="site-header" role="banner">
+
 		<div id="header_inner_wrapper">
 				<div id="logo">
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
@@ -56,5 +57,5 @@
 		<hr />
 	</header><!-- #masthead -->
 
-	<div id="pagewrapper" class="hfeed site page">
+	<div id="pagewrapper" class="hfeed site contentwrapper">
 	<div id="main" class="site-main">

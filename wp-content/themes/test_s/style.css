@@ -1,5 +1,5 @@
 /*
-Theme Name: Test_s
+Theme Name: IML
 Theme URI: http://underscores.me/
 Author: Underscores.me
 Author URI: http://underscores.me/
@@ -49,7 +49,17 @@ html {
 	-ms-text-size-adjust: 100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
 }
 body {
-	background: #fff;
+	background: #f5f5f5; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y1ZjVmNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #f5f5f5 0%, #ffffff 50%, #e5e5e5 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(50%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-8 */
+
 }
 article,
 aside,
@@ -387,10 +397,9 @@ a:active {
 ----------------------------------------------- */
 
 .navigation-main {
-	clear: both;
-	display: block;
+
 	float: left;
-	width: 100%;
+
 }
 .navigation-main ul {
 	list-style: none;
@@ -620,18 +629,127 @@ object {
    
 }
 
-#page {
+.page {
 
-
-}
-
-.page , #header_inner_wrapper {
-     margin: 0 auto;
-     max-width: 80%;
+	margin: 0 auto;
+     max-width: 100%;
      overflow:hidden;
      position:relative;
+     padding: 0;
+
+
 }
 
+#header_inner_wrapper , .hero-content , .promo-band  {
+     margin: 0 auto;
+     width: 90%;
+     max-width: 1280px;
+     overflow:hidden;
+     position:relative;
+     padding: 0;
+}
+
+.hero-content {
+	margin-top: 70px;
+	margin-bottom: 30px;
+}
+
+
+
+/*Some more defaults */
+
+
+/*.site-main {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+}
+
+.content-area {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+	color: #333;
+	text-align: center;
+}
+*/
+
+.heroTxtContent {
+	color: #333;
+	text-align: center;
+}
+
+.heroTxtContent img , .sliderLogo {
+	max-width: 100%;
+	display: inline;
+	margin: 0 auto;
+	margin-bottom: 14px !important;
+	position: relative;
+
+}
+
+.heroTxtContent h3 {
+	font-family: 'Source Sans Pro' , arial;
+	font-style: italic;
+	font-weight: 400;
+	font-size: 13px;
+	color: #c00;
+	margin: 8px auto;
+}
+
+.heroTxtContent h2 {
+	font-family: 'Source Sans Pro' , arial;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 120%;
+	color: #333;
+	margin: 8px auto;
+	line-height: 140%;
+}
+
+
+.heroTxtContent button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ee0000), color-stop(1, #cc0000) );
+	background:-moz-linear-gradient( center top, #ee0000 5%, #cc0000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee0000', endColorstr='#cc0000');
+	background-color:#c00;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #d83526;
+	display:inline-block;
+	color:#ffffff;
+	font-family: 'Source Sans Pro' , arial;
+	font-size:14px;
+	font-weight:400;
+	padding:10px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #b23e35;
+	margin: 7px;
+	}
+.heroTxtContent button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cc0000), color-stop(1, #ee0000) );
+	background:-moz-linear-gradient( center top, #cc0000 5%, #ee0000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc0000', endColorstr='#ee0000');
+	background-color:#c00;
+	}
+.classname:active {
+	position:relative;
+	top:1px;
+	}
+
+
+.promo-band-wrapper {
+	width: 100%;
+	min-height: 340px;
+	background-color: #333;
+
+}
 /*-----------------*/
 
 body {
@@ -651,6 +769,7 @@ body {
 	box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.5);
+	z-index: 999;
 
 }
 
@@ -779,25 +898,32 @@ input[name="navsearchbtn"] {
 }
 
 
+
+
+
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
- /* 1. 6 Column Grid 0px - 939px 
+ 
+    /* 1. 9 Column Grid 0px - 939px 
     ----------------------------------------------------------------------------- 
     
-    Span 1:    15.8333333333%
-    Span 2:    32.6666666667%
-    Span 3:    49.5%
-    Span 4:    66.3333333333%
-    Span 5:    83.1666666667%
-    Span 6:    100%
+    Span 1:    9.33333333333%
+    Span 2:    20.6666666667%
+    Span 3:    32.0%
+    Span 4:    43.3333333333%
+    Span 5:    54.6666666667%
+    Span 6:    66.0%
+    Span 7:    77.3333333333%
+    Span 8:    88.6666666667%
+    Span 9:    100%
     
     ----------------------------------------------------------------------------- */
 
     @media screen and (min-width: 0px) and (max-width: 939px) {
         
         .col {
-            margin-left:1%;
-        	padding:0 1%;
+            margin-left:2%;
+        	padding:0 0.5%;
         }
         
         .row .col:first-child {
@@ -815,126 +941,172 @@ input[name="navsearchbtn"] {
         */
         
         .span_1 {
-            width:15.8333333333%;
+            width:9.33333333333%;
         }
         .span_2 {
-            width:32.6666666667%;
+            width:20.6666666667%;
         }
         .span_3 {
-            width:49.5%;
+            width:32.0%;
         }
         .span_4 {
-            width:66.3333333333%;
+            width:43.3333333333%;
         }
         .span_5 {
-            width:83.1666666667%;
+            width:54.6666666667%;
         }
         .span_6 {
-            margin-left:0;
-            width:100%;
-        }
-    }
-
-    /* 2. 6 Column Grid 940px - 1219px 
-    ----------------------------------------------------------------------------- 
-    
-    Span 1:    15.8333333333%
-    Span 2:    32.6666666667%
-    Span 3:    49.5%
-    Span 4:    66.3333333333%
-    Span 5:    83.1666666667%
-    Span 6:    100%
-    
-    ----------------------------------------------------------------------------- */
-
-    @media screen and (min-width: 940px) and (max-width: 1219px) {
-        
-        .col {
-            margin-left:1%;
-        	padding:0 1%;
-        }
-        
-        .row .col:first-child {
-            margin-left:0;
-        }
-        
-        
-        
-        .span_1 {
-            width:15.8333333333%;
-        }
-        .span_2 {
-            width:32.6666666667%;
-        }
-        .span_3 {
-            width:49.5%;
-        }
-        .span_4 {
-            width:66.3333333333%;
-        }
-        .span_5 {
-            width:83.1666666667%;
-        }
-        .span_6 {
-            margin-left:0;
-            width:100%;
-        }
-    }
-
-    /* 3. 8 Column Grid 1220px - Infinity 
-    ----------------------------------------------------------------------------- 
-    
-    Span 1:    11.625%
-    Span 2:    24.25%
-    Span 3:    36.875%
-    Span 4:    49.5%
-    Span 5:    62.125%
-    Span 6:    74.75%
-    Span 7:    87.375%
-    Span 8:    100%
-    
-    ----------------------------------------------------------------------------- */
-
-    @media screen and (min-width: 1220px) {
-        
-        .col {
-            margin-left:1%;
-        	padding:0 1%;
-        }
-        
-        .row .col:first-child {
-            margin-left:0;
-        }
-        
-        
-        
-        .span_1 {
-            width:11.625%;
-        }
-        .span_2 {
-            width:24.25%;
-        }
-        .span_3 {
-            width:36.875%;
-        }
-        .span_4 {
-            width:49.5%;
-        }
-        .span_5 {
-            width:62.125%;
-        }
-        .span_6 {
-            width:74.75%;
+            width:66.0%;
         }
         .span_7 {
-            width:87.375%;
+            width:77.3333333333%;
         }
         .span_8 {
+            width:88.6666666667%;
+        }
+        .span_9 , .heroTxtContent {
             margin-left:0;
             width:100%;
         }
     }
 
+    /* 2. 12 Column Grid 940px - 1099px 
+    ----------------------------------------------------------------------------- 
+    
+    Span 1:    6.5%
+    Span 2:    15.0%
+    Span 3:    23.5%
+    Span 4:    32.0%
+    Span 5:    40.5%
+    Span 6:    49.0%
+    Span 7:    57.5%
+    Span 8:    66.0%
+    Span 9:    74.5%
+    Span 10:    83.0%
+    Span 11:    91.5%
+    Span 12:    100%
+    
+    ----------------------------------------------------------------------------- */
 
+    @media screen and (min-width: 940px) and (max-width: 1099px) {
+        
+        .col {
+            margin-left:2%;
+        	padding:0 0.5%;
+        }
+        
+        .row .col:first-child {
+            margin-left:0;
+        }
+        
+        
+        
+        .span_1 {
+            width:6.5%;
+        }
+        .span_2 {
+            width:15.0%;
+        }
+        .span_3 {
+            width:23.5%;
+        }
+        .span_4 , .heroTxtContent {
+            width:32.0%;
+        }
+        .span_5 {
+            width:40.5%;
+        }
+        .span_6 {
+            width:49.0%;
+        }
+        .span_7 {
+            width:57.5%;
+        }
+        .span_8 {
+            width:66.0%;
+        }
+        .span_9 {
+            width:74.5%;
+        }
+        .span_10 {
+            width:83.0%;
+        }
+        .span_11 {
+            width:91.5%;
+        }
+        .span_12 {
+            margin-left:0;
+            width:100%;
+        }
+    }
 
+    /* 3. 12 Column Grid 1100px - Infinity 
+    ----------------------------------------------------------------------------- 
+    
+    Span 1:    7.1875%
+    Span 2:    15.625%
+    Span 3:    24.0625%
+    Span 4:    32.5%
+    Span 5:    40.9375%
+    Span 6:    49.375%
+    Span 7:    57.8125%
+    Span 8:    66.25%
+    Span 9:    74.6875%
+    Span 10:    83.125%
+    Span 11:    91.5625%
+    Span 12:    100%
+    
+    ----------------------------------------------------------------------------- */
+
+    @media screen and (min-width: 1100px) {
+        
+        .col {
+            margin-left:1.25%;
+        	padding:0 0.75%;
+        }
+        
+        .row .col:first-child {
+            margin-left:0;
+        }
+        
+        
+        
+        .span_1 {
+            width:7.1875%;
+        }
+        .span_2 {
+            width:15.625%;
+        }
+        .span_3 {
+            width:24.0625%;
+        }
+        .span_4 , .heroTxtContent{
+            width:32.5%;
+        }
+        .span_5 {
+            width:40.9375%;
+        }
+        .span_6 {
+            width:49.375%;
+        }
+        .span_7 {
+            width:57.8125%;
+        }
+        .span_8 {
+            width:66.25%;
+        }
+        .span_9 {
+            width:74.6875%;
+        }
+        .span_10 {
+            width:83.125%;
+        }
+        .span_11 {
+            width:91.5625%;
+        }
+        .span_12 {
+            margin-left:0;
+            width:100%;
+        }
+    }
 
