@@ -150,6 +150,7 @@ function remove_post_type_support_for_pages()
     // Replace 'page' with 'post' or a custom post/content type
     # remove_post_type_support( 'news', 'title' );
     remove_post_type_support( 'news', 'editor' );
+    remove_post_type_support( 'events', 'editor' );
     # remove_post_type_support( 'page', 'thumbnail' );
     # remove_post_type_support( 'page', 'page-attributes' );
     # remove_post_type_support( 'page', 'excerpt' );
