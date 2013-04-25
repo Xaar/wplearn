@@ -144,6 +144,7 @@ add_action( 'wp_enqueue_scripts', 'IML_scripts' );
  * Implement the Custom Header feature
  */
 //require( get_template_directory() . '/inc/custom-header.php' );
+
 /*
 *Implement custom slider theme
 */
@@ -155,18 +156,9 @@ function new_royalslider_add_custom_skin($skins) {
            'label' => 'IML slider skin',
            'path' => get_template_directory_uri() . '/imlSliderSkin.css'
       );
+      $skins['imlPromoSkin'] = array(
+           'label' => 'IML promo skin',
+           'path' => get_template_directory_uri() . '/imlPromoSkin.css'
+      );
       return $skins;
 }
-
-function remove_post_type_support_for_pages() 
-{
-    // UNCOMMENT if you want to remove some stuff
-    // Replace 'page' with 'post' or a custom post/content type
-    # remove_post_type_support( 'news', 'title' );
-    remove_post_type_support( 'news', 'editor' );
-    remove_post_type_support( 'hw_events', 'editor' );
-    # remove_post_type_support( 'page', 'thumbnail' );
-    # remove_post_type_support( 'page', 'page-attributes' );
-    # remove_post_type_support( 'page', 'excerpt' );
-}
-add_action( 'admin_init', 'remove_post_type_support_for_pages' );

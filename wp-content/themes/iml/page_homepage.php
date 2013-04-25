@@ -21,8 +21,14 @@ define("THISPAGE", "home");
 			<div class="promo-band-wrapper">
 
 				<div class="promo-band row">
-					<div class="promo">
-						<?php echo TCHPCSCarousel(); ?>
+					<div class="promo col">
+						<?php echo get_new_royalslider(3); ?>
+					</div>
+					<div class="promo col">
+						<?php echo get_new_royalslider(3); ?>
+					</div>
+					<div class="promo col">
+						<?php echo get_new_royalslider(3); ?>
 					</div>
 
 				</div> <!-- promo-band -->

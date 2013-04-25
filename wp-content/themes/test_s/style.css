@@ -1,5 +1,5 @@
 /*
-Theme Name: Test_s
+Theme Name: test_s
 Theme URI: http://underscores.me/
 Author: Underscores.me
 Author URI: http://underscores.me/
@@ -643,6 +643,7 @@ object {
 #header_inner_wrapper , .hero-content , .promo-band  {
      margin: 0 auto;
      width: 90%;
+     min-width: 440px;
      max-width: 1280px;
      overflow:hidden;
      position:relative;
@@ -743,13 +744,91 @@ object {
 	top:1px;
 	}
 
-
+/*
+Homepage promo styles Latest News, events etc.
+*/
 .promo-band-wrapper {
 	width: 100%;
 	min-height: 340px;
 	background-color: #333;
+	padding: 40px 0 16px 0;
 
 }
+
+.newsPromo {
+	font-family: 'Source Sans Pro', arial;
+	max-width: 400px;
+	color: #ccc;
+	border-top: 4px solid #4f4f4f ;
+	border-bottom: 6px solid #4f4f4f ;
+	padding: 16px 0 30px 0;
+	line-height: 100%;
+
+}
+
+.newsPromo h1 {
+	color: #e5e5e5;
+	text-align: left;
+	margin: 20px 0 0 0;
+	line-height: 120%;
+	font-weight: bold;
+
+}
+
+.newsPromoImg {
+	position: relative;
+	display: block;
+	width: 80%;
+	max-width: 280px;
+	max-height: 158px;
+	border: 1px solid #fff;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
+	 margin: 0 auto;
+	 padding: 0;
+
+
+}
+
+.newsPromoImg img {
+	position: relative;
+	width: 100%;
+	max-width: 280px;
+	max-height: 158px;
+	padding: 0 !important; 
+	margin: auto !important;
+
+
+}
+
+.newsPromo a {
+	text-align: left !important;
+	font-style: italic;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	color: #ccc;
+	border: none;
+
+
+}
+
+.newsPromo a:hover {
+	color: #fff;
+}
+
+.newsPromo p {
+	text-align: left;
+	font-size: 12px;
+	padding-top: 12px;
+	margin: 6px 0 0 0;
+
+
+}
+
 /*-----------------*/
 
 body {
@@ -929,6 +1008,17 @@ input[name="navsearchbtn"] {
         .row .col:first-child {
             margin-left:0;
         }
+
+        .rsMainSlideImage {
+
+        	display: none;
+        }
+
+        .heroTxtContent {
+        	margin: 0 auto !important;
+        	position: relative !important;
+        	padding: 0 !important;
+        }
         
         
         /*
@@ -946,7 +1036,7 @@ input[name="navsearchbtn"] {
         .span_2 {
             width:20.6666666667%;
         }
-        .span_3 {
+        .span_3 , .promo {
             width:32.0%;
         }
         .span_4 {
@@ -961,12 +1051,12 @@ input[name="navsearchbtn"] {
         .span_7 {
             width:77.3333333333%;
         }
-        .span_8 {
-            width:88.6666666667%;
+        .span_8  , .heroTxtContent {
+            width:88.6666666667% !important;
         }
-        .span_9 , .heroTxtContent {
-            margin-left:0;
-            width:100%;
+        .span_9  {
+            margin-left:0 !important;
+            width:100% !important;
         }
     }
 
@@ -991,7 +1081,7 @@ input[name="navsearchbtn"] {
     @media screen and (min-width: 940px) and (max-width: 1099px) {
         
         .col {
-            margin-left:2%;
+           margin-left:2%;
         	padding:0 0.5%;
         }
         
@@ -1007,10 +1097,10 @@ input[name="navsearchbtn"] {
         .span_2 {
             width:15.0%;
         }
-        .span_3 {
+        .span_3  {
             width:23.5%;
         }
-        .span_4 , .heroTxtContent {
+        .span_4 , .heroTxtContent , .promo {
             width:32.0%;
         }
         .span_5 {
@@ -1080,7 +1170,7 @@ input[name="navsearchbtn"] {
         .span_3 {
             width:24.0625%;
         }
-        .span_4 , .heroTxtContent{
+        .span_4 , .heroTxtContent , .promo {
             width:32.5%;
         }
         .span_5 {
