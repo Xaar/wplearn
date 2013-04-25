@@ -2,7 +2,7 @@
 /**
  * IML functions and definitions
  *
- * @package IML
+ * @package Test_s
  */
 
 /**
