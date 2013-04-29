@@ -1,0 +1,62 @@
+@charset "UTF-8";
+.sidebars-sortable {
+	padding: 5px;
+	background: #e1e1e1;
+	margin-bottom: 10px;
+	min-height: 20px;
+}
+.sidebars-sortable > div {
+	cursor: pointer;
+	background: #f1f1f1;
+	margin-bottom: 2px;
+	padding: 4px;
+}
+.sidebars-sortable > div:hover {
+	color: #666;
+	background: #f8f8f8;
+}
+.sidebars-sortable > div.ui-sortable-placeholder {
+	background: #FFFFE0;
+	visibility: visible !important;
+	position: relative;
+}
+.sidebars-sortable > div > a.borrar, .sidebars-sortable > div > a.agregar, .sidebars-sortable > div > a.arriba, .sidebars-sortable > div > a.abajo {
+	width: 12px;
+	height: 12px;
+	float: right;
+	padding: 2px;
+}
+.sidebars-sortable > div > a.borrar {
+	background: url("images/cruz.gif") center center no-repeat;
+}
+.sidebars-sortable > div > a.agregar {
+	background: url("images/mas.png") center center no-repeat;
+}
+.sidebars-sortable > div > a.arriba {
+	background: url("images/arriba.gif") center center no-repeat;
+}
+.sidebars-sortable > div > a.abajo {
+	background: url("images/abajo.gif") center center no-repeat;
+}
+.sidebars-sortable.inactivos a.borrar, .sidebars-sortable.activos div:first-child a.arriba, .sidebars-sortable.activos div:last-child a.abajo, .sidebars-sortable.inactivos a.arriba, .sidebars-sortable.inactivos a.abajo, .sidebars-sortable.activos a.agregar {
+	display: none;
+}
+.sidebars-sortable div a:hover, a.botones:hover, a.botones.activo {
+	background-color: #e1e1e1;
+}
+input.mssidebars {
+
+}
+div.nuevo_sidebar {
+	display: none;
+	background: #E1E1E1;
+	padding: 5px;
+}
+.nuevo_sidebar > img.cargando {
+	display: none;
+	float: left;
+}
+a.botones {
+	padding: 3px;
+	float: left;
+}
