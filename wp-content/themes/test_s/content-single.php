@@ -15,6 +15,18 @@
 
 	<div class="entry-content">
 		<?php the_content(); ?>
+...
+<div class="event-item">
+    <div class="event-name">{@name}</div>
+    <div class="event-date">{@start_date}</div>
+    <div class="event-date">{@end_date}</div>
+    <div class="event-location">{@location}</div>
+    <div class="event-news-article">{@news_article}</div>
+    <div class="event-image"><img src='{@image}'/></div>
+    <div class="event-image-caption">{@image_caption}</div>
+    <div class="event-url"><a href='{@permalink}'>Read More</a></div>
+</div>
+
 		<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'test_s' ), 'after' => '</div>' ) ); ?>
 	</div><!-- .entry-content -->
 
