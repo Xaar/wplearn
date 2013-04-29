@@ -1,6 +1,6 @@
 /*search field - clear on focus*/
 
-$(document).ready(function(){
+jQuery(document).ready(function($){
     var Input = $('input[name=navsearch]');
     var default_value = Input.val();
 

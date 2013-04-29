@@ -126,24 +126,32 @@ add_action( 'widgets_init', 'IML_widgets_init' );
 function IML_scripts() {
 	wp_enqueue_style( 'IML-style', get_stylesheet_uri() );
 
+	wp_enqueue_script( 'IML-scripts', get_template_directory_uri() . '/js/iml.js', array(), '20130404', true );   
+
 	wp_enqueue_script( 'IML-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'IML-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+	$jQuery = "http://code.jquery.com/jquery-latest.min.js";
+	wp_deregister_script( 'jQuery' );
+	wp_register_script( 'jQuery', $jQuery);
+	wp_enqueue_script( 'jQuery');
 
-	if ( is_singular() && wp_attachment_is_image() ) {
-		wp_enqueue_script( 'IML-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
-	}
+	$carouFredSel= get_bloginfo('template_directory') . "/js/jquery.carouFredSel-6.2.1.js";
+	wp_deregister_script( 'carouFredSel' );
+	wp_register_script( 'carouFredSel', $carouFredSel);
+	wp_enqueue_script( 'carouFredSel');
+
 }
 add_action( 'wp_enqueue_scripts', 'IML_scripts' );
+
+
 
 /**
  * Implement the Custom Header feature
  */
 //require( get_template_directory() . '/inc/custom-header.php' );
+
 /*
 *Implement custom slider theme
 */
@@ -155,18 +163,15 @@ function new_royalslider_add_custom_skin($skins) {
            'label' => 'IML slider skin',
            'path' => get_template_directory_uri() . '/imlSliderSkin.css'
       );
+      $skins['imlPromoSkin'] = array(
+           'label' => 'IML promo skin',
+           'path' => get_template_directory_uri() . '/imlPromoSkin.css'
+      );
+       $skins['imlProductSkin'] = array(
+           'label' => 'IML product skin',
+           'path' => get_template_directory_uri() . '/imlProductSkin.css'
+      );
       return $skins;
 }
 
-function remove_post_type_support_for_pages() 
-{
-    // UNCOMMENT if you want to remove some stuff
-    // Replace 'page' with 'post' or a custom post/content type
-    # remove_post_type_support( 'news', 'title' );
-    remove_post_type_support( 'news', 'editor' );
-    remove_post_type_support( 'hw_events', 'editor' );
-    # remove_post_type_support( 'page', 'thumbnail' );
-    # remove_post_type_support( 'page', 'page-attributes' );
-    # remove_post_type_support( 'page', 'excerpt' );
-}
-add_action( 'admin_init', 'remove_post_type_support_for_pages' );
+register_new_royalslider_files(2);

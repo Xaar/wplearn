@@ -76,7 +76,7 @@
 	border-radius: 0;
 }
 .imlSliderSkin .rsArrowIcn:hover {
-	background-color: rgba(235,235,235,0.9);
+	background-color: rgba(255,255,255,0.5);
 }
 
 .imlSliderSkin.rsHor .rsArrowLeft .rsArrowIcn { background-position: 0 0; }
@@ -117,6 +117,7 @@
 	*display:inline; 
 	*zoom:1;
 	padding: 6px 5px 6px;
+	cursor: pointer;
 }
 .imlSliderSkin .rsBullet span {
 	display: block;

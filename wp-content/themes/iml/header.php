@@ -15,12 +15,11 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,300,300italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery.scrollTo-min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery.localscroll-min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery.inview.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery.easing.1.3.js"></script>
-     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/iml.js"></script>
+
+  		
+
+  
+
 
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
@@ -35,7 +34,7 @@
 	<header id="masthead" class="site-header" role="banner">
 
 		<div id="header_inner_wrapper">
-				<div id="logo">
+				<div class="logo">
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
 					
 				</div>
@@ -57,5 +56,5 @@
 		<hr />
 	</header><!-- #masthead -->
 
-	<div id="pagewrapper" class="hfeed site contentwrapper">
-	<div id="main" class="site-main">
+	<div id="pagewrapper" class="hfeed site page">
+	
