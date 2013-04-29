@@ -1,0 +1,61 @@
+.cpac-column-value-image,
+.column-column-attachment img {
+	padding-right: 5px;
+	padding-bottom: 4px;
+}
+.cpac-divider {
+	display: inline-block;
+	width: 14px;
+	height: 12px;
+	background: transparent url(../images/square.png) no-repeat 50% 7px;
+}
+span.status-open {}
+span.status-closed {
+	color: red;
+}
+
+/* =Color Column
+-------------------------------------------------------------- */
+div.cpac-color {
+	line-height: 26px;
+}
+div.cpac-color span {
+    border: 1px solid #CCCCCC;
+	display: block;
+	-webkit-border-radius: 3px;
+    border-radius: 3px;
+	color: #ffffff;
+    float: left;
+    height: 16px;
+    margin-right: 12px;
+    min-width: 30px;
+    overflow: hidden;
+    padding: 4px 5px;
+}
+
+/* =Comment Counts column
+-------------------------------------------------------------- */
+.column-comment-count a.post-com-count {
+	display: inline-block;
+}
+.column-comment-count .description a {
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+	padding: 3px 5px 3px 22px;
+	margin: 0 4px 4px 0;
+	background: #e4e4e4;
+	border-radius: 3px;
+}
+.column-comment-count a.cp-approved {	
+	background: #e4e4e4 url(../images/checkmark.png) no-repeat 3px 50%;
+}
+.column-comment-count a.cp-moderated {	
+	background: #e4e4e4 url(../images/comment_edit.png) no-repeat 3px 50%;
+}
+.column-comment-count a.cp-spam {
+	background: #e4e4e4 url(../images/no.png) no-repeat 3px 50%;	
+}
+.column-comment-count a.cp-trash {
+	background: #e4e4e4 url(../images/trash.png) no-repeat 3px 50%;
+}
