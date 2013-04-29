@@ -96,7 +96,7 @@ jQuery(".carousel-ul").carouFredSel({
 </div>	
 	<div class="gateway-promo-wrapper row">
 		<div class="gateway-promo">
-			<h1>Discover GateWay - the most cost-effective way to purchase a HeartWorks Simulator</h1>
+			<h1>Discover <b>HeartWorks GateWay</b> - the most cost-effective way to purchase a HeartWorks Simulator</h1>
 			<p>Get peace of mind with a 12 month or multi-year, fixed price software subscription and support service.</p>
 	</div>
 
@@ -114,14 +114,14 @@ jQuery(".carousel-ul").carouFredSel({
 			<div class="clearfix"></div>
 		</div><!-- gateway-promo-bullets -->
 	
-		
+		<button>Find out more about GateWay</button>
 	</div><!-- gateway-promo-wrapper-->
 
 
 			<div class="hw-endorsements-wrapper">
 
 				<div class="hw-endorsements row">
-					
+					<h4>SEE ENDORSEMENTS OF HEARTWORKS PRODUCTS FROM LEADING PROFESSIONALS</h4>
 					<!-- ENDORSEMENTS GALLERY ADD HERE -->
 
 				</div> <!-- promo-band -->
