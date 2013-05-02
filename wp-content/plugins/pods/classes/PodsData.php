@@ -973,10 +973,10 @@ class PodsData {
                 }
 
                 if ( !empty( $where ) )
-                    $params->where[] = '(' . implode( ' OR ', $where ) . ')';
+                    $params->where[] = implode( ' OR ', $where );
 
                 if ( !empty( $having ) )
-                    $params->having[] = '(' . implode( ' OR ', $having ) . ')';
+                    $params->having[] = implode( ' OR ', $where );
             }
 
             // Filter
@@ -1101,10 +1101,10 @@ class PodsData {
                 }
 
                 if ( !empty( $where ) )
-                    $params->where[] = '(' . implode( ' AND ', $where ) . ')';
+                    $params->where[] = implode( ' AND ', $where );
 
                 if ( !empty( $having ) )
-                    $params->having[] = '(' . implode( ' AND ', $having ) . ')';
+                    $params->having[] = implode( ' AND ', $having );
             }
         }
 
@@ -1208,7 +1208,7 @@ class PodsData {
                 " . ( !empty( $params->join ) ? ( is_array( $params->join ) ? implode( "\n                ", $params->join ) : $params->join ) : '' ) . "
                 " . ( !empty( $params->where ) ? 'WHERE ' . ( is_array( $params->where ) ? implode( ' AND ', $params->where ) : $params->where ) : '' ) . "
                 " . ( !empty( $params->groupby ) ? 'GROUP BY ' . ( is_array( $params->groupby ) ? implode( ', ', $params->groupby ) : $params->groupby ) : '' ) . "
-                " . ( !empty( $params->having ) ? 'HAVING ' . ( is_array( $params->having ) ? implode( ' AND ', $params->having ) : $params->having ) : '' ) . "
+                " . ( !empty( $params->having ) ? 'HAVING ' . ( is_array( $params->having ) ? implode( ' AND  ', $params->having ) : $params->having ) : '' ) . "
                 " . ( !empty( $params->orderby ) ? 'ORDER BY ' . ( is_array( $params->orderby ) ? implode( ', ', $params->orderby ) : $params->orderby ) : '' ) . "
                 " . ( ( 0 < $params->page && 0 < $params->limit ) ? 'LIMIT ' . $params->offset . ', ' . ( $params->limit ) : '' ) . "
             ";
@@ -1217,9 +1217,9 @@ class PodsData {
                 COUNT( " . ( $params->distinct ? 'DISTINCT `t`.`' . $params->id . '`' : '*' ) . " )
                 FROM {$params->table} AS `t`
                 " . ( !empty( $params->join ) ? ( is_array( $params->join ) ? implode( "\n                ", $params->join ) : $params->join ) : '' ) . "
-                " . ( !empty( $params->where ) ? 'WHERE ' . ( is_array( $params->where ) ? implode( ' AND ', $params->where ) : $params->where ) : '' ) . "
+                " . ( !empty( $params->where ) ? 'WHERE ' . ( is_array( $params->where ) ? implode( ' AND  ', $params->where ) : $params->where ) : '' ) . "
                 " . ( !empty( $params->groupby ) ? 'GROUP BY ' . ( is_array( $params->groupby ) ? implode( ', ', $params->groupby ) : $params->groupby ) : '' ) . "
-                " . ( !empty( $params->having ) ? 'HAVING ' . ( is_array( $params->having ) ? implode( ' AND ', $params->having ) : $params->having ) : '' ) . "
+                " . ( !empty( $params->having ) ? 'HAVING ' . ( is_array( $params->having ) ? implode( ' AND  ', $params->having ) : $params->having ) : '' ) . "
             ";
         }
         // Rewrite
@@ -1594,12 +1594,13 @@ class PodsData {
      * Fetch a new row for the current pod_data
      *
      * @param int $row Row number to fetch
+     * @param bool $explicit_set Whether to set explicitly (use false when in loop)
      *
      * @return mixed
      *
      * @since 2.0
      */
-    public function fetch ( $row = null ) {
+    public function fetch ( $row = null, $explicit_set = true ) {
         global $wpdb;
 
         $id = $row;
@@ -1637,7 +1638,8 @@ class PodsData {
                 $this->row = get_object_vars( $this->data[ $this->row_number ] );
         }
         else {
-            $this->row_number = -1;
+            if ( $explicit_set )
+                $this->row_number = -1;
 
             $mode = 'id';
             $id = pods_absint( $row );
@@ -2091,8 +2093,12 @@ class PodsData {
             }
         }
 
-        if ( !empty( $query_fields ) )
-            $query_fields = '( ' . implode( ' ' . $relation . ' ', $query_fields ) . ' )';
+        if ( !empty( $query_fields ) ) {
+            if ( 1 < count( $query_fields ) )
+                $query_fields = '( ( ' . implode( ' ) ' . $relation . ' ( ', $query_fields ) . ' ) )';
+            else
+                $query_fields = '( ' . implode( ' ' . $relation . ' ', $query_fields ) . ' )';
+        }
         else
             $query_fields = null;
 
@@ -2452,7 +2458,7 @@ class PodsData {
             $traverse[ 'table_info' ] = $this->api->get_table_info( 'post_type', 'attachment' );
         elseif ( !in_array( $traverse[ 'type' ], $tableless_field_types ) )
             $traverse[ 'table_info' ] = $this->api->get_table_info( $pod_data[ 'type' ], $pod_data[ 'name' ], $pod_data[ 'name' ], $pod_data );
-        elseif ( empty( $traverse[ 'table_info' ] ) ) {
+        elseif ( empty( $traverse[ 'table_info' ] ) || ( in_array( $traverse[ 'pick_object' ], $simple_tableless_objects ) && !empty( $traverse_recurse[ 'last_table_info' ] ) ) ) {
             if ( in_array( $traverse[ 'pick_object' ], $simple_tableless_objects ) && !empty( $traverse_recurse[ 'last_table_info' ] ) ) {
                 $traverse[ 'table_info' ] = $traverse_recurse[ 'last_table_info' ];
 
@@ -2462,7 +2468,7 @@ class PodsData {
             elseif ( !in_array( $traverse[ 'type' ], $tableless_field_types ) && isset( $traverse_recurse[ 'last_table_info' ] ) && !empty( $traverse_recurse[ 'last_table_info' ] )  && 0 == $traverse_recurse[ 'depth' ] )
                 $traverse[ 'table_info' ] = $traverse_recurse[ 'last_table_info' ];
             else
-                $traverse[ 'table_info' ] = $this->api->get_table_info( $traverse[ 'pick_object' ], $traverse[ 'pick_val' ] );
+                $traverse[ 'table_info' ] = $this->api->get_table_info( $traverse[ 'pick_object' ], $traverse[ 'pick_val' ], null, $traverse[ 'pod' ], $traverse );
         }
 
         if ( isset( $this->traversal[ $traverse_recurse[ 'pod' ] ][ $traverse[ 'name' ] ] ) )
@@ -2605,7 +2611,7 @@ class PodsData {
         }
 
         $traverse_recursive = array(
-            'pod' => $table_info[ 'pod' ][ 'name' ],
+            'pod' => pods_var_raw( 'name', pods_var_raw( 'pod', $table_info ) ),
             'fields' => $traverse_recurse[ 'fields' ],
             'joined' => $field_joined,
             'depth' => ( $traverse_recurse[ 'depth' ] + 1 ),
@@ -2623,7 +2629,7 @@ class PodsData {
 
         $joins[ $traverse_recurse[ 'pod' ] . '_' . $traverse_recurse[ 'depth' ] . '_' . $traverse[ 'id' ] ] = $the_join;
 
-        if ( ( $traverse_recurse[ 'depth' ] + 1 ) < count( $traverse_recurse[ 'fields' ] ) && null !== $table_info[ 'pod' ] && false !== $table_info[ 'recurse' ] )
+        if ( ( $traverse_recurse[ 'depth' ] + 1 ) < count( $traverse_recurse[ 'fields' ] ) && !empty( $traverse_recurse[ 'pod' ] ) && false !== $table_info[ 'recurse' ] )
             $joins = array_merge( $joins, $this->traverse_recurse( $traverse_recursive ) );
 
         return $joins;

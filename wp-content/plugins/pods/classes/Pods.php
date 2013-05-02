@@ -2,7 +2,12 @@
 /**
  * @package Pods
  */
-class Pods {
+class Pods implements Iterator {
+
+    /**
+     * @var bool
+     */
+    private $iterator = false;
 
     /**
      * @var PodsAPI
@@ -23,6 +28,11 @@ class Pods {
      * @var array Current pod item array
      */
     public $row = array();
+
+    /**
+     * @var int
+     */
+    private $row_number = -1;
 
     /**
      * @var array Override pod item array
@@ -228,6 +238,7 @@ class Pods {
         $this->id =& $this->data->id;
         $this->row =& $this->data->row;
         $this->rows =& $this->data->data;
+        $this->row_number =& $this->data->row_number;
 
         if ( is_array( $id ) || is_object( $id ) )
             $this->find( $id );
@@ -244,7 +255,108 @@ class Pods {
         if ( empty( $this->pod_id ) )
             return false;
 
+        if ( $this->iterator )
+            return isset( $this->rows[ $this->row_number ] );
+
         return true;
+    }
+
+    /**
+     * Check if in Iterator mode
+     *
+     * @return bool
+     *
+     * @since 2.3.4
+     *
+     * @link http://www.php.net/manual/en/class.iterator.php
+     */
+    public function is_iterator () {
+        return $this->iterator;
+    }
+
+    /**
+     * Turn off Iterator mode to off
+     *
+     * @return void
+     *
+     * @since 2.3.4
+     *
+     * @link http://www.php.net/manual/en/class.iterator.php
+     */
+    public function stop_iterator () {
+        $this->iterator = false;
+
+        return;
+    }
+
+    /**
+     * Rewind Iterator
+     *
+     * @return void|boolean
+     *
+     * @since 2.3.4
+     *
+     * @link http://www.php.net/manual/en/class.iterator.php
+     */
+    public function rewind () {
+        if ( $this->iterator ) {
+            $this->row_number = 0;
+
+            return;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get current Iterator row
+     *
+     * @return mixed|boolean
+     *
+     * @since 2.3.4
+     *
+     * @link http://www.php.net/manual/en/class.iterator.php
+     */
+    public function current () {
+        if ( $this->iterator && $this->fetch() )
+            return $this;
+
+        return false;
+    }
+
+    /**
+     * Get current Iterator key
+     *
+     * @return int|boolean
+     *
+     * @since 2.3.4
+     *
+     * @link http://www.php.net/manual/en/class.iterator.php
+     */
+    public function key () {
+        if ( $this->iterator )
+            return $this->row_number;
+
+        return false;
+    }
+
+    /**
+     * Move onto the next Iterator row
+     *
+     * @return void|boolean
+     *
+     * @since 2.3.4
+     *
+     * @link http://www.php.net/manual/en/class.iterator.php
+     */
+    public function next () {
+        if ( $this->iterator ) {
+            $this->row_number++;
+
+            return;
+        }
+
+        return false;
     }
 
     /**
@@ -349,27 +461,31 @@ class Pods {
     public function display ( $name, $single = null ) {
         $defaults = array(
             'name' => $name,
-            'orderby' => null,
             'single' => $single,
-            'args' => array(),
-            'in_form' => false,
-            'display' => true
+            'display' => true,
+            'serial_params' => null
         );
 
         if ( is_array( $name ) || is_object( $name ) )
-            $params = (object) array_merge( $defaults, (array) $name );
+            $params = array_merge( $defaults, (array) $name );
         else
-            $params = (object) $defaults;
+            $params = $defaults;
 
-        if ( is_array( $params->single ) ) {
-            $params->args = $params->single;
-            $params->single = null;
-        }
+        $params = (object) $params;
 
         $value = $this->field( $params );
 
-        if ( is_array( $value ) )
-            $value = pods_serial_comma( $value, $params->name, $this->fields );
+        if ( is_array( $value ) ) {
+            $serial_params = array(
+                'field' => $params->name,
+                'fields' => $this->fields
+            );
+
+            if ( !empty( $params->serial_params ) && is_array( $params->serial_params ) )
+                $serial_params = array_merge( $serial_params, $params->serial_params );
+
+            $value = pods_serial_comma( $value, $serial_params );
+        }
 
         return $value;
     }
@@ -389,9 +505,7 @@ class Pods {
     public function raw ( $name, $single = null ) {
         $defaults = array(
             'name' => $name,
-            'orderby' => null,
             'single' => $single,
-            'in_form' => false,
             'raw' => true
         );
 
@@ -427,11 +541,14 @@ class Pods {
             'name' => $name,
             'orderby' => null,
             'single' => $single,
+            'params' => null,
             'in_form' => false,
             'raw' => $raw,
             'display' => false,
+            'get_meta' => false,
             'output' => null,
-            'deprecated' => false
+            'deprecated' => false,
+            'args' => array() // extra data to send to field handlers
         );
 
         if ( is_array( $name ) || is_object( $name ) )
@@ -443,7 +560,7 @@ class Pods {
             $params->output = $this->do_hook( 'field_related_output_type', 'arrays', $this->row, $params );
 
         // Support old $orderby variable
-        if ( null !== $params->single && !is_bool( $params->single ) && empty( $params->orderby ) ) {
+        if ( null !== $params->single && is_string( $params->single ) && empty( $params->orderby ) ) {
             pods_deprecated( 'Pods::field', '2.0', 'Use $params[ \'orderby\' ] instead' );
 
             $params->orderby = $params->single;
@@ -873,13 +990,23 @@ class Pods {
                                 }
 
                                 if ( !empty( $where ) )
-                                    $where = array( '( ' . implode( ' OR ', $where ) . ' )' );
+                                    $where = array( implode( ' OR ', $where ) );
 
                                 if ( !empty( $table[ 'where' ] ) )
                                     $where = array_merge( $where, array_values( (array) $table[ 'where' ] ) );
                             }
 
-                            if ( !empty( $table[ 'table' ] ) ) {
+                            /**
+                             * @var $related_obj Pods
+                             */
+                            $related_obj = false;
+
+                            if ( 'pod' == $object_type )
+                                $related_obj = pods( $object, null, false );
+                            elseif ( isset( $table[ 'pod' ] ) && !empty( $table[ 'pod' ] ) )
+                                $related_obj = pods( $table[ 'pod' ][ 'name' ], null, false );
+
+                            if ( !empty( $table[ 'table' ] ) || !empty( $related_obj ) ) {
                                 $sql = array(
                                     'select' => '*, `t`.`' . $table[ 'field_id' ] . '` AS `pod_item_id`',
                                     'table' => $table[ 'table' ],
@@ -894,13 +1021,32 @@ class Pods {
                                 elseif ( 'names' == $params->output && !empty( $table[ 'field_index' ] ) )
                                     $sql[ 'select' ] = '`t`.`' . $table[ 'field_index' ] . '` AS `pod_item_index`, `t`.`' . $table[ 'field_id' ] . '` AS `pod_item_id`';
 
-                                $item_data = pods_data()->select( $sql );
+                                if ( is_array( $params->params ) && !empty( $params->params ) ) {
+                                    $where = $sql[ 'where' ];
+
+                                    $sql = array_merge( $sql, $params->params );
+
+                                    if ( isset( $params->params[ 'where' ] ) )
+                                        $sql[ 'where' ] = array_merge( (array) $where, (array) $params->params['where' ] );
+                                }
+
+                                if ( empty( $related_obj ) )
+                                    $item_data = pods_data()->select( $sql );
+                                else
+                                    $item_data = $related_obj->find( $sql )->data();
 
                                 $items = array();
 
                                 foreach ( $item_data as $item ) {
+                                    if ( is_array( $item ) )
+                                        $item = (object) $item;
+
                                     if ( empty( $item->pod_item_id ) )
                                         continue;
+
+                                    // Bypass pass field
+                                    if ( isset( $item->user_pass ) )
+                                        unset( $item->user_pass );
 
                                     // Get Item ID
                                     $item_id = $item->pod_item_id;
@@ -974,14 +1120,9 @@ class Pods {
                                     if ( $params->in_form )
                                         $field = $table[ 'field_id' ];
 
-                                    $related_obj = false;
-
                                     foreach ( $data as $item_id => $item ) {
-                                        if ( 'detail_url' == $field || ( in_array( $field, array( 'permalink', 'the_permalink' ) ) && 'post' == $object_type ) ) {
+                                        if ( in_array( $field, array( '_link', 'detail_url' ) ) || ( in_array( $field, array( 'permalink', 'the_permalink' ) ) && 'post' == $object_type ) ) {
                                             if ( 'pod' == $object_type ) {
-                                                if ( empty( $related_obj ) )
-                                                    $related_obj = pods( $object );
-
                                                 if ( is_object( $related_obj ) ) {
                                                     $related_obj->fetch( $item_id );
 
@@ -990,7 +1131,7 @@ class Pods {
                                                 else
                                                     $value[] = '';
                                             }
-                                            if ( 'post' == $object_type )
+                                            elseif ( 'post' == $object_type )
                                                 $value[] = get_permalink( $item_id );
                                             elseif ( 'taxonomy' == $object_type )
                                                 $value[] = get_term_link( $item_id, $object );
@@ -1068,21 +1209,41 @@ class Pods {
             $value = current( $value );
 
         // @todo Expand this into traversed fields too
-        if ( !empty( $field_data ) ) {
-            if ( false === $params->raw && false === $params->in_form ) {
+        if ( !empty( $field_data ) && ( $params->display || !$params->raw ) && !$params->in_form ) {
+            if ( $params->display || ( $params->get_meta && !in_array( $field_data[ 'type' ], $tableless_field_types ) ) ) {
                 $field_data[ 'options' ] = pods_var_raw( 'options', $field_data, array(), null, true );
 
                 $post_temp = false;
 
                 if ( 'post_type' == pods_var( 'type', $this->pod_data ) && 0 < $this->id() && ( !isset( $GLOBALS[ 'post' ] ) || empty( $GLOBALS[ 'post' ] ) ) ) {
+                    global $post_ID, $post;
+
                     $post_temp = true;
 
-                    $GLOBALS[ 'post' ] = get_post( $this->id() );
+                    $old_post = $GLOBALS[ 'post' ];
+                    $old_ID = $GLOBALS[ 'post_ID' ];
+
+                    $post = get_post( $this->id() );
+                    $post_ID = $this->id();
+
                 }
 
-                if ( 0 < strlen( pods_var( 'display_filter', $field_data[ 'options' ] ) ) )
-                    $value = apply_filters( pods_var( 'display_filter', $field_data[ 'options' ] ), $value );
-                elseif ( 1 == pods_var( 'display_process', $field_data[ 'options' ], 1 ) || $params->display ) {
+                $filter = pods_var_raw( 'display_filter', $field_data[ 'options' ] );
+
+                if ( 0 < strlen( $filter ) ) {
+                    $args = array(
+                        $filter,
+                        $value
+                    );
+
+                    $filter_args = pods_var_raw( 'display_filter_args', $field_data[ 'options' ] );
+
+                    if ( !empty( $filter_args ) )
+                        $args = array_merge( $args, compact( $filter_args ) );
+
+                    $value = call_user_func_array( 'apply_filters', $args );
+                }
+                elseif ( 1 == pods_var( 'display_process', $field_data[ 'options' ], 1 ) ) {
                     $value = PodsForm::display(
                         $field_data[ 'type' ],
                         $value,
@@ -1093,8 +1254,10 @@ class Pods {
                     );
                 }
 
-                if ( $post_temp )
-                    $GLOBALS[ 'post' ] = null;
+                if ( $post_temp ) {
+                    $post = $old_post;
+                    $post_ID = $old_ID;
+                }
             }
             else {
                 $value = PodsForm::value(
@@ -1707,19 +1870,20 @@ class Pods {
      * @see PodsData::fetch
      *
      * @param int $id ID or slug of the item to fetch
+     * @param bool $explicit_set Whether to set explicitly (use false when in loop)
      *
      * @return array An array of fields from the row
      *
      * @since 2.0
      * @link http://pods.io/docs/fetch/
      */
-    public function fetch ( $id = null ) {
+    public function fetch ( $id = null, $explicit_set = true ) {
         $this->do_hook( 'fetch', $id );
 
         if ( !empty( $id ) )
             $this->params = array();
 
-        $this->data->fetch( $id );
+        $this->data->fetch( $id, $explicit_set );
 
         $this->sql = $this->data->sql;
 
@@ -1853,7 +2017,7 @@ class Pods {
         $data = (array) $this->do_hook( 'add', $data );
 
         if ( empty( $data ) )
-            return false;
+            return 0;
 
         $params = array(
             'pod' => $this->pod,
@@ -1880,8 +2044,13 @@ class Pods {
     public function add_to ( $field, $value, $id = null ) {
         $pod =& $this;
 
-        if ( null === $id )
+        $fetch = false;
+
+        if ( null === $id ) {
+            $fetch = true;
+
             $id = $this->id();
+        }
         elseif ( $id != $this->id() )
             $pod = pods( $this->pod, $id );
 
@@ -1951,8 +2120,8 @@ class Pods {
 
         $id = $this->api->save_pod_item( $params );
 
-        if ( 0 < $id )
-            $pod->fetch( $id );
+        if ( 0 < $id && $fetch )
+            $pod->fetch( $id, false );
 
         return $id;
     }
@@ -1973,8 +2142,13 @@ class Pods {
     public function remove_from ( $field, $value, $id = null ) {
         $pod =& $this;
 
-        if ( null === $id )
+        $fetch = false;
+
+        if ( null === $id ) {
+            $fetch = true;
+
             $id = $this->id();
+        }
         elseif ( $id != $this->id() )
             $pod = pods( $this->pod, $id );
 
@@ -2044,8 +2218,8 @@ class Pods {
 
         $id = $this->api->save_pod_item( $params );
 
-        if ( 0 < $id )
-            $pod->fetch( $id );
+        if ( 0 < $id && $fetch )
+            $pod->fetch( $id, false );
 
         return $id;
     }
@@ -2071,13 +2245,18 @@ class Pods {
         if ( null !== $value )
             $data = array( $data => $value );
 
-        if ( null === $id )
+        $fetch = false;
+
+        if ( null === $id ) {
+            $fetch = true;
+
             $id = $this->id();
+        }
 
         $data = (array) $this->do_hook( 'save', $data, $id );
 
         if ( empty( $data ) )
-            return false;
+            return $id;
 
         $params = array(
             'pod' => $this->pod,
@@ -2088,8 +2267,8 @@ class Pods {
 
         $id = $this->api->save_pod_item( $params );
 
-        if ( 0 < $id )
-            $this->fetch( $id );
+        if ( 0 < $id && $fetch )
+            $this->fetch( $id, false );
 
         return $id;
     }
@@ -2571,8 +2750,9 @@ class Pods {
                 $field[ 'name' ] = trim( $name );
 
             if ( pods_var_raw( 'hidden', $field, false, null, true ) )
-                continue;
-            elseif ( isset( $object_fields[ $field[ 'name' ] ] ) )
+                $field[ 'type' ] = 'hidden';
+
+            if ( isset( $object_fields[ $field[ 'name' ] ] ) )
                 $fields[ $field[ 'name' ] ] = array_merge( $object_fields[ $field[ 'name' ] ], $field );
             elseif ( isset( $this->fields[ $field[ 'name' ] ] ) )
                 $fields[ $field[ 'name' ] ] = array_merge( $this->fields[ $field[ 'name' ] ], $field );
@@ -2695,7 +2875,7 @@ class Pods {
         $value = apply_filters( 'pods_do_magic_tags', $value, $field_name, $helper_name, $before, $after );
 
         if ( is_array( $value ) )
-            $value = pods_serial_comma( $value, $field_name, $this->fields );
+            $value = pods_serial_comma( $value, array( 'field' => $field_name, 'fields' => $this->fields ) );
 
         if ( null !== $value && false !== $value )
             return $before . $value . $after;

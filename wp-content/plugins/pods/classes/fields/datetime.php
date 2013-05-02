@@ -239,7 +239,7 @@ class PodsField_DateTime extends PodsField {
         elseif ( 1 == pods_var( self::$type . '_allow_empty', $options, 1 ) )
             $value = '0000-00-00 00:00:00';
         else
-            $value = date_i18n( 'Y-m-d H:i:s' );
+            $value = current_time( 'mysql' );
 
         return $value;
     }
@@ -324,7 +324,7 @@ class PodsField_DateTime extends PodsField {
         if ( method_exists( 'DateTime', 'createFromFormat' ) )
             $datetime = DateTime::createFromFormat( $format, (string) $date );
         else
-            $datetime = new DateTime( date_i18n( 'Y-m-d', strtotime( (string) $date ) ) );
+            $datetime = new DateTime( date_i18n( 'Y-m-d H:i:s', strtotime( (string) $date ) ) );
 
         return apply_filters( 'pods_form_ui_field_datetime_formatter', $datetime, $format, $date );
     }

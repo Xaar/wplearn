@@ -141,7 +141,10 @@ class PodsAPI {
      * @param array $post_meta (optional) All meta to be saved (set value to null to delete)
      * @param bool $strict (optional) Whether to delete previously saved meta not in $post_meta
      * @param bool $sanitized (optional) Will unsanitize the data, should be passed if the data is sanitized before sending.
+     *
      * @return mixed|void
+     *
+     * @since 2.0
      */
     public function save_post ( $post_data, $post_meta = null, $strict = false, $sanitized = false ) {
         pods_no_conflict_on( 'post' );
@@ -564,6 +567,8 @@ class PodsAPI {
      * @param boolean $refresh Whether to force refresh the information
      *
      * @return array Array of fields
+     *
+     * @since 2.0
      */
     public function get_wp_object_fields ( $object = 'post_type', $pod = null, $refresh = false ) {
         $pod_name = pods_var_raw( 'name', $pod );
@@ -584,7 +589,7 @@ class PodsAPI {
                     'alias' => array( 'title', 'name' ),
                     'options' => array(
                         'display_filter' => 'the_title',
-                        'display_filter_args' => array( 'ID' )
+                        'display_filter_args' => array( 'post_ID' )
                     )
                 ),
                 'post_content' => array(
@@ -2303,11 +2308,23 @@ class PodsAPI {
             return $field;
     }
 
+    /**
+     * Fix Pod / Field post_name to ensure they are exactly as saved (allow multiple posts w/ same post_name)
+     *
+     * @param string $slug Unique slug value
+     * @param int $post_ID Post ID
+     * @param string $post_status Post Status
+     * @param string $post_type Post Type
+     * @param int $post_parent Post Parent ID
+     * @param string $original_slug Original slug value
+     *
+     * @return string Final slug value
+     *
+     * @since 2.3.3
+     */
     public function save_slug_fix ( $slug, $post_ID, $post_status, $post_type, $post_parent = 0, $original_slug = null ) {
-        if ( in_array( $post_type, array( '_pods_field', '_pods_pod' ) ) && false !== strpos( $slug, '-' ) ) {
-            $slug = explode( '-', $slug );
-            $slug = $slug[ 0 ];
-        }
+        if ( in_array( $post_type, array( '_pods_field', '_pods_pod' ) ) && false !== strpos( $slug, '-' ) )
+            $slug = $original_slug;
 
         return $slug;
     }
@@ -2651,6 +2668,10 @@ class PodsAPI {
                         $fields[ $field ][ 'value' ] = $value;
                         $fields_active[] = $field;
                     }
+                    elseif ( !pods_has_permissions( $fields[ $field ][ 'options' ] ) && pods_var( 'hidden', $fields[ $field ][ 'options' ], false, null, true ) ) {
+                        $fields[ $field ][ 'value' ] = $value;
+                        $fields_active[] = $field;
+                    }
                 }
                 else {
                     $found = false;
@@ -2682,12 +2703,12 @@ class PodsAPI {
 
         if ( 'pod' == $pod[ 'type' ] ) {
             if ( empty( $params->id ) && !in_array( 'created', $fields_active ) && isset( $fields[ 'created' ] ) ) {
-                $fields[ 'created' ][ 'value' ] = date_i18n( 'Y-m-d H:i:s' );
+                $fields[ 'created' ][ 'value' ] = current_time( 'mysql' );
                 $fields_active[] = 'created';
             }
 
             if ( !in_array( 'modified', $fields_active ) && isset( $fields[ 'modified' ] ) ) {
-                $fields[ 'modified' ][ 'value' ] = date_i18n( 'Y-m-d H:i:s' );
+                $fields[ 'modified' ][ 'value' ] = current_time( 'mysql' );
                 $fields_active[] = 'modified';
             }
 
@@ -2842,51 +2863,53 @@ class PodsAPI {
                 if ( $simple ) {
                     $value = (array) $value;
 
-                    $custom = pods_var_raw( 'pick_custom', $options, '' );
-
-                    $custom = apply_filters( 'pods_form_ui_field_pick_custom_values', $custom, $field_data[ 'name' ], $value, array_merge( $field_data, $options ), $pod, $params->id );
-
                     $pick_limit = (int) pods_var_raw( 'pick_limit', $options, 0 );
 
                     if ( 'single' == pods_var_raw( 'pick_format_type', $options ) )
                         $pick_limit = 1;
 
-                    if ( empty( $value ) || empty( $custom ) )
-                        $value = '';
-                    elseif ( !empty( $custom ) ) {
-                        if ( !is_array( $custom ) ) {
-                            $custom = explode( "\n", $custom );
+                    if ( 'custom-simple' == pods_var( 'pick_object', $field_data ) ) {
+                        $custom = pods_var_raw( 'pick_custom', $options, '' );
 
-                            $custom_values = array();
+                        $custom = apply_filters( 'pods_form_ui_field_pick_custom_values', $custom, $field_data[ 'name' ], $value, array_merge( $field_data, $options ), $pod, $params->id );
 
-                            foreach ( $custom as $c => $cv ) {
-                                if ( 0 < strlen( $cv ) ) {
-                                    $custom_label = explode( '|', $cv );
+                        if ( empty( $value ) || empty( $custom ) )
+                            $value = '';
+                        elseif ( !empty( $custom ) ) {
+                            if ( !is_array( $custom ) ) {
+                                $custom = explode( "\n", $custom );
 
-                                    if ( !isset( $custom_label[ 1 ] ) )
-                                        $custom_label[ 1 ] = $custom_label[ 0 ];
+                                $custom_values = array();
 
-                                    $custom_values[ $custom_label[ 0 ] ] = $custom_label[ 1 ];
+                                foreach ( $custom as $c => $cv ) {
+                                    if ( 0 < strlen( $cv ) ) {
+                                        $custom_label = explode( '|', $cv );
+
+                                        if ( !isset( $custom_label[ 1 ] ) )
+                                            $custom_label[ 1 ] = $custom_label[ 0 ];
+
+                                        $custom_values[ $custom_label[ 0 ] ] = $custom_label[ 1 ];
+                                    }
                                 }
                             }
+                            else
+                                $custom_values = $custom;
+
+                            $values = array();
+
+                            foreach ( $value as $k => $v ) {
+                                $v = pods_unsanitize( $v );
+
+                                if ( isset( $custom_values[ $v ] ) )
+                                    $values[ $k ] = $v;
+                            }
+
+                            $value = $values;
                         }
-                        else
-                            $custom_values = $custom;
-
-                        $values = array();
-
-                        foreach ( $value as $k => $v ) {
-                            $v = pods_unsanitize( $v );
-
-                            if ( isset( $custom_values[ $v ] ) )
-                                $values[ $k ] = $v;
-                        }
-
-                        $value = $values;
-
-                        if ( 0 < $pick_limit && !empty( $value ) )
-                            $value = array_slice( $value, 0, $pick_limit );
                     }
+
+                    if ( 0 < $pick_limit && !empty( $value ) )
+                        $value = array_slice( $value, 0, $pick_limit );
 
                     // Don't save an empty array, just make it an empty string
                     if ( empty( $value ) )
@@ -3107,6 +3130,7 @@ class PodsAPI {
                 $meta_type = 'post';
 
             wp_cache_delete( $params->id, $meta_type . '_meta' );
+            wp_cache_delete( $params->id, 'pods_' . $meta_type . '_meta' );
         }
 
         // Success! Return the id
@@ -3401,7 +3425,7 @@ class PodsAPI {
             if ( in_array( $field[ 'type' ], PodsForm::file_field_types() ) )
                 $field = $field . '.ID';
 
-            $value = $pod->field( $field );
+            $value = $pod->field( array( 'name' => $field, 'output' => 'arrays' ) );
 
             if ( 0 < strlen( $value ) )
                 $params[ 'data' ][ $field[ 'name' ] ] = $value;
@@ -3469,6 +3493,8 @@ class PodsAPI {
      * @param int $current_depth Current depth level
      *
      * @return array Data array
+     *
+     * @since 2.3
      */
     private function export_pod_item_level ( $pod, $fields, $depth, $flatten = false, $current_depth = 1 ) {
         $tableless_field_types = PodsForm::tableless_field_types();
@@ -3523,12 +3549,12 @@ class PodsAPI {
         foreach ( $export_fields as $field ) {
             // Return IDs (or guid for files) if only one level deep
             if ( 1 == $depth )
-                $data[ $field[ 'name' ] ] = $pod->field( $field[ 'lookup_name' ] );
+                $data[ $field[ 'name' ] ] = $pod->field( array( 'name' => $field[ 'lookup_name' ], 'output' => 'arrays' ) );
             // Recurse depth levels for pick fields if $depth allows
             elseif ( ( -1 == $depth || $current_depth < $depth ) && 'pick' == $field[ 'type' ] && !in_array( pods_var( 'pick_object', $field ), $simple_tableless_objects ) ) {
                 $related_data = array();
 
-                $related_ids = $pod->field( $field[ 'lookup_name' ] );
+                $related_ids = $pod->field( array( 'name' => $field[ 'name' ], 'output' => 'ids' ) );
 
                 if ( !empty( $related_ids ) ) {
                     $related_ids = (array) $related_ids;
@@ -3537,23 +3563,24 @@ class PodsAPI {
 
                     $related_pod = pods( pods_var_raw( 'pick_val', $field ), null, false );
 
-                    // If this isn't a Pod, return data exactly as Pods does normally$
+                    // If this isn't a Pod, return data exactly as Pods does normally
                     if ( empty( $related_pod ) || ( 'pod' != $pick_object && $pick_object != $related_pod->pod_data[ 'type' ] ) || $related_pod->pod == $pod->pod )
-                        $related_data = $pod->field( $field[ 'name' ] );
+                        $related_data = $pod->field( array( 'name' => $field[ 'name' ], 'output' => 'arrays' ) );
                     else {
                         $related_object_fields = (array) pods_var_raw( 'object_fields', $related_pod->pod_data, array(), null, true );
 
                         $related_fields = array_merge( $related_pod->fields, $related_object_fields );
 
-                        $related_data = $this->export_pod_item_level( $related_pod, $related_fields, $depth, $flatten, ( $current_depth + 1 ) );
-
                         foreach ( $related_ids as $related_id ) {
                             if ( $related_pod->fetch( $related_id ) ) {
+                                $related_item = $this->export_pod_item_level( $related_pod, $related_fields, $depth, $flatten, ( $current_depth + 1 ) );
 
-
-                                $related_data = $this->do_hook( 'export_pod_item_level', $related_data, $related_pod->pod, $related_pod->id(), $related_pod, $related_fields, $depth, $flatten, ( $current_depth + 1 ) );
+                                $related_data[ $related_id ] = $this->do_hook( 'export_pod_item_level', $related_item, $related_pod->pod, $related_pod->id(), $related_pod, $related_fields, $depth, $flatten, ( $current_depth + 1 ) );
                             }
                         }
+
+                        if ( $flatten && !empty( $related_data ) )
+                            $related_data = pods_serial_comma( array_values( $related_data ), array( 'and' => '', 'field_index' => $related_pod->pod_data[ 'field_index' ] ) );
                     }
                 }
 
@@ -3561,10 +3588,10 @@ class PodsAPI {
             }
             // Return data exactly as Pods does normally
             else
-                $data[ $field[ 'name' ] ] = $pod->field( $field[ 'name' ] );
+                $data[ $field[ 'name' ] ] = $pod->field( array( 'name' => $field[ 'name' ], 'output' => 'arrays' ) );
 
             if ( $flatten && is_array( $data[ $field[ 'name' ] ] ) )
-                $data[ $field[ 'name' ] ] = pods_serial_comma( $data[ $field[ 'name' ] ], $field[ 'name' ], $export_fields );
+                $data[ $field[ 'name' ] ] = pods_serial_comma( $data[ $field[ 'name' ] ], array( 'field' => $field[ 'name' ], 'fields' => $export_fields, 'and' => '' ) );
         }
 
         return $data;
@@ -4174,6 +4201,8 @@ class PodsAPI {
      * @param string $name
      *
      * @return bool
+     *
+     * @since 2.3
      */
     public function delete_object_from_relationships ( $id, $object, $name = null ) {
         /**
@@ -4276,6 +4305,10 @@ class PodsAPI {
      * @param int|array $id ID or IDs to remove
      * @param array $related_pod Pod data
      * @param array $related_field Field data
+     *
+     * @return void
+     *
+     * @since 2.3
      */
     public function delete_relationships ( $related_id, $id, $related_pod, $related_field ) {
         if ( is_array( $related_id ) ) {
@@ -4593,9 +4626,19 @@ class PodsAPI {
                 $field->pod = $pod[ 'name' ];
                 $field->table_info = (boolean) pods_var_raw( 'table_info', $params, true );
 
-                $field = $this->load_field( $field );
+                if ( $load_fields ) {
+                    $field = $this->load_field( $field );
 
-                $field = PodsForm::field_setup( $field, null, $field[ 'type' ] );
+                    $field = PodsForm::field_setup( $field, null, $field[ 'type' ] );
+                }
+                else {
+                    $field = array(
+                        'id' => $field->ID,
+                        'name' => $field->post_name,
+                        'label' => $field->post_title,
+                        'type' => get_post_meta( $field->ID, 'type', true )
+                    );
+                }
 
                 $pod[ 'fields' ][ $field[ 'name' ] ] = $field;
             }
@@ -4815,6 +4858,8 @@ class PodsAPI {
             'excludes-on'
         );
 
+        $total_fields = 0;
+
         if ( isset( $params->count ) && $params->count )
             $the_pods = count( $_pods );
         else {
@@ -4830,7 +4875,7 @@ class PodsAPI {
                     $pod = $this->load_pod( $pod );
 
                     // Remove extra data not needed
-                    if ( pods_var( 'export', $params, false ) ) {
+                    if ( pods_var( 'export', $params, false ) && ( !isset( $params->fields ) || $params->fields ) ) {
                         foreach ( $export_ignore as $ignore ) {
                             if ( isset( $pod[ $ignore ] ) )
                                 unset( $pod[ $ignore ] );
@@ -4842,6 +4887,8 @@ class PodsAPI {
                         }
                     }
 
+                    $total_fields += count( $pod[ 'fields' ] );
+
                     if ( isset( $params->key_names ) && $params->key_names )
                         $the_pods[ $pod[ 'name' ] ] = $pod;
                     else
@@ -4852,7 +4899,7 @@ class PodsAPI {
 
         if ( ( !function_exists( 'pll_current_language' ) || ( isset( $params->refresh ) && $params->refresh ) ) && !empty( $cache_key ) && ( 'pods' != $cache_key || empty( $meta_query ) ) && $limit < 1 && ( empty( $orderby ) || 'menu_order title' == $orderby ) && empty( $ids ) ) {
             // Too many Pods can cause issues with the DB when caching is not enabled
-            if ( 15 < count( $the_pods ) ) {
+            if ( 15 < count( $the_pods ) || 75 < count( $total_fields ) ) {
                 pods_transient_clear( $cache_key );
 
                 if ( empty( $the_pods ) && ( !isset( $params->count ) || !$params->count ) )
@@ -5315,7 +5362,7 @@ class PodsAPI {
             global $wpdb;
 
             if ( isset( $params->name ) )
-                $_object = get_page_by_title( $params->name, ARRAY_A, '_pods_' . $params->type );
+                $_object = pods_by_title( $params->name, ARRAY_A, '_pods_' . $params->type, 'publish' );
             else {
                 $object = $params->id;
 
@@ -5482,7 +5529,10 @@ class PodsAPI {
      * $params['limit'] string Number of templates to return
      *
      * @param array $params (optional) An associative array of parameters
+     *
      * @return array
+     *
+     * @since 2.0
      */
     public function load_templates ( $params = null ) {
         if ( !class_exists( 'Pods_Templates' ) )
@@ -5504,6 +5554,7 @@ class PodsAPI {
      * @param array $params An associative array of parameters
      *
      * @return array|bool
+     *
      * @since 1.7.9
      */
     public function load_page ( $params ) {
@@ -5530,7 +5581,10 @@ class PodsAPI {
      * $params['limit'] string Number of pages to return
      *
      * @param array $params (optional) An associative array of parameters
+     *
      * @return array
+     *
+     * @since 2.0
      */
     public function load_pages ( $params = null ) {
         if ( !class_exists( 'Pods_Pages' ) )
@@ -5552,6 +5606,7 @@ class PodsAPI {
      * @param array $params An associative array of parameters
      *
      * @return array|bool
+     *
      * @since 1.7.9
      */
     public function load_helper ( $params ) {
@@ -5574,7 +5629,10 @@ class PodsAPI {
      * $params['limit'] string Number of pages to return
      *
      * @param array $params (optional) An associative array of parameters
+     *
      * @return array
+     *
+     * @since 2.0
      */
     public function load_helpers ( $params = null ) {
         if ( !class_exists( 'Pods_Helpers' ) )
@@ -5629,6 +5687,7 @@ class PodsAPI {
      * @param array $pod (optional) Array of Pod data to use (to avoid lookup)
      *
      * @return array|bool
+     *
      * @since 1.7.9
      *
      * @uses PodsAPI::load_pod
@@ -6595,6 +6654,7 @@ class PodsAPI {
                 $info[ 'pod_table' ] = $wpdb->prefix . 'pods_' . $info[ 'table' ];
 
                 if ( !empty( $field ) && is_array( $field ) ) {
+                    $info[ 'table' ] = pods_var_raw( 'pick_table', pods_var_raw( 'options', $field, $field ) );
                     $info[ 'field_id' ] = pods_var_raw( 'pick_table_id', pods_var_raw( 'options', $field, $field ) );
                     $info[ 'field_index' ] = $info[ 'meta_field_index' ] = $info[ 'meta_field_value' ] = pods_var_raw( 'pick_table_index', pods_var_raw( 'options', $field, $field ) );
                 }
@@ -6632,7 +6692,7 @@ class PodsAPI {
                 pods_transient_set( $transient . '_pre_init', $info );
         }
 
-        $info = $this->do_hook( 'get_table_info', $info, $object_type, $object );
+        $info = $this->do_hook( 'get_table_info', $info, $object_type, $object, $name, $pod, $field );
 
         return $info;
     }
@@ -6965,6 +7025,10 @@ class PodsAPI {
      * Clear Pod-related cache
      *
      * @param array $pod
+     *
+     * @return void
+     *
+     * @since 2.0
      */
     public function cache_flush_pods ( $pod = null ) {
         /**
@@ -7006,6 +7070,8 @@ class PodsAPI {
      * @param string $thank_you URL to send to upon success
      *
      * @return mixed
+     *
+     * @since 2.0
      */
     public function process_form ( $params, $obj = null, $fields = null, $thank_you = null ) {
         $this->display_errors = false;

@@ -285,7 +285,7 @@ class PodsField_Pick extends PodsField {
      * @since 2.3
      */
     public function setup_related_objects ( $force = false ) {
-        $related_objects = get_transient( 'pods_related_objects' );
+        $related_objects = pods_transient_get( 'pods_related_objects' );
 
         if ( !$force && !empty( $related_objects ) )
             self::$related_objects = $related_objects;
@@ -440,7 +440,7 @@ class PodsField_Pick extends PodsField {
             do_action( 'pods_form_ui_field_pick_related_objects_predefined' );
 
             if ( did_action( 'init' ) )
-                set_transient( 'pods_related_objects', self::$related_objects );
+                pods_transient_set( 'pods_related_objects', self::$related_objects );
         }
 
         foreach ( self::$custom_related_objects as $object => $related_object ) {
@@ -531,7 +531,7 @@ class PodsField_Pick extends PodsField {
         elseif ( is_array( $pod ) && isset( $pod[ 'fields' ] ) )
             $fields = $pod[ 'fields' ];
 
-        return pods_serial_comma( $value, $name, $fields );
+        return pods_serial_comma( $value, array( 'field' => $name, 'fields' => $fields ) );
     }
 
     /**
@@ -1170,7 +1170,8 @@ class PodsField_Pick extends PodsField {
                     'table' => $search_data->table,
                     'where' => pods_var_raw( 'pick_where', $options, (array) $options[ 'table_info' ][ 'where_default' ], null, true ),
                     'orderby' => pods_var_raw( 'pick_orderby', $options, null, null, true ),
-                    'groupby' => pods_var_raw( 'pick_groupby', $options, null, null, true )
+                    'groupby' => pods_var_raw( 'pick_groupby', $options, null, null, true ),
+                    //'having' => pods_var_raw( 'pick_having', $options, null, null, true )
                 );
 
                 if ( in_array( $options[ 'pick_object' ], array( 'site', 'network' ) ) )
@@ -1179,7 +1180,7 @@ class PodsField_Pick extends PodsField {
                 if ( !empty( $params[ 'where' ] ) && (array) $options[ 'table_info' ][ 'where_default' ] != $params[ 'where' ] )
                     $params[ 'where' ] = pods_evaluate_tags( $params[ 'where' ], true );
 
-                if ( empty( $params[ 'where' ] ) )
+                if ( empty( $params[ 'where' ] ) || ( !is_array( $params[ 'where' ] ) && strlen( trim( $params[ 'where' ] ) ) < 1 ) )
                     $params[ 'where' ] = array();
                 elseif ( !is_array( $params[ 'where' ] ) )
                     $params[ 'where' ] = (array) $params[ 'where' ];
@@ -1269,7 +1270,7 @@ class PodsField_Pick extends PodsField {
                         }
 
                         if ( !empty( $lookup_where ) )
-                            $params[ 'where' ][] = ' ( ' . implode( ' OR ', $lookup_where ) . ' ) ';
+                            $params[ 'where' ][] = implode( ' OR ', $lookup_where );
 
                         $orderby = array();
                         $orderby[] = "(`t`.`{$search_data->field_index}` LIKE '%" . like_escape( $data_params[ 'query' ] ) . "%' ) DESC";
@@ -1310,8 +1311,9 @@ class PodsField_Pick extends PodsField {
                             $where[] = 'wp_' . ( is_multisite() ? get_current_blog_id() . '_' : '' ) . 'capabilities.meta_value LIKE "%\"' . $role . '\"%"';
                         }
 
-                        if ( !empty( $where ) )
-                            $params[ 'where' ][] = '( ' . implode( ' OR ', $where ) . ' )';
+                        if ( !empty( $where ) ) {
+                            $params[ 'where' ][] = implode( ' OR ', $where );
+                        }
                     }
                 }
 

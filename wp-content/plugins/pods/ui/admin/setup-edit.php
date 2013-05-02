@@ -100,7 +100,8 @@ $advanced_fields = array(
                     'label' => __( 'Restrict access to Admins?', 'pods' ),
                     'default' => 0,
                     'type' => 'boolean',
-                    'dependency' => true
+                    'dependency' => true,
+                    'help' => __( 'This field will only be able to be edited by users with the ability to manage_options or delete_users, or super admins of a WordPress Multisite network', 'pods' )
                 ),
                 'restrict_role' => array(
                     'label' => __( 'Restrict access by Role?', 'pods' ),
@@ -113,6 +114,12 @@ $advanced_fields = array(
                     'default' => 0,
                     'type' => 'boolean',
                     'dependency' => true
+                ),
+                'hidden' => array(
+                    'label' => __( 'Hide field from UI', 'pods' ),
+                    'default' => 0,
+                    'type' => 'boolean',
+                    'help' => __( 'This option is overriden by access restrictions. If the user does not have access to edit this field, it will be hidden. If no access restrictions are set, this field will always be hidden.', 'pods' )
                 )
             )
         ),
@@ -996,20 +1003,20 @@ if ( isset( $tabs[ 'extra-fields' ] ) ) {
     };
 
     var pods_sister_field = function ( $el ) {
-        if ( 'undefined' != typeof pods_sister_field_going[ $el.prop( 'id' ) ] )
+        var id = $el.closest( 'tr.pods-manage-row' ).data( 'row' );
+
+        if ( 'undefined' != typeof pods_sister_field_going[ id + '_' + $el.prop( 'id' ) ] && true == pods_sister_field_going[ id + '_' + $el.prop( 'id' ) ] )
             return;
 
-        pods_sister_field_going[ $el.prop( 'id' ) ] = true;
-
-        var id = $el.closest( 'tr.pods-manage-row' ).data( 'row' );
+        pods_sister_field_going[ id + '_' + $el.prop( 'id' ) ] = true;
 
         var default_select = '<?php echo addslashes( str_replace( array( "\n", "\r" ), ' ', PodsForm::field( 'field_data[--1][sister_id]', '', 'pick', array( 'data' => pods_var_raw( 'sister_id', $field_settings ) ) ) ) ); ?>';
         default_select = default_select.replace( /\-\-1/g, id );
 
         var related_pod_name = jQuery( '#pods-form-ui-field-data-' + id + '-pick-object' ).val();
 
-        if ( 'custom-simple' == related_pod_name || 'post-status' == related_pod_name || 'role' == related_pod_name || 'post-types' == related_pod_name || 'taxonomies' == related_pod_name || '' == related_pod_name ) {
-            pods_sister_field_going[ $el.prop( 'id' ) ] = false;
+        if ( 0 != related_pod_name.indexOf( 'pods-' ) && 0 != related_pod_name.indexOf( 'post_type-' ) && 0 != related_pod_name.indexOf( 'taxonomy-' ) && 0 != related_pod_name.indexOf( 'user' ) && 0 != related_pod_name.indexOf( 'media' ) && 0 != related_pod_name.indexOf( 'comment' ) ) {
+            pods_sister_field_going[ id + '_' + $el.prop( 'id' ) ] = false;
 
             return;
         }
@@ -1067,20 +1074,20 @@ if ( isset( $tabs[ 'extra-fields' ] ) ) {
 
                     jQuery( '#pods-form-ui-field-data-' + id + '-sister-id' ).val( selected_value );
 
-                    pods_sister_field_going[ $el.prop( 'id' ) ] = false;
+                    pods_sister_field_going[ id + '_' + $el.prop( 'id' ) ] = false;
                 }
                 else {
                     // None found
                     $el.find( '.pods-sister-field' ).html( default_select );
 
-                    pods_sister_field_going[ $el.prop( 'id' ) ] = false;
+                    pods_sister_field_going[ id + '_' + $el.prop( 'id' ) ] = false;
                 }
             },
             error : function () {
                 // None found
                 $el.find( '.pods-sister-field' ).html( default_select );
 
-                pods_sister_field_going[ $el.prop( 'id' ) ] = false;
+                pods_sister_field_going[ id + '_' + $el.prop( 'id' ) ] = false;
             }
         } );
     }

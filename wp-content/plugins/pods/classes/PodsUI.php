@@ -384,7 +384,7 @@ class PodsUI {
     public $actions_bulk = array(); // enabled bulk actions
 
     /**
-     * @var bool|string
+     * @var array
      */
     public $restrict = array(
         'manage' => null,
@@ -393,6 +393,13 @@ class PodsUI {
         'delete' => null,
         'reorder' => null,
         'author_restrict' => null
+    );
+
+    /**
+     * @var array
+     */
+    public $extra = array(
+        'total' => null
     );
 
     /**
@@ -954,6 +961,8 @@ class PodsUI {
         $options->validate( 'actions_hidden', $this->actions_hidden, 'array_merge' );
         $options->validate( 'actions_custom', $this->actions_custom, 'array_merge' );
 
+        $options->validate( 'extra', $this->extra, 'array_merge' );
+
         $options->validate( 'style', $this->style );
         $options->validate( 'icon', $this->icon );
         $options->validate( 'css', $this->css );
@@ -1501,15 +1510,21 @@ class PodsUI {
 
             $field[ 'name' ] = trim( $field[ 'name' ] );
 
+            $value = pods_var_raw( 'default', $field );
+
             if ( empty( $field[ 'name' ] ) )
                 $field[ 'name' ] = trim( $name );
 
             if ( pods_var_raw( 'hidden', $field, false, null, true ) )
-                continue;
+                $field[ 'type' ] = 'hidden';
+
             elseif ( isset( $object_fields[ $field[ 'name' ] ] ) )
                 $fields[ $field[ 'name' ] ] = array_merge( $field, $object_fields[ $field[ 'name' ] ] );
             elseif ( isset( $this->pod->fields[ $field[ 'name' ] ] ) )
                 $fields[ $field[ 'name' ] ] = array_merge( $this->pod->fields[ $field[ 'name' ] ], $field );
+
+            if ( empty( $this->id ) && null !== $value )
+                $this->pod->row_override[ $field[ 'name' ] ] = $value;
         }
 
         unset( $form_fields ); // Cleanup
@@ -1749,13 +1764,15 @@ class PodsUI {
     public function export () {
         $export_type = pods_var( 'export_type', 'get', 'csv' );
 
-        $type = 'sv';
+        $type = 'sv'; // covers csv + tsv
+
+        if ( in_array( $export_type, array( 'xml', 'json' ) ) )
+            $type = $export_type;
+
         $delimiter = ',';
 
         if ( 'tsv' == $export_type )
             $delimiter = "\t";
-        elseif ( in_array( $export_type, array( 'xml', 'json' ) ) )
-            $type = $export_type;
 
         $columns = array();
 
@@ -1771,11 +1788,21 @@ class PodsUI {
             $columns[ $field[ 'name' ] ] = $field[ 'label' ];
         }
 
-        $items = $this->get_data( true, array_keys( $columns ) );
+        $params = array(
+            'full' => true,
+            'flatten' => true,
+            'fields' => array_keys( $columns ),
+            'type' => $type,
+            'delimiter' => $delimiter,
+            'columns' => $columns
+        );
+
+        $items = $this->get_data( $params );
 
         $data = array(
             'columns' => $columns,
-            'items' => $items
+            'items' => $items,
+            'fields' => $this->fields[ 'export' ]
         );
 
         $migrate = pods_migrate( $type, $delimiter, $data );
@@ -1784,7 +1811,7 @@ class PodsUI {
 
         $export_file = $migrate->save();
 
-        $this->message( sprintf( __( '<strong>Success:</strong> Your export is ready, the download should begin in a few moments. If it doesn\'t, you can download it <a href="%s" target="_blank">here</a>', 'pods' ), $export_file ) );
+        $this->message( sprintf( __( '<strong>Success:</strong> Your export is ready, you can download it <a href="%s" target="_blank">here</a>', 'pods' ), $export_file ) );
 
         //echo '<script type="text/javascript">window.open("' . esc_js( $export_file ) . '");</script>';
 
@@ -1821,8 +1848,18 @@ class PodsUI {
      *
      * @return bool
      */
-    public function get_data ( $full = false, $fields = null ) {
+    public function get_data ( $params = null ) {
         $action = $this->action;
+
+        $defaults = array(
+            'full' => false,
+            'flatten' => true,
+            'fields' => null,
+            'type' => ''
+        );
+
+        if ( !empty( $params ) && is_array( $params ) )
+            $params = (object) array_merge( $defaults, $params );
 
         if ( !in_array( $action, array( 'manage', 'reorder' ) ) )
             $action = 'manage';
@@ -1856,7 +1893,7 @@ class PodsUI {
                 }
             }
 
-            $params = array(
+            $find_params = array(
                 'where' => pods_var_raw( $action, $this->where, null, null, true ),
                 'orderby' => $orderby,
                 'page' => (int) $this->page,
@@ -1869,21 +1906,21 @@ class PodsUI {
                 'sql' => $sql
             );
 
-            if ( empty( $params[ 'where' ] ) && $this->restricted( $this->action ) )
-                $params[ 'where' ] = $this->pods_data->query_fields( $this->restrict[ $this->action ], ( is_object( $this->pod ) ? $this->pod->pod_data : null ) );
+            if ( empty( $find_params[ 'where' ] ) && $this->restricted( $this->action ) )
+                $find_params[ 'where' ] = $this->pods_data->query_fields( $this->restrict[ $this->action ], ( is_object( $this->pod ) ? $this->pod->pod_data : null ) );
 
-            if ( $full )
-                $params[ 'limit' ] = -1;
+            if ( $params->full )
+                $find_params[ 'limit' ] = -1;
 
-            $params = array_merge( $params, (array) $this->params );
+            $find_params = array_merge( $find_params, (array) $this->params );
 
             // Debug purposes
             if ( 1 == pods_var( 'pods_debug_params', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
-                pods_debug( $params );
+                pods_debug( $find_params );
 
-            $this->pod->find( $params );
+            $this->pod->find( $find_params );
 
-            if ( !$full ) {
+            if ( !$params->full ) {
                 $data = $this->pod->data();
 
                 $this->data = $data;
@@ -1897,8 +1934,18 @@ class PodsUI {
             else {
                 $this->data_full = array();
 
+                $export_params = array(
+                    'fields' => $params->fields,
+                    'flatten' => true
+                );
+
+                if ( in_array( $params->type, array( 'json', 'xml' ) ) )
+                    $export_params[ 'flatten' ] = false;
+
+                $export_params = $this->do_hook( 'export_options', $export_params, $params );
+
                 while ( $this->pod->fetch() ) {
-                    $this->data_full[ $this->pod->id() ] = $this->pod->export( array( 'fields' => $fields, 'flatten' => true ) );
+                    $this->data_full[ $this->pod->id() ] = $this->pod->export( $export_params );
                 }
 
                 $this->pod->reset();
@@ -1919,7 +1966,7 @@ class PodsUI {
                 $orderby = '`' . $this->orderby . '` '
                        . ( false === strpos( $this->orderby, ' ' ) ? strtoupper( $this->orderby_dir ) : '' );
 
-            $params = array(
+            $find_params = array(
                 'table' => $this->sql[ 'table' ],
                 'where' => pods_var_raw( $action, $this->where, null, null, true ),
                 'orderby' => $orderby,
@@ -1930,19 +1977,19 @@ class PodsUI {
                 'fields' => $this->fields[ 'search' ]
             );
 
-            if ( empty( $params[ 'where' ] ) && $this->restricted( $this->action ) )
-                $params[ 'where' ] = $this->pods_data->query_fields( $this->restrict[ $this->action ], ( is_object( $this->pod ) ? $this->pod->pod_data : null ) );
+            if ( empty( $find_params[ 'where' ] ) && $this->restricted( $this->action ) )
+                $find_params[ 'where' ] = $this->pods_data->query_fields( $this->restrict[ $this->action ], ( is_object( $this->pod ) ? $this->pod->pod_data : null ) );
 
-            if ( $full )
-                $params[ 'limit' ] = -1;
+            if ( $params->full )
+                $find_params[ 'limit' ] = -1;
 
             // Debug purposes
             if ( 1 == pods_var( 'pods_debug_params', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
-                pods_debug( $params );
+                pods_debug( $find_params );
 
-            $this->pods_data->select( $params );
+            $this->pods_data->select( $find_params );
 
-            if ( !$full ) {
+            if ( !$params->full ) {
                 $this->data = $this->pods_data->data;
 
                 if ( !empty( $this->data ) )
@@ -3037,14 +3084,22 @@ class PodsUI {
                                 $row[ $field ] = $this->do_hook( 'field_value', $row[ $field ], $field, $attributes, $row );
 
                                 if ( 'title' == $attributes[ 'field_id' ] ) {
-                                    if ( !in_array( 'edit', $this->actions_disabled ) && ( false === $reorder || in_array( 'reorder', $this->actions_disabled ) || false === $this->reorder[ 'on' ] ) ) {
+                                    if ( !in_array( 'edit', $this->actions_disabled ) && !in_array( 'edit', $this->actions_hidden ) && ( false === $reorder || in_array( 'reorder', $this->actions_disabled ) || false === $this->reorder[ 'on' ] ) ) {
+                                        $link = pods_var_update( array( 'action' . $this->num => 'edit', 'id' . $this->num => $row[ $this->sql[ 'field_id' ] ] ), self::$allowed, $this->exclusion() );
+
+                                        if ( !empty( $this->action_links[ 'edit' ] ) )
+                                            $link = $this->do_template( $this->action_links[ 'edit' ], $row );
                                         ?>
-                <td class="post-title page-title column-title"><strong><a class="row-title" href="<?php echo pods_var_update( array( 'action' . $this->num => 'edit', 'id' . $this->num => $row[ $this->sql[ 'field_id' ] ] ), self::$allowed, $this->exclusion() ); ?>" title="Edit &#8220;<?php echo htmlentities( $row[ $field ], ENT_COMPAT, get_bloginfo( 'charset' ) ); ?>&#8221;"><?php echo $row[ $field ]; ?></a></strong>
+                <td class="post-title page-title column-title"><strong><a class="row-title" href="<?php echo $link; ?>" title="<?php _e( 'Edit this item', 'pods' ); ?>"><?php echo $row[ $field ]; ?></a></strong>
                                         <?php
                                     }
-                                    elseif ( !in_array( 'view', $this->actions_disabled ) && ( false === $reorder || in_array( 'reorder', $this->actions_disabled ) || false === $this->reorder[ 'on' ] ) ) {
+                                    elseif ( !in_array( 'view', $this->actions_disabled ) && !in_array( 'view', $this->actions_hidden ) && ( false === $reorder || in_array( 'reorder', $this->actions_disabled ) || false === $this->reorder[ 'on' ] ) ) {
+                                        $link = pods_var_update( array( 'action' . $this->num => 'view', 'id' . $this->num => $row[ $this->sql[ 'field_id' ] ] ), self::$allowed, $this->exclusion() );
+
+                                        if ( !empty( $this->action_links[ 'view' ] ) )
+                                            $link = $this->do_template( $this->action_links[ 'view' ], $row );
                                         ?>
-                <td class="post-title page-title column-title"><strong><a class="row-title" href="<?php echo pods_var_update( array( 'action' . $this->num => 'view', 'id' . $this->num => $row[ $this->sql[ 'field_id' ] ] ), self::$allowed, $this->exclusion() ); ?>" title="View &#8220;<?php echo htmlentities( $row[ $field ], ENT_COMPAT, get_bloginfo( 'charset' ) ); ?>&#8221;"><?php echo $row[ $field ]; ?></a></strong>
+                <td class="post-title page-title column-title"><strong><a class="row-title" href="<?php echo $link; ?>" title="<?php _e( 'View this item', 'pods' ); ?>"><?php echo $row[ $field ]; ?></a></strong>
                                         <?php
                                     }
                                     else {
@@ -3387,17 +3442,24 @@ class PodsUI {
         $total_pages = ceil( $this->total_found / $this->limit );
         $request_uri = pods_var_update( array( 'pg' . $this->num => '' ), array( 'limit' . $this->num, 'orderby' . $this->num, 'orderby_dir' . $this->num, 'search' . $this->num, 'filter_*', 'page' . $this->num ), $this->exclusion() );
 
+        $append = false;
+
+        if ( false !== strpos( $request_uri, '?' ) )
+            $append = true;
+
         if ( false !== $this->pagination_total ) {
+            $singular_label = strtolower( $this->item );
+            $plural_label = strtolower( $this->items );
             ?>
-        <span class="displaying-num"><?php echo number_format_i18n( $this->total_found ); ?> <?php echo _n( 'item', 'items', $this->total_found, 'pods' ); ?></span>
+        <span class="displaying-num"><?php echo number_format_i18n( $this->total_found ) . ' ' . _n( $singular_label, $plural_label, $this->total_found, 'pods' ) . $this->extra[ 'total' ] ?></span>
         <?php
         }
 
         if ( false !== $this->pagination ) {
             if ( 1 < $total_pages ) {
                 ?>
-            <a class="first-page<?php echo ( 1 < $this->page ) ? '' : ' disabled'; ?>" title="<?php _e( 'Go to the first page', 'pods' ); ?>" href="<?php echo $request_uri; ?>">&laquo;</a>
-            <a class="prev-page<?php echo ( 1 < $this->page ) ? '' : ' disabled'; ?>" title="<?php _e( 'Go to the previous page', 'pods' ); ?>" href="<?php echo $request_uri; ?>&pg<?php echo $this->num; ?>=<?php echo max( $this->page - 1, 1 ); ?>">&lsaquo;</a>
+            <a class="first-page<?php echo ( 1 < $this->page ) ? '' : ' disabled'; ?>" title="<?php _e( 'Go to the first page', 'pods' ); ?>" href="<?php echo $request_uri . ( $append ? '&' : '?' ) . 'pg' . $this->num . '=1'; ?>">&laquo;</a>
+            <a class="prev-page<?php echo ( 1 < $this->page ) ? '' : ' disabled'; ?>" title="<?php _e( 'Go to the previous page', 'pods' ); ?>" href="<?php echo $request_uri . ( $append ? '&' : '?' ) . 'pg' . $this->num . '=' . max( $this->page - 1, 1 ); ?>">&lsaquo;</a>
             <?php
                 if ( true == $header ) {
                     ?>
@@ -3422,8 +3484,8 @@ class PodsUI {
                 <?php
                 }
                 ?>
-            <a class="next-page<?php echo ( $this->page < $total_pages ) ? '' : ' disabled'; ?>" title="<?php _e( 'Go to the next page', 'pods' ); ?>" href="<?php echo $request_uri; ?>&pg<?php echo $this->num; ?>=<?php echo min( $this->page + 1, $total_pages ); ?>">&rsaquo;</a>
-            <a class="last-page<?php echo ( $this->page < $total_pages ) ? '' : ' disabled'; ?>" title="<?php _e( 'Go to the last page', 'pods' ); ?>'" href="<?php echo $request_uri; ?>&pg<?php echo $this->num; ?>=<?php echo $total_pages; ?>">&raquo;</a>
+            <a class="next-page<?php echo ( $this->page < $total_pages ) ? '' : ' disabled'; ?>" title="<?php _e( 'Go to the next page', 'pods' ); ?>" href="<?php echo $request_uri . ( $append ? '&' : '?' ) . 'pg' . $this->num . '=' . min( $this->page + 1, $total_pages ); ?>">&rsaquo;</a>
+            <a class="last-page<?php echo ( $this->page < $total_pages ) ? '' : ' disabled'; ?>" title="<?php _e( 'Go to the last page', 'pods' ); ?>'" href="<?php echo $request_uri . ( $append ? '&' : '?' ) . 'pg' . $this->num . '=' . $total_pages; ?>">&raquo;</a>
             <?php
             }
         }
