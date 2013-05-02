@@ -824,29 +824,43 @@ li.current_page_item:hover {
 
 }
 
+form {
+	margin: 0;
+	padding: 0;
+}
 
 input[name="navsearch"] {
 
     background-color: #e5e5e5;
     font-weight: 300;
     font-size: 13px;
-    border: none !important;
-    border-radius: 0 !important;
     width: 200px;
     height: 26px;
     display: inline;
     margin: 0;
+    padding: 4px;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    -moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
 
 }
 
 input[name="navsearch"]:focus {
-    color: #ccc;
+    color: #666;
 
 }
 input[name="navsearchbtn"] {
+	position: absolute;
+	top: 10px;
+	right: 0;
     display: inline;
     margin: 0;
-    padding: 0;
+    padding: 4px;
+    width: 26px;
+    height: 26px;
 }
 
 /*
@@ -1260,10 +1274,50 @@ div.clearfix {
 	overflow: hidden;
 	position: relative;
 	display: block;
-	margin: 30px auto;
- 	padding: 40px;
+	margin: 20px auto;
+ 	padding: 10px 40px;
  	background: none;
  	}
+
+.gateway-promo-wrapper button {
+	position: absolute;
+	-moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ee0000), color-stop(1, #cc0000) );
+	background:-moz-linear-gradient( center top, #ee0000 5%, #cc0000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee0000', endColorstr='#cc0000');
+	background-color:#c00;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #d83526;
+	display:block;
+	color:#ffffff;
+	font-family: 'Source Sans Pro' , arial;
+	font-size:14px;
+	font-weight:400;
+	padding:10px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #b23e35;
+	margin: 0 auto;
+	top: -14px; 
+}
+
+.gateway-promo-wrapper button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cc0000), color-stop(1, #ee0000) );
+	background:-moz-linear-gradient( center top, #cc0000 5%, #ee0000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc0000', endColorstr='#ee0000');
+	background-color:#c00;
+	}
+
+ .gateway-promo-wrapper button {
+ 	margin: 0 auto !important;
+ 	position: relative;
+ 	display: block;
+
+
+}
 
 .gateway-promo {
 	text-align: center;
@@ -1277,21 +1331,21 @@ div.clearfix {
 	position: relative;
 	display: block;
 	margin: 0 auto;
-	padding: 0;
+	padding: 10px;
 	-webkit-box-shadow: inset   0px 0px 2px 2px rgba(50, 50, 50, .2);
     box-shadow: inset   0px 0px 2px 2px rgba(50, 50, 50, .2);
     -webkit-border-radius: 8px;
 	 border-radius: 8px;
     background: #ffffff; /* Old browsers */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #ffffff 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #ffffff 0%,#eeeeee 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #ffffff 0%,#eeeeee 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #ffffff 0%,#eeeeee 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=0 ); /* IE6-8 */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#eeeeee 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#eeeeee 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#eeeeee 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=0 ); /* IE6-8 */
 
 
 }
@@ -1496,7 +1550,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_2 {
             width:20.6666666667%;
         }
-.span_3  {
+.span_3  , .gateway-promo-wrapper button {
             width:32.0%;
         }
  .span_4  , .gateway-promo-bullets ul {
@@ -1553,10 +1607,10 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_1 {
             width:6.5%;
         }
-.span_2 {
+.span_2  {
             width:15.0%;
         }
-.span_3  {
+.span_3  , .gateway-promo-wrapper button {
             width:23.5%;
         }
 .span_4 , .heroTxtContent , .promo , .quick-link {
@@ -1626,7 +1680,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_2 {
             width:15.625%;
         }
-.span_3 {
+.span_3 , .gateway-promo-wrapper button {
             width:24.0625%;
         }
 .span_4 , .heroTxtContent , .promo , .quick-link {
