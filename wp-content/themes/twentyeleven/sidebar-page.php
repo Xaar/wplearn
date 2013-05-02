@@ -9,7 +9,6 @@
  */
 
 get_header(); ?>
-<?MS_dynamic_sidebar(); ?>
 
 		<div id="primary">
 			<div id="content" role="main">
@@ -18,11 +17,10 @@ get_header(); ?>
 
 					<?php get_template_part( 'content', 'page' ); ?>
 
-					<?php comments_template( '', true ); ?>
-
 				<?php endwhile; // end of the loop. ?>
 
 			</div><!-- #content -->
 		</div><!-- #primary -->
 
+<?MS_dynamic_sidebar(); ?>
 <?php get_footer(); ?>

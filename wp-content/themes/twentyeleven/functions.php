@@ -612,3 +612,35 @@ function twentyeleven_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'twentyeleven_body_classes' );
 
+function date_range($s_date,$e_date){
+
+	$sdate = new DateTime($s_date);
+	$s_date = date_format($sdate, 'jS F Y');
+        $edate = new DateTime($e_date);
+        $e_date = date_format($edate, 'jS F Y');
+
+	list($s_day, $s_month, $s_year) = sscanf($s_date, "%s %s %d");;
+	list($e_day, $e_month, $e_year) = sscanf($e_date, "%s %s %d");;
+
+	if($s_year == $e_year){
+		// same year, either 1st or 2nd form
+		if($s_month == $e_month){
+			// same year, same month, 1st form - DAY. - DAY. MONTH YEAR
+			return "$s_day - $e_day $e_month $e_year";
+		} else {
+			// same year, different month, 2nd form - DAY. MONTH - DAY. MONTH YEAR
+			return "$s_day $s_month - $e_day $e_month $e_year";
+		}
+	} else {
+		// different year - 3rd form - DAY. MONTH YEAR - DAY. MONTH YEAR
+		return "$s_day # $s_month # $s_year - $e_day # $e_month # $e_year <br> $s_date";
+	}
+}
+add_shortcode('daterange', 'date_range');
+
+function custom_admin_js() {
+    $url = get_option('siteurl');
+    $url = get_bloginfo('template_directory') . '/js/custom-admin.js';
+    echo '<script type="text/javascript" src="'. $url . '"></script>';
+}
+add_action('admin_footer', 'custom_admin_js');
