@@ -175,3 +175,8 @@ function new_royalslider_add_custom_skin($skins) {
 }
 
 register_new_royalslider_files(2);
+
+if ( function_exists( 'add_image_size' ) ) { 
+	add_image_size( 'sixteen-nine-large', 850, 478, true ); 
+	add_image_size( 'sixteen-nine-medium', 700, 394, true ); //(cropped)
+}

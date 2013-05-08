@@ -686,7 +686,7 @@ p , a {
 	font-size: 85%;
 }
 
-#header_inner_wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , .product-carousel, .gateway-promo-wrapper {
+#header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , .product-carousel, .gateway-promo-wrapper , .page-title {
      width: 90%;
      min-width: 440px;
      max-width: 1280px;
@@ -1117,7 +1117,7 @@ ul.footer-links li:last-child {border-right: none;}
 /*-----------------*/
 
 /*
-::::::::::::::::::: HEARTWORKS PAGES ::::::::::::::::::::
+::::::::::::::::::: H E A R T W O R K S  P A G E S ::::::::::::::::::::
 */
 
 .hw-endorsements-wrapper {
@@ -1389,6 +1389,95 @@ div.clearfix {
 }   
 
 
+/*
+::::::::::::::: N e w s  a n d  e v e n t s ::::::::::::::::
+*/
+
+.page-title {
+position: relative;
+display: block;
+margin: 70px auto 20px auto;
+text-align: center;
+
+}
+
+.page-title h1{
+	font-weight: 400;
+	font-size: 180%;
+	}
+
+.page-title h2{
+	font-weight: 200;
+	font-size: 90%
+}
+
+.news-leftcol-wrapper {
+
+
+
+}
+
+.hero-news-content , .content-listing {
+	-webkit-border-radius: 8px;
+	 border-radius: 8px;
+	 -webkit-box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .2);
+ 	box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .2);
+ 	background: #ffffff; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-8 */
+	margin: 30px 0;
+
+
+}
+
+.hero-news-content img {
+-webkit-border-radius: 8px 8px 0 0;
+	 border-radius: 8px 8px 0 0;
+border: 1px solid #fff;
+
+
+}
+
+.content-listing img {
+float: left;
+-webkit-border-radius: 8px 0 0 8px;
+	 border-radius: 8px 0 0 8px;
+border: 1px solid #fff;
+
+}
+
+.news-listing-text , .hero-news-listing-text {
+	background: url('images/news-icon.png') no-repeat top left;
+	padding-left: 40px;
+	margin: 10px 20px;
+}
+
+.news-listing-text {
+	float: left;
+	width: 55%;
+}
+
+.news-listing-text a , .hero-news-listing-text a {
+	text-decoration: none;
+	color: #c00;
+	font-weight: 600;
+	margin: 5px 0;
+	padding: 0;
+
+}
+
+.news-listing-text a:hover , .hero-news-listing-text a:hover {
+
+	color: #333;
+
+}
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
@@ -1559,7 +1648,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_5 {
             width:54.6666666667%;
         }
-.span_6 {
+.span_6 , .news-leftcol-wrapper {
             width:66.0%;
         }
 .span_7 {
@@ -1628,7 +1717,8 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_8 , .featured-prod-img {
             width:66.0%;
         }
-.span_9 {
+.span_9 , .news-leftcol-wrapper {
+
             width:74.5%;
         }
 .span_10 , .product-carousel , .gateway-promo-wrapper {
@@ -1696,10 +1786,10 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_7 {
             width:57.8125%;
         }
-.span_8 , .featured-prod-img {
+.span_8 , .featured-prod-img , .news-leftcol-wrapper {
             width:66.25%;
         }
-.span_9 {
+.span_9  {
             width:74.6875%;
         }
 .span_10 , .product-carousel , .gateway-promo-wrapper  {

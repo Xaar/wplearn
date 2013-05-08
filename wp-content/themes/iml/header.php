@@ -55,6 +55,3 @@
 
 		<hr />
 	</header><!-- #masthead -->
-
-	<div id="pagewrapper" class="hfeed site page">
-	
