@@ -175,8 +175,23 @@ function new_royalslider_add_custom_skin($skins) {
 }
 
 register_new_royalslider_files(2);
-
 if ( function_exists( 'add_image_size' ) ) { 
 	add_image_size( 'sixteen-nine-large', 850, 478, true ); 
 	add_image_size( 'sixteen-nine-medium', 700, 394, true ); //(cropped)
+}
+
+// Add custom post types
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+	register_post_type( 'news-events',
+		array(
+			'labels' => array(
+				'name' => __( 'News & Events' ),
+				'singular_name' => __( 'Event' )
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'news-events'),
+		)
+	);
 }
