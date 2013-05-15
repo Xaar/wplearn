@@ -187,9 +187,10 @@ function create_post_type() {
 		array(
 			'labels' => array(
 				'name' => __( 'News & Events' ),
-				'singular_name' => __( 'Event' )
+				'singular_name' => __( 'news_event' )
 			),
 			'public' => true,
+			'taxonomies' => array('post_tag'),
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'news-events'),
 		)

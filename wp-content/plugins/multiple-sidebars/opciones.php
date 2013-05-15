@@ -5,34 +5,40 @@ if (isset($_POST['opciones']) && $_POST['opciones'] == "multiple-sidebars-grabar
 		$MultipleSidebarsAlerta->agregar(__('Error al guardar los datos. Problema de verificación.',MULTIPLESIDEBARS_LANG));
 		return;
 	}
-	if ($_POST['mssidebarsHome'] == "") {
-		$sidebarsHome = "multiple-sidebars-default";
-	} else {
-		$sidebarsHome = $_POST['mssidebarsHome'];
-	}
-	
 	$MultipleSidebarsAlerta->agregar(__('Opciones guardadas',MULTIPLESIDEBARS_LANG));
 	
-	if(update_option("MultipleSidebarsHome", $sidebarsHome)){
+	$s = $_POST['mssidebarsHome']==""?"multiple-sidebars-default":$_POST['mssidebarsHome'];;
+	if(update_option("MultipleSidebarsHome", $s)){
 		$MultipleSidebarsAlerta->agregar(__('Home',MULTIPLESIDEBARS_LANG));
 	}
 	
-	if ($_POST['mssidebarsSearch'] == "") {
-		$sidebarsSearch = "multiple-sidebars-default";
-	} else {
-		$sidebarsSearch = $_POST['mssidebarsSearch'];
-	}
-	if(update_option("MultipleSidebarsSearch", $sidebarsSearch)){
+	$s = $_POST['mssidebarsSearch']==""?"multiple-sidebars-default":$_POST['mssidebarsSearch'];;
+	if(update_option("MultipleSidebarsSearch", $s)){
 		$MultipleSidebarsAlerta->agregar(__('Buscador',MULTIPLESIDEBARS_LANG));
 	}
+	
+	$s = $_POST['mssidebarsPostDefault']==""?"multiple-sidebars-default":$_POST['mssidebarsPostDefault'];;
+	if(update_option("MultipleSidebarsPostDefault", $s)){
+		$MultipleSidebarsAlerta->agregar(__('Entradas',MULTIPLESIDEBARS_LANG));
+	}
+
+	$s = $_POST['mssidebarsPageDefault']==""?"multiple-sidebars-default":$_POST['mssidebarsPageDefault'];;
+	if(update_option("MultipleSidebarsPageDefault", $s)){
+		$MultipleSidebarsAlerta->agregar(__('Páginas',MULTIPLESIDEBARS_LANG));
+	}
+	
+	$s = $_POST['mssidebarsCategoryDefault']==""?"multiple-sidebars-default":$_POST['mssidebarsCategoryDefault'];;
+	if(update_option("MultipleSidebarsCategoryDefault", $s)){
+		$MultipleSidebarsAlerta->agregar(__('Categorías',MULTIPLESIDEBARS_LANG));
+	}
+	
 }
 //print_r($_POST);
 ?>
 <form method="post" action="">
 	<div class="wrap">
-		<div id="icon-options-general" class="icon32">
-			<br/>
-		</div><h2><?php _e('Opciones de MultipleSidebars',MULTIPLESIDEBARS_LANG);?></h2>
+		<div id="icon-options-general" class="icon32 icon32-posts-post"></div>
+		<h2><?php _e('Opciones de MultipleSidebars',MULTIPLESIDEBARS_LANG);?></h2>
 		<br/>
 		<?php
 		if (isset($_POST['opciones']) && $_POST['opciones'] == "multiple-sidebars-grabar") {
@@ -45,40 +51,97 @@ if (isset($_POST['opciones']) && $_POST['opciones'] == "multiple-sidebars-grabar
 				vertical-align: top;
 			}
 		</style>
-		<table class="opciones">
-			<tr>
-				<td colspan="2"><?php _e('Opciones de la Home',MULTIPLESIDEBARS_LANG);?></td>
-			</tr>
-			<tr>
-				<td width="200px;"><?php _e('Sidebars',MULTIPLESIDEBARS_LANG);?></td>
-				<td width="300px"><?php
-				$sidebarsHome = get_option("MultipleSidebarsHome");
-				if (!$sidebarsHome) {
-					$sidebarsHome = "";
-				}
-				$MultipleSidebarHome = new MultipleSidebars();
-				$MultipleSidebarHome -> MS_view_sidebars($sidebarsHome,"Home");
-				
-				?></td>
-			</tr>
-			<tr>
-				<td colspan="2"><?php _e('Opciones de la búsqueda',MULTIPLESIDEBARS_LANG);?></td>
-			</tr>
-			<tr>
-				<td width="200px;"><?php _e('Sidebars',MULTIPLESIDEBARS_LANG);?></td>
-				<td width="300px"><?php
-				$sidebarsSearch = get_option("MultipleSidebarsSearch");
-				if (!$sidebarsSearch) {
-					$sidebarsSearch = "";
-				}
-				$MultipleSidebarSearch = new MultipleSidebars();
-				$MultipleSidebarSearch -> MS_view_sidebars($sidebarsSearch,"Search");
-				
-				wp_nonce_field('multiple-sidebars-opciones', 'MultipleSidebars_opciones');
-				?></td>
-			</tr>
-		</table>
+		<div id="poststuff">
+			<table class="opciones">
+				<tr>
+					<td colspan="2"><?php _e('Asignar las barras laterales por defecto para:',MULTIPLESIDEBARS_LANG);?></td>
+				</tr>
+				<tr>
+					<td width="300px">
+						<div class="postbox">
+							<h3><?php _e('Página de inicio',MULTIPLESIDEBARS_LANG);?></h3>
+							<div class="inside">
+								<?php
+								$sidebarsHome = get_option("MultipleSidebarsHome");
+								if (!$sidebarsHome) {
+									$sidebarsHome = "";
+								}
+								$MultipleSidebarHome = new MultipleSidebars();
+								$MultipleSidebarHome -> MS_view_sidebars($sidebarsHome,"Home");
+								?>
+							</div>
+						</div>
+					</td>
+					<td width="300px">
+						<div class="postbox">
+							<h3><?php _e('Pantalla de búsqueda',MULTIPLESIDEBARS_LANG);?></h3>
+							<div class="inside">
+								<?php
+								$sidebarsSearch = get_option("MultipleSidebarsSearch");
+								if (!$sidebarsSearch) {
+									$sidebarsSearch = "";
+								}
+								$MultipleSidebarSearch = new MultipleSidebars();
+								$MultipleSidebarSearch -> MS_view_sidebars($sidebarsSearch,"Search");
+								?>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="300px">
+						<div class="postbox">
+							<h3><?php _e('Entradas',MULTIPLESIDEBARS_LANG);?></h3>
+							<div class="inside">
+								<?php
+								$ss = get_option("MultipleSidebarsPostDefault");
+								if (!$ss) {
+									$ss = "";
+								}
+								$MultipleSidebarPost = new MultipleSidebars();
+								$MultipleSidebarPost -> MS_view_sidebars($ss,"PostDefault");
+								?>
+							</div>
+						</div>
+					</td>
+					<td width="300px">
+						<div class="postbox">
+							<h3><?php _e('Páginas',MULTIPLESIDEBARS_LANG);?></h3>
+							<div class="inside">
+								<?php
+								$ss = get_option("MultipleSidebarsPageDefault");
+								if (!$ss) {
+									$ss = "";
+								}
+								$MultipleSidebarPage = new MultipleSidebars();
+								$MultipleSidebarPage -> MS_view_sidebars($ss,"PageDefault");
+								?>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="300px">
+						<div class="postbox">
+							<h3><?php _e('Categorías',MULTIPLESIDEBARS_LANG);?></h3>
+							<div class="inside">
+								<?php
+								$ss = get_option("MultipleSidebarsCategoryDefault");
+								if (!$ss) {
+									$ss = "";
+								}
+								$MultipleSidebarCat = new MultipleSidebars();
+								$MultipleSidebarCat -> MS_view_sidebars($ss,"CategoryDefault");
+								?>
+							</div>
+						</div>
+					</td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
 		<div class="clear"></div>
+		<?php wp_nonce_field('multiple-sidebars-opciones', 'MultipleSidebars_opciones');?>
 		<input type="hidden" name="opciones" value="multiple-sidebars-grabar" />
 		<input type="submit" name="grabar" value="<?php _e('Grabar',MULTIPLESIDEBARS_LANG);?>" class="button-primary" />
 	</div>

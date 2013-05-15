@@ -36,15 +36,17 @@ jQuery(function(){
 		return false;
 	});
 	
-	
-	jQuery(".inactivos,.activos").sortable({
-		connectWith:".sidebars-sortable",
-		scroll: false,
-		tolerance: 'pointer',
-		axis: 'y',
-		stop: function(event,ui){
-			actualizar();
-		}
+	jQuery(".MS_block").each(function(){
+		MS_id = jQuery(this).attr("id"); 
+		jQuery("#"+MS_id+" .inactivos, #"+MS_id+" .activos").sortable({
+			connectWith:"#"+MS_id+" .sidebars-sortable",
+			scroll: false,
+			tolerance: 'pointer',
+			axis: 'y',
+			stop: function(event,ui){
+				actualizar();
+			}
+		});
 	});
 	
 	actualizar_botones();

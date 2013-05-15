@@ -23,12 +23,26 @@ class MultipleSidebarsCore {
 		add_action('edit_term', array(&$this, 'MS_save_metabox_taxonomy'));
 		add_action('edited_category', array(&$this, 'MS_save_metabox_taxonomy'));
 		
+		add_action('MS_save',array(&$this, 'MS_save'));
+		
 	}
 	public function MS_install(){
 		
 	}
 	public function MS_uninstall(){
 		
+	}
+	public function MS_save($type){
+		switch($type){
+			case "post":
+				break;
+			case "page":
+				break;
+			case "category":
+				break;
+			case "taxonomy":
+				break;
+		}
 	}
 	public function MS_load_textdomain() {
 		if(!load_plugin_textdomain(MULTIPLESIDEBARS_LANG, false, "multiple-sidebars/languages")){
@@ -55,7 +69,7 @@ class MultipleSidebarsCore {
 	public function MS_register_post_type(){
 		if (function_exists("register_post_type")) {
 			$labels = array('name' => __('Sidebars', MULTIPLESIDEBARS_LANG), 'singular_name' => __('Sidebar', MULTIPLESIDEBARS_LANG), 'add_new' => __('Agregar sidebar', MULTIPLESIDEBARS_LANG), 'add_new_item' => __('Agregar nuevo sidebar', MULTIPLESIDEBARS_LANG), 'edit_item' => __('Editar sidebar', MULTIPLESIDEBARS_LANG), 'new_item' => __('Nuevo sidebar', MULTIPLESIDEBARS_LANG), 'all_items' => __('Todos los sidebars', MULTIPLESIDEBARS_LANG), 'view_item' => __('Ver sidebar', MULTIPLESIDEBARS_LANG), 'search_items' => __('Buscar sidebars', MULTIPLESIDEBARS_LANG), 'not_found' => __('No se encontraron sidebar', MULTIPLESIDEBARS_LANG), 'not_found_in_trash' => __('No se encontraron sidebars en la papelera', MULTIPLESIDEBARS_LANG), 'parent_item_colon' => '', 'menu_name' => __('Sidebars', MULTIPLESIDEBARS_LANG));
-			$args = array('labels' => $labels,'menu_icon'=>plugins_url()."/multiple-sidebars/images/sidebar.png", 'public' => true, 'publicly_queryable' => true, 'show_ui' => true, 'show_in_menu' => true, 'query_var' => true, 'rewrite' => true, 'capability_type' => 'post', 'has_archive' => false, 'hierarchical' => false, 'menu_position' => 83, 'supports' => array('title', 'editor'));
+			$args = array('labels' => $labels,'menu_icon'=>plugins_url()."/multiple-sidebars/images/sidebar.png", 'public' => true, 'publicly_queryable' => true, 'show_ui' => true, 'show_in_menu' => true, 'query_var' => true, 'rewrite' => true, 'capability_type' => 'post', 'has_archive' => false, 'hierarchical' => false, 'menu_position' => 83, 'supports' => array('title'));
 			register_post_type('multiple-sidebars', $args);
 			add_action('admin_menu', array(&$this, 'MS_view_options'));
 		}
@@ -106,13 +120,19 @@ class MultipleSidebarsCore {
 		if ('page' == $_POST['post_type']) {
 			if (!current_user_can('edit_page', $post_id))
 				return;
+			$sidebarsDefault = $this->MS_default_sidebars("PageDefault");
 		} else {
 			if (!current_user_can('edit_post', $post_id))
 				return;
+			$sidebarsDefault = $this->MS_default_sidebars("PostDefault");
 		}
-
-		if ($_POST['mssidebars'] == "") {
+		//var_dump($_POST);
+		//echo $this->MS_default_sidebars("PostDefault");
+		//exit();
+		if ($_POST['mssidebars'] == "" && $sidebarsDefault == "") {
 			$sidebars = "multiple-sidebars-default,";
+		} elseif($_POST['mssidebars'] == "" && $sidebarsDefault != ""){
+			$sidebars = $sidebarsDefault;
 		} else {
 			$sidebars = $_POST['mssidebars'];
 		}
@@ -134,9 +154,11 @@ class MultipleSidebarsCore {
 	public function MS_save_metabox_taxonomy($term_id){
 		if (!isset($_POST['MultipleSidebars_noncename']) || !wp_verify_nonce($_POST['MultipleSidebars_noncename'], plugin_basename(__FILE__)))
 			return;
-
-		if ($_POST['mssidebars'] == "") {
+		$sidebarsDefault = $this->MS_default_sidebars("CategoryDefault");
+		if($sidebarsDefault=="" && $_POST['mssidebars'] == ""){
 			$sidebars = "multiple-sidebars-default,";
+		}else if ($sidebarsDefault!="" && $_POST['mssidebars'] == "") {
+			$sidebars = $sidebarsDefault;
 		} else {
 			$sidebars = $_POST['mssidebars'];
 		}
@@ -160,7 +182,13 @@ class MultipleSidebarsCore {
 		include_once (dirname(__FILE__) . "/ayuda.php");
 	}
 	
-	
+	public function MS_default_sidebars($type){
+		if(!empty($type)){
+			$sidebarsDefault = get_option("MultipleSidebars".$type);
+			return (!$sidebarsDefault || $sidebarsDefault=="")?"multiple-sidebars-default":$sidebarsDefault;
+		}
+		return false;
+	}
 	
 	function MS_view_sidebars($sidebars,$opcion=""){
 		$inactivos = $activos = $todos = "";
@@ -202,7 +230,7 @@ class MultipleSidebarsCore {
 
 			}
 		}
-		echo "<div class='MS_block multiplesidebars".$opcion."'>";
+		echo "<div class='MS_block multiplesidebars".$opcion."' id='multiplesidebars".$opcion."'>";
 		echo '<h5>' . __('Arrastre desde "inactivos" al sector de "activos" para seleccionar los sidebars para esta sección', MULTIPLESIDEBARS_LANG) . '</h5>';
 		echo '<input type="hidden" class="mssidebars" name="mssidebars'.$opcion.'" value="' . $sidebars . '" id="mssidebars"/>';
 		echo __('Inactivos', MULTIPLESIDEBARS_LANG) . '<br/><div id="inactivos" class="'.$opcion.' sidebars-sortable inactivos">' . $inactivos . '</div>';

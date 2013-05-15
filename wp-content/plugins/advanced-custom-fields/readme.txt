@@ -101,6 +101,24 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.4 =
+* [Fixed] Page Link: Fixed errors produced by recent changes to post object field - http://support.advancedcustomfields.com/discussion/6044/page-links-hierarchy-broken-and-does-not-order-correctly
+
+= 4.1.3 =
+* [Fixed] Relationship field: Fix global $post conflict issues - http://support.advancedcustomfields.com/discussion/6022/bug-with-4-1-2-acf-rewrite-global-post
+
+= 4.1.2 =
+* [Added] Post Object field: Add filter to customize choices - http://support.advancedcustomfields.com/discussion/5883/show-extra-post-info-in-a-post-object-dropdown-list
+* [Fixed] Relationship field: Fix error when used as grand child - http://support.advancedcustomfields.com/discussion/5898/in_array-errors-on-relationship-field
+* [Added] User field: Add sanitisation into update_value function to allow for array / object with ID attribute
+* [Added] Relationship field: Add sanitisation into update_value function to allow for array of post object to be saved
+* [Added] Post Object field: Add sanitisation into update_value function to allow for a post object or an array of post objects to be saved
+* [Added] Image field: Add sanitisation into update_value function to allow for a post object or an image array to be saved
+* [Added] File field: Add sanitisation into update_value function to allow for a post object or an file array to be saved
+* [Fixed] Revisions: Fix PHP warning if array value exists as custom field - http://support.advancedcustomfields.com/discussion/984/solvedwarning-htmlspecialchars-text-php-on-line-109
+* [Updated] Translation: Update French Translation - http://support.advancedcustomfields.com/discussion/5927/french-translation-for-4-1-1
+* [Fixed] General: Minor PHP errors fixed
+
 = 4.1.1 =
 * [Fixed] Relationship field: Fix bug causing sub field to not load $field object / use elements option correctly
 * [Updated] Update German translations

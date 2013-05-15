@@ -8,7 +8,7 @@
  Text Domain: multiple_sidebars
  Domain Path: /languages/
  Description: Create sidebars and assign to each post / page / custom_post / taxonomy. - Crear sidebars y asignarlos a cada post / page / custom_post / taxonomy.
- Version: 1.2.8
+ Version: 1.2.9
  */
 
 /*	MultipleSidebars - por Andrico
@@ -28,7 +28,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('MULTIPLESIDEBARS_VERSION', '1.2.8');
+define('MULTIPLESIDEBARS_VERSION', '1.2.9');
 define('MULTIPLESIDEBARS_URL', plugin_dir_url(__FILE__));
 define('MULTIPLESIDEBARS_LANG', 'multiple_sidebars');
 

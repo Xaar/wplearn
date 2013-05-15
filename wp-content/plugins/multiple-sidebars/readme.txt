@@ -3,9 +3,9 @@ Contributors: Andrico
 Author: Andrico
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JVLH5WYXFM7D2
 Tags: widget, sidebar, sidebars, multiple sidebars, multiple, select sidebar, aside, seleccionar sidebar, multiples sidebars, widget multiple sidebars
-Requires at least: 3.0
-Tested up to: 3.4.2
-Stable tag: 1.2.8
+Requires at least: 3.5.1
+Tested up to: 3.5.1
+Stable tag: 1.2.9
 
 == Description ==
 
@@ -48,6 +48,10 @@ Frosado, Thanks for the guide!
 3. Colocar en el theme la función para hacer funcionar el plugin
 
 == Changelog ==
+= 1.2.9 =
+* Poder seleccionar los sidebars por defecto en entradas, páginas y categorías.
+* Correcciones de bugs
+
 = 1.2.8 =
 * Carga de scripts solamente en el área del administrador
 
