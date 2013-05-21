@@ -193,6 +193,7 @@ function create_post_type() {
 			'taxonomies' => array('post_tag'),
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'news-events'),
+			'supports' => array('title', 'thumbnail'),
 		)
 	);
 }
