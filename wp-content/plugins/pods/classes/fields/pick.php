@@ -266,6 +266,7 @@ class PodsField_Pick extends PodsField {
             'label' => $label,
             'group' => 'Custom Relationships',
             'simple' => true,
+            'bidirectional' => false,
             'data' => array(),
             'data_callback' => null
         );
@@ -319,7 +320,8 @@ class PodsField_Pick extends PodsField {
             foreach ( $pod_options as $pod => $label ) {
                 self::$related_objects[ 'pod-' . $pod ] = array(
                     'label' => $label,
-                    'group' => __( 'Pods', 'pods' )
+                    'group' => __( 'Pods', 'pods' ),
+                    'bidirectional' => true
                 );
             }
 
@@ -345,7 +347,8 @@ class PodsField_Pick extends PodsField {
 
                 self::$related_objects[ 'post_type-' . $post_type->name ] = array(
                     'label' => $post_type->label . ' (' . $post_type->name . ')',
-                    'group' => __( 'Post Types', 'pods' )
+                    'group' => __( 'Post Types', 'pods' ),
+                    'bidirectional' => true
                 );
             }
 
@@ -363,14 +366,16 @@ class PodsField_Pick extends PodsField {
 
                 self::$related_objects[ 'taxonomy-' . $taxonomy->name ] = array(
                     'label' => $taxonomy->label . ' (' . $taxonomy->name . ')',
-                    'group' => __( 'Taxonomies', 'pods' )
+                    'group' => __( 'Taxonomies', 'pods' ),
+                    'bidirectional' => true
                 );
             }
 
             // Other WP Objects
             self::$related_objects[ 'user' ] = array(
                 'label' => __( 'Users', 'pods' ),
-                'group' => __( 'Other WP Objects', 'pods' )
+                'group' => __( 'Other WP Objects', 'pods' ),
+                'bidirectional' => true
             );
 
             self::$related_objects[ 'role' ] = array(
@@ -389,12 +394,14 @@ class PodsField_Pick extends PodsField {
 
             self::$related_objects[ 'media' ] = array(
                 'label' => __( 'Media', 'pods' ),
-                'group' => __( 'Other WP Objects', 'pods' )
+                'group' => __( 'Other WP Objects', 'pods' ),
+                'bidirectional' => true
             );
 
             self::$related_objects[ 'comment' ] = array(
                 'label' => __( 'Comments', 'pods' ),
-                'group' => __( 'Other WP Objects', 'pods' )
+                'group' => __( 'Other WP Objects', 'pods' ),
+                'bidirectional' => true
             );
 
             self::$related_objects[ 'image-size' ] = array(
@@ -490,6 +497,27 @@ class PodsField_Pick extends PodsField {
         }
 
         return (array) apply_filters( 'pods_form_ui_field_pick_simple_objects', $simple_objects );
+    }
+
+    /**
+     * Return available bidirectional object names
+     *
+     * @return array Bidirectional object names
+     * @since 2.3.4
+     */
+    public function bidirectional_objects () {
+        $this->setup_related_objects();
+
+        $bidirectional_objects = array();
+
+        foreach ( self::$related_objects as $object => $related_object ) {
+            if ( !isset( $related_object[ 'bidirectional' ] ) || !$related_object[ 'bidirectional' ] )
+                continue;
+
+            $bidirectional_objects[] = $object;
+        }
+
+        return (array) apply_filters( 'pods_form_ui_field_pick_bidirectional_objects', $bidirectional_objects );
     }
 
     /**
@@ -638,7 +666,10 @@ class PodsField_Pick extends PodsField {
         $related_val = pods_var( 'pick_val', $options, $related_object, null, true ); // pod name, post type name, taxonomy name, etc..
         $related_sister_id = (int) pods_var( 'sister_id', $options, 0 );
 
-        self::$related_data[ $options[ 'id' ] ] = array();
+        $options[ 'id' ] = (int) $options[ 'id' ];
+
+        if ( !isset( self::$related_data[ $options[ 'id' ] ] ) || empty( self::$related_data[ $options[ 'id' ] ] ) )
+            self::$related_data[ $options[ 'id' ] ] = array();
 
         if ( !empty( $related_sister_id ) && !in_array( $related_object, $simple_tableless_objects ) ) {
             $related_pod = self::$api->load_pod( array( 'name' => $related_val, 'table_info' => false ), false );
@@ -708,11 +739,15 @@ class PodsField_Pick extends PodsField {
             if ( 'single' == pods_var_raw( 'pick_format_type', $options[ 'options' ] ) )
                 $pick_limit = 1;
 
-            self::$related_data[ $related_field[ 'id' ] ] = array(
-                'related_pod' => $pod,
-                'related_field' => $options,
-                'related_pick_limit' => $pick_limit
-            );
+            $related_field[ 'id' ] = (int) $related_field[ 'id' ];
+
+            if ( !isset( self::$related_data[ $related_field[ 'id' ] ] ) || empty( self::$related_data[ $related_field[ 'id' ] ] ) ) {
+                self::$related_data[ $related_field[ 'id' ] ] = array(
+                    'related_pod' => $pod,
+                    'related_field' => $options,
+                    'related_pick_limit' => $pick_limit
+                );
+            }
         }
 
         return true;
@@ -735,6 +770,8 @@ class PodsField_Pick extends PodsField {
         if ( empty( self::$api ) )
             self::$api = pods_api();
 
+        $options[ 'id' ] = (int) $options[ 'id' ];
+
         if ( !isset( self::$related_data[ $options[ 'id' ] ] ) )
             return;
 
@@ -753,11 +790,15 @@ class PodsField_Pick extends PodsField {
             if ( !$no_conflict )
                 pods_no_conflict_on( $related_pod[ 'type' ] );
 
+            $value = array_filter( $value );
+
             foreach ( $value as $related_id ) {
                 if ( isset( self::$related_data[ $options[ 'id' ] ][ 'related_ids_' . $related_id ] ) && !empty( self::$related_data[ $options[ 'id' ] ][ 'related_ids_' . $related_id ] ) )
                     $bidirectional_ids = self::$related_data[ $options[ 'id' ] ][ 'related_ids_' . $related_id ];
                 else
                     $bidirectional_ids = self::$api->lookup_related_items( $related_field[ 'id' ], $related_pod[ 'id' ], $related_id, $related_field, $related_pod );
+
+                $bidirectional_ids = array_filter( $bidirectional_ids );
 
                 if ( empty( $bidirectional_ids ) )
                     $bidirectional_ids = array();
@@ -1072,7 +1113,8 @@ class PodsField_Pick extends PodsField {
                 'context' => '', // Data context
                 'data_params' => array(
                     'query' => ''
-                )
+                ),
+                'page' => 0
             ),
             $object_params
         );
@@ -1084,6 +1126,7 @@ class PodsField_Pick extends PodsField {
         $id = $object_params[ 'id' ];
         $context = $object_params[ 'context' ];
         $data_params = $object_params[ 'data_params' ] = (array) $object_params[ 'data_params' ];
+        $page = min( 1, (int) $object_params[ 'page' ] );
 
         if ( isset( $options[ 'options' ] ) ) {
             $options = array_merge( $options, $options[ 'options' ] );
@@ -1093,6 +1136,9 @@ class PodsField_Pick extends PodsField {
 
         $data = apply_filters( 'pods_field_pick_object_data', null, $object_params );
         $items = array();
+
+        if ( !isset( $options[ 'pick_object' ] ) )
+            $data = pods_var_raw( 'data', $options, array(), null, true );
 
         if ( null === $data ) {
             $data = array();
@@ -1241,6 +1287,7 @@ class PodsField_Pick extends PodsField {
 
                 if ( $autocomplete ) {
                     $params[ 'limit' ] = apply_filters( 'pods_form_ui_field_pick_autocomplete_limit', 30, $name, $value, $options, $pod, $id );
+                    $params[ 'page' ] = $page;
 
                     if ( 'admin_ajax_relationship' == $context ) {
                         $lookup_where = array(
@@ -1308,7 +1355,7 @@ class PodsField_Pick extends PodsField {
                             if ( empty( $role ) || ( pods_clean_name( $role ) != $role && sanitize_title( $role ) != $role ) )
                                 continue;
 
-                            $where[] = 'wp_' . ( is_multisite() ? get_current_blog_id() . '_' : '' ) . 'capabilities.meta_value LIKE "%\"' . $role . '\"%"';
+                            $where[] = 'wp_' . ( ( is_multisite() && !is_main_site() ) ? get_current_blog_id() . '_' : '' ) . 'capabilities.meta_value LIKE "%\"' . $role . '\"%"';
                         }
 
                         if ( !empty( $where ) ) {
@@ -1466,7 +1513,8 @@ class PodsField_Pick extends PodsField {
                         if ( 'admin_ajax_relationship' == $context ) {
                             $items[] = array(
                                 'id' => $result[ $search_data->field_id ],
-                                'text' => $result[ $search_data->field_index ]
+                                'text' => $result[ $search_data->field_index ],
+                                'image' => ''
                             );
                         }
                         else
@@ -1483,7 +1531,8 @@ class PodsField_Pick extends PodsField {
                 foreach ( $data as $k => $v ) {
                     $items[] = array(
                         'id' => $k,
-                        'text' => $v
+                        'text' => $v,
+                        'image' => ''
                     );
                 }
             }
@@ -1533,6 +1582,17 @@ class PodsField_Pick extends PodsField {
 
         $pod = $api->load_pod( array( 'id' => (int) $params->pod ) );
         $field = $api->load_field( array( 'id' => (int) $params->field, 'table_info' => true ) );
+        $id = (int) $params->id;
+
+        $limit = 15;
+
+        if ( isset( $params->limit ) )
+            $limit = (int) $params->limit;
+
+        $page = 1;
+
+        if ( isset( $params->page ) )
+            $page = (int) $params->page;
 
         if ( !isset( $params->query ) || strlen( trim( $params->query ) ) < 1 )
             pods_error( __( 'Invalid field request', 'pods' ), PodsInit::$admin );
@@ -1550,12 +1610,14 @@ class PodsField_Pick extends PodsField {
             'value' => null, // The value of the field
             'options' => array_merge( $field, $field[ 'options' ] ), // Field options
             'pod' => $pod, // Pod data
-            'id' => 0, // Item ID
+            'id' => $id, // Item ID
             'context' => 'admin_ajax_relationship', // Data context
-            'data_params' => $params
+            'data_params' => $params,
+            'page' => $page,
+            'limit' => $limit
         );
 
-        $pick_data = apply_filters( 'pods_field_pick_data_ajax', null, $field[ 'name' ], null, $field, $pod, 0 );
+        $pick_data = apply_filters( 'pods_field_pick_data_ajax', null, $field[ 'name' ], null, $field, $pod, $id );
 
         if ( null !== $pick_data )
             $items = $pick_data;
@@ -1568,12 +1630,15 @@ class PodsField_Pick extends PodsField {
             foreach ( $items as $id => $text ) {
                 $new_items[] = array(
                     'id' => $id,
-                    'text' => $text
+                    'text' => $text,
+                    'image' => ''
                 );
             }
 
             $items = $new_items;
         }
+
+        $items = apply_filters( 'pods_field_pick_data_ajax_items', $items, $field[ 'name' ], null, $field, $pod, $id );
 
         $items = array(
             'results' => $items

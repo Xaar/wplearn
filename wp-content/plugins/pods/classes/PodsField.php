@@ -69,6 +69,7 @@ class PodsField {
      * @return array $options
      *
      * @since 2.0
+     * @see PodsField::ui_options
      */
     public function options () {
         $options = array( /*
@@ -110,6 +111,18 @@ class PodsField {
         );
 
         return $options;
+    }
+
+    /**
+     * Options for the Admin area, defaults to $this->options()
+     *
+     * @return array $options
+     *
+     * @since 2.0
+     * @see PodsField::options
+     */
+    public function ui_options () {
+        return $this->options();
     }
 
     /**
@@ -187,6 +200,10 @@ class PodsField {
      */
     public function input ( $name, $value = null, $options = null, $pod = null, $id = null ) {
         $options = (array) $options;
+        $form_field_type = PodsForm::$field_type;
+
+        if ( is_array( $value ) )
+            $value = implode( ' ', $value );
 
         pods_view( PODS_DIR . 'ui/fields/text.php', compact( array_keys( get_defined_vars() ) ) );
     }

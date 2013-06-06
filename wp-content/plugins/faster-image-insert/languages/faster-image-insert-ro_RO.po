@@ -1,0 +1,194 @@
+# This file is distributed under the same license as the Faster Image Insert package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Faster Image Insert trunk\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/faster-image-insert\n"
+"POT-Creation-Date: 2011-04-24 13:35:11+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-03-19 19:52+0200\n"
+"X-Poedit-Language: Romanian\n"
+"X-Poedit-Country: Romania\n"
+"Language-Team: Web Geeks\n"
+"Last-Translator: \n"
+
+#: faster-image-insert.php:40
+msgid "Faster Image Insert 2.0 series are for WordPress 3.0 or newer version, for older WP, download <a href=\"http://wordpress.org/extend/plugins/faster-image-insert/download/\">1.0 series</a> instead."
+msgstr "Imagine mai repede Inserare 2.0 serie sunt pentru WordPress 3.0 sau o versiune mai nouă, pentru WP mai în vârstă, download <a href=\"http://wordpress.org/extend/plugins/faster-image-insert/download/\"> 1.0 Series </a> în loc."
+
+#: faster-image-insert.php:68
+#: faster-image-insert.php:79
+msgid "Click here to reload after autosave. Or manually save the draft."
+msgstr "Faceţi clic aici pentru a reîncărca după salvare automată. Sau salvaţi manual proiectului."
+
+#: faster-image-insert.php:153
+#: faster-image-insert.php:161
+msgid "Select items you want to insert"
+msgstr "Selectaţi elementele pe care doriţi să inseraţi"
+
+#: faster-image-insert.php:167
+msgid "Insert selected images"
+msgstr "Inseraţi imaginile selectate"
+
+#: faster-image-insert.php:168
+msgid "Invert selection"
+msgstr "Invertire selecţie"
+
+#: faster-image-insert.php:181
+msgid "Mass Image Edit"
+msgstr "Masă Image Edit"
+
+#: faster-image-insert.php:184
+msgid "Apply changes"
+msgstr "Aplica modificările"
+
+#: faster-image-insert.php:184
+msgid "Press \"Save all changes\" above to save. Only Title, Alt-Text and Caption are permanently saved."
+msgstr "Apăsaţi \"Salvaţi toate modificările\" de mai sus pentru a salva. Doar titlu, Alt-text şi legendă sunt salvate permanent."
+
+#: faster-image-insert.php:187
+msgid "Image Titles"
+msgstr "Ce titluri"
+
+#: faster-image-insert.php:188
+msgid "Image Alt-Texts"
+msgstr "Ce Alt-texte"
+
+#: faster-image-insert.php:189
+msgid "Image Captions"
+msgstr "Legende imagine"
+
+#: faster-image-insert.php:190
+msgid "Image Alignment"
+msgstr "Aliniere imagine"
+
+#: faster-image-insert.php:191
+msgid "Image Sizes"
+msgstr "Dimensiunile imaginii"
+
+#: faster-image-insert.php:196
+msgid "None"
+msgstr "Nici unul"
+
+#: faster-image-insert.php:196
+msgid "Left"
+msgstr "Stânga"
+
+#: faster-image-insert.php:196
+msgid "Center"
+msgstr "Centrul de"
+
+#: faster-image-insert.php:196
+msgid "Right"
+msgstr "Dreptul de"
+
+#: faster-image-insert.php:197
+msgid "Thumbnail"
+msgstr "Miniatură"
+
+#: faster-image-insert.php:197
+msgid "Medium"
+msgstr "Mediu"
+
+#: faster-image-insert.php:197
+msgid "Large"
+msgstr "Mare"
+
+#: faster-image-insert.php:197
+msgid "Full size"
+msgstr "Full size"
+
+#: faster-image-insert.php:351
+#: faster-image-insert.php:425
+msgid "Faster Image Insert - User Options"
+msgstr "Inserare imagine mai repede - utilizator opţiuni"
+
+#: faster-image-insert.php:394
+msgid "Settings saved."
+msgstr "Setări salvate."
+
+#: faster-image-insert.php:412
+msgid "Settings deleted."
+msgstr "Setări elimină."
+
+#: faster-image-insert.php:426
+msgid "Updates your settings here"
+msgstr "Actualizează setările aici"
+
+#: faster-image-insert.php:435
+msgid "Load HTML form instead of Flash uploader"
+msgstr "Formular de încărcare HTML în loc de Flash uploader"
+
+#: faster-image-insert.php:436
+msgid "Enable this if you're having trouble with flash uploader."
+msgstr "Permite acest lucru, dacă aveţi probleme cu flash uploader."
+
+#: faster-image-insert.php:440
+msgid "Insert multiple images in 1 line"
+msgstr "Inseraţi mai multe imagini în linie 1"
+
+#: faster-image-insert.php:441
+msgid "Enable this if you want to insert a serial of thumbnails without newlines."
+msgstr "Permite acest lucru, dacă doriţi să inseraţi o serie de miniaturi, fără rânduri libere."
+
+#: faster-image-insert.php:445
+msgid "Set custom string"
+msgstr "Set şir particularizate"
+
+#: faster-image-insert.php:446
+msgid "Edit this to change the custom string inserted between each image; defaults to <p></p>."
+msgstr "Editare pentru a modifica acest şir personalizat inserează între fiecare imagine; implicit </p>."
+
+#: faster-image-insert.php:450
+msgid "Duplicate customer string"
+msgstr "Şir de client duplicate"
+
+#: faster-image-insert.php:451
+msgid "Depends on previous option; it duplicates the string inserted each time. Default is 1 time."
+msgstr "Depinde de opţiunea precedentă, aceasta duplicate şirul introdus de fiecare dată. Implicit este de 1 ora."
+
+#: faster-image-insert.php:455
+msgid "Disable captions"
+msgstr "Nu fi de acord captions"
+
+#: faster-image-insert.php:456
+msgid "WordPress use caption as alternative text, but it also appends [caption] if set manually, Enable this if you want to set alternative text without appending caption."
+msgstr "WordPress folosi legenda ca text alternativ, dar, de asemenea, adaugă [caption], dacă este setat manual, Activaţi această opţiune dacă doriţi să setaţi un text alternativ, fără adăugarea legendă."
+
+#: faster-image-insert.php:460
+msgid "Custom post types"
+msgstr "Tipurile particularizate de post"
+
+#: faster-image-insert.php:461
+msgid "Load FII panel in custom post types other than the default post/page; default to none, comma separated."
+msgstr "Încărcaţi FII panou tipuri poştale personalizate, altele decât după default/pagina, implicit la nimeni, separate prin virgula."
+
+#: faster-image-insert.php:467
+msgid "Save Changes"
+msgstr "Salvaţi modificările"
+
+#: faster-image-insert.php:468
+msgid "Uninstall"
+msgstr "Dezinstalare"
+
+#. Plugin Name of the plugin/theme
+msgid "Faster Image Insert"
+msgstr "Inserare imagine mai repede"
+
+#. Plugin URI of the plugin/theme
+msgid "http://blog.ticktag.org/2009/02/19/2765/"
+msgstr "http://blog.ticktag.org/2009/02/19/2765/"
+
+#. Description of the plugin/theme
+msgid "Fully integrates media manager into editing interface, avoid having to reload it separately in thickbox pop-up; comes with enhanced features, suitable for precise image control."
+msgstr "Integrează pe deplin Media Manager în interfaţa de editare, evita să-l reîncărcaţi separat în thickbox pop-up, vine cu caracteristici îmbunătăţite, potrivite pentru un control precis imagine."
+
+#. Author of the plugin/theme
+msgid "David Frank"
+msgstr "David Frank"
+
+#. Author URI of the plugin/theme
+msgid "http://blog.ticktag.org/"
+msgstr "http://blog.ticktag.org/"
+

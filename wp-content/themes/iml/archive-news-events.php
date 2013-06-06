@@ -6,90 +6,66 @@ Template Name: News-Events
 
 <?php
 define("THISPAGE", "news-events");
+
+get_header(); 
+//$pagex = (get_query_var('page')) ? "?page=".get_query_var('page') : "?page=1";
+$pagex = (get_query_var('page')) ? get_query_var('page') : 1;
 ?>
-
-<?php get_header(); ?>
-
-
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+var page = <?=$pagex;?>;
+</script>
 <div class="page-wrapper site-content">
-
 	<div class="page-title row">
-<h1>Latest News and Events</h1>
-<h2>View latest news from Inventive Medical and get information about upcoming events our team will be attending.</h2>
+		<h1>Latest News and Events</h1>
+		<h2>View latest news from Inventive Medical and get information about upcoming events our team will be attending.</h2>
+	</div>
+	<div id='filter'>
+		<select id='select-filter'>
+			<option value='all'>Filter: news and events</option>
+			<option value='event'>Filter: news</option>
+			<option value='news'>Filter: events</option>
+		</select>
+	</div>
+	<div id='news-event-ajax' class="news-leftcol-wrapper alignleft">
 
-</div>
+	</div> <!-- .news-leftcol -->
 
-<div class="news-leftcol-wrapper">
-
-<div class="hero-news-content row">
-
-	<?php
-						// The Query
-						$the_query_news_hero = new WP_Query( 'post_type=news-events&posts_per_page=1' );
-						// The Loop
-						while ( $the_query_news_hero->have_posts() ) : $the_query_news_hero->the_post();
-						?>
-									 <?php if ( has_post_thumbnail()) : ?>
-
-						   <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-						   	<?php { the_post_thumbnail( 'sixteen-nine-large' ); } ?>
-						   </a>
-						 <?php endif; ?>
-								 <div class="hero-news-listing-text">
-								 <h3>Featured News</h3>	
-								 <h2><?php the_title(); ?></h2>
-								 <?php the_excerpt(); ?>
-								 <a href="<?php the_permalink(); ?>">Read full story &raquo;</a>
-								</div>
-								
-						<?php
-						endwhile;
-
-						// Reset Post Data
-						wp_reset_postdata();
-
-						?>
-
-			
-
-</div><!-- hero-news-content -->
-
-						<?php
-						// The Query
-						$the_query_more_news = new WP_Query( 'post_type=news-events&posts_per_page=6' );
-						// The Loop
-						while ( $the_query_more_news->have_posts() ) : $the_query_more_news->the_post();
-						?>
-						
-								 <div class="content-listing">
-								 	<?php if ( has_post_thumbnail()) : ?>
-						 
-						   <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-						   	<?php { the_post_thumbnail( 'thumbnail' ); } ?>
-						  
-						   </a>
-						 <?php endif; ?>
-						 <div class="news-listing-text">
-								 <h2><?php the_title(); ?></h2>
-								 <?php the_excerpt(); ?>
-								 <a href="<?php the_permalink(); ?>">Read full story &raquo;</a>
-								</div>
-							</div>
-								 
-						<?php
-						endwhile;
-
-						// Reset Post Data
-						wp_reset_postdata();
-
-						?>
+	<div class='news-rightcol-wrapper alignright'>
+		<div id="upcoming-events">
+			<h2>UPCOMING EVENTS</h2>
+<?php
+$wp_query = new WP_Query( array ( 'post_type' => 'news-events', 'posts_per_page' => 5, 'meta_key' => 'event_end_date', 'meta_compare' => '>=', 'meta_value' => date('Ymd'), 'orderby' => 'meta_value', 'order' => 'ASC'));
+$i=0;
+while ( $wp_query->have_posts() ) : $wp_query->the_post();
+        $i++;
+?>
+                        <div class="news-listing-text">
+                                <h3><?=the_title();?></h3>
+                                <div><?=date_range();?></div>
+                                <div><?=get_post_meta($post->ID, 'location', true); ?></div>
+                                <a href="<?php the_permalink(); ?>">View event details &raquo;</a>
+                        </div>
+<?php
+endwhile;
 
 
 
-</div> <!-- .news-leftcol -->
+?>
+		</div>
+		<div class="fb-like-box" data-href="https://www.facebook.com/EchoSimulator" data-width="292" data-show-faces="true" data-stream="false" data-show-border="true" data-header="false"></div>
+	</div>
 
+<?php
+
+//wp_reset_postdata();
+?>
 </div> <!-- page-wrapper -->
-
 
 <?php get_footer(); ?>

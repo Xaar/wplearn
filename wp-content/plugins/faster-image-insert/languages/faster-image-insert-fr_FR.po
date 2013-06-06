@@ -1,0 +1,219 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Faster Image Insert v1.3.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-03-02 05:49-0500\n"
+"Last-Translator: lian <lian00@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: faster-image-insert.php:167
+#@ faster-image-insert
+msgid "Insert selected images"
+msgstr "Insérer les images sélectionnées"
+
+#: faster-image-insert.php:153
+#: faster-image-insert.php:161
+#@ faster-image-insert
+msgid "Select items you want to insert"
+msgstr "Sélectionner les objets que vous voulez insérer"
+
+#: faster-image-insert.php:181
+#@ faster-image-insert
+msgid "Mass Image Edit"
+msgstr "Édition d'images par lot"
+
+#: faster-image-insert.php:184
+#@ faster-image-insert
+msgid "Apply changes"
+msgstr "Appliquer les changements"
+
+#: faster-image-insert.php:187
+#@ faster-image-insert
+msgid "Image Titles"
+msgstr "Titres des images"
+
+#: faster-image-insert.php:190
+#@ faster-image-insert
+msgid "Image Alignment"
+msgstr "Alignement de l'image"
+
+#: faster-image-insert.php:191
+#@ faster-image-insert
+msgid "Image Sizes"
+msgstr "Tailles des images"
+
+#: faster-image-insert.php:196
+#@ default
+msgid "None"
+msgstr "Aucun"
+
+#: faster-image-insert.php:196
+#@ default
+msgid "Left"
+msgstr "Gauche"
+
+#: faster-image-insert.php:196
+#@ default
+msgid "Center"
+msgstr "Centré"
+
+#: faster-image-insert.php:196
+#@ default
+msgid "Right"
+msgstr "Droit"
+
+#: faster-image-insert.php:197
+#@ default
+msgid "Thumbnail"
+msgstr "Vignette"
+
+#: faster-image-insert.php:197
+#@ default
+msgid "Medium"
+msgstr "Medium"
+
+#: faster-image-insert.php:197
+#@ default
+msgid "Large"
+msgstr "Grande taille"
+
+#: faster-image-insert.php:197
+#@ default
+msgid "Full size"
+msgstr "Taille originale"
+
+#: faster-image-insert.php:351
+#: faster-image-insert.php:425
+#@ faster-image-insert
+msgid "Faster Image Insert - User Options"
+msgstr "Faster Image Insert - Options d'utilisateur"
+
+#: faster-image-insert.php:394
+#@ faster-image-insert
+msgid "Settings saved."
+msgstr "Réglages sauvegardés."
+
+#: faster-image-insert.php:412
+#@ faster-image-insert
+msgid "Settings deleted."
+msgstr "Réglages supprimés."
+
+#: faster-image-insert.php:426
+#@ faster-image-insert
+msgid "Updates your settings here"
+msgstr "Modifiez à jour vos réglages ici"
+
+#: faster-image-insert.php:436
+#@ faster-image-insert
+msgid "Enable this if you're having trouble with flash uploader."
+msgstr "Sélectionnez cette option si vous rencontrer des problèmes avec l'uploader flash."
+
+#: faster-image-insert.php:467
+#@ faster-image-insert
+msgid "Save Changes"
+msgstr "Sauvegarder les modifications"
+
+#: faster-image-insert.php:468
+#@ faster-image-insert
+msgid "Uninstall"
+msgstr "Désinstaller"
+
+#: faster-image-insert.php:168
+#@ faster-image-insert
+msgid "Invert selection"
+msgstr "Inverser la sélection"
+
+#: faster-image-insert.php:40
+#@ faster-image-insert
+msgid "Faster Image Insert 2.0 series are for WordPress 3.0 or newer version, for older WP, download <a href=\"http://wordpress.org/extend/plugins/faster-image-insert/download/\">1.0 series</a> instead."
+msgstr "La série Faster Image Insert 2.0 est destinée à Wordrpess 3.0 ou plus. Pour un WP plus ancien, téléchargez <a href=\"http://wordpress.org/extend/plugins/faster-image-insert/download/\">la série 1.0</a> à la place."
+
+#: faster-image-insert.php:68
+#: faster-image-insert.php:79
+#@ faster-image-insert
+msgid "Click here to reload after autosave. Or manually save the draft."
+msgstr "Cliquez ici pour recharger après la sauvegarde auto. Ou sauvegardez manuellement le brouillon."
+
+#: faster-image-insert.php:184
+#@ faster-image-insert
+msgid "Press \"Save all changes\" above to save. Only Title, Alt-Text and Caption are permanently saved."
+msgstr "Cliquez sur \"Sauvegarder les modifications\" ci-dessus pour sauvegarder. Seuls le titre, le texte-Alt et la légende sont sauvegardés de manière permanente."
+
+#: faster-image-insert.php:188
+#@ faster-image-insert
+msgid "Image Alt-Texts"
+msgstr "Textes Alt des images"
+
+#: faster-image-insert.php:189
+#@ faster-image-insert
+msgid "Image Captions"
+msgstr "Légendes des images"
+
+#: faster-image-insert.php:435
+#@ faster-image-insert
+msgid "Load HTML form instead of Flash uploader"
+msgstr "Charger le formulaire HTML à la place de l'uploader flash"
+
+#: faster-image-insert.php:440
+#@ faster-image-insert
+msgid "Insert multiple images in 1 line"
+msgstr "Insérer plusieurs images sur une ligne"
+
+#: faster-image-insert.php:441
+#@ faster-image-insert
+msgid "Enable this if you want to insert a serial of thumbnails without newlines."
+msgstr "Cochez ceci si vous désirez insérer une série de miniatures sans retour à la ligne."
+
+#: faster-image-insert.php:445
+#@ faster-image-insert
+msgid "Set custom string"
+msgstr "Définir une ligne personnalisée"
+
+#: faster-image-insert.php:446
+#@ faster-image-insert
+msgid "Edit this to change the custom string inserted between each image; defaults to &lt;p&gt;&lt;/p&gt;."
+msgstr "Éditer ceci pour changer la ligne personnalisée insérée entre chaque image. Par défaut &lt;p&gt;&lt;/p&gt;."
+
+#: faster-image-insert.php:450
+#@ faster-image-insert
+msgid "Duplicate customer string"
+msgstr "Dupliquer la ligne personnalisée"
+
+#: faster-image-insert.php:451
+#@ faster-image-insert
+msgid "Depends on previous option; it duplicates the string inserted each time. Default is 1 time."
+msgstr "Dépend de l'option précédente: ceci dupliquera la ligne insérée à chaque fois. Par défaut, 1 fois."
+
+#: faster-image-insert.php:455
+#@ faster-image-insert
+msgid "Disable captions"
+msgstr "Désactiver les légendes"
+
+#: faster-image-insert.php:456
+#@ faster-image-insert
+msgid "WordPress use caption as alternative text, but it also appends [caption] if set manually, Enable this if you want to set alternative text without appending caption."
+msgstr "Wordpress utilise la légende comme texte alternatif mais il rajoute aussi [caption] si elle est définie manuellement.  Cochez ceci si vous désirez définir un texte alternatif sans rajouter la légende."
+
+#: faster-image-insert.php:460
+#@ faster-image-insert
+msgid "Custom post types"
+msgstr "Types de billet personnalisé"
+
+#: faster-image-insert.php:461
+#@ faster-image-insert
+msgid "Load FII panel in custom post types other than the default post/page; default to none, comma separated."
+msgstr "Charge le panneau FII dans les types de billet personnalisé autres que les billets/pages par défaut. Aucun par défaut sinon une liste séparée par une virgule."
+

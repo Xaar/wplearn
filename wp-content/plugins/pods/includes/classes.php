@@ -15,17 +15,16 @@
  * @since 2.0
  * @link http://pods.io/docs/pods/
  */
-function pods ( $type = null, $id = null, $strict = false ) {
+function pods ( $type = null, $id = null, $strict = null ) {
     require_once( PODS_DIR . 'classes/Pods.php' );
 
-    $pod = null;
+    $pod = new Pods( $type, $id );
 
-    if ( empty( $pod ) ) {
-        $pod = new Pods( $type, $id );
+    if ( null === $strict )
+        $strict = pods_strict();
 
-        if ( true === $strict && null !== $type && !$pod->valid() )
-            return false;
-    }
+    if ( true === $strict && null !== $type && !$pod->valid() )
+        return false;
 
     return $pod;
 }
@@ -66,37 +65,7 @@ function pods_ui ( $obj, $deprecated = false ) {
 function pods_api ( $pod = null, $format = null ) {
     require_once( PODS_DIR . 'classes/PodsAPI.php' );
 
-    return new PodsAPI( $pod, $format );
-
-    /* @todo instance caching
-    if ( is_object( $pod ) )
-        $api = new PodsAPI( $pod, $format );
-    else {
-        $identifier = (string) $pod . (string) $format;
-
-        if ( !isset( $GLOBALS[ 'pods_class_cache' ] ) )
-            $GLOBALS[ 'pods_class_cache' ] = array();
-
-        if ( !isset( $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ] ) )
-            $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ] = array();
-
-        if ( isset( $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ][ $identifier ] ) && is_object( $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ][ $identifier ] ) )
-            $api =& $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ][ $identifier ];
-        else {
-            $api = new PodsAPI( $pod, $format );
-
-            if ( !isset( $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ][ $identifier ] ) )
-                $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ][ $identifier ] = 1;
-            else
-                $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ][ $identifier ]++;
-
-            // Start caching if the calls become excessive (calling the same reference more than once)
-            if ( 1 < $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ][ $identifier ] )
-                $GLOBALS[ 'pods_class_cache' ][ 'pods_api' ][ $identifier ] =& $api;
-        }
-    }
-
-    return $api;*/
+    return PodsAPI::init( $pod, $format );
 }
 
 /**
@@ -106,46 +75,20 @@ function pods_api ( $pod = null, $format = null ) {
  *
  * @param string|\Pod $pod The pod object to load
  * @param int $id (optional) Id of the pod to fetch
- * @param bool $strict (optional) If true throw an error if pod does not exist
+ * @param bool $strict (optional) If true throw an error if the pod does not exist
+ * @param bool $unique (optional) If true always return a unique class
  *
  * @return PodsData
  *
  * @since 2.0
  */
-function pods_data ( $pod = null, $id = null, $strict = true ) {
+function pods_data ( $pod = null, $id = null, $strict = true, $unique = true ) {
     require_once( PODS_DIR . 'classes/PodsData.php' );
 
-    return new PodsData( $pod, $id );
+    if ( $unique && false !== $pod )
+        return new PodsData( $pod, $id, $strict );
 
-    /* @todo instance caching
-    if ( is_object( $pod ) )
-        $data = new PodsData( $pod, $id );
-    else {
-        $identifier = (string) $pod . (string) $id . (string) $strict;
-
-        if ( !isset( $GLOBALS[ 'pods_class_cache' ] ) )
-            $GLOBALS[ 'pods_class_cache' ] = array();
-
-        if ( !isset( $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ] ) )
-            $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ] = array();
-
-        if ( isset( $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ][ $identifier ] ) && is_object( $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ][ $identifier ] ) )
-            $data =& $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ][ $identifier ];
-        else {
-            $data = new PodsData( $pod, $id );
-
-            if ( !isset( $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ][ $identifier ] ) )
-                $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ][ $identifier ] = 1;
-            else
-                $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ][ $identifier ]++;
-
-            // Start caching if the calls become excessive (calling the same reference more than once)
-            if ( 1 < $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ][ $identifier ] )
-                $GLOBALS[ 'pods_class_cache' ][ 'pods_data' ][ $identifier ] =& $data;
-        }
-    }
-
-    return $data;*/
+    return PodsData::init( $pod, $id, $strict );
 }
 
 /**
@@ -160,7 +103,7 @@ function pods_data ( $pod = null, $id = null, $strict = true ) {
 function pods_form () {
     require_once( PODS_DIR . 'classes/PodsForm.php' );
 
-    return PodsForm::instance();
+    return PodsForm::init();
 }
 
 /**
@@ -175,7 +118,7 @@ function pods_form () {
 function pods_init () {
     require_once( PODS_DIR . 'classes/PodsInit.php' );
 
-    return new PodsInit();
+    return PodsInit::init();
 }
 
 /**
@@ -189,8 +132,9 @@ function pods_init () {
  */
 function pods_components () {
     require_once( PODS_DIR . 'classes/PodsComponents.php' );
+    require_once( PODS_DIR . 'classes/PodsComponent.php' );
 
-    return new PodsComponents();
+    return PodsComponents::init();
 }
 
 /**
@@ -205,7 +149,7 @@ function pods_components () {
 function pods_admin () {
     require_once( PODS_DIR . 'classes/PodsAdmin.php' );
 
-    return new PodsAdmin();
+    return PodsAdmin::init();
 }
 
 /**
@@ -220,7 +164,7 @@ function pods_admin () {
 function pods_meta () {
     require_once( PODS_DIR . 'classes/PodsMeta.php' );
 
-    return new PodsMeta();
+    return PodsMeta::init();
 }
 
 /**

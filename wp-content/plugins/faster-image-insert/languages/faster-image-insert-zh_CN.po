@@ -1,0 +1,248 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR David Frank
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/faster-image-insert\n"
+"POT-Creation-Date: 2009-10-07 06:46+0000\n"
+"PO-Revision-Date: 2009-10-07 14:49+0800\n"
+"Last-Translator: David Frank <bitinn@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: faster-image-insert.php:52
+#: faster-image-insert.php:63
+#: faster-image-insert.php:100
+msgid "Click here to reload after autosave. Or manually save the draft."
+msgstr "请在自动保存之后点击这里刷新。或手动保存文章。"
+
+#: faster-image-insert.php:148
+msgid "(Quick Links)"
+msgstr "(快速链接)"
+
+#: faster-image-insert.php:149
+msgid "Enter a word to look up:"
+msgstr "输入要查找的关键字："
+
+#: faster-image-insert.php:150
+msgid "Dictionary lookup"
+msgstr "目录查找"
+
+#: faster-image-insert.php:151
+msgid "lookup"
+msgstr "查找"
+
+#: faster-image-insert.php:152
+msgid "Close all open tags"
+msgstr "闭合所有开放的标签"
+
+#: faster-image-insert.php:153
+msgid "close tags"
+msgstr "闭合标签"
+
+#: faster-image-insert.php:154
+msgid "Enter the URL"
+msgstr "输入 URL"
+
+#: faster-image-insert.php:155
+msgid "Enter the URL of the image"
+msgstr "输入图片 URL"
+
+#: faster-image-insert.php:156
+msgid "Enter a description of the image"
+msgstr "输入图片描述"
+
+#: faster-image-insert.php:167
+msgid "Select items you want to insert"
+msgstr "选择你需要插入的项目"
+
+#: faster-image-insert.php:171
+msgid "Insert selected images"
+msgstr "插入选中图片"
+
+#: faster-image-insert.php:172
+msgid "Invert selection"
+msgstr "逆向选择"
+
+#: faster-image-insert.php:175
+msgid "Reversed ordering"
+msgstr "反向排序"
+
+#: faster-image-insert.php:178
+msgid "Toggle items"
+msgstr "展开条目"
+
+#: faster-image-insert.php:219
+msgid "Mass Image Edit"
+msgstr "批量图片处理"
+
+#: faster-image-insert.php:221
+msgid "Apply changes"
+msgstr "执行替换"
+
+#: faster-image-insert.php:221
+msgid "Press \"Save all changes\" to save. Only Title/Captions can be permanently saved."
+msgstr "请点击“保存所有更改”按钮；只有标题与注脚可以永久保存"
+
+#: faster-image-insert.php:223
+msgid "Image Titles"
+msgstr "图片标题"
+
+#: faster-image-insert.php:224
+msgid "Image Captions / Alt-Texts"
+msgstr "图片注释"
+
+#: faster-image-insert.php:225
+msgid "Image Alignment"
+msgstr "图片对齐"
+
+#: faster-image-insert.php:226
+msgid "Image Sizes"
+msgstr "图片大小"
+
+#: faster-image-insert.php:230
+msgid "None"
+msgstr "无"
+
+#: faster-image-insert.php:230
+msgid "Left"
+msgstr "居左"
+
+#: faster-image-insert.php:230
+msgid "Center"
+msgstr "居中"
+
+#: faster-image-insert.php:230
+msgid "Right"
+msgstr "居右"
+
+#: faster-image-insert.php:231
+msgid "Thumbnail"
+msgstr "缩略图"
+
+#: faster-image-insert.php:231
+msgid "Medium"
+msgstr "预览图"
+
+#: faster-image-insert.php:231
+msgid "Large"
+msgstr "大图"
+
+#: faster-image-insert.php:231
+msgid "Full size"
+msgstr "原图"
+
+#: faster-image-insert.php:362
+#: faster-image-insert.php:442
+msgid "Faster Image Insert - User Options"
+msgstr "Faster Image Insert - 用户选项"
+
+#: faster-image-insert.php:412
+msgid "Settings saved."
+msgstr "设定已保存"
+
+#: faster-image-insert.php:437
+msgid "Settings deleted."
+msgstr "设定已删除"
+
+#: faster-image-insert.php:443
+msgid "Updates your settings here"
+msgstr "在此更新本插件的设定"
+
+#: faster-image-insert.php:451
+msgid "Load media manager WITHOUT jQuery ?"
+msgstr "不使用jQuery读取媒体管理器"
+
+#: faster-image-insert.php:452
+msgid "Enable this if you're having trouble getting media manager to load in editing interface (ie. blank metabox). Needed for WordPress 2.6"
+msgstr "如果你在发布文章的页面中看不到插入的媒体管理器，尝试启动本选项；WordPress 2.6需要。"
+
+#: faster-image-insert.php:456
+msgid "Load HTML submit form instead of FLASH uploader ?"
+msgstr "默认使用HTML上传器代替Flash上传器。"
+
+#: faster-image-insert.php:457
+msgid "Enable this if you're having trouble with flash uploader."
+msgstr "如果你的浏览器不兼容WordPress的Flash上传器，尝试启用本选项"
+
+#: faster-image-insert.php:461
+msgid "Insert multiple images in ONE line ?"
+msgstr "批量插入图片时不换行"
+
+#: faster-image-insert.php:462
+msgid "Enable this if you just want to insert a serial of thumbnails without newlines."
+msgstr "当你需要插入一系列的缩略图，启用本选项"
+
+#: faster-image-insert.php:466
+msgid "Set custrom string"
+msgstr "制定插入文字"
+
+#: faster-image-insert.php:467
+msgid "Edit this to change the custom string inserted between images; defaults to newline."
+msgstr "设定在批量图片插入之间的文字。"
+
+#: faster-image-insert.php:471
+msgid "Number of separators between each image"
+msgstr "分隔图片代码的符号数量"
+
+#: faster-image-insert.php:472
+msgid "Depends on previous option; it either means blank line or blank space. Default is 4."
+msgstr "基于你前一项的选择，本项目可指图片间的空行或空格数量。默认为4。"
+
+#: faster-image-insert.php:476
+msgid "Disable Captions ?"
+msgstr "关闭[Caption]功能"
+
+#: faster-image-insert.php:477
+msgid "WordPress use caption as alternative text, but it also appends [caption] if set manually, Enable this if you want to set alternative text without appending caption. works in WordPress 2.6.1 or above."
+msgstr "WordPress默认使用用户设定的Caption为图片的替换文字，如果你需要修改替换文字，又不想插入[Caption]，请启用本项目。WordPress 2.6.1以上可用。"
+
+#: faster-image-insert.php:481
+msgid "Enable mass-editing ?"
+msgstr "允许图片批量处理"
+
+#: faster-image-insert.php:482
+msgid "Enable this if you want to use the mass-edit function, works well with WordPress 2.7+"
+msgstr "勾选本项目以启用图片标题批量修改。"
+
+#: faster-image-insert.php:486
+msgid "Enable debug mode ?"
+msgstr "启用Debug模式"
+
+#: faster-image-insert.php:487
+msgid "Enable this option to remove registered javascript for this plugin, FOR DEBUGGING."
+msgstr "启用这个模式将去除插件注册的所有javascript；仅用于Debug。"
+
+#: faster-image-insert.php:493
+msgid "Save Changes"
+msgstr "保存设定"
+
+#: faster-image-insert.php:494
+msgid "Uninstall"
+msgstr "移除设定"
+
+#. Plugin Name of an extension
+msgid "Faster Image Insert"
+msgstr "Faster Image Insert"
+
+#. Plugin URI of an extension
+msgid "http://blog.ticktag.org/2009/02/19/2765/"
+msgstr "http://blog.ticktag.org/2009/02/19/2765/"
+
+#. Description of an extension
+msgid "Fully integrates media manager into editing interface, avoid having to reload it separately in thickbox pop-up; comes with enhanced features, suitable for precise image control."
+msgstr "将默认弹出的媒体管理器添加至编辑页面中，减短启动时间，提供例如批量图片插入的附加功能。"
+
+#. Author of an extension
+msgid "David Frank"
+msgstr "David Frank"
+
+#. Author URI of an extension
+msgid "http://blog.ticktag.org/"
+msgstr "http://blog.ticktag.org/"
+

@@ -1,7 +1,7 @@
 /*search field - clear on focus*/
 
 jQuery(document).ready(function($){
-    var Input = $('input[name=navsearch]');
+    var Input = $('input[name=s]');
     var default_value = Input.val();
 
     Input.focus(function() {
@@ -9,6 +9,16 @@ jQuery(document).ready(function($){
     }).blur(function(){
         if(Input.val().length == 0) Input.val(default_value);
     });
+});
+
+$('#select-filter').change(function(){
+  filter = $('#select-filter option:selected').val();
+  $('#news-event-ajax').load("http://hwdemo.glassworks.co.uk/ajax/"+page+'?filter='+filter);
+});
+
+jQuery(document).ready(function($){
+  filter = $('#select-filter option:selected').val();
+  $('#news-event-ajax').load("http://hwdemo.glassworks.co.uk/ajax/"+page+'?filter='+filter);
 });
 
 /* Main nav CSS animation */

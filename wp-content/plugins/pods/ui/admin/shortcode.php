@@ -132,7 +132,7 @@
                 shortcode += ' field="' + field + '"';
 
             if ( 'form' == use_case ) {
-                if ( fields.length || label.length || thank_you.length )}
+                if ( fields.length || label.length || thank_you.length )
                     shortcode += ' form="1"';
 
                 if ( fields.length )
@@ -164,6 +164,17 @@
             window.send_to_editor( shortcode );
             evt.preventDefault();
 
+        } );
+
+        $( '#pod_cache_mode' ).change( function () {
+            var $this = $( this );
+
+            if ( 'none' == $this.val() ) {
+                $( this ).closest( '.pods-section' ).addClass( 'hide' );
+            }
+            else {
+                $( this ).closest( '.pods-section' ).removeClass( 'hide' );
+            }
         } );
 
         var $useCaseSelector = $( '#pods-use-case-selector' ),
@@ -417,7 +428,7 @@
                             'site-transient' => __( 'Site Transient', 'pods' )
                         );
 
-                        $default_cache_mode = 'transient';
+                        $default_cache_mode = apply_filters( 'pods_shortcode_default_cache_mode', 'none' );
                     ?>
                     <select id="pod_cache_mode" name="pod_cache_mode">
                         <?php foreach ( $cache_modes as $cache_mode_option => $cache_mode_label ): ?>

@@ -10,9 +10,14 @@
  *
  * Theme Dependency: Builder|builder|http://ithemes.com/
  *
+ * Plugin: pods-builder/pods-builder.php
+ *
  * @package Pods\Components
  * @subpackage Builder
  */
+
+if ( function_exists( 'pods_builder_modules_init' ) )
+    return;
 
 function pods_builder_modules_init () {
     require_once( PODS_DIR . 'components/Builder/modules/field/PodsBuilderModuleField.php' );

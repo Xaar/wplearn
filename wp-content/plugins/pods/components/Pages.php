@@ -77,7 +77,7 @@ class Pods_Pages extends PodsComponent {
             'menu_icon' => PODS_URL . 'ui/images/icon16.png'
         );
 
-        if ( !is_user_logged_in() || !is_super_admin() )
+        if ( !pods_is_admin() )
             $args[ 'capability_type' ] = 'pods_page';
 
         $args = PodsInit::object_label_fix( $args, 'post_type' );
@@ -630,19 +630,22 @@ class Pods_Pages extends PodsComponent {
             if ( !empty( $pod_page_rewrites ) ) {
                 foreach ( $pod_page_rewrites as $pod_page => $pod_page_id ) {
                     if ( !apply_filters( 'pods_page_regex_matching', false ) ) {
+                        if ( false === strpos( $pod_page, '*' ) )
+                            continue;
+
                         $depth_check = strlen( $pod_page ) - strlen( str_replace( '/', '', $pod_page ) );
 
                         $pod_page = preg_quote( $pod_page, '/' );
 
                         $pod_page = str_replace( '\\*', '(.*)', $pod_page );
 
-                        if ( $uri_depth == $depth_check && preg_match( '/' . $pod_page . '/', $uri ) ) {
+                        if ( $uri_depth == $depth_check && preg_match( '/^' . $pod_page . '$/', $uri ) ) {
                             $found_rewrite_page_id = $pod_page_id;
 
                             break;
                         }
                     }
-                    elseif ( preg_match( '/' . str_replace( '/', '\\/', $pod_page ) . '/', $uri ) ) {
+                    elseif ( preg_match( '/^' . str_replace( '/', '\\/', $pod_page ) . '$/', $uri ) ) {
                         $found_rewrite_page_id = $pod_page_id;
 
                         break;
@@ -655,9 +658,9 @@ class Pods_Pages extends PodsComponent {
                     if ( empty( $object ) || '_pods_page' != $object[ 'post_type' ] )
                         $object = false;
                 }
-
-                $wildcard = true;
             }
+
+            $wildcard = true;
         }
 
         if ( !empty( $object ) ) {

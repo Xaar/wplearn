@@ -18,6 +18,9 @@ class acf_field_color_picker extends acf_field
 		$this->name = 'color_picker';
 		$this->label = __("Color Picker",'acf');
 		$this->category = __("jQuery",'acf');
+		$this->defaults = array(
+			'default_value'	=>	'',
+		);
 		
 		
 		// do not delete!
@@ -40,7 +43,9 @@ class acf_field_color_picker extends acf_field
 	
 	function create_field( $field )
 	{
-		echo '<input type="text" value="' . $field['value'] . '" id="' . $field['id'] . '" class="acf_color_picker" name="' . $field['name'] . '"  />';
+		echo '<div class="acf-color_picker">';
+			echo '<input type="text" value="' . $field['value'] . '" id="' . $field['id'] . '" class="input" name="' . $field['name'] . '"  />';
+		echo '</div>';
 	}
 	
 	
@@ -60,11 +65,6 @@ class acf_field_color_picker extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'default_value'	=>	'',
-		);
-		
-		$field = array_merge($defaults, $field);
 		$key = $field['name'];
 		
 		?>

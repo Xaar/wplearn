@@ -10,9 +10,15 @@
  *
  * Version: 1.0
  *
+ * Plugin: pods-migrate-custom-post-type-ui/pods-migrate-custom-post-type-ui.php
+ *
  * @package Pods\Components
  * @subpackage Migrate-Cptui
  */
+
+if ( class_exists( 'Pods_Migrate_CPTUI' ) )
+    return;
+
 class Pods_Migrate_CPTUI extends PodsComponent {
 
     private $api = null;

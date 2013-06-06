@@ -109,6 +109,7 @@ if ( 0 < $pod->id() ) {
         <?php echo PodsForm::field( '_pods_id', ( $duplicate ? 0 : $pod->id() ), 'hidden' ); ?>
         <?php echo PodsForm::field( '_pods_uri', $uri_hash, 'hidden' ); ?>
         <?php echo PodsForm::field( '_pods_form', implode( ',', array_keys( $fields ) ), 'hidden' ); ?>
+        <?php echo PodsForm::field( '_pods_location', $_SERVER[ 'REQUEST_URI' ], 'hidden' ); ?>
 
         <?php
             foreach ( $fields as $field ) {
@@ -180,7 +181,7 @@ if ( 0 < $pod->id() ) {
 
                                 <div id="major-publishing-actions">
                                     <?php
-                                        if ( ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods_delete_' . $pod->pod ) ) && null !== $pod->id() && !$duplicate && !in_array( 'delete', $obj->actions_disabled ) && !in_array( 'delete', $obj->actions_hidden ) ) {
+                                        if ( pods_is_admin( array( 'pods', 'pods_delete_' . $pod->pod ) ) && null !== $pod->id() && !$duplicate && !in_array( 'delete', $obj->actions_disabled ) && !in_array( 'delete', $obj->actions_hidden ) ) {
                                     ?>
                                         <div id="delete-action">
                                             <a class="submitdelete deletion" href="<?php echo pods_var_update( array( 'action' => 'delete' ) ) ?>" onclick="return confirm('You are about to permanently delete this item\n Choose \'Cancel\' to stop, \'OK\' to delete.');"><?php _e( 'Delete', 'pods' ); ?></a>
@@ -269,40 +270,42 @@ if ( 0 < $pod->id() ) {
             <div id="post-body">
                 <div id="post-body-content">
                     <?php
-                    $more = false;
+                        $more = false;
 
-                    if ( $pod->pod_data[ 'field_index' ] != $pod->pod_data[ 'field_id' ] ) {
-                        foreach ( $fields as $k => $field ) {
-                            if ( $pod->pod_data[ 'field_index' ] != $field[ 'name' ] || 'text' != $field[ 'type' ] )
-                                continue;
+                        if ( $pod->pod_data[ 'field_index' ] != $pod->pod_data[ 'field_id' ] ) {
+                            foreach ( $fields as $k => $field ) {
+                                if ( $pod->pod_data[ 'field_index' ] != $field[ 'name' ] || 'text' != $field[ 'type' ] )
+                                    continue;
 
-                            $more = true;
-                            $extra = '';
+                                $more = true;
+                                $extra = '';
 
-                            $max_length = (int) pods_var( 'maxlength', $field[ 'options' ], pods_var( $field[ 'type' ] . '_max_length', $field[ 'options' ], 0 ), null, true );
+                                $max_length = (int) pods_var( 'maxlength', $field[ 'options' ], pods_var( $field[ 'type' ] . '_max_length', $field[ 'options' ], 0 ), null, true );
 
-                            if ( 0 < $max_length )
-                                $extra .= ' maxlength="' . $max_length . '"';
-                            ?>
-                            <div id="titlediv">
-                                <div id="titlewrap">
-                                    <label class="hide-if-no-js" style="visibility:hidden" id="title-prompt-text" for="title"><?php echo apply_filters( 'pods_enter_name_here', __( 'Enter name here', 'pods' ), $pod, $fields ); ?></label>
-                                    <input type="text" name="pods_field_<?php echo $pod->pod_data[ 'field_index' ]; ?>" data-name-clean="pods-field-<?php echo $pod->pod_data[ 'field_index' ]; ?>" id="title" size="30" tabindex="1" value="<?php echo esc_attr( htmlspecialchars( $pod->index() ) ); ?>" class="pods-form-ui-field-name-pods-field-<?php echo $pod->pod_data[ 'field_index' ]; ?>" autocomplete="off"<?php echo $extra; ?> />
-                                </div>
-                                <!-- /#titlewrap -->
-
-                                <div class="inside">
-                                    <div id="edit-slug-box">
+                                if ( 0 < $max_length )
+                                    $extra .= ' maxlength="' . $max_length . '"';
+                                ?>
+                                <div id="titlediv">
+                                    <div id="titlewrap">
+                                        <label class="hide-if-no-js" style="visibility:hidden" id="title-prompt-text" for="title"><?php echo apply_filters( 'pods_enter_name_here', __( 'Enter name here', 'pods' ), $pod, $fields ); ?></label>
+                                        <input type="text" name="pods_field_<?php echo $pod->pod_data[ 'field_index' ]; ?>" data-name-clean="pods-field-<?php echo $pod->pod_data[ 'field_index' ]; ?>" id="title" size="30" tabindex="1" value="<?php echo esc_attr( htmlspecialchars( $pod->index() ) ); ?>" class="pods-form-ui-field-name-pods-field-<?php echo $pod->pod_data[ 'field_index' ]; ?>" autocomplete="off"<?php echo $extra; ?> />
                                     </div>
-                                    <!-- /#edit-slug-box -->
+                                    <!-- /#titlewrap -->
+
+                                    <div class="inside">
+                                        <div id="edit-slug-box">
+                                        </div>
+                                        <!-- /#edit-slug-box -->
+                                    </div>
+                                    <!-- /.inside -->
                                 </div>
-                                <!-- /.inside -->
-                            </div>
-                            <!-- /#titlediv -->
-                            <?php
-                            unset( $fields[ $k ] );
+                                <!-- /#titlediv -->
+                                <?php
+                                unset( $fields[ $k ] );
+                            }
                         }
-                    }
+
+                        if ( 0 < count( $fields ) ) {
                     ?>
 
                     <div id="normal-sortables" class="meta-box-sortables ui-sortable">
@@ -345,6 +348,8 @@ if ( 0 < $pod->id() ) {
                         <!-- /#pods-meta-box -->
                     </div>
                     <!-- /#normal-sortables -->
+
+                    <?php } ?>
 
                     <!--<div id="advanced-sortables" class="meta-box-sortables ui-sortable">
                     </div>

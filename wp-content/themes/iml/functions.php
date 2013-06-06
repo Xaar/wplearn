@@ -132,6 +132,8 @@ function IML_scripts() {
 
 	wp_enqueue_script( 'IML-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
+	wp_enqueue_script( 'IML-secondary-nav', get_template_directory_uri() . '/js/cufon-yui.js', array(), '20130115', true );
+
 	$jQuery = "http://code.jquery.com/jquery-latest.min.js";
 	wp_deregister_script( 'jQuery' );
 	wp_register_script( 'jQuery', $jQuery);
@@ -181,7 +183,6 @@ if ( function_exists( 'add_image_size' ) ) {
 }
 
 // Add custom post types
-add_action( 'init', 'create_post_type' );
 function create_post_type() {
 	register_post_type( 'news-events',
 		array(
@@ -192,8 +193,108 @@ function create_post_type() {
 			'public' => true,
 			'taxonomies' => array('post_tag'),
 			'has_archive' => true,
-			'rewrite' => array('slug' => 'news-events'),
-			'supports' => array('title', 'thumbnail'),
+			'rewrite' => array('slug' => 'news-events', 'with_front' => FALSE),
+			'capability_type' => 'post',
+			'hierarchical' => false,
+			'supports' => array('title', 'thumbnail')
 		)
 	);
+        register_post_type( 'products',
+                array(
+                        'labels' => array(
+                                'name' => __( 'Products' ),
+                                'singular_name' => __( 'products' )
+                        ),
+                        'public' => true,
+                        'taxonomies' => array('post_tag'),
+                        'has_archive' => true,
+                        'rewrite' => array('slug' => 'products', 'with_front' => FALSE),
+                        'capability_type' => 'post',
+                        'hierarchical' => false,
+                        'supports' => array('title', 'thumbnail', 'custom-fields')
+                )
+        );
+        register_post_type( 'faqs',
+                array(
+                        'labels' => array(
+                                'name' => __( 'FAQ\'s' ),
+                                'singular_name' => __( 'FAQ' )
+                        ),
+                        'public' => true,
+                        'taxonomies' => array('post_tag'),
+                        'has_archive' => true,
+                        'rewrite' => array('slug' => 'products', 'with_front' => FALSE),
+                        'capability_type' => 'post',
+                        'hierarchical' => false,
+                        'supports' => array('title')
+                )
+        );
 }
+add_action( 'init', 'create_post_type' );
+
+function change_default_title( $title ){
+     $screen = get_current_screen();
+ 
+     if  ( 'faqs' == $screen->post_type ) {
+          $title = 'Type question here...';
+     }
+ 
+     return $title;
+}
+ 
+add_filter( 'enter_title_here', 'change_default_title' );
+
+function replace_content($content) {
+	global $post;
+	$content = get_post_meta($post->ID, "article", true);
+	return $content;
+}
+add_filter('the_content', 'replace_content');
+function custom_excerpt_length( $length ) {
+	return 18;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+// Format dates to a range
+function date_range(){
+global $post;
+
+	$s_date = get_post_meta($post->ID, "event_start_date", true);
+	$e_date = get_post_meta($post->ID, "event_end_date", true);
+        $sdate = new DateTime($s_date);
+        $s_date = date_format($sdate, 'jS F Y');
+        $edate = new DateTime($e_date);
+        $e_date = date_format($edate, 'jS F Y');
+
+        list($s_day, $s_month, $s_year) = sscanf($s_date, "%s %s %d");;
+        list($e_day, $e_month, $e_year) = sscanf($e_date, "%s %s %d");;
+
+        if($s_year == $e_year){
+                // same year, either 1st or 2nd form
+                if($s_month == $e_month){
+                        // same year, same month, 1st form - DAY. - DAY. MONTH YEAR
+                        return "$s_day - $e_day $e_month $e_year";
+                } else {
+                        // same year, different month, 2nd form - DAY. MONTH - DAY. MONTH YEAR
+                        return "$s_day $s_month - $e_day $e_month $e_year";
+                }
+        } else {
+                // different year - 3rd form - DAY. MONTH YEAR - DAY. MONTH YEAR
+                return "$s_day # $s_month # $s_year - $e_day # $e_month # $e_year <br> $s_date";
+        }
+}
+add_shortcode('daterange', 'date_range');
+
+function pods_faq_pick_data($data, $name, $value, $options, $pod, $id){
+if ($name == "pods_field_teachers") {
+foreach ($data as $id => &$value) {
+$p = pods('teacher', $id);
+$name = $p->display('name');
+$city = $p->display('profile.city.name');
+$value = $name . ' - ' . $city;
+}
+}
+return $data;
+}
+
+add_filter('pods_field_pick_data', 'pods_faq_pick_data', 1, 6);

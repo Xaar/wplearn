@@ -52,6 +52,7 @@ class PodsUI {
      * @var string
      */
     public $num = ''; // allows multiple co-existing PodsUI instances with separate functionality in URL
+
     /**
      * @var array
      */
@@ -477,8 +478,12 @@ class PodsUI {
         $options = $this->do_hook( 'pre_init', $options );
         $this->setup( $options );
 
-        if ( is_object( $this->pods_data ) && is_object( $this->pod ) && 0 < $this->id && $this->id != $this->pods_data->id )
-            $this->row = $this->pods_data->fetch( $this->id );
+        if ( is_object( $this->pods_data ) && is_object( $this->pod ) && 0 < $this->id ) {
+            if ( $this->id != $this->pods_data->id )
+                $this->row = $this->pods_data->fetch( $this->id );
+            else
+                $this->row = $this->pods_data->row;
+        }
 
         if ( ( !is_object( $this->pod ) || 'Pods' != get_class( $this->pod ) ) && false === $this->sql[ 'table' ] && false === $this->data ) {
             echo $this->error( __( '<strong>Error:</strong> Pods UI needs a Pods object or a Table definition to run from, see the User Guide for more information.', 'pods' ) );
@@ -1441,7 +1446,7 @@ class PodsUI {
             if ( empty( $this->row ) )
                 $this->get_row();
 
-            if ( empty( $this->row ) )
+            if ( empty( $this->row ) && ( !is_object( $this->pod ) || 'settings' != $this->pod->pod_data[ 'type' ] ) )
                 return $this->error( sprintf( __( '<strong>Error:</strong> %s not found.', 'pods' ), $this->item ) );
 
             if ( $this->restricted( $this->action, $this->row ) )
@@ -1477,14 +1482,16 @@ class PodsUI {
         if ( isset( $this->fields[ $this->action ] ) )
             $fields = $this->fields[ $this->action ];
 
-        $object_fields = (array) pods_var_raw( 'object_fields', $this->pod->pod_data, array(), null, true );
+        if ( is_object( $this->pod ) ) {
+            $object_fields = (array) pods_var_raw( 'object_fields', $this->pod->pod_data, array(), null, true );
 
-        if ( empty( $object_fields ) && in_array( $this->pod->pod_data[ 'type' ], array( 'post_type', 'taxonomy', 'media', 'user', 'comment' ) ) )
-            $object_fields = $this->pod->api->get_wp_object_fields( $this->pod->pod_data[ 'type' ], $this->pod->pod_data );
+            if ( empty( $object_fields ) && in_array( $this->pod->pod_data[ 'type' ], array( 'post_type', 'taxonomy', 'media', 'user', 'comment' ) ) )
+                $object_fields = $this->pod->api->get_wp_object_fields( $this->pod->pod_data[ 'type' ], $this->pod->pod_data );
 
-        if ( empty( $fields ) ) {
-            // Add core object fields if $fields is empty
-            $fields = array_merge( $object_fields, $this->pod->fields );
+            if ( empty( $fields ) ) {
+                // Add core object fields if $fields is empty
+                $fields = array_merge( $object_fields, $this->pod->fields );
+            }
         }
 
         $form_fields = $fields; // Temporary
@@ -1860,6 +1867,8 @@ class PodsUI {
 
         if ( !empty( $params ) && is_array( $params ) )
             $params = (object) array_merge( $defaults, $params );
+        else
+            $params = (object) $defaults;
 
         if ( !in_array( $action, array( 'manage', 'reorder' ) ) )
             $action = 'manage';
@@ -1897,6 +1906,7 @@ class PodsUI {
                 'where' => pods_var_raw( $action, $this->where, null, null, true ),
                 'orderby' => $orderby,
                 'page' => (int) $this->page,
+                'pagination' => true,
                 'limit' => (int) $limit,
                 'search' => $this->searchable,
                 'search_query' => $this->search,
@@ -1915,7 +1925,7 @@ class PodsUI {
             $find_params = array_merge( $find_params, (array) $this->params );
 
             // Debug purposes
-            if ( 1 == pods_var( 'pods_debug_params', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+            if ( 1 == pods_var( 'pods_debug_params', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
                 pods_debug( $find_params );
 
             $this->pod->find( $find_params );
@@ -1971,6 +1981,7 @@ class PodsUI {
                 'where' => pods_var_raw( $action, $this->where, null, null, true ),
                 'orderby' => $orderby,
                 'page' => (int) $this->page,
+                'pagination' => true,
                 'limit' => (int) $this->limit,
                 'search' => $this->searchable,
                 'search_query' => $this->search,
@@ -1984,7 +1995,7 @@ class PodsUI {
                 $find_params[ 'limit' ] = -1;
 
             // Debug purposes
-            if ( 1 == pods_var( 'pods_debug_params', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+            if ( 1 == pods_var( 'pods_debug_params', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
                 pods_debug( $find_params );
 
             $this->pods_data->select( $find_params );
@@ -2035,7 +2046,10 @@ class PodsUI {
     /**
      * @return array
      */
-    public function get_row ( &$counter = 0 ) {
+    public function get_row ( &$counter = 0, $method = null ) {
+        if ( !empty( $this->row ) && 0 < (int) $this->id && 'table' != $method )
+            return $this->row;
+
         if ( is_object( $this->pod ) && ( 'Pods' == get_class( $this->pod ) || 'Pod' == get_class( $this->pod ) ) )
             $this->row = $this->pod->fetch();
         else {
@@ -2160,7 +2174,7 @@ class PodsUI {
                 $get = $_GET;
 
                 foreach ( $get as $k => $v ) {
-                    if ( in_array( $k, $excluded_filters ) || strlen( $v ) < 1 )
+                    if ( is_array( $v ) || in_array( $k, $excluded_filters ) || strlen( $v ) < 1 )
                         continue;
                     ?>
                     <input type="hidden" name="<?php echo esc_attr( $k ); ?>" value="<?php echo esc_attr( $v ); ?>" />
@@ -2187,6 +2201,7 @@ class PodsUI {
                 <p class="search-box" align="right">
                     <?php
                     $excluded_filters = array( 'search' . $this->num, 'pg' . $this->num );
+
                     foreach ( $this->filters as $filter ) {
                         $excluded_filters[] = 'filter_' . $filter . '_start';
                         $excluded_filters[] = 'filter_' . $filter . '_end';
@@ -2763,9 +2778,12 @@ class PodsUI {
                                 if ( strlen( $value ) < 1 )
                                     $value = pods_var_raw( 'filter_default', $this->pod->fields[ $filter ] );
 
-                                $options = array();
-                                $options[ 'input_helper' ] = pods_var_raw( 'ui_input_helper', pods_var_raw( 'options', pods_var_raw( $filter, $this->fields[ 'search' ], array(), null, true ), array(), null, true ), '', null, true );
-                                $options[ 'input_helper' ] = pods_var_raw( 'ui_input_helper', $options, $this->pod->fields[ $filter ][ 'options' ][ 'input_helper' ], null, true );
+                                $options = array(
+                                    'input_helper' => pods_var_raw( 'ui_input_helper', pods_var_raw( 'options', pods_var_raw( $filter, $this->fields[ 'search' ], array(), null, true ), array(), null, true ), '', null, true )
+                                );
+
+                                if ( empty( $options[ 'input_helper' ] ) && isset( $this->pod->fields[ $filter ][ 'options' ] ) && isset( $this->pod->fields[ $filter ][ 'options' ][ 'input_helper' ] ) )
+                                    $options[ 'input_helper' ] = $this->pod->fields[ $filter ][ 'options' ][ 'input_helper' ];
                         ?>
                             <span class="pods-ui-posts-filter-toggle toggle-on<?php echo ( empty( $value ) ? '' : ' hidden' ); ?>">+</span>
                             <span class="pods-ui-posts-filter-toggle toggle-off<?php echo ( empty( $value ) ? ' hidden' : '' ); ?>"><?php _e( 'Clear', 'pods' ); ?></span>
@@ -2990,7 +3008,7 @@ class PodsUI {
                 if ( !empty( $this->data ) && is_array( $this->data ) ) {
                     $counter = 0;
 
-                    while ( $row = $this->get_row( $counter ) ) {
+                    while ( $row = $this->get_row( $counter, 'table' ) ) {
                         if ( is_object( $row ) )
                             $row = get_object_vars( (object) $row );
 
@@ -3630,8 +3648,8 @@ class PodsUI {
     public function exclusion () {
         $exclusion = self::$excluded;
 
-        foreach ( $exclusion as &$exclude ) {
-            $exclude = $exclude . $this->num;
+        foreach ( $exclusion as $k => $exclude ) {
+            $exclusion[ $k ] = $exclude . $this->num;
         }
 
         return $exclusion;
@@ -3653,7 +3671,7 @@ class PodsUI {
             if ( is_object( $this->pod ) ) {
                 $restricted = true;
 
-                if ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) || current_user_can( 'pods_content' ) )
+                if ( pods_is_admin( array( 'pods', 'pods_content' ) ) )
                     $restricted = false;
                 elseif ( 'manage' == $action ) {
                     if ( !in_array( 'edit', $this->actions_disabled ) && current_user_can( 'pods_edit_' . $this->pod->pod ) && current_user_can( 'pods_edit_others_' . $this->pod->pod ) )
@@ -3670,7 +3688,7 @@ class PodsUI {
             else {
                 $restricted = true;
 
-                if ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) || current_user_can( 'pods_content' ) )
+                if ( pods_is_admin( array( 'pods', 'pods_content' ) ) )
                     $restricted = false;
                 elseif ( current_user_can( 'pods_' . $action . '_others_' . $_tbd ) )
                     $restricted = false;
@@ -3845,7 +3863,7 @@ class PodsUI {
                 $restricted = false;
         }
 
-        $restricted = $this->do_hook( 'restricted_' . $action, $restricted, $restrict, $action );
+        $restricted = $this->do_hook( 'restricted_' . $action, $restricted, $restrict, $action, $row );
 
         return $restricted;
     }

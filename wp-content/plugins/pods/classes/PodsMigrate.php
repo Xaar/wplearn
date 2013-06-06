@@ -58,7 +58,7 @@ class PodsMigrate {
      *
      * @param string $type Export Type (php, json, sv, xml)
      * @param string $delimiter Delimiter for export type 'sv'
-     * @param array $data Array of data
+     * @param array $data Array of data settings
      *
      * @return \PodsMigrate
      *
@@ -137,9 +137,9 @@ class PodsMigrate {
             $this->type = $type;
 
         if ( method_exists( $this, "parse_{$this->type}" ) )
-            call_user_func( array( $this, 'parse_' . $this->type ) );
+            return call_user_func( array( $this, 'parse_' . $this->type ) );
 
-        return $this->input;
+        return $this->parsed;
     }
 
     /**
@@ -192,24 +192,29 @@ class PodsMigrate {
         if ( !empty( $delimiter ) )
             $this->delimiter = $delimiter;
 
-
-        $rows = @str_getcsv( $this->input, "\n" );
+        $rows = $this->str_getcsv( $this->input, '\n' );
 
         if ( empty( $rows ) || 2 > count( $rows ) )
             return false;
 
-        $data = array( 'columns' => array(), 'items' => array() );
+        $data = array(
+            'columns' => array(),
+            'items' => array()
+        );
 
         foreach ( $rows as $key => $row ) {
             if ( 0 == $key )
-                $data[ 'columns' ] = @str_getcsv( $row, $this->delimiter );
+                $data[ 'columns' ] = $this->str_getcsv( $row, $this->delimiter );
             else {
-                $row = @str_getcsv( $row, $this->delimiter );
+                $row = $this->str_getcsv( $row, $this->delimiter );
 
                 $data[ 'items' ][ $key ] = array();
 
                 foreach ( $data[ 'columns' ] as $ckey => $column ) {
                     $data[ 'items' ][ $key ][ $column ] = ( isset( $row[ $ckey ] ) ? $row[ $ckey ] : '' );
+
+                    if ( 'NULL' === $data[ 'items' ][ $key ][ $column ] )
+                        $data[ 'items' ][ $key ][ $column ] = null;
                 }
             }
         }
@@ -217,6 +222,36 @@ class PodsMigrate {
         $this->parsed = $data;
 
         return $this->parsed;
+    }
+
+    /**
+     * Handle str_getcsv for cases where it's not set
+     *
+     * @param $line
+     * @param string $delimiter
+     * @param string $enclosure
+     * @param string $escape
+     *
+     * @return array|mixed
+     */
+    public function str_getcsv ( $line, $delimiter = ',', $enclosure = '"', $escape = '\\' ) {
+        $line = str_replace( "\r\n", "\n", $line );
+        $line = str_replace( "\r", "\n", $line );
+
+        if ( '\n' != $delimiter && function_exists( 'str_getcsv' ) )
+            return str_getcsv( $line, $delimiter, $enclosure, $escape );
+
+        $delimiter = str_replace( '/', '\/', $delimiter );
+        $enclosure = preg_quote( $enclosure, '/' );
+
+        $split = "/{$delimiter}(?=(?:[^{$enclosure}]*{$enclosure}[^{$enclosure}]*{$enclosure})*(?![^{$enclosure}]*{$enclosure}))/";
+
+        $data = preg_split( $split, trim( $line ), -1, PREG_SPLIT_NO_EMPTY );
+
+        if ( '\n' != $delimiter )
+            $data = preg_replace( "/^{$enclosure}(.*){$enclosure}$/s", "$1", $data );
+
+        return $data;
     }
 
     /**

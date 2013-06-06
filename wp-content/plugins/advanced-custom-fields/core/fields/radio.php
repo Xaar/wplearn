@@ -2,7 +2,6 @@
 
 class acf_field_radio extends acf_field
 {
-	
 	/*
 	*  __construct
 	*
@@ -18,6 +17,11 @@ class acf_field_radio extends acf_field
 		$this->name = 'radio';
 		$this->label = __("Radio Button",'acf');
 		$this->category = __("Choice",'acf');
+		$this->defaults = array(
+			'layout'		=>	'vertical',
+			'choices'		=>	array(),
+			'default_value'	=>	'',
+		);
 		
 		
 		// do not delete!
@@ -41,14 +45,6 @@ class acf_field_radio extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$defaults = array(
-			'layout'		=>	'vertical',
-			'choices'		=>	array(),
-		);
-		
-		$field = array_merge($defaults, $field);
-		
-		
 		echo '<ul class="radio_list ' . $field['class'] . ' ' . $field['layout'] . '">';
 		
 		$i = 0;
@@ -58,9 +54,9 @@ class acf_field_radio extends acf_field
 			{
 				$i++;
 				
-				// if there is no value and this is the first of the choices and there is no "0" choice, select this on by default
-				// the 0 choice would normally match a no value. This needs to remain possible for the create new field to work.
-				if(!$field['value'] && $i == 1 && !isset($field['choices'][0]))
+				// if there is no value and this is the first of the choices, select this on by default
+				// also make sure we dont match if the value is 0. Sometimes the value is 0!
+				if( $field['value'] !== 0 && !$field['value'] && $i == 1 )
 				{
 					$field['value'] = $key;
 				}
@@ -96,13 +92,6 @@ class acf_field_radio extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'layout'		=>	'vertical',
-			'default_value'	=>	'',
-			'choices'		=>	'',
-		);
-		
-		$field = array_merge($defaults, $field);
 		$key = $field['name'];
 		
 		// implode checkboxes so they work in a textarea

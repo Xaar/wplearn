@@ -5,6 +5,11 @@
 class PodsInit {
 
     /**
+     * @var PodsInit
+     */
+    static $instance = null;
+
+    /**
      * @var array
      */
     static $no_conflict = array();
@@ -69,6 +74,20 @@ class PodsInit {
     static $upgrade_needed = false;
 
     /**
+     * Singleton handling for a basic pods_init() request
+     *
+     * @return \PodsInit
+     *
+     * @since 2.3.5
+     */
+    public static function init () {
+        if ( !is_object( self::$instance ) )
+            self::$instance = new PodsInit();
+
+        return self::$instance;
+    }
+
+    /**
      * Setup and Initiate Pods
      *
      * @return \PodsInit
@@ -80,11 +99,9 @@ class PodsInit {
         self::$version = get_option( 'pods_framework_version' );
         self::$version_last = get_option( 'pods_framework_version_last' );
         self::$db_version = get_option( 'pods_framework_db_version' );
-        self::$upgraded = get_option( 'pods_framework_upgraded_1_x' );
+        self::$upgraded = (int) get_option( 'pods_framework_upgraded_1_x' );
 
         if ( empty( self::$version_last ) && 0 < strlen( get_option( 'pods_version' ) ) ) {
-            self::$upgrade_needed = true;
-
             $old_version = get_option( 'pods_version' );
 
             if ( !empty( $old_version ) ) {
@@ -96,20 +113,8 @@ class PodsInit {
                 self::$version_last = $old_version;
             }
         }
-        elseif ( !empty( self::$version ) ) {
-            self::$upgrade_needed = false;
 
-            foreach ( self::$upgrades as $old_version => $new_version ) {
-                /*if ( '2.1.0' == $new_version && ( is_developer() ) )
-                    continue;*/
-
-							if ( version_compare( self::$version_last, $old_version, '>=' )
-								&& version_compare( self::$version_last, $new_version, '<' )
-								&& version_compare( self::$version, $new_version, '>=' )
-								&& 1 != self::$upgraded )
-								self::$upgrade_needed = true;
-            }
-        }
+        self::$upgrade_needed = $this->needs_upgrade();
 
         add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 
@@ -120,7 +125,7 @@ class PodsInit {
 
             add_action( 'setup_theme', array( $this, 'load_meta' ), 14 );
 
-            add_action( 'init', array( $this, 'init' ), 11 );
+            add_action( 'init', array( $this, 'core' ), 11 );
 
             add_action( 'init', array( $this, 'setup_content_types' ), 11 );
 
@@ -163,13 +168,13 @@ class PodsInit {
      * Load Pods Meta
      */
     public function load_meta () {
-        self::$meta = pods_meta()->init();
+        self::$meta = pods_meta()->core();
     }
 
     /**
      * Set up the Pods core
      */
-    public function init () {
+    public function core () {
         // Session start
         if ( false === headers_sent() && '' == session_id() && ( !defined( 'PODS_SESSION_AUTO_START' ) || PODS_SESSION_AUTO_START ) )
             @session_start();
@@ -347,6 +352,8 @@ class PodsInit {
                     continue;
                 elseif ( !empty( $post_type[ 'object' ] ) && isset( $existing_post_types[ $post_type[ 'object' ] ] ) )
                     continue;
+                elseif ( !$force && isset( $existing_post_types[ $post_type[ 'name' ] ] ) )
+                    continue;
 
                 $post_type[ 'options' ][ 'name' ] = $post_type[ 'name' ];
                 $post_type = array_merge( $post_type, (array) $post_type[ 'options' ] );
@@ -512,6 +519,8 @@ class PodsInit {
                     continue;
                 elseif ( !empty( $taxonomy[ 'object' ] ) && isset( $existing_taxonomies[ $taxonomy[ 'object' ] ] ) )
                     continue;
+                elseif ( !$force && isset( $existing_taxonomies[ $taxonomy[ 'name' ] ] ) )
+                    continue;
 
                 $taxonomy[ 'options' ][ 'name' ] = $taxonomy[ 'name' ];
                 $taxonomy = array_merge( $taxonomy, (array) $taxonomy[ 'options' ] );
@@ -637,7 +646,7 @@ class PodsInit {
             if ( is_array( $options[ 'rewrite' ] ) && isset( $options[ 'rewrite' ][ 'slug' ] ) && !empty( $options[ 'rewrite' ][ 'slug' ] ) )
                 $options[ 'rewrite' ][ 'slug' ] = _x( $options[ 'rewrite' ][ 'slug' ], 'URL taxonomy slug', 'pods' );
 
-            if ( 1 == pods_var( 'pods_debug_register', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+            if ( 1 == pods_var( 'pods_debug_register', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
                 pods_debug( array( $taxonomy, $ct_post_types, $options ) );
 
             register_taxonomy( $taxonomy, $ct_post_types, $options );
@@ -663,7 +672,7 @@ class PodsInit {
             if ( is_array( $options[ 'rewrite' ] ) && isset( $options[ 'rewrite' ][ 'slug' ] ) && !empty( $options[ 'rewrite' ][ 'slug' ] ) )
                 $options[ 'rewrite' ][ 'slug' ] = _x( $options[ 'rewrite' ][ 'slug' ], 'URL slug', 'pods' );
 
-            if ( 1 == pods_var( 'pods_debug_register', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+            if ( 1 == pods_var( 'pods_debug_register', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
                 pods_debug( array( $post_type, $options ) );
 
             register_post_type( $post_type, $options );
@@ -814,8 +823,14 @@ class PodsInit {
 
         add_action( 'wpmu_new_blog', array( $this, 'new_blog' ), 10, 6 );
 
-        if ( empty( self::$version ) || version_compare( self::$version, PODS_VERSION, '<' ) )
+        if ( empty( self::$version ) || version_compare( self::$version, PODS_VERSION, '<' ) || version_compare( self::$version, PODS_DB_VERSION, '<=' ) || self::$upgrade_needed )
             $this->setup();
+        elseif ( self::$version != PODS_VERSION ) {
+            delete_option( 'pods_framework_version' );
+            add_option( 'pods_framework_version', PODS_VERSION, '', 'yes' );
+
+            pods_api()->cache_flush_pods();
+        }
     }
 
     /**
@@ -840,6 +855,38 @@ class PodsInit {
      */
     public function deactivate () {
         pods_api()->cache_flush_pods();
+    }
+
+    /**
+     *
+     */
+    public function needs_upgrade ( $current = null, $last = null ) {
+        if ( null === $current )
+            $current = self::$version;
+
+        if ( null === $last )
+            $last = self::$version_last;
+
+        $upgrade_needed = false;
+
+        if ( !empty( $current ) ) {
+            foreach ( self::$upgrades as $old_version => $new_version ) {
+                /*if ( '2.1.0' == $new_version && ( is_developer() ) )
+                    continue;*/
+
+                if ( version_compare( $last, $old_version, '>=' )
+                     && version_compare( $last, $new_version, '<' )
+                     && version_compare( $current, $new_version, '>=' )
+                     && 1 != self::$upgraded
+                ) {
+                    $upgrade_needed = true;
+
+                    break;
+                }
+            }
+        }
+
+        return $upgrade_needed;
     }
 
     /**
@@ -869,6 +916,7 @@ class PodsInit {
 
         // Setup DB tables
         $pods_version = get_option( 'pods_framework_version' );
+        $pods_version_last = get_option( 'pods_framework_version_last' );
 
         // Install Pods
         if ( empty( $pods_version ) ) {
@@ -886,9 +934,14 @@ class PodsInit {
                 self::$version_last = $old_version;
             }
         }
+        // Upgrade Wizard needed
+        elseif ( $this->needs_upgrade( $pods_version, $pods_version_last ) ) {
+            // Do not do anything
+            return;
+        }
         // Update Pods and run any required DB updates
-        elseif ( !self::$upgrade_needed ) {
-            if ( PODS_VERSION != $pods_version && false !== apply_filters( 'pods_update_run', null, PODS_VERSION, $pods_version, $_blog_id ) && !isset( $_GET[ 'pods_bypass_update' ] ) ) {
+        elseif ( version_compare( $pods_version, PODS_VERSION, '<=' ) ) {
+            if ( false !== apply_filters( 'pods_update_run', null, PODS_VERSION, $pods_version, $_blog_id ) && !isset( $_GET[ 'pods_bypass_update' ] ) ) {
                 do_action( 'pods_update', PODS_VERSION, $pods_version, $_blog_id );
 
                 // Update 2.0 alpha / beta sites
@@ -1141,7 +1194,7 @@ class PodsInit {
             if ( 0 == $pod[ 'options' ][ 'show_in_menu' ] )
                 continue;
 
-            if ( !is_super_admin() && !current_user_can( 'delete_users' ) && !current_user_can( 'pods' ) && !current_user_can( 'pods_content' ) && !current_user_can( 'pods_add_' . $pod[ 'name' ] ) )
+            if ( !pods_is_admin( array( 'pods', 'pods_content', 'pods_add_' . $pod[ 'name' ] ) ) )
                 continue;
 
             $singular_label = pods_var_raw( 'label_singular', $pod[ 'options' ], pods_var_raw( 'label', $pod, ucwords( str_replace( '_', ' ', $pod[ 'name' ] ) ), null, true ), null, true );
@@ -1158,7 +1211,7 @@ class PodsInit {
         if ( is_object( $pods ) && !is_wp_error( $pods ) && !empty( $pods->id ) && isset( $pods->pod_data ) && !empty( $pods->pod_data ) && 'pod' == $pods->pod_data[ 'type' ] ) {
             $pod = $pods->pod_data;
 
-            if ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) || current_user_can( 'pods_content' ) || current_user_can( 'pods_edit_' . $pod[ 'name' ] ) ) {
+            if ( pods_is_admin( array( 'pods', 'pods_content', 'pods_edit_' . $pod[ 'name' ] ) ) ) {
                 $singular_label = pods_var_raw( 'label_singular', $pod[ 'options' ], pods_var_raw( 'label', $pod, ucwords( str_replace( '_', ' ', $pod[ 'name' ] ) ), null, true ), null, true );
 
                 $wp_admin_bar->add_node( array(

@@ -314,29 +314,29 @@ table.acf_input select:focus {
 }
 
 
-ul.radio_list {
+ul.radio_list,
+ul.checkbox_list {
+	background: transparent !important;
 	position: relative;
 	display: block;
 	padding: 1px;
 	margin: 0;
 }
 
-ul.radio_list.horizontal {
+ul.radio_list.horizontal,
+ul.checkbox_list.horizontal {
 	overflow: hidden;
 }
 
-ul.radio_list.horizontal li {
+ul.radio_list.horizontal li,
+ul.checkbox_list.horizontal li {
 	float: left;
 	margin-right: 20px;
 }
 
-ul.checkbox_list {
-	background: transparent !important;
-	margin: 0;
-}
-
 ul.radio_list li input,
 ul.checkbox_list li input {
+	margin-top: -1px;
 	margin-right: 5px !important;
 	width: auto !important;
 }
@@ -495,6 +495,34 @@ a.acf-button-big {
 	background-position: -64px -264px;
 }
 
+
+/*--------------------------------------------------------------------------
+*
+*	Plugin Update Info
+*	
+*-------------------------------------------------------------------------*/
+
+.plugins #advanced-custom-fields + .plugin-update-tr .update-message {
+	background: #EAF2FA;
+	border: #C7D7E2 solid 1px;
+	padding: 10px;
+}
+
+.acf-plugin-update-info {
+	font-weight: normal;
+}
+
+.acf-plugin-update-info h3 {
+	font-size: 12px;
+	line-height: 1em;
+	margin: 15px 0 10px;	
+}
+
+.acf-plugin-update-info ul {
+	list-style: disc outside;
+	padding-left: 14px;
+	margin: 0;
+}
 
 
 /*--------------------------------------------------------------------------

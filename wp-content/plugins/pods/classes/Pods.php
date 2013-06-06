@@ -20,6 +20,11 @@ class Pods implements Iterator {
     public $data;
 
     /**
+     * @var PodsData
+     */
+    public $alt_data;
+
+    /**
      * @var array Array of pod item arrays
      */
     public $rows = array();
@@ -144,6 +149,11 @@ class Pods implements Iterator {
     public $meta_extra = '';
 
     /**
+     * @var string Last SQL query used by a find()
+     */
+    public $sql;
+
+    /**
      * @var
      */
     public $deprecated;
@@ -151,8 +161,6 @@ class Pods implements Iterator {
     public $datatype;
 
     public $datatype_id;
-
-    public $sql;
 
     /**
      * Constructor - Pods Framework core
@@ -181,7 +189,7 @@ class Pods implements Iterator {
         PodsData::$display_errors =& $this->display_errors;
 
         // Set up page variable
-        if ( defined( 'PODS_STRICT_MODE' ) && PODS_STRICT_MODE ) {
+        if ( pods_strict() ) {
             $this->page = 1;
             $this->pagination = false;
             $this->search = false;
@@ -239,6 +247,7 @@ class Pods implements Iterator {
         $this->row =& $this->data->row;
         $this->rows =& $this->data->data;
         $this->row_number =& $this->data->row_number;
+        $this->sql =& $this->data->sql;
 
         if ( is_array( $id ) || is_object( $id ) )
             $this->find( $id );
@@ -544,6 +553,7 @@ class Pods implements Iterator {
             'params' => null,
             'in_form' => false,
             'raw' => $raw,
+            'raw_display' => false,
             'display' => false,
             'get_meta' => false,
             'output' => null,
@@ -570,8 +580,10 @@ class Pods implements Iterator {
         if ( null !== $params->single )
             $params->single = (boolean) $params->single;
 
-        if ( is_array( $params->name ) || strlen( $params->name ) < 1 )
+        if ( is_array( $params->name ) || strlen( trim( $params->name ) ) < 1 )
             return null;
+
+        $params->name = trim( $params->name );
 
         $value = null;
 
@@ -599,7 +611,7 @@ class Pods implements Iterator {
 
         $params->traverse = array();
 
-        if ( 'detail_url' == $params->name || ( in_array( $params->name, array( 'permalink', 'the_permalink' ) ) && in_array( $this->pod_data[ 'type' ], array( 'post_type', 'media' ) ) ) ) {
+        if ( in_array( $params->name, array( '_link', 'detail_url' ) ) || ( in_array( $params->name, array( 'permalink', 'the_permalink' ) ) && in_array( $this->pod_data[ 'type' ], array( 'post_type', 'media' ) ) ) ) {
             if ( 0 < strlen( $this->detail_page ) )
                 $value = get_home_url() . '/' . $this->do_magic_tags( $this->detail_page );
             elseif ( in_array( $this->pod_data[ 'type' ], array( 'post_type', 'media' ) ) )
@@ -826,7 +838,7 @@ class Pods implements Iterator {
                     elseif ( in_array( $this->pod_data[ 'type' ], array( 'user', 'comment' ) ) )
                         $value = get_metadata( $this->pod_data[ 'type' ], $this->id(), $params->name, $params->single );
                     elseif ( 'settings' == $this->pod_data[ 'type' ] )
-                        $value = get_option( $this->pod_data[ 'name' ] . '_' . $params->name );
+                        $value = get_option( $this->pod_data[ 'name' ] . '_' . $params->name, null );
 
                     // Handle Simple Relationships
                     if ( $simple ) {
@@ -941,7 +953,7 @@ class Pods implements Iterator {
 
                             // No items found
                             if ( empty( $ids ) )
-                                return false;
+                                return false; // @todo This should return array() if not $params->single
                             elseif ( 0 < $last_limit )
                                 $ids = array_slice( $ids, 0, $last_limit );
 
@@ -1012,7 +1024,10 @@ class Pods implements Iterator {
                                     'table' => $table[ 'table' ],
                                     'join' => $join,
                                     'where' => $where,
-                                    'orderby' => $params->orderby
+                                    'orderby' => $params->orderby,
+                                    'pagination' => false,
+                                    'search' => false,
+                                    'limit' => -1
                                 );
 
                                 // Output types
@@ -1030,62 +1045,68 @@ class Pods implements Iterator {
                                         $sql[ 'where' ] = array_merge( (array) $where, (array) $params->params['where' ] );
                                 }
 
-                                if ( empty( $related_obj ) )
-                                    $item_data = pods_data()->select( $sql );
+                                if ( empty( $related_obj ) ) {
+                                    if ( !is_object( $this->alt_data ) )
+                                        $this->alt_data = pods_data( null, 0, true, true );
+
+                                    $item_data = $this->alt_data->select( $sql );
+                                }
                                 else
                                     $item_data = $related_obj->find( $sql )->data();
 
                                 $items = array();
 
-                                foreach ( $item_data as $item ) {
-                                    if ( is_array( $item ) )
-                                        $item = (object) $item;
+                                if ( !empty( $item_data ) ) {
+                                    foreach ( $item_data as $item ) {
+                                        if ( is_array( $item ) )
+                                            $item = (object) $item;
 
-                                    if ( empty( $item->pod_item_id ) )
-                                        continue;
+                                        if ( empty( $item->pod_item_id ) )
+                                            continue;
 
-                                    // Bypass pass field
-                                    if ( isset( $item->user_pass ) )
-                                        unset( $item->user_pass );
+                                        // Bypass pass field
+                                        if ( isset( $item->user_pass ) )
+                                            unset( $item->user_pass );
 
-                                    // Get Item ID
-                                    $item_id = $item->pod_item_id;
+                                        // Get Item ID
+                                        $item_id = $item->pod_item_id;
+
+                                        // Cleanup
+                                        unset( $item->pod_item_id );
+
+                                        // Output types
+                                        if ( 'ids' == $params->output )
+                                            $item = (int) $item_id;
+                                        elseif ( 'objects' == $params->output ) {
+                                            if ( in_array( $object_type, array( 'post_type', 'media' ) ) )
+                                                $item = get_post( $item_id );
+                                            elseif ( 'taxonomy' == $object_type )
+                                                $item = get_term( $item_id, $object );
+                                            elseif ( 'user' == $object_type )
+                                                $item = get_userdata( $item_id );
+                                            elseif ( 'comment' == $object_type )
+                                                $item = get_comment( $item_id );
+                                            else
+                                                $item = (object) $item;
+                                        }
+                                        elseif ( 'names' == $params->output && !empty( $table[ 'field_index' ] ) )
+                                            $item = $item->pod_item_index;
+                                        else // arrays
+                                            $item = get_object_vars( (object) $item );
+
+                                        // Pass item data into $data
+                                        $items[ $item_id ] = $item;
+                                    }
 
                                     // Cleanup
-                                    unset( $item->pod_item_id );
+                                    unset( $item_data );
 
-                                    // Output types
-                                    if ( 'ids' == $params->output )
-                                        $item = (int) $item_id;
-                                    elseif ( 'objects' == $params->output ) {
-                                        if ( in_array( $object_type, array( 'post_type', 'media' ) ) )
-                                            $item = get_post( $item_id );
-                                        elseif ( 'taxonomy' == $object_type )
-                                            $item = get_term( $item_id, $object );
-                                        elseif ( 'user' == $object_type )
-                                            $item = get_userdata( $item_id );
-                                        elseif ( 'comment' == $object_type )
-                                            $item = get_comment( $item_id );
-                                        else
-                                            $item = (object) $item;
-                                    }
-                                    elseif ( 'names' == $params->output && !empty( $table[ 'field_index' ] ) )
-                                        $item = $item->pod_item_index;
-                                    else // arrays
-                                        $item = get_object_vars( (object) $item );
-
-                                    // Pass item data into $data
-                                    $items[ $item_id ] = $item;
-                                }
-
-                                // Cleanup
-                                unset( $item_data );
-
-                                // Return all of the data in the order expected
-                                if ( empty( $params->orderby ) ) {
-                                    foreach ( $ids as $id ) {
-                                        if ( isset( $items[ $id ] ) )
-                                            $data[ $id ] = $items[ $id ];
+                                    // Return all of the data in the order expected
+                                    if ( empty( $params->orderby ) ) {
+                                        foreach ( $ids as $id ) {
+                                            if ( isset( $items[ $id ] ) )
+                                                $data[ $id ] = $items[ $id ];
+                                        }
                                     }
                                 }
                             }
@@ -1121,7 +1142,27 @@ class Pods implements Iterator {
                                         $field = $table[ 'field_id' ];
 
                                     foreach ( $data as $item_id => $item ) {
-                                        if ( in_array( $field, array( '_link', 'detail_url' ) ) || ( in_array( $field, array( 'permalink', 'the_permalink' ) ) && 'post' == $object_type ) ) {
+                                        if ( ( ( false !== strpos( $field, '_src' ) || 'guid' == $field ) && ( in_array( $table[ 'type' ], array( 'attachment', 'media' ) ) || in_array( $last_type, PodsForm::file_field_types() ) ) ) || ( in_array( $field, array( '_link', 'detail_url' ) ) || in_array( $field, array( 'permalink', 'the_permalink' ) ) && in_array( $last_type, PodsForm::file_field_types() ) ) ) {
+                                            $size = 'full';
+
+                                            if ( false !== strpos( $field, '_src.' ) && 5 < strlen( $field ) )
+                                                $size = substr( $field, 5 );
+
+                                            $value[] = pods_image_url( $item_id, $size );
+
+                                            $params->raw_display = true;
+                                        }
+                                        elseif ( false !== strpos( $field, '_img' ) && ( in_array( $table[ 'type' ], array( 'attachment', 'media' ) ) || in_array( $last_type, PodsForm::file_field_types() ) ) ) {
+                                            $size = 'full';
+
+                                            if ( false !== strpos( $field, '_img.' ) && 5 < strlen( $field ) )
+                                                $size = substr( $field, 5 );
+
+                                            $value[] = pods_image( $item_id, $size );
+
+                                            $params->raw_display = true;
+                                        }
+                                        elseif ( in_array( $field, array( '_link', 'detail_url' ) ) || ( in_array( $field, array( 'permalink', 'the_permalink' ) ) && 'post' == $object_type ) ) {
                                             if ( 'pod' == $object_type ) {
                                                 if ( is_object( $related_obj ) ) {
                                                     $related_obj->fetch( $item_id );
@@ -1141,6 +1182,8 @@ class Pods implements Iterator {
                                                 $value[] = get_comment_link( $item_id );
                                             else
                                                 $value[] = '';
+
+                                            $params->raw_display = true;
                                         }
                                         elseif ( is_array( $item ) && isset( $item[ $field ] ) ) {
                                             if ( $table[ 'field_id' ] == $field )
@@ -1209,8 +1252,8 @@ class Pods implements Iterator {
             $value = current( $value );
 
         // @todo Expand this into traversed fields too
-        if ( !empty( $field_data ) && ( $params->display || !$params->raw ) && !$params->in_form ) {
-            if ( $params->display || ( $params->get_meta && !in_array( $field_data[ 'type' ], $tableless_field_types ) ) ) {
+        if ( !empty( $field_data ) && ( $params->display || !$params->raw ) && !$params->in_form && !$params->raw_display ) {
+            if ( $params->display || ( ( $params->get_meta || $params->deprecated ) && !in_array( $field_data[ 'type' ], $tableless_field_types ) ) ) {
                 $field_data[ 'options' ] = pods_var_raw( 'options', $field_data, array(), null, true );
 
                 $post_temp = false;
@@ -1225,7 +1268,6 @@ class Pods implements Iterator {
 
                     $post = get_post( $this->id() );
                     $post_ID = $this->id();
-
                 }
 
                 $filter = pods_var_raw( 'display_filter', $field_data[ 'options' ] );
@@ -1398,8 +1440,15 @@ class Pods implements Iterator {
                 }
             }
 
-            $current_value = array_filter( array_unique( $current_value ) );
-            $value = array_filter( array_unique( $value ) );
+            if ( !empty( $current_value ) )
+                $current_value = array_filter( array_unique( $current_value ) );
+            else
+                $current_value = array();
+
+            if ( !empty( $value ) )
+                $value = array_filter( array_unique( $value ) );
+            else
+                $value = array();
 
             sort( $current_value );
             sort( $value );
@@ -1856,8 +1905,6 @@ class Pods implements Iterator {
 
         $this->data->select( $params );
 
-        $this->sql = $this->data->sql;
-
         return $this;
     }
 
@@ -1885,8 +1932,6 @@ class Pods implements Iterator {
 
         $this->data->fetch( $id, $explicit_set );
 
-        $this->sql = $this->data->sql;
-
         return $this->row;
     }
 
@@ -1907,8 +1952,6 @@ class Pods implements Iterator {
 
         $this->data->reset( $row );
 
-        $this->sql = $this->data->sql;
-
         return $this;
     }
 
@@ -1926,7 +1969,9 @@ class Pods implements Iterator {
     public function total () {
         $this->do_hook( 'total' );
 
-        $this->total =& $this->data->total();
+        $this->data->total();
+
+        $this->total =& $this->data->total;
 
         return $this->total;
     }
@@ -1945,7 +1990,9 @@ class Pods implements Iterator {
     public function total_found () {
         $this->do_hook( 'total_found' );
 
-        $this->total_found =& $this->data->total_found();
+        $this->data->total_found();
+
+        $this->total_found =& $this->data->total_found;
 
         return $this->total_found;
     }
@@ -2067,8 +2114,10 @@ class Pods implements Iterator {
             if ( 'pick' == $this->fields[ $field ][ 'type' ] && in_array( $this->fields[ $field ][ 'pick_object' ], PodsForm::field_method( 'pick', 'simple_objects' ) ) ) {
                 $current_value = $pod->raw( $field );
 
-                if ( !empty( $current_value ) )
+                if ( !empty( $current_value ) || ( !is_array( $current_value ) && 0 < strlen( $current_value ) ) )
                     $current_value = (array) $current_value;
+                else
+                    $current_value = array();
 
                 $value = array_merge( $current_value, $value );
             }
@@ -2082,7 +2131,10 @@ class Pods implements Iterator {
                 $value = array_merge( $related_ids, $value );
             }
 
-            $value = array_filter( array_unique( $value ) );
+            if ( !empty( $value ) )
+                $value = array_filter( array_unique( $value ) );
+            else
+                $value = array();
 
             if ( empty( $value ) )
                 return $id;
@@ -2109,6 +2161,8 @@ class Pods implements Iterator {
             if ( 0 < strlen( $current_value ) )
                 $value = $current_value . $value;
         }
+
+        // @todo handle object fields and taxonomies
 
         $params = array(
             'pod' => $this->pod,
@@ -2190,7 +2244,10 @@ class Pods implements Iterator {
                 $value = $related_ids;
             }
 
-            $value = array_filter( array_unique( $value ) );
+            if ( !empty( $value ) )
+                $value = array_filter( array_unique( $value ) );
+            else
+                $value = array();
         }
         // Number fields
         elseif ( in_array( $this->fields[ $field ][ 'type' ], PodsForm::number_field_types() ) ) {
@@ -2207,6 +2264,8 @@ class Pods implements Iterator {
             else
                 $value = strtotime( $value );
         }
+
+        // @todo handle object fields and taxonomies
 
         $params = array(
             'pod' => $this->pod,
@@ -2235,13 +2294,14 @@ class Pods implements Iterator {
      * @param array|string $data Either an associative array of field information or a field name
      * @param mixed $value (optional) Value of the field, if $data is a field name
      * @param int $id (optional) ID of the pod item to update
+     * @param array $params (optional) Additional params to send to save_pod_item
      *
      * @return int The item ID
      *
      * @since 2.0
      * @link http://pods.io/docs/save/
      */
-    public function save ( $data = null, $value = null, $id = null ) {
+    public function save ( $data = null, $value = null, $id = null, $params = null ) {
         if ( null !== $value )
             $data = array( $data => $value );
 
@@ -2258,12 +2318,20 @@ class Pods implements Iterator {
         if ( empty( $data ) )
             return $id;
 
+        $default = array();
+
+        if ( !empty( $params ) && is_array( $params ) )
+            $default = $params;
+
         $params = array(
             'pod' => $this->pod,
             'id' => $id,
             'data' => $data,
             'allow_custom_fields' => true
         );
+
+        if ( !empty( $default ) )
+            $params = array_merge( $params, $default );
 
         $id = $this->api->save_pod_item( $params );
 
@@ -2630,11 +2698,20 @@ class Pods implements Iterator {
             'deprecated' => false
         );
 
+        if ( class_exists( 'Pods_Templates' ) )
+            $params[ 'deprecated' ] = Pods_Templates::$deprecated;
+
         if ( is_array( $helper ) )
             $params = array_merge( $params, $helper );
 
         if ( class_exists( 'Pods_Helpers' ) )
-            return Pods_Helpers::helper( $params, $this );
+            $value = Pods_Helpers::helper( $params, $this );
+        elseif ( function_exists( $params[ 'helper' ] ) )
+            $value = call_user_func( $params[ 'helper' ], $value );
+        else
+            $value = apply_filters( $params[ 'helper' ], $value );
+
+        return $value;
     }
 
     /**
@@ -2666,7 +2743,7 @@ class Pods implements Iterator {
                     }
                 }
                 else
-                    echo $this->do_magic_tags( $code, $this );
+                    echo $this->do_magic_tags( $code );
             }
 
             $out = ob_get_clean();
@@ -2846,22 +2923,12 @@ class Pods implements Iterator {
 
         $helper_name = $before = $after = '';
 
-        if ( isset( $tag[ 1 ] ) && !empty( $tag[ 1 ] ) && class_exists( 'Pods_Helpers' ) ) {
+        if ( isset( $tag[ 1 ] ) && !empty( $tag[ 1 ] ) ) {
             $value = $this->field( $field_name );
 
             $helper_name = $tag[ 1 ];
 
-            $params = array(
-                'helper' => $helper_name,
-                'value' => $value,
-                'name' => $field_name,
-                'deprecated' => false
-            );
-
-            if ( class_exists( 'Pods_Templates' ) )
-                $params[ 'deprecated' ] = Pods_Templates::$deprecated;
-
-            $value = Pods_Helpers::helper( $params, $this );
+            $value = $this->helper( $helper_name, $value, $field_name );
         }
         else
             $value = $this->display( $field_name );

@@ -2,10 +2,6 @@
 
 class acf_field_relationship extends acf_field
 {
-	// vars
-	var $defaults;
-	
-	
 	/*
 	*  __construct
 	*
@@ -27,6 +23,9 @@ class acf_field_relationship extends acf_field
 			'taxonomy' 	=>	array('all'),
 			'filters'	=>	array('search'),
 			'result_elements' => array('post_title', 'post_type')
+		);
+		$this->l10n = array(
+			'max' => __("Maximum values reached ( {max} values )",'acf')
 		);
 		
 		
@@ -56,10 +55,6 @@ class acf_field_relationship extends acf_field
 	
 	function load_field( $field )
 	{
-		// defaults
-		$field = array_merge($this->defaults, $field);
-		
-		
 		// validate post_type
 		if( !$field['post_type'] || !is_array($field['post_type']) || in_array('', $field['post_type']) )
 		{
@@ -544,7 +539,6 @@ class acf_field_relationship extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		?>

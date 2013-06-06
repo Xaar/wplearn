@@ -14,6 +14,9 @@
  * @subpackage Roles
  */
 
+if ( class_exists( 'Pods_Roles' ) )
+    return;
+
 class Pods_Roles extends PodsComponent {
 
     /**
@@ -68,7 +71,7 @@ class Pods_Roles extends PodsComponent {
             if ( $default_role == $key )
                 $roles[ $key ][ 'label' ] .= ' (site default)';
 
-            if ( 0 < $count && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'list_users' ) ) ) {
+            if ( 0 < $count && pods_is_admin( array( 'list_users' ) ) ) {
                 $roles[ $key ][ 'users' ] .= '<br /><a href="'
                                              . admin_url( esc_url( 'users.php?role=' . $key ) ) . '">'
                                              . __( 'View Users', 'pods' ) . '</a>';
@@ -113,13 +116,13 @@ class Pods_Roles extends PodsComponent {
         if ( isset( $roles[ pods_var( 'id', 'get', -1 ) ] ) )
             $ui[ 'row' ] = $roles[ pods_var( 'id', 'get', -1 ) ];
 
-        if ( !is_super_admin() && !current_user_can( 'delete_users' ) && !current_user_can( 'pods_roles_add' ) )
+        if ( !pods_is_admin( array( 'pods_roles_add' ) ) )
             $ui[ 'actions_disabled' ][] = 'add';
 
-        if ( !is_super_admin() && !current_user_can( 'delete_users' ) && !current_user_can( 'pods_roles_edit' ) )
+        if ( !pods_is_admin( array( 'pods_roles_edit' ) ) )
             $ui[ 'actions_disabled' ][] = 'edit';
 
-        if ( count( $roles ) < 2 || ( !is_super_admin() && !current_user_can( 'delete_users' ) && !current_user_can( 'pods_roles_delete' ) ) )
+        if ( count( $roles ) < 2 || !pods_is_admin( array( 'pods_roles_delete' ) ) )
             $ui[ 'actions_disabled' ][] = 'delete';
 
         pods_ui( $ui );
@@ -214,7 +217,7 @@ class Pods_Roles extends PodsComponent {
             if ( $default_role == $key )
                 $roles[ $key ][ 'label' ] .= ' (site default)';
 
-            if ( 0 < $count && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'list_users' ) ) ) {
+            if ( 0 < $count && pods_is_admin( array( 'list_users' ) ) ) {
                 $roles[ $key ][ 'users' ] .= '<br /><a href="'
                                              . admin_url( esc_url( 'users.php?role=' . $key ) ) . '">'
                                              . __( 'View Users', 'pods' ) . '</a>';

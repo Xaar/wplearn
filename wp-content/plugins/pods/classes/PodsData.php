@@ -4,7 +4,11 @@
  */
 class PodsData {
 
-    // base
+    /**
+     * @var PodsData
+     */
+    static $instance = null;
+
     /**
      * @var string
      */
@@ -219,6 +223,36 @@ class PodsData {
      * @var string
      */
     public $total_sql = false;
+
+    /**
+     * Singleton handling for a basic pods_data() request
+     *
+     * @param string $pod Pod name
+     * @param integer $id Pod Item ID
+     * @param bool $strict If true throws an error if a pod is not found.
+     *
+     * @return \PodsData
+     *
+     * @since 2.3.5
+     */
+    public static function init ( $pod = null, $id = 0, $strict = true ) {
+        if ( ( true !== $pod && null !== $pod ) || 0 != $id )
+            return new PodsData( $pod, $id, $strict );
+        elseif ( !is_object( self::$instance ) )
+            self::$instance = new PodsData();
+        else {
+            $vars = get_class_vars( __CLASS__ );
+
+            foreach ( $vars as $var => $default ) {
+                if ( 'api' == $var )
+                    continue;
+
+                self::$instance->{$var} = $default;
+            }
+        }
+
+        return self::$instance;
+    }
 
     /**
      * Data Abstraction Class for Pods
@@ -591,7 +625,7 @@ class PodsData {
         $cache_key = $results = false;
 
         // Debug purposes
-        if ( 1 == pods_var( 'pods_debug_params', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+        if ( 1 == pods_var( 'pods_debug_params', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
             pods_debug( $params );
 
         // Get from cache if enabled
@@ -609,7 +643,7 @@ class PodsData {
             $this->sql = $this->build( $params );
 
             // Debug purposes
-            if ( ( 1 == pods_var( 'pods_debug_sql', 'get', 0 ) || 1 == pods_var( 'pods_debug_sql_all', 'get', 0 ) ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+            if ( ( 1 == pods_var( 'pods_debug_sql', 'get', 0 ) || 1 == pods_var( 'pods_debug_sql_all', 'get', 0 ) ) && pods_is_admin( array( 'pods' ) ) )
                 echo '<textarea cols="100" rows="24">' . str_replace( array( '@wp_users', '@wp_' ), array( $wpdb->users, $wpdb->prefix ), $this->sql ) . '</textarea>';
 
             if ( empty( $this->sql ) )
@@ -741,8 +775,10 @@ class PodsData {
         else
             $params->offset = $offset;
 
-        if ( !$params->pagination || -1 == $params->limit )
+        if ( !$params->pagination || -1 == $params->limit ) {
+            $params->page = 1;
             $params->offset = 0;
+        }
 
         if ( ( empty( $params->fields ) || !is_array( $params->fields ) ) && is_array( $this->pod_data ) && isset( $this->fields ) && !empty( $this->fields ) )
             $params->fields = $this->fields;
@@ -826,6 +862,9 @@ class PodsData {
             $this->search_mode = $params->search_mode;
 
         $params->search = (boolean) $params->search;
+
+        if ( 1 == pods_var( 'pods_debug_params_all', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
+            pods_debug( $params );
 
         $params->field_table_alias = 't';
 
@@ -1070,7 +1109,7 @@ class PodsData {
                     if ( !empty( $end_value ) )
                         $end = date_i18n( 'Y-m-d', strtotime( $end_value ) ) . ( 'datetime' == $attributes[ 'type' ] ? ' 23:59:59' : '' );
 
-                    if ( true === $attributes[ 'date_ongoing' ] ) {
+                    if ( isset( $attributes[ 'date_ongoing' ] ) && true === $attributes[ 'date_ongoing' ] ) {
                         $date_ongoing = '`' . $attributes[ 'date_ongoing' ] . '`';
 
                         if ( isset( $this->aliases[ $date_ongoing ] ) )
@@ -1603,6 +1642,9 @@ class PodsData {
     public function fetch ( $row = null, $explicit_set = true ) {
         global $wpdb;
 
+        if ( null === $row )
+            $explicit_set = false;
+
         $id = $row;
 
         $tableless_field_types = PodsForm::tableless_field_types();
@@ -1612,32 +1654,28 @@ class PodsData {
 
             $this->row = false;
 
-            if ( 'settings' == $this->pod_data[ 'type' ] ) {
-                if ( !empty( $this->pod ) )
-                    $row = pods_cache_get( $this->pod, 'pods_items_' . $this->pod );
-
-                if ( false !== $row && is_array( $row ) )
-                    $this->row = $row;
-                elseif ( empty( $this->fields ) )
-                    $this->row = false;
-                else {
-                    $this->row = array();
-
-                    foreach ( $this->fields as $field ) {
-                        if ( !in_array( $field[ 'type' ], $tableless_field_types ) )
-                            $this->row[ $field[ 'name' ] ] = get_option( $this->pod_data[ 'name' ] . '_' . $field[ 'name' ] );
-                    }
-
-                    $this->id = $this->pod_data[ 'id' ];
-                    $this->row[ 'option_id' ] = $this->id;
-
-                    pods_cache_set( $this->pod, $this->row, 'pods_items_' . $this->pod, 0 );
-                }
-            }
-            elseif ( isset( $this->data[ $this->row_number ] ) )
+            if ( isset( $this->data[ $this->row_number ] ) ) {
                 $this->row = get_object_vars( $this->data[ $this->row_number ] );
+
+                $current_row_id = false;
+
+                if ( in_array( $this->pod_data[ 'type' ], array( 'post_type', 'media' ) ) )
+                    $current_row_id = pods_var_raw( 'ID', $this->row );
+                elseif ( 'taxonomy' == $this->pod_data[ 'type' ] )
+                    $current_row_id = pods_var_raw( 'term_id', $this->row );
+                elseif ( 'user' == $this->pod_data[ 'type' ] )
+                    $current_row_id = pods_var_raw( 'ID', $this->row );
+                elseif ( 'comment' == $this->pod_data[ 'type' ] )
+                    $current_row_id = pods_var_raw( 'comment_ID', $this->row );
+                elseif ( 'settings' == $this->pod_data[ 'type' ] )
+                    $current_row_id = $this->pod_data[ 'id' ];
+
+                if ( 0 < $current_row_id )
+                    $row = $current_row_id;
+            }
         }
-        else {
+
+        if ( null !== $row || 'settings' == $this->pod_data[ 'type' ] ) {
             if ( $explicit_set )
                 $this->row_number = -1;
 
@@ -1654,8 +1692,8 @@ class PodsData {
             if ( !empty( $this->pod ) )
                 $row = pods_cache_get( $id, 'pods_items_' . $this->pod );
 
-            $get_table_data = false;
             $current_row_id = false;
+            $get_table_data = false;
 
             if ( false !== $row && is_array( $row ) )
                 $this->row = $row;
@@ -1691,7 +1729,8 @@ class PodsData {
                 if ( empty( $this->row ) )
                     $this->row = false;
 
-                $current_row_id = $this->row['ID'];
+                $current_row_id = $this->row[ 'ID' ];
+
                 $get_table_data = true;
             }
             elseif ( 'taxonomy' == $this->pod_data[ 'type' ] ) {
@@ -1708,7 +1747,7 @@ class PodsData {
                 if ( empty( $this->row ) )
                     $this->row = false;
 
-                $current_row_id = $this->row['term_id'];
+                $current_row_id = $this->row[ 'term_id' ];
 
                 $get_table_data = true;
             }
@@ -1723,7 +1762,7 @@ class PodsData {
                 else
                     $this->row = get_object_vars( $this->row );
 
-                $current_row_id = $this->row['ID'];
+                $current_row_id = $this->row[ 'ID' ];
 
                 $get_table_data = true;
             }
@@ -1735,7 +1774,7 @@ class PodsData {
                 if ( empty( $this->row ) )
                     $this->row = false;
 
-                $current_row_id = $this->row['comment_ID'];
+                $current_row_id = $this->row[ 'comment_ID' ];
 
                 $get_table_data = true;
             }
@@ -1747,9 +1786,10 @@ class PodsData {
                 else {
                     foreach ( $this->fields as $field ) {
                         if ( !in_array( $field[ 'type' ], $tableless_field_types ) )
-                            $this->row[ $field[ 'name' ] ] = get_option( $this->pod_data[ 'name' ] . '_' . $field[ 'name' ] );
+                            $this->row[ $field[ 'name' ] ] = get_option( $this->pod_data[ 'name' ] . '_' . $field[ 'name' ], null );
                     }
 
+                    // Force ID
                     $this->id = $this->pod_data[ 'id' ];
                     $this->row[ 'option_id' ] = $this->id;
                 }
@@ -1769,12 +1809,14 @@ class PodsData {
                     $params[ 'where' ] = "`t`.`{$this->field_slug}` = '{$id}'";
                 }
 
-                $this->row = $this->select( $params );
+                $this->row = pods_data()->select( $params );
 
                 if ( empty( $this->row ) )
                     $this->row = false;
-                else
-                    $this->row = get_object_vars( (object) @current( (array) $this->row ) );
+                else {
+                    $current_row = (array) $this->row;
+                    $this->row = get_object_vars( (object) @current( $current_row ) );
+                }
             }
 
             if ( 'table' == $this->pod_data[ 'storage' ] && false !== $get_table_data && is_numeric( $current_row_id ) ) {
@@ -1793,10 +1835,11 @@ class PodsData {
                 else
                     $params[ 'table' ] .= $this->pod_data[ 'object' ];
 
-                $row = $this->select( $params );
+                $row = pods_data()->select( $params );
 
                 if ( !empty( $row ) ) {
-                    $row = get_object_vars( (object) @current( (array) $row ) );
+                    $current_row = (array) $row;
+                    $row = get_object_vars( (object) @current( $current_row ) );
 
                     if ( is_array( $this->row ) && !empty( $this->row ) )
                         $this->row = array_merge( $row, $this->row );
@@ -1902,7 +1945,7 @@ class PodsData {
             else
                 $params = array_merge( $params, $sql );
 
-            if ( 1 == pods_var( 'pods_debug_sql_all', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+            if ( 1 == pods_var( 'pods_debug_sql_all', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
                 echo '<textarea cols="100" rows="24">' . str_replace( array( '@wp_users', '@wp_' ), array( $wpdb->users, $wpdb->prefix ), $params->sql ) . '</textarea>';
         }
 

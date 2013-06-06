@@ -7,6 +7,11 @@
 class PodsComponents {
 
     /**
+     * @var PodsComponents
+     */
+    static $instance = null;
+
+    /**
      * Root of Components directory
      *
      * @var string
@@ -33,6 +38,20 @@ class PodsComponents {
      * @since 2.0
      */
     public $settings = array();
+
+    /**
+     * Singleton handling for a basic pods_components() request
+     *
+     * @return \PodsComponents
+     *
+     * @since 2.3.5
+     */
+    public static function init () {
+        if ( !is_object( self::$instance ) )
+            self::$instance = new PodsComponents();
+
+        return self::$instance;
+    }
 
     /**
      * Setup actions and get options
@@ -120,7 +139,7 @@ class PodsComponents {
             if ( 0 < strlen( $component_data[ 'Capability' ] ) )
                 $capability = $component_data[ 'Capability' ];
 
-            if ( !is_super_admin() && !current_user_can( 'delete_users' ) && !current_user_can( 'pods' ) && !current_user_can( 'pods_components' ) && !current_user_can( $capability ) )
+            if ( !pods_is_admin( array( 'pods', 'pods_components', $capability ) ) )
                 continue;
 
             $menu_page = 'pods-component-' . $component;
@@ -244,7 +263,7 @@ class PodsComponents {
     public function get_components () {
         $components = pods_transient_get( 'pods_components' );
 
-        if ( 1 == pods_var( 'pods_debug_components', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+        if ( 1 == pods_var( 'pods_debug_components', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
             $components = array();
 
         if ( PodsInit::$version != PODS_VERSION || !is_array( $components ) || empty( $components ) || ( is_admin() && isset( $_GET[ 'page' ] ) && 'pods-components' == $_GET[ 'page' ] && 1 !== pods_transient_get( 'pods_components_refresh' ) ) ) {
@@ -300,7 +319,8 @@ class PodsComponents {
                 'ThemeDependency' => 'Theme Dependency',
                 'DeveloperMode' => 'Developer Mode',
                 'TablelessMode' => 'Tableless Mode',
-                'Capability' => 'Capability'
+                'Capability' => 'Capability',
+                'Plugin' => 'Plugin'
             );
 
             $component_files = apply_filters( 'pods_components_register', $component_files );
@@ -324,6 +344,9 @@ class PodsComponents {
                 $component_data = get_file_data( $component, $default_headers, 'pods_component' );
 
                 if ( ( empty( $component_data[ 'Name' ] ) && empty( $component_data[ 'ComponentName' ] ) && empty( $component_data[ 'PluginName' ] ) ) || 'yes' == $component_data[ 'Hide' ] )
+                    continue;
+
+                if ( isset( $component_data[ 'Plugin' ] ) && pods_is_plugin_active( $component_data[ 'Plugin' ] ) )
                     continue;
 
                 if ( empty( $component_data[ 'Name' ] ) ) {
@@ -378,7 +401,7 @@ class PodsComponents {
             pods_transient_set( 'pods_components', $components );
         }
 
-        if ( 1 == pods_var( 'pods_debug_components', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) )
+        if ( 1 == pods_var( 'pods_debug_components', 'get', 0 ) && pods_is_admin( array( 'pods' ) ) )
             pods_debug( $components );
 
         $this->components = $components;
@@ -588,94 +611,4 @@ class PodsComponents {
 
         return '1';
     }
-}
-
-/**
- * The base component class, all components should extend this.
- *
- * @package Pods
- */
-class PodsComponent {
-
-    /**
-     * Do things like register/enqueue scripts and stylesheets
-     *
-     * @return \PodsComponent
-     *
-     * @since 2.0
-     */
-    public function __construct () {
-
-    }
-
-    /**
-     * Add options and set defaults for component settings, shows in admin area
-     *
-     * @return array $options
-     *
-     * @since 2.0
-    public function options () {
-        $options = array(
-            'option_name' => array(
-                'label' => 'Option Label',
-                'depends-on' => array( 'another_option' => 'specific-value' ),
-                'default' => 'default-value',
-                'type' => 'field_type',
-                'data' => array(
-                    'value1' => 'Label 1',
-
-                    // Group your options together
-                    'Option Group' => array(
-                        'gvalue1' => 'Option Label 1',
-                        'gvalue2' => 'Option Label 2'
-                    ),
-
-                    // below is only if the option_name above is the "{$fieldtype}_format_type"
-                    'value2' => array(
-                        'label' => 'Label 2',
-                        'regex' => '[a-zA-Z]' // Uses JS regex validation for the value saved if this option selected
-                    )
-                ),
-
-                // below is only for a boolean group
-                'group' => array(
-                    'option_boolean1' => array(
-                        'label' => 'Option boolean 1?',
-                        'default' => 1,
-                        'type' => 'boolean'
-                    ),
-                    'option_boolean2' => array(
-                        'label' => 'Option boolean 2?',
-                        'default' => 0,
-                        'type' => 'boolean'
-                    )
-                )
-            )
-        );
-
-        return $options;
-    }
-    */
-
-    /**
-     * Handler to run code based on $options
-     *
-     * @param $options
-     *
-     * @since 2.0
-     */
-    public function handler ( $options ) {
-        // run code based on $options set
-    }
-
-    /**
-     * Build admin area
-     *
-     * @param $options
-     *
-     * @since 2.0
-    public function admin ( $options ) {
-    // run code based on $options set
-    }
-     */
 }

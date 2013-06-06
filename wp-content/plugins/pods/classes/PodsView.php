@@ -46,37 +46,63 @@ class PodsView {
         if ( !in_array( $cache_mode, self::$cache_modes ) )
             $cache_mode = 'cache';
 
-        $view_key = $view;
-
-        if ( is_array( $view_key ) )
-            $view_key = implode( '-', $view_key ) . '.php';
-
-        $cache_key = sanitize_title( pods_str_replace( array( PODS_DIR . 'ui/', PODS_DIR . 'components/', ABSPATH, WP_CONTENT_DIR, '.php' ), array( 'ui-', 'ui-', 'custom-', 'custom-', '' ), $view_key, 1 ) );
-
-        $view = apply_filters( 'pods_view_inc_' . $cache_key, $view, $data, $expires, $cache_mode );
+        $view = apply_filters( 'pods_view_inc', $view, $data, $expires, $cache_mode );
 
         $view_key = $view;
 
         if ( is_array( $view_key ) )
             $view_key = implode( '-', $view_key ) . '.php';
 
-        if ( false === strpos( $view_key, PODS_DIR . 'ui/' ) && false === strpos( $view_key, PODS_DIR . 'components/' ) && false === strpos( $view_key, WP_CONTENT_DIR ) && false === strpos( $view_key, ABSPATH ) ) {
+        $view_key = realpath( $view_key );
+
+        $pods_ui_dir = realpath( PODS_DIR . 'ui/' );
+        $pods_components_dir = realpath( PODS_DIR . 'components/' );
+        $content_dir = realpath( WP_CONTENT_DIR );
+        $plugins_dir = realpath( WP_PLUGIN_DIR );
+        $abspath_dir = realpath( ABSPATH );
+
+        $cache_key = sanitize_title(
+            pods_str_replace(
+                array(
+                    $pods_ui_dir,
+                    $pods_components_dir,
+                    $content_dir,
+                    $plugins_dir,
+                    $abspath_dir,
+                    '.php',
+                    '/'
+                ),
+                array(
+                    'ui-',
+                    'ui-',
+                    'custom-',
+                    'custom-',
+                    'custom-',
+                    '',
+                    '_'
+                ),
+                $view_key,
+                1
+            )
+        );
+
+        $output = false;
+
+        if (
+            false !== $expires
+            && false === strpos( $view_key, $pods_ui_dir )
+            && false === strpos( $view_key, $pods_components_dir )
+            && false === strpos( $view_key, $content_dir )
+            && false === strpos( $view_key, $plugins_dir )
+            && false === strpos( $view_key, $abspath_dir )
+        ) {
             $output = self::get( 'pods-view-' . $cache_key, $cache_mode, 'pods_view' );
-
-            if ( false !== $output && null !== $output ) {
-                if ( false !== $expires )
-                    return $output;
-                else
-                    self::clear( 'pods-view-' . $cache_key, $cache_mode, 'pods_view' );
-            }
         }
 
-        $output = self::get_template_part( $view, $data );
+        if ( false === $output || null === $output )
+            $output = self::get_template_part( $view, $data );
 
-        if ( false === $output )
-            return false;
-
-        if ( false !== $expires )
+        if ( false !== $output && false !== $expires )
             self::set( 'pods-view-' . $cache_key, $output, $expires, $cache_mode, 'pods_view' );
 
         $output = apply_filters( 'pods_view_output_' . $cache_key, $output, $view, $data, $expires, $cache_mode );
@@ -229,6 +255,8 @@ class PodsView {
 
         if ( 'transient' == $cache_mode ) {
             if ( true === $key ) {
+                $group_key = like_escape( $group_key );
+
                 $wpdb->query( "DELETE FROM `{$wpdb->options}` WHERE option_name LIKE '_transient_{$group_key}%'" );
 
                 if ( $object_cache )
@@ -239,6 +267,8 @@ class PodsView {
         }
         elseif ( 'site-transient' == $cache_mode ) {
             if ( true === $key ) {
+                $group_key = like_escape( $group_key );
+
                 $wpdb->query( "DELETE FROM `{$wpdb->options}` WHERE option_name LIKE '_site_transient_{$group_key}%'" );
 
                 if ( $object_cache )

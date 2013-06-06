@@ -46,8 +46,8 @@
 					<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 					
 				</nav><!-- #site-navigation -->
-				<form name="navsearchform" action="">
-        <input type="text" name="navsearch" value="Search this site" />
+				<form name="navsearchform" action="/">
+        <input type="text" name="s" value="Search this site" />
          <input type="image" name="navsearchbtn" src="<?php bloginfo('template_directory'); ?>/images/search-btn.png" />
          
          </form>

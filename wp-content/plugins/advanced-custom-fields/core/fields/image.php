@@ -18,6 +18,16 @@ class acf_field_image extends acf_field
 		$this->name = 'image';
 		$this->label = __("Image",'acf');
 		$this->category = __("Content",'acf');
+		$this->defaults = array(
+			'save_format'	=>	'object',
+			'preview_size'	=>	'thumbnail',
+			'library'		=>	'all'
+		);
+		$this->l10n = array(
+			'select'		=>	__("Select Image",'acf'),
+			'edit'			=>	__("Edit Image",'acf'),
+			'uploadedTo'	=>	__("uploaded to this post",'acf'),
+		);
 		
 		
 		// do not delete!
@@ -50,24 +60,21 @@ class acf_field_image extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$class = "";
-		$file_src = "";
-		$preview_size = isset($field['preview_size']) ? $field['preview_size'] : 'thumbnail';
+		$o = array(
+			'class'		=>	'',
+			'url'		=>	'',
+		);
 		
-		// get image url
-		if($field['value'] != '' && is_numeric($field['value']))
+		if( $field['value'] && is_numeric($field['value']) )
 		{
-			$file_src = wp_get_attachment_image_src($field['value'], $preview_size);
-			$file_src = $file_src[0];
+			$url = wp_get_attachment_image_src($field['value'], $field['preview_size']);
 			
-			if($file_src)
-			{
-				$class = "active";
-			}
+			$o['class'] = 'active';
+			$o['url'] = $url[0];
 		}
 		
 		?>
-<div class="acf-image-uploader clearfix <?php echo $class; ?>" data-preview_size="<?php echo $preview_size; ?>">
+<div class="acf-image-uploader clearfix <?php echo $o['class']; ?>" data-preview_size="<?php echo $field['preview_size']; ?>" data-library="<?php echo $field['library']; ?>" >
 	<input class="acf-image-value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
 	<div class="has-image">
 		<div class="hover">
@@ -76,7 +83,7 @@ class acf_field_image extends acf_field
 				<li><a class="acf-button-edit ir" href="#"><?php _e("Edit",'acf'); ?></a></li>
 			</ul>
 		</div>
-		<img src="<?php echo $file_src; ?>" alt=""/>
+		<img class="acf-image-image" src="<?php echo $o['url']; ?>" alt=""/>
 	</div>
 	<div class="no-image">
 		<p><?php _e('No image selected','acf'); ?> <input type="button" class="button add-image" value="<?php _e('Add Image','acf'); ?>" />
@@ -102,53 +109,68 @@ class acf_field_image extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'save_format'	=>	'id',
-			'preview_size'	=>	'thumbnail',
-		);
-		
-		$field = array_merge($defaults, $field);
 		$key = $field['name'];
 		
 		?>
-		<tr class="field_option field_option_<?php echo $this->name; ?>">
-			<td class="label">
-				<label><?php _e("Return Value",'acf'); ?></label>
-			</td>
-			<td>
-				<?php
-				do_action('acf/create_field', array(
-					'type'		=>	'radio',
-					'name'		=>	'fields['.$key.'][save_format]',
-					'value'		=>	$field['save_format'],
-					'layout'	=>	'horizontal',
-					'choices'	=> array(
-						'object'	=>	__("Image Object",'acf'),
-						'url'		=>	__("Image URL",'acf'),
-						'id'		=>	__("Image ID",'acf')
-					)
-				));
-				?>
-			</td>
-		</tr>
-		<tr class="field_option field_option_<?php echo $this->name; ?>">
-			<td class="label">
-				<label><?php _e("Preview Size",'acf'); ?></label>
-			</td>
-			<td>
-				<?php
-				
-				do_action('acf/create_field', array(
-					'type'		=>	'radio',
-					'name'		=>	'fields['.$key.'][preview_size]',
-					'value'		=>	$field['preview_size'],
-					'layout'	=>	'horizontal',
-					'choices' 	=>	apply_filters('acf/get_image_sizes', array())
-				));
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Return Value",'acf'); ?></label>
+	</td>
+	<td>
+		<?php
+		do_action('acf/create_field', array(
+			'type'		=>	'radio',
+			'name'		=>	'fields['.$key.'][save_format]',
+			'value'		=>	$field['save_format'],
+			'layout'	=>	'horizontal',
+			'choices'	=> array(
+				'object'	=>	__("Image Object",'acf'),
+				'url'		=>	__("Image URL",'acf'),
+				'id'		=>	__("Image ID",'acf')
+			)
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Preview Size",'acf'); ?></label>
+	</td>
+	<td>
+		<?php
+		
+		do_action('acf/create_field', array(
+			'type'		=>	'radio',
+			'name'		=>	'fields['.$key.'][preview_size]',
+			'value'		=>	$field['preview_size'],
+			'layout'	=>	'horizontal',
+			'choices' 	=>	apply_filters('acf/get_image_sizes', array())
+		));
 
-				?>
-			</td>
-		</tr>
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Library",'acf'); ?></label>
+	</td>
+	<td>
+		<?php
+		
+		do_action('acf/create_field', array(
+			'type'		=>	'radio',
+			'name'		=>	'fields['.$key.'][library]',
+			'value'		=>	$field['library'],
+			'layout'	=>	'horizontal',
+			'choices' 	=>	array(
+				'all' => __('All', 'acf'),
+				'uploadedTo' => __('Uploaded to post', 'acf')
+			)
+		));
+
+		?>
+	</td>
+</tr>
 		<?php
 		
 	}
@@ -323,12 +345,12 @@ class acf_field_image extends acf_field
 		{
 			foreach( $options['images'] as $id )
 			{
-				$src = wp_get_attachment_image_src( $id, $options['preview_size'] );
+				$url = wp_get_attachment_image_src( $id, $options['preview_size'] );
 				
 				
 				$return[] = array(
 					'id' => $id,
-					'src' => $src[0],
+					'url' => $url[0],
 				);
 			}
 		}

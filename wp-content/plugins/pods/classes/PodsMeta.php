@@ -5,6 +5,11 @@
 class PodsMeta {
 
     /**
+     * @var PodsMeta
+     */
+    static $instance = null;
+
+    /**
      * @var PodsAPI
      */
     private $api;
@@ -60,25 +65,44 @@ class PodsMeta {
     public static $groups = array();
 
     /**
+     * @var string
+     */
+    public static $old_post_status = '';
+
+    /**
+     * Singleton handling for a basic pods_meta() request
+     *
+     * @return \PodsMeta
+     *
+     * @since 2.3.5
+     */
+    public static function init () {
+        if ( !is_object( self::$instance ) )
+            self::$instance = new PodsMeta();
+
+        return self::$instance;
+    }
+
+    /**
      * @return \PodsMeta
      *
      * @since 2.0
      */
     function __construct () {
-        $this->api = pods_api();
+
     }
 
     /**
      * @return \PodsMeta
      */
-    public function init () {
-        self::$advanced_content_types = $this->api->load_pods( array( 'type' => 'pod' ) );
-        self::$post_types = $this->api->load_pods( array( 'type' => 'post_type' ) );
-        self::$taxonomies = $this->api->load_pods( array( 'type' => 'taxonomy' ) );
-        self::$media = $this->api->load_pods( array( 'type' => 'media' ) );
-        self::$user = $this->api->load_pods( array( 'type' => 'user' ) );
-        self::$comment = $this->api->load_pods( array( 'type' => 'comment' ) );
-        self::$settings = $this->api->load_pods( array( 'type' => 'settings' ) );
+    public function core () {
+        self::$advanced_content_types = pods_api()->load_pods( array( 'type' => 'pod' ) );
+        self::$post_types = pods_api()->load_pods( array( 'type' => 'post_type' ) );
+        self::$taxonomies = pods_api()->load_pods( array( 'type' => 'taxonomy' ) );
+        self::$media = pods_api()->load_pods( array( 'type' => 'media' ) );
+        self::$user = pods_api()->load_pods( array( 'type' => 'user' ) );
+        self::$comment = pods_api()->load_pods( array( 'type' => 'comment' ) );
+        self::$settings = pods_api()->load_pods( array( 'type' => 'settings' ) );
 
         // Handle Post Type Editor (needed for Pods core)
 
@@ -95,6 +119,7 @@ class PodsMeta {
         */
 
         add_action( 'add_meta_boxes', array( $this, 'meta_post_add' ) );
+        add_action( 'transition_post_status', array( $this, 'save_post_detect_new' ), 10, 3 );
         add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
 
         if ( apply_filters( 'pods_meta_handler', true, 'post' ) ) {
@@ -252,13 +277,13 @@ class PodsMeta {
      * Go back through and cache the Pods now that Polylang has loaded
      */
     public function cache_pods () {
-        self::$advanced_content_types = $this->api->load_pods( array( 'type' => 'pod', 'refresh' => true ) );
-        self::$post_types = $this->api->load_pods( array( 'type' => 'post_type', 'refresh' => true ) );
-        self::$taxonomies = $this->api->load_pods( array( 'type' => 'taxonomy', 'refresh' => true ) );
-        self::$media = $this->api->load_pods( array( 'type' => 'media', 'refresh' => true ) );
-        self::$user = $this->api->load_pods( array( 'type' => 'user', 'refresh' => true ) );
-        self::$comment = $this->api->load_pods( array( 'type' => 'comment', 'refresh' => true ) );
-        self::$settings = $this->api->load_pods( array( 'type' => 'settings', 'refresh' => true ) );
+        self::$advanced_content_types = pods_api()->load_pods( array( 'type' => 'pod', 'refresh' => true ) );
+        self::$post_types = pods_api()->load_pods( array( 'type' => 'post_type', 'refresh' => true ) );
+        self::$taxonomies = pods_api()->load_pods( array( 'type' => 'taxonomy', 'refresh' => true ) );
+        self::$media = pods_api()->load_pods( array( 'type' => 'media', 'refresh' => true ) );
+        self::$user = pods_api()->load_pods( array( 'type' => 'user', 'refresh' => true ) );
+        self::$comment = pods_api()->load_pods( array( 'type' => 'comment', 'refresh' => true ) );
+        self::$settings = pods_api()->load_pods( array( 'type' => 'settings', 'refresh' => true ) );
     }
 
     public function register ( $type, $pod ) {
@@ -275,7 +300,7 @@ class PodsMeta {
             self::$queue[ $type ] = array();
 
         $pod[ 'type' ] = $pod_type;
-        $pod = $this->api->save_pod( $pod, false, self::$object_identifier );
+        $pod = pods_api()->save_pod( $pod, false, self::$object_identifier );
 
         if ( !empty( $pod ) ) {
             self::$object_identifier--;
@@ -289,7 +314,7 @@ class PodsMeta {
     }
 
     public function register_field ( $pod, $field ) {
-        $pod = $this->api->load_pod( array( 'name' => $pod ), false );
+        $pod = pods_api()->load_pod( array( 'name' => $pod ), false );
 
         if ( !empty( $pod ) ) {
             $type = $pod[ 'type' ];
@@ -304,7 +329,7 @@ class PodsMeta {
             if ( !isset( self::$queue[ $pod[ 'type' ] ] ) )
                 self::$queue[ $type ] = array();
 
-            $field = $this->api->save_field( $field, false, false, $pod[ 'id' ] );
+            $field = pods_api()->save_field( $field, false, false, $pod[ 'id' ] );
 
             if ( !empty( $field ) ) {
                 $pod[ 'fields' ][ $field[ 'name' ] ] = $field;
@@ -336,7 +361,7 @@ class PodsMeta {
         elseif ( 'wp-comments' == $type )
             $object_type = $object = 'comment';
 
-        $pod = $this->api->load_pod( array( 'name' => $object ), false );
+        $pod = pods_api()->load_pod( array( 'name' => $object ), false );
 
         // Add Pods fields
         if ( !empty( $pod ) && $object_type == $pod[ 'type' ] ) {
@@ -382,7 +407,7 @@ class PodsMeta {
         elseif ( 'wp-comments' == $type )
             $object = 'comment';
 
-        $pod = $this->api->load_pod( array( 'name' => $object ), false );
+        $pod = pods_api()->load_pod( array( 'name' => $object ), false );
 
         // Add Pods fields
         if ( !empty( $pod ) && isset( $pod[ 'fields' ][ $field ] ) ) {
@@ -410,7 +435,7 @@ class PodsMeta {
      */
     public function group_add ( $pod, $label, $fields, $context = 'normal', $priority = 'default' ) {
         if ( !is_array( $pod ) ) {
-            $_pod = $this->api->load_pod( array( 'name' => $pod ), false );
+            $_pod = pods_api()->load_pod( array( 'name' => $pod ), false );
 
             if ( !empty( $_pod ) )
                 $pod = $_pod;
@@ -575,7 +600,7 @@ class PodsMeta {
         if ( 'pod' != $type && !empty( $object ) && is_array( $object ) && isset( $object[ $name ] ) )
             $pod = $object[ $name ];
         else
-            $pod = $this->api->load_pod( array( 'name' => $name ), false );
+            $pod = pods_api()->load_pod( array( 'name' => $name ), false );
 
         if ( empty( $pod ) )
             return array();
@@ -630,7 +655,7 @@ class PodsMeta {
         if ( 'pod' != $type && !empty( $object ) && is_array( $object ) && isset( $object[ $name ] ) )
             $fields = $object[ $name ][ 'fields' ];
         else {
-            $pod = $this->api->load_pod( array( 'name' => $name ), false );
+            $pod = pods_api()->load_pod( array( 'name' => $name ), false );
 
             if ( !empty( $pod ) )
                 $fields = $pod[ 'fields' ];
@@ -797,12 +822,29 @@ class PodsMeta {
     }
 
     /**
+     * @param $new_status
+     * @param $old_status
+     * @param $post
+     */
+    public function save_post_detect_new ( $new_status, $old_status, $post ) {
+        self::$old_post_status = $old_status;
+    }
+
+    /**
      * @param $post_id
      * @param $post
      *
      * @return mixed
      */
     public function save_post ( $post_id, $post ) {
+        $is_new_item = false;
+
+        if ( 'new' == self::$old_post_status )
+            $is_new_item = true;
+
+        // Reset to avoid manual new post issues
+        self::$old_post_status = '';
+
         $blacklisted_types = array(
             'revision',
             '_pods_pod',
@@ -869,8 +911,14 @@ class PodsMeta {
             }
         }
 
+        if ( $is_new_item ) {
+            do_action( 'pods_meta_create_pre_post', $data, $pod, $id, $groups, $post, $post->post_type );
+            do_action( "pods_meta_create_pre_post_{$post->post_type}", $data, $pod, $id, $groups, $post );
+        }
+
         do_action( 'pods_meta_save_pre_post', $data, $pod, $id, $groups, $post, $post->post_type );
         do_action( "pods_meta_save_pre_post_{$post->post_type}", $data, $pod, $id, $groups, $post );
+
 
         pods_no_conflict_on( 'post' );
 
@@ -878,7 +926,7 @@ class PodsMeta {
             // Fix for Pods doing it's own sanitization
             $data = stripslashes_deep( $data );
 
-            $pod->save( $data );
+            $pod->save( $data, null, null, array( 'is_new_item' => $is_new_item ) );
         }
         elseif ( !empty( $id ) ) {
             foreach ( $data as $field => $value ) {
@@ -887,6 +935,11 @@ class PodsMeta {
         }
 
         pods_no_conflict_off( 'post' );
+
+        if ( $is_new_item ) {
+            do_action( 'pods_meta_create_post', $data, $pod, $id, $groups, $post, $post->post_type );
+            do_action( "pods_meta_create_post_{$post->post_type}", $data, $pod, $id, $groups, $post );
+        }
 
         do_action( 'pods_meta_save_post', $data, $pod, $id, $groups, $post, $post->post_type );
         do_action( "pods_meta_save_post_{$post->post_type}", $data, $pod, $id, $groups, $post );
@@ -1574,7 +1627,7 @@ class PodsMeta {
                 if ( isset( $_POST[ 'pods_meta_' . $field[ 'name' ] ] ) )
                     $data[ $field[ 'name' ] ] = $_POST[ 'pods_meta_' . $field[ 'name' ] ];
 
-                $validate = $this->api->handle_field_validation( $data[ $field[ 'name' ] ], $field[ 'name' ], $this->api->get_wp_object_fields( 'comment' ), $pod->fields(), $pod, array() );
+                $validate = pods_api()->handle_field_validation( $data[ $field[ 'name' ] ], $field[ 'name' ], pods_api()->get_wp_object_fields( 'comment' ), $pod->fields(), $pod, array() );
 
                 if ( false === $validate )
                     $validate = sprintf( __( 'There was an issue validating the field %s', 'pods' ), $field[ 'label' ] );
@@ -1997,12 +2050,14 @@ class PodsMeta {
         if ( empty( $objects ) || !is_array( $objects ) )
             return false;
 
+        $object_name = null;
+
         if ( 'media' == $object_type )
-            return @current( self::$media );
+            return @current( $objects );
         elseif ( 'user' == $object_type )
-            return @current( self::$user );
+            return @current( $objects );
         elseif ( 'comment' == $object_type )
-            return @current( self::$comment );
+            return @current( $objects );
         elseif ( 'post_type' == $object_type ) {
             $object = get_post( $object_id );
 
@@ -2114,11 +2169,11 @@ class PodsMeta {
 
                     $meta_cache[ $meta_k ] = $pod->field( array( 'name' => $meta_k, 'single' => $single, 'get_meta' => true ) );
 
-                    if ( !is_array( $meta_cache[ $meta_k ] ) || !isset( $meta_cache[ $meta_k ][ 0 ] ) ) {
-                        if ( empty( $meta_cache[ $meta_k ] ) && !is_array( $meta_cache[ $meta_k ] ) )
-                            $meta_cache[ $meta_k ] = '';
-
-                        $meta_cache[ $meta_k ] = array( $meta_cache[ $meta_k ] );
+                    if ( ( !is_array( $meta_cache[ $meta_k ] ) || !isset( $meta_cache[ $meta_k ][ 0 ] ) ) ) {
+                        if ( empty( $meta_cache[ $meta_k ] ) && !is_array( $meta_cache[ $meta_k ] ) && $single )
+                            $meta_cache[ $meta_k ] = array();
+                        else
+                            $meta_cache[ $meta_k ] = array( $meta_cache[ $meta_k ] );
                     }
 
                     if ( in_array( $pod->fields[ $meta_k ][ 'type' ], PodsForm::tableless_field_types() ) && isset( $meta_cache[ '_pods_' . $meta_k ] ) )
@@ -2137,11 +2192,11 @@ class PodsMeta {
                     if ( isset( $pod->fields[ $first ] ) ) {
                         $meta_cache[ $meta_k ] = $pod->field( array( 'name' => $meta_k, 'single' => $single, 'get_meta' => true ) );
 
-                        if ( !is_array( $meta_cache[ $meta_k ] ) || !isset( $meta_cache[ $meta_k ][ 0 ] ) ) {
-                            if ( empty( $meta_cache[ $meta_k ] ) && !is_array( $meta_cache[ $meta_k ] ) )
-                                $meta_cache[ $meta_k ] = '';
-
-                            $meta_cache[ $meta_k ] = array( $meta_cache[ $meta_k ] );
+                        if ( ( !is_array( $meta_cache[ $meta_k ] ) || !isset( $meta_cache[ $meta_k ][ 0 ] ) ) && $single ) {
+                            if ( empty( $meta_cache[ $meta_k ] ) && !is_array( $meta_cache[ $meta_k ] ) && $single )
+                                $meta_cache[ $meta_k ] = array();
+                            else
+                                $meta_cache[ $meta_k ] = array( $meta_cache[ $meta_k ] );
                         }
 
                         if ( in_array( $pod->fields[ $first ][ 'type' ], PodsForm::tableless_field_types() ) && isset( $meta_cache[ '_pods_' . $first ] ) )
@@ -2329,9 +2384,9 @@ class PodsMeta {
                 'id' => $id
             );
 
-            return $this->api->delete_pod_item( $params, false );
+            return pods_api()->delete_pod_item( $params, false );
         }
         else
-            return $this->api->delete_object_from_relationships( $id, $type, $name );
+            return pods_api()->delete_object_from_relationships( $id, $type, $name );
     }
 }

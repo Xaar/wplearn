@@ -1,0 +1,196 @@
+# Copyright (C) 2010 Faster Image Insert
+# This file is distributed under the same license as the Faster Image Insert package.
+msgid ""
+msgstr ""
+"Project-Id-Version: faster-image-insert.2.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/faster-image-insert\n"
+"POT-Creation-Date: 2011-02-19 13:44:13+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2011-05-05 10:37+0100\n"
+"Last-Translator: Rene <info@wpwebshop.com>\n"
+"Language-Team: German\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: faster-image-insert.php:40
+msgid "Faster Image Insert 2.0 series are for WordPress 3.0 or newer version, for older WP, download <a href=\"http://wordpress.org/extend/plugins/faster-image-insert/download/\">1.0 series</a> instead."
+msgstr "Faster Image Insert 2.0 Series ist f&uuml;r WordPress 3.0 oder neuer geeignet; f&uuml;r &auml;lteren WP-Versionen verwenden Sie <a href=\"http://wordpress.org/extend/plugins/faster-image-insert/download/\">1.0 Series</a>."
+
+#: faster-image-insert.php:68
+#: faster-image-insert.php:79
+msgid "Click here to reload after autosave. Or manually save the draft."
+msgstr "Um erneut zu laden nach AutoSpeichern klicken Sie hier. Oder Sie speichern den Entwurf manuell."
+
+#: faster-image-insert.php:153
+#: faster-image-insert.php:161
+msgid "Select items you want to insert"
+msgstr "Bitte selektieren Sie die Elemente die Sie einf&uuml;gen m&ouml;chten"
+
+#: faster-image-insert.php:167
+msgid "Insert selected images"
+msgstr "Selektierten Elemente einf&uuml;gen"
+
+#: faster-image-insert.php:168
+msgid "Invert selection"
+msgstr "Auswahl umkehren"
+
+#: faster-image-insert.php:181
+msgid "Mass Image Edit"
+msgstr "Massenbildbearbeitung"
+
+#: faster-image-insert.php:184
+msgid "Apply changes"
+msgstr "&Auml;nderungen anwenden"
+
+#: faster-image-insert.php:184
+msgid "Press \"Save all changes\" above to save. Only Title, Alt-Text and Caption are permanently saved."
+msgstr "Um zu speichern, klicken Sie \"&Auml;nderungen speichern\". Nur Titel, Alt-Text und Beschriftung werden dauerhaft gespeichert."
+
+#: faster-image-insert.php:187
+msgid "Image Titles"
+msgstr "Bildtitel"
+
+#: faster-image-insert.php:188
+msgid "Image Alt-Texts"
+msgstr "Bild-Alt-Texte"
+
+#: faster-image-insert.php:189
+msgid "Image Captions"
+msgstr "Bild&uuml;berschriften"
+
+#: faster-image-insert.php:190
+msgid "Image Alignment"
+msgstr "Bildausrichtung"
+
+#: faster-image-insert.php:191
+msgid "Image Sizes"
+msgstr "Bildgr&ouml;&szlig;e"
+
+#: faster-image-insert.php:196
+msgid "None"
+msgstr "Keine"
+
+#: faster-image-insert.php:196
+msgid "Left"
+msgstr "Links"
+
+#: faster-image-insert.php:196
+msgid "Center"
+msgstr "Mitte"
+
+#: faster-image-insert.php:196
+msgid "Right"
+msgstr "Rechts"
+
+#: faster-image-insert.php:197
+msgid "Thumbnail"
+msgstr "Miniaturansicht"
+
+#: faster-image-insert.php:197
+msgid "Medium"
+msgstr "Medium"
+
+#: faster-image-insert.php:197
+msgid "Large"
+msgstr "Gro&szlig;"
+
+#: faster-image-insert.php:197
+msgid "Full size"
+msgstr "Volle Gr&ouml;&szlig;e"
+
+#: faster-image-insert.php:351
+#: faster-image-insert.php:425
+msgid "Faster Image Insert - User Options"
+msgstr "Faster Image Insert - Benutzeroptionen"
+
+#: faster-image-insert.php:394
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert"
+
+#: faster-image-insert.php:412
+msgid "Settings deleted."
+msgstr "Einstellungen gel&ouml;scht"
+
+#: faster-image-insert.php:426
+msgid "Updates your settings here"
+msgstr "Einstellungen aktualisieren"
+
+#: faster-image-insert.php:435
+msgid "Load HTML form instead of Flash uploader"
+msgstr "HTML-Formulier statt Flash-Uploader laden"
+
+#: faster-image-insert.php:436
+msgid "Enable this if you're having trouble with flash uploader."
+msgstr "Aktivieren wenn Sie Probleme mit Flash-Uploader haben"
+
+#: faster-image-insert.php:440
+msgid "Insert multiple images in 1 line"
+msgstr "Mehrere Bilder auf 1 Linie einf&uuml;gen"
+
+#: faster-image-insert.php:441
+msgid "Enable this if you want to insert a serial of thumbnails without newlines."
+msgstr "Aktivieren wenn Sie mehrere Miniaturansichte ohne newlines einf&uuml;gen m&ouml;chten"
+
+#: faster-image-insert.php:445
+msgid "Set custom string"
+msgstr "Benutzerdefinierte Zeichenfolge einstellen"
+
+#: faster-image-insert.php:446
+msgid "Edit this to change the custom string inserted between each image; defaults to &lt;p&gt;&lt;/p&gt;."
+msgstr "Bearbeiten um Benutzerdefinierte Zeichenfolge zwischen Bilder zu &auml;ndern; standard ist &lt;p&gt;&lt;/p&gt;."
+
+#: faster-image-insert.php:450
+msgid "Duplicate customer string"
+msgstr "Benutzerdefinierte Zeichenfolge duplizieren"
+
+#: faster-image-insert.php:451
+msgid "Depends on previous option; it duplicates the string inserted each time. Default is 1 time."
+msgstr "Abh&auml;ngig von vorheriger Option; dupliziert eingef&uuml;gte Zeichenfolge jedes Mal. Default ist 1 Mal."
+
+#: faster-image-insert.php:455
+msgid "Disable captions"
+msgstr "&Uuml;berschrifte duplizieren"
+
+#: faster-image-insert.php:456
+msgid "WordPress use caption as alternative text, but it also appends [caption] if set manually, Enable this if you want to set alternative text without appending caption."
+msgstr "WordPress verwendet &Uuml;berschrift als Alt-Text, f&uuml;gt abert auch [caption] an wenn manuell eingestellt. Aktivieren wenn Sie Alt-Text einstellen m&ouml;chten ohne angef&uuml;gte &Uuml;berschrift."
+
+#: faster-image-insert.php:460
+msgid "Custom post types"
+msgstr "Benutzerdefinierter Beitragstyp"
+
+#: faster-image-insert.php:461
+msgid "Load FII panel in custom post types other than the default post/page; default to none, comma separated."
+msgstr "FII-Panel laden in benutzerdefinierten Posttypen ausgenommen standard Beitrag/Seite; standard kein, separates Komma."
+
+#: faster-image-insert.php:467
+msgid "Save Changes"
+msgstr "&Auml;nderungen speichern"
+
+#: faster-image-insert.php:468
+msgid "Uninstall"
+msgstr "Deinstallieren"
+
+#. Plugin Name of the plugin/theme
+msgid "Faster Image Insert"
+msgstr "Faster Image Insert"
+
+#. Plugin URI of the plugin/theme
+msgid "http://blog.ticktag.org/2009/02/19/2765/"
+msgstr "http://blog.ticktag.org/2009/02/19/2765/"
+
+#. Description of the plugin/theme
+msgid "Fully integrates media manager into editing interface, avoid having to reload it separately in thickbox pop-up; comes with enhanced features, suitable for precise image control."
+msgstr "Integriert Media Manager v&ouml;llig in der Bearbeitungsschnittstelle, ohne es separat in einem Pop-Up laden zu m&uuml;ssen; inkludiert erweiterten Features, eignet sich f&uuml;r Pr&auml;zisionsbildsteuerung."
+
+#. Author of the plugin/theme
+msgid "David Frank"
+msgstr "David Frank"
+
+#. Author URI of the plugin/theme
+msgid "http://blog.ticktag.org/"
+msgstr "http://blog.ticktag.org/"
+

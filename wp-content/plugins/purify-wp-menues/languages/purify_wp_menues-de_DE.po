@@ -1,0 +1,511 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Purify WordPress Menues v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-03 00:11+0100\n"
+"PO-Revision-Date: 2013-06-03 00:13+0100\n"
+"Last-Translator: Martin Stehle <m.stehle@gmx.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:119
+msgid ""
+"The plugin Purify WordPress Menues requires WordPress version 3.0.0 or "
+"higher. Therefore, WordPress did not activate it. If you want to use this "
+"plugin update the Wordpress files to the latest version."
+msgstr ""
+"Das Plugin Purify WP Menues erfordert WordPress Version 3.0.0 oder höher. "
+"WordPress hat es daher nicht aktiviert. Falls du das Plugin nutzen willst, "
+"aktualisiere die Wordpress-Dateien auf die neueste Version."
+
+# @ default
+#: ../purify_wp_menues.php:185
+msgid "You do not have sufficient permissions to manage options for this site."
+msgstr ""
+"Du hast nicht die erforderlichen Rechte, um Plugins für diese Seite zu "
+"aktivieren."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:223 ../purify_wp_menues.php:252
+msgid "Purify WP Menues Options"
+msgstr "Einstellungen für Purify WordPress Menues"
+
+# @ default
+#: ../purify_wp_menues.php:247
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+"Du hast nicht die erforderlichen Rechte, um Optionen für diese Seite zu "
+"verwalten."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:295
+msgid "Special Settings"
+msgstr "Besondere Einstellungen"
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:296
+msgid "Current Page Navigation Menu Items"
+msgstr "Elemente im Navigationsmenü der aktuellen Seite"
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:297
+msgid "Current Page Parent Menu Items"
+msgstr "Elemente im Navigationsmenü, die Eltern der aktuellen Seite sind"
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:298
+msgid "Current Page Ancestor Menu Items"
+msgstr "Elemente im Navigationsmenü, die Vorfahren der aktuellen Seite sind"
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:299
+msgid "Site Front Page Menu Items"
+msgstr "Elemente im Navigationsmenü der Startseite"
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:300
+msgid "All Other Navigation Menu Items"
+msgstr "Alle anderen Elemente in Navigationsmenüs"
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:301
+msgid "Page Menu Items"
+msgstr "Elemente im Seitenmenü"
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:321
+msgid "#menu-item-{id}"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:322
+msgid ""
+"The id of the menu item is added to every menu item of navigation menues."
+msgstr ""
+"Die ID des Menüelements wird bei jedem Element in Navigationsmenüs angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:326
+msgid "Maintain backward compatibility with wp_page_menu()."
+msgstr "Rückwärtskompatibilität mit wp_page_menu() beibehalten."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:327
+msgid "Adds the CSS classes of page menues to navigation menues."
+msgstr "Fügt die CSS-Klassen von Seitenmenüs in Navigationsmenüs hinzu."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:331
+msgid "Do not print parent as ancestor."
+msgstr "Gebe Elternelemente nicht als Vorfahren an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:332
+msgid ""
+"Does not classified the menu item which is the current parent as anchestor."
+msgstr ""
+"Gibt das Menüelement, das Eltern der aktuellen Seite ist, nicht auch als "
+"Vorfahr an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:336
+msgid ".current-menu-ancestor"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:337
+msgid ""
+"This class is added to menu items that correspond to a hierarchical ancestor "
+"of the currently rendered page."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die Vorfahren der aktuellen Seite sind, "
+"angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:341
+msgid ".current-menu-item"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:342
+msgid ""
+"This class is added to menu items that correspond to the currently rendered "
+"page."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die zur aktuellen Seite gehören, "
+"angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:346
+msgid ".current-menu-parent"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:347
+msgid ""
+"This class is added to menu items that correspond to the hierarchical parent "
+"of the currently rendered page."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die Eltern der aktuellen Seite sind, "
+"angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:351
+msgid ".current-{object}-ancestor"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:352
+msgid ""
+"This class is added to menu items that correspond to a hierachical ancestor "
+"of the currently rendered object, where {object} corresponds to the the "
+"value used for .menu-item-object-{object}."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die Vorfahren des aktuellen Objekts "
+"sind, angegeben. {object} ist identisch mit dem Wert bei .menu-item-object-"
+"{object}."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:356
+msgid ".current-{object}-parent"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:357
+msgid ""
+"This class is added to menu items that correspond to the hierachical parent "
+"of the currently rendered object, where {object} corresponds to the the "
+"value used for .menu-item-object-{object}."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die Eltern des aktuellen Objekts sind, "
+"angegeben. {object} ist identisch mit dem Wert bei .menu-item-object-"
+"{object}."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:361
+msgid ".current_page_item"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:362
+msgid ""
+"This class is added to page menu items that correspond to the currently "
+"rendered static page."
+msgstr ""
+"Diese Klasse wird in Seitenmenüs bei Menüelementen, die zur aktuellen Seite "
+"gehören, angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:366
+msgid ".current_page_parent"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:367
+msgid ""
+"This class is added to page menu items that correspond to the hierarchical "
+"parent of the currently rendered static page."
+msgstr ""
+"Diese Klasse wird in Seitenmenüs bei Menüelementen, die Eltern der aktuellen "
+"Seite sind, angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:371
+msgid ".current_page_ancestor"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:372
+msgid ""
+"This class is added to page menu items that correspond to a hierarchical "
+"ancestor of the currently rendered static page."
+msgstr ""
+"Diese Klasse wird in Seitenmenüs bei Menüelementen, die Vorfahren der "
+"aktuellen Seite sind, angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:376
+msgid ".current-{type}-ancestor"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:377
+msgid ""
+"This class is added to menu items that correspond to a hierachical ancestor "
+"of the currently rendered type, where {type} corresponds to the the value "
+"used for .menu-item-type-{type}."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die Vorfahren des aktuellen Seitentyps "
+"sind, angegeben. {type} ist identisch mit dem Wert bei .menu-item-type-"
+"{type}."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:381
+msgid ".current-{type}-parent"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:382
+msgid ""
+"This class is added to menu items that correspond to the hierachical parent "
+"of the currently rendered type, where {type} corresponds to the the value "
+"used for .menu-item-type-{type}."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die Eltern des aktuellen Seitentyps "
+"sind, angegeben. {type} ist identisch mit dem Wert bei .menu-item-type-"
+"{type}."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:386
+msgid ".menu-item"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:387
+msgid "This class is added to every menu item."
+msgstr "Diese Klasse wird bei jedem Menüelement angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:391
+msgid ".menu-item-home"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:392
+msgid ""
+"This class is added to menu items that correspond to the site front page."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die zur Startseite gehören, angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:396
+msgid ".menu-item-{id}"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:397
+msgid "This class with the item id is added to every menu item."
+msgstr ""
+"Diese Klasse wird bei jedem Menüelement in Navigationsmenüs mit der ID des "
+"Elements angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:401
+msgid ".menu-item-object-{object}"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:402
+msgid ""
+"This class is added to every menu item, where {object} is either a post type "
+"or a taxonomy."
+msgstr ""
+"Diese Klasse wird bei jedem Menüelement angegeben. {object} ist entweder ein "
+"Inhaltstyp oder eine Taxonomie."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:406
+msgid ".menu-item-object-category"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:407
+msgid "This class is added to menu items that correspond to a category."
+msgstr ""
+"Diese Klasse wird bei jedem Memüelement, das zu einer Kategorie gehört, "
+"angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:411
+msgid ".menu-item-object-{custom}"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:412
+msgid ""
+"This class is added to menu items that correspond to a custom post type or a "
+"custom taxonomy."
+msgstr ""
+"Diese Klasse wird bei jedem Memüelement, das zu einem selbst erstellten "
+"Inhaltstyp oder einer selbst erstellten Taxonomie gehört, angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:416
+msgid ".menu-item-object-page"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:417
+msgid "This class is added to menu items that correspond to static pages."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die zu einer statischen Seite gehören, "
+"angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:421
+msgid ".menu-item-object-tag"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:422
+msgid "This class is added to menu items that correspond to a tag."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die zu einem Schlagwort gehören, "
+"angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:426
+msgid ".menu-item-type-post_type"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:427
+msgid ""
+"This class is added to menu items that correspond to post types, i.e. static "
+"pages or custom post types."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die zu einem Inhaltstyp gehören, "
+"hinzugefügt. Inhaltstypen sind z.B. statische Seiten oder selbst erstellte "
+"Inhaltstypen (Post Types)."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:431
+msgid ".menu-item-type-taxonomy"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:432
+msgid ""
+"This class is added to menu items that correspond to taxonomies, i.e. "
+"categories, tags, or custom taxonomies."
+msgstr ""
+"Diese Klasse wird bei Menüelementen, die zu einer Taxonomie gehören, "
+"hinzugefügt. Taxonomien sind z.B. Kategorien, Schlagwörter oder selbst "
+"erstellte Taxonomien."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:436
+msgid ".page_item"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:437
+msgid ""
+"This class is added to page menu items that correspond to a static page."
+msgstr ""
+"Diese Klasse wird in Seitenmenüs bei Menüelementen, die zu einer statischen "
+"Seite gehören, angegeben."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:441
+msgid ".page-item-{id}"
+msgstr ""
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:442
+msgid ""
+"This class is added to page menu items that correspond to a static page, "
+"where ID is the static page ID."
+msgstr ""
+"Diese Klasse wird in Seitenmenüs bei Menüelementen, die zu einer statischen "
+"Seite gehören, angegeben. {id} ist die ID der statischen Seite."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:485
+msgid "In this section you control some basic settings."
+msgstr "In diesem Abschnitt gibst du einige Grundeinstellungen an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:495
+msgid ""
+"In this section you control the CSS class Wordpress adds to the current menu "
+"item."
+msgstr ""
+"In diesem Abschnitt gibst du die CSS-Klassen, die Wordpress zu aktuellen "
+"Menüelementen hinzufügt, an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:505
+msgid ""
+"In this section you control the CSS classes Wordpress adds to the "
+"hierarchical parent of the current menu item."
+msgstr ""
+"In diesem Abschnitt gibst du die CSS-Klassen, die Wordpress zu "
+"übergeordneten Eltern des aktuellen Menüelements hinzufügt, an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:515
+msgid ""
+"In this section you control the CSS classes Wordpress adds to the "
+"hierarchical anchestors of the current menu item."
+msgstr ""
+"In diesem Abschnitt gibst du die CSS-Klassen, die Wordpress zu "
+"übergeordneten Vorfahren des aktuellen Menüelements hinzufügt, an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:525
+msgid ""
+"In this section you control the CSS class Wordpress adds to the menu item of "
+"the front page."
+msgstr ""
+"In diesem Abschnitt gibst du die CSS-Klassen, die Wordpress zu Menüelementen "
+"der Startseite hinzufügt, an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:535
+msgid ""
+"In this section you control all other classes Wordpress adds to menu items."
+msgstr ""
+"In diesem Abschnitt gibst du alle anderen CSS-Klassen, die Wordpress zu "
+"Menüelementen hinzufügt, an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:545
+msgid ""
+"In this section you control the CSS classes Wordpress adds to items in a "
+"page menu via wp_page_nav(). Menues via wp_nav_menu() only have this classes "
+"if the backward compatibility option is checked."
+msgstr ""
+"In diesem Abschnitt gibst du die CSS-Klassen, die Wordpress Elementen eines "
+"Seitenmenüs mit wp_page_nav() hinzufügt, an. Mit wp_nav_menu() erstellte "
+"Menüs enthalten diese Klassen nur, wenn die Rückwärtskompatibilität "
+"aktiviert wurde."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:555
+msgid ""
+"In this section you control the CSS class Wordpress adds to the hierarchical "
+"parent of the current item in a page menu."
+msgstr ""
+"In diesem Abschnitt gibst du die CSS-Klassen, die Wordpress zum "
+"übergeordneten Elternteil des aktuellen Menüelements hinzufügt, an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:565
+msgid ""
+"In this section you control the CSS class Wordpress adds to the hierarchical "
+"anchestors of the current item in a page menu."
+msgstr ""
+"In diesem Abschnitt gibst du die CSS-Klassen, die Wordpress zu "
+"übergeordneten Vorfahren des aktuellen Menüelements hinzufügt, an."
+
+# @ purify_wp_menues
+#: ../purify_wp_menues.php:575
+msgid ""
+"In this section you control all other classes Wordpress adds to items in a "
+"page menu."
+msgstr ""
+"In diesem Abschnitt gibst du alle anderen CSS-Klassen, die Wordpress "
+"Elementen eines Seitenmenüs hinzufügt, an."

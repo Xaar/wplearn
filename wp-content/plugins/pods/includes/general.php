@@ -18,6 +18,7 @@
  */
 function pods_query ( $sql, $error = 'Database Error', $results_error = null, $no_results_error = null ) {
     $podsdata = pods_data();
+
     $sql = apply_filters( 'pods_query_sql', $sql, $error, $results_error, $no_results_error );
     $sql = $podsdata->get_sql($sql);
 
@@ -28,7 +29,7 @@ function pods_query ( $sql, $error = 'Database Error', $results_error = null, $n
         $error = 'Database Error';
     }
 
-    if ( 1 == pods_var( 'pods_debug_sql_all', 'get', 0 ) && is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) ) ) {
+    if ( 1 == pods_var( 'pods_debug_sql_all', 'get', 0 ) && is_user_logged_in() && pods_is_admin( array( 'pods' ) ) ) {
         $debug_sql = $sql;
 
         echo '<textarea cols="100" rows="24">';
@@ -208,6 +209,42 @@ function pods_debug ( $debug = '_null', $die = false, $prefix = '_null' ) {
 }
 
 /**
+ * Determine if user has admin access
+ *
+ * @param string|array $cap Additional capabilities to check
+ *
+ * @return bool Whether user has admin access
+ *
+ * @since 2.3.5
+ */
+function pods_is_admin ( $cap = null ) {
+    if ( is_user_logged_in() ) {
+        $pods_admin_capabilities = array(
+            'delete_users' // default is_super_admin checks against this
+        );
+
+        $pods_admin_capabilities = apply_filters( 'pods_admin_capabilities', $pods_admin_capabilities, $cap );
+
+        if ( is_multisite() && is_super_admin() )
+            return apply_filters( 'pods_is_admin', true, $cap, null );
+
+        if ( empty( $cap ) )
+            $cap = array();
+        else
+            $cap = (array) $cap;
+
+        $cap = array_unique( array_filter( array_merge( $pods_admin_capabilities, $cap ) ) );
+
+        foreach ( $cap as $capability ) {
+            if ( current_user_can( $capability ) )
+                return apply_filters( 'pods_is_admin', true, $cap, $capability );
+        }
+    }
+
+    return apply_filters( 'pods_is_admin', false, $cap, null );
+}
+
+/**
  * Determine if Developer Mode is enabled
  *
  * @return bool Whether Developer Mode is enabled
@@ -230,6 +267,24 @@ function pods_developer () {
  */
 function pods_tableless () {
     if ( defined( 'PODS_TABLELESS' ) && PODS_TABLELESS )
+        return true;
+
+    return false;
+}
+
+/**
+ * Determine if Strict Mode is enabled
+ *
+ * @return bool Whether Strict Mode is enabled
+ *
+ * @since 2.3.5
+ */
+function pods_strict () {
+    if ( defined( 'PODS_STRICT' ) && PODS_STRICT )
+        return true;
+    elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG )
+        return true;
+    elseif ( defined( 'PODS_STRICT_MODE' ) && PODS_STRICT_MODE ) // @deprecated since 2.3.5
         return true;
 
     return false;
@@ -437,7 +492,7 @@ function pods_access ( $privs, $method = 'OR' ) {
     if ( !is_user_logged_in() )
         return false;
 
-    if ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'pods' ) || current_user_can( 'pods_content' ) )
+    if ( pods_is_admin( array( 'pods', 'pods_content' ) ) )
         return true;
 
     // Store approved privs when using "AND"
@@ -856,7 +911,7 @@ function pods_permission ( $options ) {
     if ( isset( $options[ 'options' ] ) )
         $options = $options[ 'options' ];
 
-    if ( is_user_logged_in() && ( is_super_admin() || current_user_can( 'delete_users' ) || current_user_can( 'manage_options' ) ) )
+    if ( pods_is_admin() )
         $permission = true;
     elseif ( 0 == pods_var( 'restrict_role', $options, 0 ) && 0 == pods_var( 'restrict_capability', $options, 0 ) && 0 == pods_var( 'admin_only', $options, 0 ) )
         $permission = true;
@@ -1335,15 +1390,26 @@ function pods_group_add ( $pod, $label, $fields, $context = 'normal', $priority 
  * @since 2.0
  */
 function pods_is_plugin_active ( $plugin ) {
+    $active = false;
+
     if ( function_exists( 'is_plugin_active' ) )
-        return is_plugin_active( $plugin );
+        $active = is_plugin_active( $plugin );
 
-    $active_plugins = (array) get_option( 'active_plugins', array() );
+    if ( !$active ) {
+        $active_plugins = (array) get_option( 'active_plugins', array() );
 
-    if ( in_array( $plugin, $active_plugins ) )
-        return true;
+        if ( in_array( $plugin, $active_plugins ) )
+            $active = true;
 
-    return false;
+        if ( !$active && is_multisite() ) {
+            $plugins = get_site_option( 'active_sitewide_plugins' );
+
+            if ( isset( $plugins[ $plugin ] ) )
+                $active = true;
+        }
+    }
+
+    return $active;
 }
 
 /**
@@ -1403,6 +1469,7 @@ function pods_no_conflict_on ( $object_type = 'post', $object = null ) {
         }
 
         $no_conflict[ 'action' ] = array(
+            array( 'transition_post_status', array( PodsInit::$meta, 'save_post_detect_new' ), 10, 3 ),
             array( 'save_post', array( PodsInit::$meta, 'save_post' ), 10, 2 )
         );
     }
