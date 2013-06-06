@@ -132,8 +132,6 @@ function IML_scripts() {
 
 	wp_enqueue_script( 'IML-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
-	wp_enqueue_script( 'IML-secondary-nav', get_template_directory_uri() . '/js/cufon-yui.js', array(), '20130115', true );
-
 	$jQuery = "http://code.jquery.com/jquery-latest.min.js";
 	wp_deregister_script( 'jQuery' );
 	wp_register_script( 'jQuery', $jQuery);

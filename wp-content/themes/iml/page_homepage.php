@@ -10,14 +10,16 @@ define("THISPAGE", "home");
 
 <?php get_header(); ?>
 
-
+<?php if(have_posts()): while(have_posts()): the_post(); ?>
 		<div id="content" class="hero-content row" role="main">
-			
-			<?php the_post(); ?>	
-			<?php the_content(); ?>
+			YES it should work 
+
+			<?php echo get_new_royalslider(2); ?>
+
+		
 
 		</div><!-- hero-content -->
-
+	<?php endwhile; endif; ?>
 			<div class="promo-band-wrapper">
 
 				<div class="promo-band row">
