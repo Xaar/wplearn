@@ -1,0 +1,58 @@
+{
+    "st1": {
+   	 	"id": 1,
+		"name": "NORTH AMERICA",
+		"shortname": "",
+		"link": "",
+		"comment": "",
+		"image": ""
+	},
+    "st2": {
+    	"id": 2,
+		"name": "CENTRAL AMERICA",
+		"shortname": "",
+		"link": "",
+		"comment": "",
+		"image": ""
+	},
+    "st3": {
+		"id": 3,
+		"name": "SOUTH AMERICA",
+		"shortname": "",
+		"link": "",
+		"comment": "",
+		"image": ""
+	},
+    "st4":{
+    	"id": 4,
+		"name": "AFRICA",
+		"shortname": "",
+		"link": "",
+		"comment": "",
+		"image": ""
+	},
+    "st5":{
+    	"id": 5,
+		"name": "EUROPE",
+		"shortname": "",
+		"link": "",
+		"comment": "",
+		"image": ""
+	},
+    "st6":{
+    	"id": 6,
+		"name": "ASIA",
+		"shortname": "",
+		"link": "",
+		"comment": "",
+		"image": ""
+	},
+    "st7":{
+    	"id": 7,
+		"name": "OCEANIA",
+		"shortname": "",
+		"link": "",
+		"comment": "",
+		"image": ""
+	}
+}

@@ -1,0 +1,22 @@
+.usa-html5-map {
+    width: 80%;
+}
+
+.usa-html5-map .title {
+    display: inline-block;
+    width: 180px;
+}
+
+.color~.colorpicker {
+    position: absolute;
+    left: 300px;
+    margin-top: -110px;
+}
+
+.stateinfo .colorpicker + label {
+    margin-left: 20px;
+}
+
+.stateinfo .colorpicker + label input[type=checkbox] {
+    margin-right: 10px;
+}

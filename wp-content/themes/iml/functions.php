@@ -283,18 +283,3 @@ global $post;
                 return "$s_day # $s_month # $s_year - $e_day # $e_month # $e_year <br> $s_date";
         }
 }
-add_shortcode('daterange', 'date_range');
-
-function pods_faq_pick_data($data, $name, $value, $options, $pod, $id){
-if ($name == "pods_field_teachers") {
-foreach ($data as $id => &$value) {
-$p = pods('teacher', $id);
-$name = $p->display('name');
-$city = $p->display('profile.city.name');
-$value = $name . ' - ' . $city;
-}
-}
-return $data;
-}
-
-add_filter('pods_field_pick_data', 'pods_faq_pick_data', 1, 6);
