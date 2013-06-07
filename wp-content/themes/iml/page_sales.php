@@ -5,21 +5,18 @@ Template Name: Sales
 ?>
 
 <?php
-define("THISPAGE", "sales-support");
+define("THISPAGE", "sales");
 ?>
 
 <?php get_header(); ?>
 
-<div id="content" class="hero-content row" role="main">
-..
-<h1><?php the_title(); ?></h1>
-<h1><?=$post->post_content?></h1>
-<h1><?php the_content(); ?></h1>
-..
-</div><!-- hero-content -->
+                <div id="content" class="hero-content row" role="main">
 
 
+[simplemap]
+<?=do_shortcode('[simplemap]');?>
 
+<<<<<<< HEAD
 <div id="products" class="product-carousel row">
 [simplemaps]
 [recent-posts]
@@ -28,18 +25,9 @@ define("THISPAGE", "sales-support");
 <?=do_shortcode('[freeworldcontinentmap]');?>
 <div class="clearfix"></div>
 </div>
+=======
+                </div><!-- hero-content -->
+>>>>>>> 42c88a5a1275e2a1df0f4c30b039918f3d6cc3a7
 
 
-
-<div class="promo-band-wrapper">
-
-<div class="promo-band row">
-<!-- ENDORSEMENTS GALLERY ADD HERE -->
-
-</div> <!-- promo-band -->
-
-</div> <!-- promo-band-wrapper -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
-
