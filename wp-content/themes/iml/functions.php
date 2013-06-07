@@ -206,7 +206,7 @@ function create_post_type() {
                         'public' => true,
                         'taxonomies' => array('post_tag'),
                         'has_archive' => true,
-                        'rewrite' => array('slug' => 'products', 'with_front' => FALSE),
+                        'rewrite' => array('slug' => 'heartworks\products', 'with_front' => FALSE),
                         'capability_type' => 'post',
                         'hierarchical' => false,
                         'supports' => array('title', 'thumbnail', 'custom-fields')
@@ -221,7 +221,7 @@ function create_post_type() {
                         'public' => true,
                         'taxonomies' => array('post_tag'),
                         'has_archive' => true,
-                        'rewrite' => array('slug' => 'products', 'with_front' => FALSE),
+                        'rewrite' => array('slug' => 'faqs', 'with_front' => FALSE),
                         'capability_type' => 'post',
                         'hierarchical' => false,
                         'supports' => array('title')
