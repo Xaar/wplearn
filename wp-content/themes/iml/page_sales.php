@@ -22,6 +22,10 @@ define("THISPAGE", "sales-support");
 
 <div id="products" class="product-carousel row">
 [simplemaps]
+[recent-posts]
+<?=do_shortcode('[simplemap]');?>
+<?=do_shortcode('[simplemaps]');?>
+<?=do_shortcode('[freeworldcontinentmap]');?>
 <div class="clearfix"></div>
 </div>
 
