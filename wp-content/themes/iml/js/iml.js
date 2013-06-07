@@ -10,15 +10,15 @@ jQuery(document).ready(function($){
         if(Input.val().length == 0) Input.val(default_value);
     });
 });
-
-/*$('#select-filter').change(function(){
+/*
+$('#select-filter').change(function(){
   filter = $('#select-filter option:selected').val();
-  $('#news-event-ajax').load("http://localhost:8888/ajax/"+page+'?filter='+filter);
+  $('#news-event-ajax').load("http://hwstaging.glassworks.co.uk/ajax/"+page+'?filter='+filter);
 });
 
 jQuery(document).ready(function($){
   filter = $('#select-filter option:selected').val();
-  $('#news-event-ajax').load("http://localhost:8888/ajax/"+page+'?filter='+filter);
+  $('#news-event-ajax').load("http://hwstaging.glassworks.co.uk/ajax/"+page+'?filter='+filter);
 });
 */
 /* Main nav CSS animation */

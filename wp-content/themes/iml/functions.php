@@ -214,16 +214,48 @@ function create_post_type() {
                         'supports' => array('title', 'thumbnail', 'custom-fields')
                 )
         );
+           register_post_type( 'featured-products',
+                array(
+                        'labels' => array(
+                                'name' => __( 'Featured Products' ),
+                                'singular_name' => __( 'featured_product' )
+                        ),
+                        'public' => true,
+                        'taxonomies' => array('post_tag'),
+                        'has_archive' => true,
+                        'capability_type' => 'post',
+                        'hierarchical' => false,
+                        'supports' => array('title','editor','custom-fields','thumbnail')
+                )
+        );
         register_post_type( 'faqs',
                 array(
                         'labels' => array(
                                 'name' => __( 'FAQ\'s' ),
                                 'singular_name' => __( 'FAQ' )
                         ),
-                        'public' => true,
+			'show_in_menu' => 'edit.php?post_type=products',
+                        'public' => false,
+			'show_ui' => true,
                         'taxonomies' => array('post_tag'),
                         'has_archive' => true,
-                        'rewrite' => array('slug' => 'faqs', 'with_front' => FALSE),
+                        'capability_type' => 'post',
+                        'hierarchical' => false,
+                        'supports' => array('title')
+                )
+        );
+        register_post_type( 'pathologies',
+                array(
+                        'labels' => array(
+                                'name' => __( 'Pathologies' ),
+                                'singular_name' => __( 'Pathology' ),
+				'add_new' => __( 'Add new module' )
+                        ),
+                        'show_in_menu' => 'edit.php?post_type=products',
+                        'public' => false,
+			'show_ui' => true,
+                        'taxonomies' => array('post_tag'),
+                        'has_archive' => true,
                         'capability_type' => 'post',
                         'hierarchical' => false,
                         'supports' => array('title')
@@ -243,8 +275,8 @@ function change_default_title( $title ){
 }
  
 add_filter( 'enter_title_here', 'change_default_title' );
-
-/*function replace_content($content) {
+/*
+function replace_content($content) {
 	global $post;
 	$content = get_post_meta($post->ID, "article", true);
 	return $content;
@@ -253,8 +285,8 @@ add_filter('the_content', 'replace_content');
 function custom_excerpt_length( $length ) {
 	return 18;
 }
-add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );*/
-
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+*/
 // Format dates to a range
 function date_range(){
 global $post;
