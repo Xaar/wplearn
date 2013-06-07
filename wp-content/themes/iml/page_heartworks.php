@@ -63,21 +63,22 @@ key: "right"
 <ul class="carousel-ul">
 <?php
 // The Query
-$the_query_prod_carousel = new WP_Query( 'category_name=product&posts_per_page=10' );
+$the_query_prod_carousel = new WP_Query( 'post_type=products&posts_per_page=10' );
 // The Loop
 while ( $the_query_prod_carousel->have_posts() ) : $the_query_prod_carousel->the_post();
 ?>
 <?php
-$image_id = get_post_thumbnail_id();
-$image_url = wp_get_attachment_image_src($image_id);
-$image_url = $image_url[0];
+$image_id = get_post_meta($post->ID, ('product_thumbnail'), true);
+//echo wp_get_attachment_image($image_id);
+//$image_url = wp_get_attachment_image_src($image_id);
+//$image_url = $image_url[0];
 ?>
 <?php
 
-$url = wp_get_attachment_thumb_url();
+$url = wp_get_attachment_thumb_url($image_id);
 ?>
 
-<li><img src="<?php echo $url ?>" width="180" height="200" /><?php the_title(); ?></li>
+<li><a href="<?php the_permalink();?>"/><img src="<?php echo $url ?>" width="180" height="200" /><?php the_title(); ?></a></li>
 
 <?php
 endwhile;
