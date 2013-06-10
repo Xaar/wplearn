@@ -57,10 +57,11 @@ $(function() {
 
 	<div class="hero-product-content row">
 		<div class="hero-product-listing-text">
-			<h3><?=(get_post_meta($post->ID, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : 'x'; ?></h3>
+			<h3><?=(get_post_meta($post->ID, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
 			<h2><?=get_post_meta($post->ID, ('subtitle'), true); ?></h2>
-			<p><?=get_post_meta($post->ID, ('product_description'), true); ?></p>
-			<img class='alignRight' src="<?=wp_get_attachment_url(get_post_meta($post->ID, ('product_image'), true));?>"/>
+			<p><?=get_post_meta($post->ID, ('product_description'), true); ?>
+				<img class='right' src="<?=wp_get_attachment_url(get_post_meta($post->ID, ('product_image'), true));?>"/>
+			</p>
 		</div>
 	</div>
 
@@ -78,28 +79,49 @@ $(function() {
 	<div class="product-overview">
 		<ul class="tabs">
 			<li><a href="#">Product Overview</a></li>
+<?php
+// Check if patholgies, and loop through each module if so
+if(get_post_meta($post->ID, ('product_type'), true)=='Pathologies') {
+	$pathologies = get_post_meta($post->ID, ('pathologies'), true);
+	foreach($pathologies as $module) {?>
+			<li><a href="#"><?=get_the_title($module);?></a></li>
+<?php	}
+}		
+?>
 			<li><a href="#">FAQ</a></li>
-			<li><a class='xl' href="<?=get_permalink(get_post_meta($post->ID, ('how_to_buy'), true)); ?>">How to Buy</a></li>
+			<button class='right'>How to Buy</button>
 		</ul>
 
 		<!-- tab "panes" -->
 		<div class="panes">
 			<div>
-				<h2><?=get_post_meta($post->ID, ('product_type'), true); ?></h2>
-				<p><?=get_post_meta($post->ID, ('product_overview'), true); ?></p>
-				<p>ask_a_question = <a href="<?=get_permalink(get_post_meta($post->ID, ('ask_a_question'), true)); ?>">link</a></p>
-                               	<img src="<?=wp_get_attachment_url(get_post_meta($post->ID, ('overview_image'), true));?>"/>
+				<p>
+                               		<img class="right" src="<?=wp_get_attachment_url(get_post_meta($post->ID, ('overview_image'), true));?>"/>
+					<strong><?=get_post_meta($post->ID, ('product_type'), true); ?></strong>
+					<?=get_post_meta($post->ID, ('product_overview'), true); ?>
+					<br>
+					<a href="<?=get_permalink(get_post_meta($post->ID, ('ask_a_question'), true)); ?>">Ask a Question</a>
+				</p>
 			</div>
-			<div>
+<?php
+// Check if patholgies, and loop through each module if so
+if(get_post_meta($post->ID, ('product_type'), true)=='Pathologies') {
+        $pathologies = get_post_meta($post->ID, ('pathologies'), true);
+        foreach($pathologies as $module) {?>
+                        <div>
+				<h2><?=get_the_title($module);?></h2>
+				<p><?=get_post_meta($post->ID, ('content'), true); ?></p>				
+			</div>
+<?php   }
+}
+?>
+                        <div>
 <?php
 $questions = get_post_meta($post->ID, ('frequently_asked_questions'), true);
 foreach($questions as $var => $val) {
-	echo "<strong>". get_the_title($val) . "</strong> " . get_post_meta($val, 'answer', true) . "<br>";
+        echo "<strong>". get_the_title($val) . "</strong> " . get_post_meta($val, 'answer', true) . "<br>";
 }?>
-			</div>
-			<div>
-				<p>pathologies = <?=get_post_meta($post->ID, ('pathologies'), true); ?></p>
-			</div>
+                        </div>
 		</div>
  	</div>
 

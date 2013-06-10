@@ -347,7 +347,12 @@ a:active {
 	display: block;
 	margin: 0 auto;
 }
-
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
 /* Text meant only for screen readers */
 .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);
