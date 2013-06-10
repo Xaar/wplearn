@@ -208,7 +208,7 @@ function create_post_type() {
                         'public' => true,
                         'taxonomies' => array('post_tag'),
                         'has_archive' => true,
-                        'rewrite' => array('slug' => 'heartworks\products', 'with_front' => FALSE),
+                        'rewrite' => array('slug' => 'products', 'with_front' => FALSE),
                         'capability_type' => 'post',
                         'hierarchical' => false,
                         'supports' => array('title', 'thumbnail', 'custom-fields')
@@ -275,18 +275,6 @@ function change_default_title( $title ){
 }
  
 add_filter( 'enter_title_here', 'change_default_title' );
-/*
-function replace_content($content) {
-	global $post;
-	$content = get_post_meta($post->ID, "article", true);
-	return $content;
-}
-add_filter('the_content', 'replace_content');
-function custom_excerpt_length( $length ) {
-	return 18;
-}
-add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
-*/
 // Format dates to a range
 function date_range(){
 global $post;
@@ -315,18 +303,3 @@ global $post;
                 return "$s_day # $s_month # $s_year - $e_day # $e_month # $e_year <br> $s_date";
         }
 }
-add_shortcode('daterange', 'date_range');
-
-function pods_faq_pick_data($data, $name, $value, $options, $pod, $id){
-if ($name == "pods_field_teachers") {
-foreach ($data as $id => &$value) {
-$p = pods('teacher', $id);
-$name = $p->display('name');
-$city = $p->display('profile.city.name');
-$value = $name . ' - ' . $city;
-}
-}
-return $data;
-}
-
-add_filter('pods_field_pick_data', 'pods_faq_pick_data', 1, 6);
