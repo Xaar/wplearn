@@ -114,7 +114,7 @@ wp_reset_postdata();
 			<div class="clearfix"></div>
 		</div><!-- gateway-promo-bullets -->
 	
-		<button>Find out more about GateWay</button>
+		<div class="cta-gateway"><a href="">Find out more about GateWay</a></div>
 	</div><!-- gateway-promo-wrapper-->
 
 

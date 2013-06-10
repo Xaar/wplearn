@@ -26,16 +26,16 @@ endwhile; endif; ?>
 
 				<div class="promo-band row">
 					<div class="promo elearn-home col">
-						<h4>e-learning</h4>
+						<h4>products</h4>
 						<?php echo get_new_royalslider(3); ?>
 					</div>
 					<div class="promo simulator-home col">
-						<h4>simulators</h4>
+						<h4>news</h4>
 						<?php echo get_new_royalslider(3); ?>
 					</div>
 					<div class="promo news-home col">
-						<h4>news &amp; events</h4>
-						<?php echo get_new_royalslider(3); ?>
+						<h4>events</h4>
+						<?php echo get_new_royalslider(7); ?>
 					</div>
 				</div> <!-- promo-band -->
 
@@ -51,14 +51,23 @@ endwhile; endif; ?>
 						?>
 						
 								 <div class="heroTxtContent featured-prod-txt col">
+
+								 	<?php $featuredprod = get_field('product_page_link'); ?>
+
 								 <h3>Featured Product</h3>	
 								 <h2><?php the_title(); ?></h2>
-								 <?php the_excerpt(); ?>
 								 <?php the_content(); ?>
+								 <div class="cta-green">
+								 	<a href= "<?php echo get_permalink( $featuredprod->ID ); ?>">Learn more &raquo; </a> 
+								 </div>
+								<div class="cta-green">
+								 	<a href= "<?php echo get_permalink( $featuredprod->ID ); ?>">Learn more &raquo; </a> 
+								 </div>
 								</div>
+							
 								 <?php if ( has_post_thumbnail()) : ?>
 						 <div class="featured-prod-img">
-						   <a href="<?php $meta_values = get_post_meta($post->ID, 'product_page_link', true); ?> " title="<?php the_title_attribute(); ?>" >
+						   <a href="<?php echo get_permalink( $featuredprod->ID ); ?>" title="<?php the_title_attribute(); ?>" >
 						   <?php the_post_thumbnail(); ?>
 						   </a></div>
 						 <?php endif; ?>

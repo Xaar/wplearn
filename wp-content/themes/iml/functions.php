@@ -191,7 +191,7 @@ function create_post_type() {
 				'singular_name' => __( 'news_event' )
 			),
 			'public' => true,
-			'taxonomies' => array('post_tag'),
+			'taxonomies' => array('post_tag','category'),
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'news-events', 'with_front' => FALSE),
 			'capability_type' => 'post',
@@ -203,7 +203,7 @@ function create_post_type() {
                 array(
                         'labels' => array(
                                 'name' => __( 'Products' ),
-                                'singular_name' => __( 'products' )
+                                'singular_name' => __( 'product' )
                         ),
                         'public' => true,
                         'taxonomies' => array('post_tag'),
@@ -221,7 +221,7 @@ function create_post_type() {
                                 'singular_name' => __( 'featured_product' )
                         ),
                         'public' => true,
-                        'taxonomies' => array('post_tag'),
+                        'taxonomies' => array('post_tag','category'),
                         'has_archive' => true,
                         'capability_type' => 'post',
                         'hierarchical' => false,
