@@ -135,7 +135,9 @@ function IML_scripts() {
 	$jQuery = "http://code.jquery.com/jquery-latest.min.js";
 	wp_deregister_script( 'jQuery' );
 	wp_register_script( 'jQuery', $jQuery);
+	wp_register_script('jquerytools', 'http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js', array('jQuery'));
 	wp_enqueue_script( 'jQuery');
+	wp_enqueue_script( 'jquerytools');
 
 	$carouFredSel= get_bloginfo('template_directory') . "/js/jquery.carouFredSel-6.2.1.js";
 	wp_deregister_script( 'carouFredSel' );
