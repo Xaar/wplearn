@@ -45,7 +45,7 @@ endwhile; endif; ?>
 					<div id="featured-product-home" class="featured-product row">
 						<?php
 						// The Query
-						$the_query_home2 = new WP_Query( 'category_name=featured_product&posts_per_page=1' );
+						$the_query_home2 = new WP_Query( 'post_type=featured-products&posts_per_page=1' );
 						// The Loop
 						while ( $the_query_home2->have_posts() ) : $the_query_home2->the_post();
 						?>
@@ -58,7 +58,7 @@ endwhile; endif; ?>
 								</div>
 								 <?php if ( has_post_thumbnail()) : ?>
 						 <div class="featured-prod-img">
-						   <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+						   <a href="<?php $meta_values = get_post_meta($post->ID, 'product_page_link', true); ?> " title="<?php the_title_attribute(); ?>" >
 						   <?php the_post_thumbnail(); ?>
 						   </a></div>
 						 <?php endif; ?>
