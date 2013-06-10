@@ -22,11 +22,10 @@ $pagex = (get_query_var('page')) ? get_query_var('page') : 1;
 var page = <?=$pagex;?>;
 jQuery(document).ready(function($){
   filter = $('#select-filter option:selected').val();
-  $('#news-event-ajax').load("http://hwstaging.glassworks.co.uk/ajax/"+page+'?filter='+filter);
-
+  $('#news-event-ajax').load("http://hwdemo.glassworks.co.uk/ajax/"+page+'?filter='+filter);
   $('#select-filter').on("change", function(){
     filter = $('#select-filter option:selected').val();
-    $('#news-event-ajax').load("http://hwstaging.glassworks.co.uk/ajax/"+page+'?filter='+filter);
+    $('#news-event-ajax').load("http://hwdemo.glassworks.co.uk/ajax/"+page+'?filter='+filter);
   });
 });
 </script>
