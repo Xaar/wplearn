@@ -59,7 +59,6 @@ background: -o-linear-gradient(top,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* Op
 background: -ms-linear-gradient(top,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* IE10+ */
 background: linear-gradient(to bottom,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-8 */
-
 }
 article,
 aside,
@@ -643,12 +642,11 @@ object {
 .page {
 
 	margin: 0 auto;
-     max-width: 100%;
-     overflow:hidden;
-     position:relative;
-     padding: 0;
-
-
+	max-width: 100%;
+	overflow:hidden;
+	position:relative;
+	padding: 0;
+	padding-top: 60px;
 }
 
 h1 {

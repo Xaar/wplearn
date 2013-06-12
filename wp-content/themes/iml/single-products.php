@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: News-Events
+Template Name: products
 */
 ?>
 
@@ -125,68 +125,12 @@ foreach($questions as $var => $val) {
 		</div>
  	</div>
 
-
-
-	<div id="products" class="product-carousel row">
-		<div class="previous">
-		</div>
-		<div class="next">
-		</div>
-		<ul class="carousel-ul">
-<?php
-// The Query
-$the_query_prod_carousel = new WP_Query( 'post_type=products&posts_per_page=10' );
-// The Loop
-while ( $the_query_prod_carousel->have_posts() ) : $the_query_prod_carousel->the_post();
-	$image_id = get_post_meta($post->ID, ('product_thumbnail'), true);
-	$url = wp_get_attachment_thumb_url($image_id);
-?>
-<li><a href="<?php the_permalink();?>"/><img src="<?php echo $url ?>" width="180" height="200" /><?php the_title(); ?></a></li>
-<?php
-endwhile;
-
-// Reset Post Data
-wp_reset_postdata();
-?>
-		</ul>
-		<div class="clearfix"></div>
-		<div class="previous"></div>
-                <div class="next"></div>
-		<div class="prod-carousel-title"><h4>Explore Heartworks Products</h4></div>
-	</div>
+<?php get_sidebar('products'); ?>
 
 </div><!-- page-wrapper -->
 
+<?php get_sidebar('quicklinks'); ?>
 
-
-
-	<div class="quick-links-wrapper">
-		<div class="quick-links row">
-			<h4>Quick Links</h4>
-			<hr />
-		</div>
-
-		<div class="quick-links row">
-			<div class="quick-link col">
-				<img src="<?php bloginfo('template_directory'); ?>/images/link-pathology.png">
-				<h2><a href="">New Pathology Modules</a></h2>
-				<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-				<button>Learn more &raquo;</button>
-			</div>
-			<div class="quick-link col">
-				<img src="<?php bloginfo('template_directory'); ?>/images/link-gateway.png">
-				<h2><a href="">HeartWorks GateWay</a></h2>
-				<p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage.</p>
-				<button>Learn more &raquo;</button>
-			</div>
-			<div class="quick-link col">
-				<img src="<?php bloginfo('template_directory'); ?>/images/link-sales.png">
-				<h2><a href="">Sales &amp; Support</a></h2>
-				<p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.</p>
-				<button>Learn more &raquo;</button>
-			</div>
-		</div> <!-- .quick-links row -->
-	</div><!--  .quick-links-wrapper -->
 </div>
 
 <?php get_footer(); ?>

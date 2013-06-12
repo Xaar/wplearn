@@ -10,7 +10,6 @@ define("THISPAGE", "sales");
 
 <?php get_header(); ?>
 
-
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 <!--[if IE 7]>
   <style type="text/css">
