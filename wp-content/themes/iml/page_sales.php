@@ -10,7 +10,6 @@ define("THISPAGE", "sales");
 
 <?php get_header(); ?>
 
-
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 <!--[if IE 7]>
   <style type="text/css">
@@ -186,13 +185,13 @@ define("THISPAGE", "sales");
 <script type="text/javascript">
   $(function() {
     var $items = $('#vtab>ul>li');
-    $items.mouseover(function() {
+    $items.click(function() {
       $items.removeClass('selected');
       $(this).addClass('selected');
 
       var index = $items.index($(this));
       $('#vtab>div').hide().eq(index).show();
-    }).eq(1).mouseover();
+    }).eq(0).click();
   });
 </script>
 
@@ -201,8 +200,8 @@ define("THISPAGE", "sales");
 
 <div id="vtab">
   <ul>
-    <li class="home selected">How to Buy</li>
-    <li class="login">Sales Enquires</li>
+    <li class="home">How to Buy</li>
+    <li class="sales">Sales Enquires</li>
     <li class="support">Support Enquiries</li>
   </ul>
   <div>
@@ -210,40 +209,13 @@ define("THISPAGE", "sales");
     <?=do_shortcode('[simplemap]');?>
   </div>
   <div>
-    <h4>Secure Login</h4>
-    <form id="loginForm" action="">
-      <fieldset>
-        <legend>You need to sign in with your Email & Password to continue.</legend>
-        <div>
-          <label for="email">Email:</label>
-          <input type="text" name="email" id="email" />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <div>
-          <input id="login" type="submit" value="Fake Login" />
-        </div>
-      </fieldset>
-    </form>
+    <h4>Contact Us</h4>
+    <?=do_shortcode('[si-contact-form form=\'1\']');?>
   </div>
   <div>
-    <h4>Welcome Home!</h4>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dictum tincidunt
-    metus, vitae porta elit mollis eget. Sed id nisl nec lorem tincidunt sodales. Etiam
-    a dolor tellus, vel rhoncus ligula? Duis adipiscing vehicula urna ut pellentesque!
-    Duis eleifend lacinia diam a rhoncus. Integer viverra dolor eget eros consequat
-    facilisis. Curabitur dignissim dignissim lacinia!
-    <br />
-    <br />
-    Sed bibendum velit et magna placerat bibendum. Donec vitae leo ante. Nulla semper
-    dapibus felis et luctus. Donec congue, lectus eget ullamcorper sagittis, orci enim
-    aliquam risus, eget adipiscing quam neque sed eros. Donec commodo nisi varius augue
-    lacinia pharetra. Cras lacinia fermentum luctus. Nunc venenatis commodo lorem, vitae
-    pulvinar neque dignissim sed. Proin blandit rhoncus risus, sit amet eleifend quam
-    eleifend sed.
-  </div>
+    <h4>Contact Us</h4>
+    <?=do_shortcode('[si-contact-form form=\'1\']');?>
+</div>
 </div>
 
 <a href="#" class="open-testmodal">test modal</a>

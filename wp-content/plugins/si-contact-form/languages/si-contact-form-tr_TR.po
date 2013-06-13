@@ -1,0 +1,3653 @@
+# Fast and Secure Contact Form
+# This file is put in the public domain.
+#
+# Plugin URI: http://www.642weather.com/weather/scripts-wordpress-si-contact.php
+# Description: This contact form lets your visitors send you a quick E-mail message.
+# Version: 1.1
+# Author: Mike Challis
+# Author URI: http://www.642weather.com/weather/scripts.php
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: FS Contact Form 3.1.8.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/si-contact-form\n"
+"POT-Creation-Date: 2013-01-30 23:51:58+00:00\n"
+"PO-Revision-Date: 2013-02-16 00:21+0200\n"
+"Last-Translator: Burak Yavuz <BouRock(at)live.com>\n"
+"Language-Team: BouRock <BouRock(at)live.com>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"Plural-Forms: nplurals=2; plural=(n>1);\n"
+
+#: admin/si-contact-form-admin.php:16 admin/si-contact-form-backup.php:22
+#: admin/si-contact-form-settings-copy.php:24
+msgid "You do not have permissions for managing this option"
+msgstr "Bu seçeneği yönetmek için izinlere sahip değilsiniz"
+
+#: admin/si-contact-form-admin.php:35 admin/si-contact-form-admin.php:2693
+#: admin/si-contact-form-admin.php:2738
+#: admin/si-contact-form-settings-copy.php:16
+msgid "Copy Settings"
+msgstr "Kopyalama Ayarları"
+
+#: admin/si-contact-form-admin.php:51 admin/si-contact-form-admin.php:2788
+#: admin/si-contact-form-admin.php:2817
+msgid "Restore Settings"
+msgstr "Geri Yükleme Ayarları"
+
+#: admin/si-contact-form-admin.php:64 admin/si-contact-form-admin.php:2681
+msgid "Send Test"
+msgstr "Deneme Gönder"
+
+#. #-#-#-#-#  plugin.pot (Fast Secure Contact Form 3.1.8)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: admin/si-contact-form-admin.php:100 admin/si-contact-form-admin.php:1873
+#: admin/si-contact-form-admin.php:2834 si-contact-form-display.php:845
+msgid "Fast Secure Contact Form"
+msgstr "Hızlı Güvenli İletişim Formu"
+
+#: admin/si-contact-form-admin.php:102 admin/si-contact-form-admin.php:797
+msgid "Usage"
+msgstr "Kullanım"
+
+#: admin/si-contact-form-admin.php:106 admin/si-contact-form-admin.php:801
+msgid "Add the shortcode in a Page, Post, or Text Widget"
+msgstr "Bir Sayfaya, Yazıya veya Metin Parçacığına kısa kodu ekle"
+
+#: admin/si-contact-form-admin.php:106 admin/si-contact-form-admin.php:801
+#: admin/si-contact-form-admin.php:810 admin/si-contact-form-admin.php:851
+#: admin/si-contact-form-admin.php:859 admin/si-contact-form-admin.php:877
+#: admin/si-contact-form-admin.php:963 admin/si-contact-form-admin.php:1036
+#: admin/si-contact-form-admin.php:1055 admin/si-contact-form-admin.php:1063
+#: admin/si-contact-form-admin.php:1084 admin/si-contact-form-admin.php:1094
+#: admin/si-contact-form-admin.php:1130 admin/si-contact-form-admin.php:1140
+#: admin/si-contact-form-admin.php:1158 admin/si-contact-form-admin.php:1169
+#: admin/si-contact-form-admin.php:1177 admin/si-contact-form-admin.php:1186
+#: admin/si-contact-form-admin.php:1201 admin/si-contact-form-admin.php:1209
+#: admin/si-contact-form-admin.php:1227 admin/si-contact-form-admin.php:1251
+#: admin/si-contact-form-admin.php:1258 admin/si-contact-form-admin.php:1265
+#: admin/si-contact-form-admin.php:1272 admin/si-contact-form-admin.php:1289
+#: admin/si-contact-form-admin.php:1315 admin/si-contact-form-admin.php:1336
+#: admin/si-contact-form-admin.php:1404 admin/si-contact-form-admin.php:1430
+#: admin/si-contact-form-admin.php:1452 admin/si-contact-form-admin.php:1460
+#: admin/si-contact-form-admin.php:1470 admin/si-contact-form-admin.php:1478
+#: admin/si-contact-form-admin.php:1486 admin/si-contact-form-admin.php:1504
+#: admin/si-contact-form-admin.php:1512 admin/si-contact-form-admin.php:1552
+#: admin/si-contact-form-admin.php:1599 admin/si-contact-form-admin.php:1751
+#: admin/si-contact-form-admin.php:1759 admin/si-contact-form-admin.php:1787
+#: admin/si-contact-form-admin.php:1794 admin/si-contact-form-admin.php:1815
+#: admin/si-contact-form-admin.php:1823 admin/si-contact-form-admin.php:1832
+#: admin/si-contact-form-admin.php:1850 admin/si-contact-form-admin.php:1858
+#: admin/si-contact-form-admin.php:1866 admin/si-contact-form-admin.php:1930
+#: admin/si-contact-form-admin.php:1953 admin/si-contact-form-admin.php:1976
+#: admin/si-contact-form-admin.php:1984 admin/si-contact-form-admin.php:1991
+#: admin/si-contact-form-admin.php:2006 admin/si-contact-form-admin.php:2018
+#: admin/si-contact-form-admin.php:2037 admin/si-contact-form-admin.php:2061
+#: admin/si-contact-form-admin.php:2098 admin/si-contact-form-admin.php:2139
+#: admin/si-contact-form-admin.php:2155 admin/si-contact-form-admin.php:2167
+#: admin/si-contact-form-admin.php:2186 admin/si-contact-form-admin.php:2210
+#: admin/si-contact-form-admin.php:2247 admin/si-contact-form-admin.php:2270
+#: admin/si-contact-form-admin.php:2282 admin/si-contact-form-admin.php:2302
+#: admin/si-contact-form-admin.php:2326 admin/si-contact-form-admin.php:2363
+#: admin/si-contact-form-admin.php:2379 admin/si-contact-form-admin.php:2399
+#: admin/si-contact-form-admin.php:2409 admin/si-contact-form-admin.php:2418
+#: admin/si-contact-form-admin.php:2426 admin/si-contact-form-admin.php:2433
+#: admin/si-contact-form-admin.php:2440 admin/si-contact-form-admin.php:2447
+#: admin/si-contact-form-admin.php:2454 admin/si-contact-form-admin.php:2461
+#: admin/si-contact-form-admin.php:2468 admin/si-contact-form-admin.php:2475
+#: admin/si-contact-form-admin.php:2482 admin/si-contact-form-admin.php:2489
+#: admin/si-contact-form-admin.php:2496 admin/si-contact-form-admin.php:2503
+#: admin/si-contact-form-admin.php:2510 admin/si-contact-form-admin.php:2517
+#: admin/si-contact-form-admin.php:2524 admin/si-contact-form-admin.php:2532
+#: admin/si-contact-form-admin.php:2539 admin/si-contact-form-admin.php:2547
+#: admin/si-contact-form-admin.php:2555 admin/si-contact-form-admin.php:2571
+#: admin/si-contact-form-admin.php:2615 admin/si-contact-form-admin.php:2637
+msgid "help"
+msgstr "yardım"
+
+#: admin/si-contact-form-admin.php:108 admin/si-contact-form-admin.php:803
+msgid "Shortcode for this form:"
+msgstr "Bu form için kısa kod:"
+
+#: admin/si-contact-form-admin.php:112
+msgid "Preview"
+msgstr "Önizle"
+
+#: admin/si-contact-form-admin.php:114
+msgid "Preview Multi-Forms:"
+msgstr "Çoklu Formları Önizle:"
+
+#: admin/si-contact-form-admin.php:114 admin/si-contact-form-admin.php:818
+#: admin/si-contact-form-admin.php:871 admin/si-contact-form-admin.php:888
+#: admin/si-contact-form-admin.php:1220 admin/si-contact-form-admin.php:1330
+#: admin/si-contact-form-admin.php:1424 admin/si-contact-form-admin.php:1498
+#: admin/si-contact-form-admin.php:1902 admin/si-contact-form-admin.php:1970
+#: admin/si-contact-form-admin.php:2110 admin/si-contact-form-admin.php:2259
+#: admin/si-contact-form-admin.php:2374 admin/si-contact-form-admin.php:2566
+#: admin/si-contact-form-admin.php:2611 admin/si-contact-form-admin.php:2633
+msgid "(form %d)"
+msgstr "(form %d)"
+
+#: admin/si-contact-form-admin.php:122 admin/si-contact-form-admin.php:125
+#: admin/si-contact-form-admin.php:129 admin/si-contact-form-admin.php:132
+#: admin/si-contact-form-admin.php:827 admin/si-contact-form-admin.php:830
+#: admin/si-contact-form-admin.php:834 admin/si-contact-form-admin.php:837
+#: admin/si-contact-form-admin.php:2721 admin/si-contact-form-admin.php:2724
+#: admin/si-contact-form-admin.php:2761 admin/si-contact-form-admin.php:2764
+#: admin/si-contact-form-admin.php:2798 admin/si-contact-form-admin.php:2801
+#: si-contact-form-process.php:812 si-contact-form-process.php:1150
+msgid "Form: %d"
+msgstr "Form: %d"
+
+#: admin/si-contact-form-admin.php:123 admin/si-contact-form-admin.php:130
+msgid "edit"
+msgstr "düzenle"
+
+#: admin/si-contact-form-admin.php:502 admin/si-contact-form-admin.php:503
+msgid "Redirecting to Form 1"
+msgstr "Form 1'e Yönlendiriliyor"
+
+#: admin/si-contact-form-admin.php:517 si-contact-form.php:65
+#: si-contact-form.php:1600
+msgid "<p>Comments or questions are welcome.</p>"
+msgstr "<p>Yorum ve sorularınızı bekliyoruz.</p>"
+
+#: admin/si-contact-form-admin.php:522
+msgid "Options saved."
+msgstr "Seçenekler kaydedildi."
+
+#: admin/si-contact-form-admin.php:545
+msgid "Fast Secure Contact Form Options"
+msgstr "Fast Secure Contact Form Seçenekleri"
+
+#: admin/si-contact-form-admin.php:662
+msgid "Downloaded %s times"
+msgstr "%s kere indirildi"
+
+#: admin/si-contact-form-admin.php:668 admin/si-contact-form-admin.php:676
+msgid "(Average rating based on %s ratings)"
+msgstr "(%s orana dayalı ortalama oran)"
+
+#: admin/si-contact-form-admin.php:670
+msgid "5 stars"
+msgstr "5 yıldız"
+
+#: admin/si-contact-form-admin.php:671
+msgid "4 stars"
+msgstr "4 yıldız"
+
+#: admin/si-contact-form-admin.php:672
+msgid "3 stars"
+msgstr "3 yıldız"
+
+#: admin/si-contact-form-admin.php:673
+msgid "2 stars"
+msgstr "2 yıldız"
+
+#: admin/si-contact-form-admin.php:674
+msgid "1 star"
+msgstr "1 yıldız"
+
+#: admin/si-contact-form-admin.php:676
+msgid "rate"
+msgstr "oran"
+
+#: admin/si-contact-form-admin.php:686
+msgid "a newer version is available: %s"
+msgstr "daha yeni bir sürüm mevcut: %s"
+
+#: admin/si-contact-form-admin.php:688
+msgid "A newer version of Fast Secure Contact Form is available: %s"
+msgstr "Fast Secure Contact Form'un daha yeni bir sürümü mevcut: %s"
+
+#: admin/si-contact-form-admin.php:691
+msgid "(latest version)"
+msgstr "(en son sürüm)"
+
+#: admin/si-contact-form-admin.php:702
+msgid "Version:"
+msgstr "Sürüm:"
+
+#: admin/si-contact-form-admin.php:703
+msgid "Changelog"
+msgstr "Değişiklikler"
+
+#: admin/si-contact-form-admin.php:704 admin/si-contact-form-admin.php:2669
+msgid "FAQ"
+msgstr "SSS"
+
+#: admin/si-contact-form-admin.php:705 admin/si-contact-form-admin.php:780
+msgid "Rate This"
+msgstr "Bunu Oranla"
+
+#: admin/si-contact-form-admin.php:706
+msgid "Support"
+msgstr "Destek"
+
+#: admin/si-contact-form-admin.php:707 admin/si-contact-form-admin.php:724
+msgid "Donate"
+msgstr "Bağış"
+
+#: admin/si-contact-form-admin.php:708
+msgid "Free PHP Scripts"
+msgstr "Ücretsiz PHP Betikleri"
+
+#: admin/si-contact-form-admin.php:709
+msgid "Contact"
+msgstr "İletişim"
+
+#: admin/si-contact-form-admin.php:727
+msgid "Please donate to keep this plugin FREE"
+msgstr "Bu eklentiyi ÜCRETSİZ tutmak için lütfen bağış yapın"
+
+#: admin/si-contact-form-admin.php:728
+msgid ""
+"If you find this plugin useful to you, please consider making a small "
+"donation to help contribute to my time invested and to further development. "
+"Thanks for your kind support!"
+msgstr ""
+"Eğer bu eklentiyi faydalı bulduysanız, lütfen ilerideki geliştirilmesine ve "
+"ayırdığım zamana katkıda bulunmak küçük bir bağış yapmayı düşünün. Nazik "
+"desteğiniz için teşekkürler!"
+
+#: admin/si-contact-form-admin.php:729
+msgid "More from Mike Challis"
+msgstr "Mike Challis'ten daha fazlası"
+
+#: admin/si-contact-form-admin.php:752
+msgid "ThemeFuse Original WP Themes"
+msgstr "ThemeFuse Orijinal WP Temaları"
+
+#: admin/si-contact-form-admin.php:778
+msgid ""
+"Mike Challis says: \"Hello, I have spent hundreds of hours coding this "
+"plugin just for you. If you are satisfied with my programs and support "
+"please consider making a small donation. If you are not able to, that is OK."
+msgstr ""
+"Mike Challis diyor ki: \"Merhaba, bu eklentiyi sırf sizin için yüzlerce saat "
+"harcayarak yazdım. Eğer programlarımdan ve desteğimden memnunsanız lütfen "
+"küçük bir bağış yapmayı düşünün. Eğer değilseniz, sorun değil."
+
+#: admin/si-contact-form-admin.php:779
+msgid ""
+"Suggested donation: $25, $20, $15, $10, $5, $3. Donations can be made with "
+"your PayPal account, or securely using any of the major credit cards. Please "
+"also rate my plugin.\""
+msgstr ""
+"Önerilen bağışlar: $25, $20, $15, $10, $5, $3. Bağışlar PayPal hesabınız ile "
+"yapılabilir ya da herhangi bir kredi kartını güvenle kullanabilirsiniz. "
+"Lütfen ayrıca eklentimi oranlayın.\""
+
+#: admin/si-contact-form-admin.php:782
+msgid "Close this message"
+msgstr "Bu iletiyi kapat"
+
+#: admin/si-contact-form-admin.php:794
+msgid ""
+"I have donated to help contribute for the development of this Contact Form."
+msgstr ""
+"Bu İletişim Formunun geliştirilmesine katkıda bulunmak için bağış yaptım."
+
+#: admin/si-contact-form-admin.php:809
+msgid ""
+"SFC Like and SFC Share plugins cause problems with Fast Secure Contact Form, "
+"please disable or uninstall SFC Like and SFC Share plugins."
+msgstr ""
+"SFC Beğen ve SFC Paylaş eklentileri Fast Secure Contact Form ile sorunlara "
+"neden olur, lütfen SFC Beğen ve SFC Paylaş eklentilerini etkisizleştirin ya "
+"da kaldırın."
+
+#: admin/si-contact-form-admin.php:816
+msgid "Options"
+msgstr "Seçenekler"
+
+#: admin/si-contact-form-admin.php:818
+msgid "Multi-forms:"
+msgstr "Çoklu formlar:"
+
+#: admin/si-contact-form-admin.php:828 admin/si-contact-form-admin.php:835
+msgid "view"
+msgstr "göster"
+
+#: admin/si-contact-form-admin.php:843 admin/si-contact-form-admin.php:851
+#: admin/si-contact-form-admin.php:859 admin/si-contact-form-admin.php:877
+#: admin/si-contact-form-admin.php:963 admin/si-contact-form-admin.php:1036
+#: admin/si-contact-form-admin.php:1055 admin/si-contact-form-admin.php:1063
+#: admin/si-contact-form-admin.php:1084 admin/si-contact-form-admin.php:1094
+#: admin/si-contact-form-admin.php:1130 admin/si-contact-form-admin.php:1140
+#: admin/si-contact-form-admin.php:1158 admin/si-contact-form-admin.php:1169
+#: admin/si-contact-form-admin.php:1177 admin/si-contact-form-admin.php:1186
+#: admin/si-contact-form-admin.php:1201 admin/si-contact-form-admin.php:1209
+#: admin/si-contact-form-admin.php:1227 admin/si-contact-form-admin.php:1251
+#: admin/si-contact-form-admin.php:1258 admin/si-contact-form-admin.php:1265
+#: admin/si-contact-form-admin.php:1272 admin/si-contact-form-admin.php:1289
+#: admin/si-contact-form-admin.php:1315 admin/si-contact-form-admin.php:1336
+#: admin/si-contact-form-admin.php:1404 admin/si-contact-form-admin.php:1430
+#: admin/si-contact-form-admin.php:1452 admin/si-contact-form-admin.php:1460
+#: admin/si-contact-form-admin.php:1470 admin/si-contact-form-admin.php:1478
+#: admin/si-contact-form-admin.php:1486 admin/si-contact-form-admin.php:1503
+#: admin/si-contact-form-admin.php:1512 admin/si-contact-form-admin.php:1552
+#: admin/si-contact-form-admin.php:1599 admin/si-contact-form-admin.php:1608
+#: admin/si-contact-form-admin.php:1751 admin/si-contact-form-admin.php:1759
+#: admin/si-contact-form-admin.php:1787 admin/si-contact-form-admin.php:1794
+#: admin/si-contact-form-admin.php:1815 admin/si-contact-form-admin.php:1823
+#: admin/si-contact-form-admin.php:1832 admin/si-contact-form-admin.php:1850
+#: admin/si-contact-form-admin.php:1858 admin/si-contact-form-admin.php:1866
+#: admin/si-contact-form-admin.php:1930 admin/si-contact-form-admin.php:1953
+#: admin/si-contact-form-admin.php:1976 admin/si-contact-form-admin.php:1984
+#: admin/si-contact-form-admin.php:1991 admin/si-contact-form-admin.php:2006
+#: admin/si-contact-form-admin.php:2018 admin/si-contact-form-admin.php:2037
+#: admin/si-contact-form-admin.php:2061 admin/si-contact-form-admin.php:2098
+#: admin/si-contact-form-admin.php:2137 admin/si-contact-form-admin.php:2155
+#: admin/si-contact-form-admin.php:2167 admin/si-contact-form-admin.php:2186
+#: admin/si-contact-form-admin.php:2210 admin/si-contact-form-admin.php:2247
+#: admin/si-contact-form-admin.php:2270 admin/si-contact-form-admin.php:2282
+#: admin/si-contact-form-admin.php:2302 admin/si-contact-form-admin.php:2326
+#: admin/si-contact-form-admin.php:2363 admin/si-contact-form-admin.php:2379
+#: admin/si-contact-form-admin.php:2399 admin/si-contact-form-admin.php:2409
+#: admin/si-contact-form-admin.php:2418 admin/si-contact-form-admin.php:2426
+#: admin/si-contact-form-admin.php:2433 admin/si-contact-form-admin.php:2440
+#: admin/si-contact-form-admin.php:2447 admin/si-contact-form-admin.php:2454
+#: admin/si-contact-form-admin.php:2461 admin/si-contact-form-admin.php:2468
+#: admin/si-contact-form-admin.php:2475 admin/si-contact-form-admin.php:2482
+#: admin/si-contact-form-admin.php:2489 admin/si-contact-form-admin.php:2496
+#: admin/si-contact-form-admin.php:2503 admin/si-contact-form-admin.php:2510
+#: admin/si-contact-form-admin.php:2517 admin/si-contact-form-admin.php:2524
+#: admin/si-contact-form-admin.php:2532 admin/si-contact-form-admin.php:2539
+#: admin/si-contact-form-admin.php:2547 admin/si-contact-form-admin.php:2555
+#: admin/si-contact-form-admin.php:2571 admin/si-contact-form-admin.php:2615
+#: admin/si-contact-form-admin.php:2637
+msgid "Click for Help!"
+msgstr "Yardım için tıklayın!"
+
+#: admin/si-contact-form-admin.php:843
+msgid "Multi-forms help"
+msgstr "Çoklu formlar yardım"
+
+#: admin/si-contact-form-admin.php:845
+msgid ""
+"This multi-form feature allows you to have many different forms on your "
+"site. Each form has unique settings and shortcode. Select the form you want "
+"to edit using the links above, then edit the settings below for the form you "
+"selected. Be sure to use the correct shortcode to call the form."
+msgstr ""
+"Bu çoklu form özelliği sitenizde pek çok farklı forma sahip olmanıza izin "
+"verir. Her form benzersiz ayarlara ve kısa koda sahiptir. Yukarıdaki "
+"bağlantıyı kullanarak düzenlemek istediğiniz formu seçin, ondan sonra "
+"seçtiğiniz form için aşağıdan ayarları düzenleyin. Formu çağırmak için doğru "
+"kısa kodu kullandığınızdan emin olun."
+
+#: admin/si-contact-form-admin.php:849
+msgid "Number of available Multi-forms"
+msgstr "Kullanılabilir Çoklu formların sayısı"
+
+#: admin/si-contact-form-admin.php:850
+msgid "Caution: Lowering this setting deletes forms."
+msgstr "Dikkat: Bu ayarı düşürmek formları siler."
+
+#: admin/si-contact-form-admin.php:853
+msgid ""
+"Use this setting to increase or decrease the number of available forms. The "
+"most forms you can add is 99. Caution: lowering this number will delete "
+"forms of a higher number than the number you set."
+msgstr ""
+"Kullanılabilir formların sayısını arttırmak ya da azaltmak için bu ayarı "
+"kullanın. Ekleyebileceğiniz en çok form 99'dur. Dikkat: Bu sayıyı düşürmek "
+"ayarladığınız sayıdan en yüksek sayıdaki formları silecek."
+
+#: admin/si-contact-form-admin.php:858
+msgid "Form %d label"
+msgstr "Form %d etiketi"
+
+#: admin/si-contact-form-admin.php:861
+msgid ""
+"Enter a label for your form. This is not used anywhere else, it just helps "
+"you keep track of what you are using it for."
+msgstr ""
+"Formunuz için bir etiket girin. Bu başka bir yerde kullanılmaz, sadece ne "
+"için kullandığınızı izlemenize yardımcı olur."
+
+#: admin/si-contact-form-admin.php:867 admin/si-contact-form-admin.php:885
+#: admin/si-contact-form-admin.php:1217 admin/si-contact-form-admin.php:1327
+#: admin/si-contact-form-admin.php:1421 admin/si-contact-form-admin.php:1495
+#: admin/si-contact-form-admin.php:1878 admin/si-contact-form-admin.php:1965
+#: admin/si-contact-form-admin.php:2107 admin/si-contact-form-admin.php:2256
+#: admin/si-contact-form-admin.php:2371 admin/si-contact-form-admin.php:2563
+#: admin/si-contact-form-admin.php:2608 admin/si-contact-form-admin.php:2630
+#: admin/si-contact-form-admin.php:2657
+msgid "Update Options"
+msgstr "Seçenekleri Güncelle"
+
+#: admin/si-contact-form-admin.php:871 admin/si-contact-form-admin.php:1498
+msgid "Form:"
+msgstr "Form:"
+
+#: admin/si-contact-form-admin.php:875
+msgid "Welcome introduction"
+msgstr "Karşılama girişi"
+
+#: admin/si-contact-form-admin.php:879
+msgid "This is printed before the contact form. HTML is allowed."
+msgstr "Bu, iletişim formundan önce yazdırılır. HTML'e izin verilir."
+
+#: admin/si-contact-form-admin.php:888
+msgid "E-mail:"
+msgstr "E-posta:"
+
+#: admin/si-contact-form-admin.php:900 si-contact-form.php:70
+#: si-contact-form.php:744 si-contact-form.php:1601
+msgid "Webmaster"
+msgstr "Web yönetcisi"
+
+#: admin/si-contact-form-admin.php:947
+msgid "E-mail To"
+msgstr "Şu E-postaya"
+
+#: admin/si-contact-form-admin.php:951 admin/si-contact-form-admin.php:953
+msgid "ERROR: Misconfigured \"E-mail To\" address."
+msgstr "HATA: Hatalı \"Şu E-postaya\" adresi."
+
+#: admin/si-contact-form-admin.php:957 admin/si-contact-form-admin.php:2673
+msgid ""
+"Warning: Your web host has the mail() function disabled. PHP cannot send "
+"email."
+msgstr ""
+"Uyarı: Web barındırıcınız mail() işlevini etkisizleştirmiş. PHP, eposta "
+"gönderemiyor."
+
+#: admin/si-contact-form-admin.php:958 admin/si-contact-form-admin.php:2674
+msgid ""
+"Have them fix it. Or you can install the \"WP Mail SMTP\" plugin and "
+"configure it to use SMTP."
+msgstr ""
+"Sorunu gidermelerini sağlayın. Ya da \"WP Mail SMTP\" eklentisini "
+"yükleyebilir ve SMTP kullanmak için yapılandırabilirsiniz."
+
+#: admin/si-contact-form-admin.php:965
+msgid ""
+"E-mail address the messages are sent to (your email). Add as many contacts "
+"as you need, the drop down list on the contact form will be made "
+"automatically. Each contact has a name and an email address separated by a "
+"comma. Separate each contact by pressing enter. If you need to add more than "
+"one contact, follow this example:"
+msgstr ""
+"İletilerin gönderildiği e-posta adresi (sizin epostanız). Dilediğiniz kadar "
+"kişi ekleyin, iletişim formundaki aşağı açılır liste otomatik olarak "
+"oluşturulacaktır. Her kişinin virgül ile ayrılmış bir adı ve eposta adresi "
+"vardır. Her bir kişiyi enter'a basarak ayırın. Eğer birden fazla kişi "
+"eklemeniz gerekiyorsa, bu örneği takip edin:"
+
+#: admin/si-contact-form-admin.php:966
+msgid ""
+"If you need to use a comma in the name, escape it with a back slash, like "
+"this: \\,"
+msgstr ""
+"Eğer isimde virgül kullanmanız gerekirse, virgülü ters bölü karakteriyle "
+"atlatın, şunun gibi:\\."
+
+#: admin/si-contact-form-admin.php:970
+msgid ""
+"You can have multiple emails per contact using [cc]Carbon Copy. Separate "
+"each email with a semicolon. Follow this example:"
+msgstr ""
+"[cc]Karbon Kopya kullanan kişi başına çoklu epostalara sahip olabilirsiniz. "
+"Her epostayı noktalı virgül ile ayırın. Bu örneği takip edin:"
+
+#: admin/si-contact-form-admin.php:973
+msgid ""
+"You can specify [cc]Carbon Copy or [bcc]Blind Carbon Copy by using tags. "
+"Separate each email with a semicolon. Follow this example:"
+msgstr ""
+"Etiketleri kullanarak [cc]Karbon Kopya veya [bcc]Kör Karbon Kopya "
+"belirleyebilirsiniz. Noktalı virgülle her epostayı ayırın. Bu örneği takip "
+"edin:"
+
+#: admin/si-contact-form-admin.php:981
+msgid "Warning: Your web host has PHP safe_mode turned on."
+msgstr "Uyarı: Web barındırıcınızda PHP safe_mode açık."
+
+#: admin/si-contact-form-admin.php:983
+msgid ""
+"PHP safe_mode can cause problems like sending mail failures and file "
+"permission errors."
+msgstr ""
+"PHP safe_mode posta gönderme başarısızlıklarına ve dosya izni hatalarına "
+"neden olabilir."
+
+#: admin/si-contact-form-admin.php:984 admin/si-contact-form-admin.php:992
+msgid "Contact your web host for support."
+msgstr "Destek için web barındırıcınızla temasa geçin."
+
+#: admin/si-contact-form-admin.php:989
+msgid "Warning: Your web host has not upgraded from PHP4 to PHP5."
+msgstr "Uyarı: Web barındırıcınız PHP4'ten PHP5'e yükseltilmemiş."
+
+#: admin/si-contact-form-admin.php:991
+msgid ""
+"PHP4 was officially discontinued August 8, 2008 and is no longer considered "
+"safe."
+msgstr ""
+"PHP4 resmi olarak 8 Ağustos 2008'de durduruldu ve artık güvenli olduğu "
+"düşünülmemekte."
+
+#: admin/si-contact-form-admin.php:1016 admin/si-contact-form-admin.php:1018
+msgid "ERROR: Misconfigured \"E-mail From\" address."
+msgstr "HATA: Hatalı \"Şu E-postadan\" adresi."
+
+#: admin/si-contact-form-admin.php:1025 admin/si-contact-form-admin.php:1028
+msgid ""
+"Warning: \"E-mail From\" is not set to an address from the same domain name "
+"as your web site (%s). This can sometimes cause mail not to send, or send "
+"but be delivered to a Spam folder. Be sure to test that your form is sending "
+"email and that you are receiving it, if not, fix this setting."
+msgstr ""
+"Uyarı: \"Şu E-postadan\" alanına web siteniz (%s) gibi aynı etki alanı "
+"adından bir adres ayarlanmadı. Bu bazen postanın gönderilememesine neden "
+"olabilir veya gönderilir ama İstenmeyen mesaj klasörüne gider. Formunuz "
+"eposta gönderip aldığını deneyip emin olun, eğer gönderip almıyorsa, bu "
+"ayarı düzeltin."
+
+#: admin/si-contact-form-admin.php:1034
+msgid "Custom E-mail From (optional)"
+msgstr "Şu E-postadan (isteğe bağlı)"
+
+#: admin/si-contact-form-admin.php:1038
+msgid ""
+"E-mail address the messages are sent from. Some web hosts do not allow PHP "
+"to send email unless the envelope sender email address is on the same web "
+"domain as your web site. And they require it to be a real address on that "
+"domain, or mail will NOT SEND! (They do this to help prevent spam.) If your "
+"contact form does not send any email, then set this to a real email address "
+"on the SAME domain as your web site, then test the form."
+msgstr ""
+"İletilerin karşıdan gönderildiği e-posta adresi. Bazı web barındırıcıları, "
+"web sitenizdeki gibi gönderen eposta adresi aynı web etki alanında olmadıkça "
+"PHP'nin eposta göndermesine izin vermez. Ve bu etki alanında gerçek bir "
+"adres olmasını gerektirir ya da posta GÖNDERİLMEYECEKTİR! (Bunu istenmeyen "
+"mesajları önlemesine yardımcı olması için yaparlar.) Eğer iletişim formunuz "
+"herhangi bir eposta göndermiyorsa, o zaman buraya web siteniz gibi AYNI etki "
+"alanındaki gerçek bir eposta adresini ayarlayın, ondan sonra formu deneyin."
+
+#: admin/si-contact-form-admin.php:1039
+msgid ""
+"If your form still does not send any email, also check the setting below: "
+"\"Enable when web host requires \"Mail From\" strictly tied to domain email "
+"account\". In some cases, this will resolve the problem. This setting is "
+"also recommended for gmail users to prevent email from going to spam folder."
+msgstr ""
+"Eğer formunuz hala herhangi bir eposta göndermiyorsa, ayrıca aşağıdaki ayarı "
+"kontrol edin: \"Web barındırıcısı etki alanı eposta hesabına kesinlikle "
+"bağlı \"Şu E-postadan\" alanını gerektirdiğinde etkinleştirin\". Bazı "
+"durumlarda, bu, sorunu çözecek. Bu ayar ayrıca epostayı istenmeyen mesajlar "
+"klasörüne gitmesini önlemede gmail kullanıcıları için önerilir."
+
+#: admin/si-contact-form-admin.php:1041 admin/si-contact-form-admin.php:1068
+msgid "Enter just an email: user1@example.com"
+msgstr "Sadece bir eposta girin: kullanici1@ornek.com"
+
+#: admin/si-contact-form-admin.php:1042
+msgid "Or enter name and email: webmaster,user1@example.com "
+msgstr "Veya isim ve eposta girin: web yöneticisi,kullanici1@ornek.com"
+
+#: admin/si-contact-form-admin.php:1049
+msgid ""
+"Warning: Enabling this setting requires the \"E-mail From\" setting above to "
+"also be set."
+msgstr ""
+"Uyarı: Bu ayarı etkinleştirmek ayrıca yukarıdaki \"Şu E-postadan\" ayarını "
+"ayarlamayı gerektirir."
+
+#: admin/si-contact-form-admin.php:1054
+msgid ""
+"Enable when web host requires \"Mail From\" strictly tied to domain email "
+"account."
+msgstr ""
+"Web barındırıcısı etki alanı eposta hesabına kesinlikle bağlı \"Şu E-postadan"
+"\" alanını gerektirdiğinde etkinleştir."
+
+#: admin/si-contact-form-admin.php:1057
+msgid ""
+"If your form does not send any email, then set the \"E-mail From\" setting "
+"above to an address on the same web domain as your web site. If email still "
+"does not send, also check this setting. (ie: some users report this is "
+"required by yahoo small business web hosting)"
+msgstr ""
+"Eğer formunuz hala herhangi bir eposta göndermiyorsa, o zaman yukarıdaki "
+"\"Şu E-postadan\" ayarını web siteniz gibi aynı web etki alanındaki bir "
+"adrese ayarlayın. Eğer eposta hala göndermiyorsa, ayrıca bu ayarı kontrol "
+"edin. (yani: bazı kullanıcılar bunun yahoo small business web hosting "
+"tarafından gerektiğini bildirdi)"
+
+#: admin/si-contact-form-admin.php:1061
+msgid "Custom Reply To (optional)"
+msgstr "Özel Yanıtla (isteğe bağlı)"
+
+#: admin/si-contact-form-admin.php:1065
+msgid ""
+"Leave this setting blank for most forms because the \"reply to\" is set "
+"automatically. Only use this setting if you are using the form for a mailing "
+"list and you do NOT want the reply going to the form user."
+msgstr ""
+"Çoğu formlarda bu ayarı boş bırakın çünkü \"yanıtla\" otomatik olarak "
+"ayarlanır. Bu ayarı sadece, bir postalama listesi için form kullanıyorsanız "
+"ve yanıtın form kullanıcısına gitmesini İSTEMİYORSANIZ kullanın."
+
+#: admin/si-contact-form-admin.php:1066
+msgid ""
+"Defines the email address that is automatically inserted into the \"To:\" "
+"field when a user replies to an email message."
+msgstr ""
+"Bir kullanıcı bir iletiyi yanıtladığında eposta adresinin \"Kime:\" alanına "
+"otomatik olarak eklenmesini tanımlar."
+
+#: admin/si-contact-form-admin.php:1072
+msgid "Send E-mail function:"
+msgstr "E-posta gönder işlevi:"
+
+#: admin/si-contact-form-admin.php:1077
+msgid "WordPress"
+msgstr "WordPress"
+
+#: admin/si-contact-form-admin.php:1077
+msgid "PHP"
+msgstr "PHP"
+
+#: admin/si-contact-form-admin.php:1086
+msgid ""
+"Emails are normally sent by the wordpress mail function. Other functions are "
+"provided for diagnostic uses."
+msgstr ""
+"Epostalar normalde wordpress posta işlevi tarafından gönderilir. Diğer "
+"işlevler teşhis kullanımları için sağlanır."
+
+#: admin/si-contact-form-admin.php:1087
+msgid ""
+"If your form does not send any email, first try setting the \"E-mail From\" "
+"setting above because some web hosts do not allow PHP to send email unless "
+"the \"From:\" email address is on the same web domain."
+msgstr ""
+"Eğer formunuz herhangi bir eposta göndermiyorsa, önce yukarıdan \"Şu E-"
+"postadan\" ayarını ayarlamayı deneyin çünkü bazı web barındırıcıları "
+"\"Kimden:\" alanında aynı web etki alanı adında eposta adresi olmadıkça "
+"PHP'nin eposta göndermesine izin vermez."
+
+#: admin/si-contact-form-admin.php:1088
+msgid ""
+"Note: attachments are only supported when using the \"WordPress\" mail "
+"function."
+msgstr ""
+"Not: ekler sadece \"WordPress\" posta işlevi kullanıldığında desteklenir."
+
+#: admin/si-contact-form-admin.php:1093
+msgid "Enable to receive email as HTML instead of plain text."
+msgstr "Düz metin yerine HTML olarak eposta almayı etkinleştir."
+
+#: admin/si-contact-form-admin.php:1096
+msgid ""
+"Enable if you want the email message sent as HTML format. HTML format is "
+"desired if you want to avoid a 70 character line wordwrap when you copy and "
+"paste the email message. Normally the email is sent in plain text "
+"wordwrapped 70 characters per line to comply with most email programs."
+msgstr ""
+"Eğer eposta iletisinin HTML biçiminde gönderilmesini istiyorsanız "
+"etkinleştirin. Eposta iletisini kopyaladığınızda ve yapıştırdığınızda 70 "
+"karakterlik satırda kelimeleri kaydırmasından kurtulmak istiyorsanız HTML "
+"biçimi istenir. Normalde eposta, çoğu eposta programıyla düz metinde, satır "
+"başına 70 karakter sözcükler kaydırılmış gönderilir."
+
+#: admin/si-contact-form-admin.php:1121 admin/si-contact-form-admin.php:1123
+msgid "ERROR: Misconfigured \"Bcc E-mail\" address."
+msgstr "HATA: Hatalı \"Bcc E-posta\" adresi."
+
+#: admin/si-contact-form-admin.php:1128
+msgid "E-mail Bcc (optional)"
+msgstr "E-posta Bcc (isteğe bağlı)"
+
+#: admin/si-contact-form-admin.php:1132
+msgid ""
+"E-mail address(s) to receive Bcc (Blind Carbon Copy) messages. You can send "
+"to multiple or single, both methods are acceptable:"
+msgstr ""
+"Bcc (Kör Karbon Kopya) mesajlarını almak için e-posta adres(ler)i. Tekli "
+"veya çoklu gönderebilirsiniz, her iki yöntemede kabul edilebilirdir:"
+
+#: admin/si-contact-form-admin.php:1139
+msgid "E-mail Subject Prefix"
+msgstr "E-posta Konu Öneki"
+
+#: admin/si-contact-form-admin.php:1142
+msgid "This will become a prefix of the subject for the e-mail you receive."
+msgstr "Bu, aldığınız e-postalar için konunun öneki olacak."
+
+#: admin/si-contact-form-admin.php:1143 admin/si-contact-form-admin.php:1275
+msgid ""
+"Listed below is an optional list of field tags for fields you can add to the "
+"subject."
+msgstr ""
+"Aşağıda listelenen konuya ekleyebileceğiniz alanlar için alan etiketlerinin "
+"isteğe bağlı bir listesidir."
+
+#: admin/si-contact-form-admin.php:1144
+msgid ""
+"Example: to include the name of the form sender, include this tag in the e-"
+"mail Subject Prefix:"
+msgstr ""
+"Örnek: form göndereninin adını dahil etmek için bu etiketi e-posta Konu "
+"Öneki içine dahil edin:"
+
+#: admin/si-contact-form-admin.php:1145 admin/si-contact-form-admin.php:1277
+#: admin/si-contact-form-admin.php:1294
+msgid "Available field tags:"
+msgstr "Kullanılabilir alan etiketleri:"
+
+#: admin/si-contact-form-admin.php:1156
+msgid "Optional E-mail Subject List"
+msgstr "İsteğe Bağlı E-posta Konu Listesi"
+
+#: admin/si-contact-form-admin.php:1160
+msgid ""
+"Optional e-mail subject drop down list. Add as many subject options as you "
+"need, the drop down list on the contact form will be made automatically. "
+"Separate each subject option by pressing enter. Follow this example:"
+msgstr ""
+"İsteğe bağlı e-posta konusu aşağı açılır listesi. Dilediğiniz kadar konu "
+"seçenekleri ekleyin, iletişim formundaki aşağı açılır liste otomatik olarak "
+"oluşturulacaktır. Her bir konu seçeneğini enter'a basarak ayırın. Bu örneği "
+"takip edin:"
+
+#: admin/si-contact-form-admin.php:1168
+msgid "Enable double e-mail entry required on contact form."
+msgstr "İletişim formunda çift e-posta zorunluluğunu etkinleştir."
+
+#: admin/si-contact-form-admin.php:1171
+msgid ""
+"Requires users to enter email address in two fields to help reduce mistakes."
+msgstr ""
+"Hataları azaltmaya yardımcı olmak için kullanıcıların iki alan içine eposta "
+"adresi girmesi gerekir."
+
+#: admin/si-contact-form-admin.php:1176
+msgid "Enable upper case alphabet correction."
+msgstr "Büyük harf alfabe düzeltmesini etkinleştir."
+
+#: admin/si-contact-form-admin.php:1179
+msgid ""
+"Automatically corrects form input using a function knowing about alphabet "
+"case (example: correct caps on McDonald, or correct USING ALL CAPS)."
+msgstr ""
+"Alfabe büyük küçük harfi hakkında bilinen işlevi kullanarak form girdisini "
+"otomatik olarak düzeltir (örnek: McDonald'taki gibi büyük harfleri düzeltme "
+"ya da TÜMÜNÜ BÜYÜK HARF KULLANARAK düzeltme)."
+
+#: admin/si-contact-form-admin.php:1180
+msgid ""
+"Enable on English language only because it can cause accent character "
+"problems if enabled on other languages."
+msgstr ""
+"Sadece İngilizce dilinde etkinleştirin çünkü eğer diğer dillerde "
+"etkinleştirilirse aksan karakter sorunlarına neden olabilir."
+
+#: admin/si-contact-form-admin.php:1185
+msgid "Enable sender information in e-mail footer."
+msgstr "E-posta altbilgisinde gönderen bilgisini etkinleştir."
+
+#: admin/si-contact-form-admin.php:1188
+msgid ""
+"Includes detailed information in the e-mail about the sender. Such as IP "
+"Address, date, time, and which web browser they used."
+msgstr ""
+"Gönderen hakkında ayrıntılı bilgiyi e-posta içine dahil eder. IP adresi, "
+"tarih, saat ve hangi web tarayıcısının kullanıldığı gibi."
+
+#: admin/si-contact-form-admin.php:1189
+msgid ""
+"Install the <a href=\"http://wordpress.org/extend/plugins/visitor-maps/"
+"\">Visitor Maps plugin</a> to enable geolocation and then city, state, "
+"country will automatically be included."
+msgstr ""
+"Coğrafi konumu etkinleştirmek için <a href=\"http://wordpress.org/extend/"
+"plugins/visitor-maps/\">Visitor Maps (Ziyaretçi Haritaları) eklentisini</a> "
+"yükeyin, ve ondan sonra şehir, il, ülke otomatik olarak eklenecektir."
+
+#: admin/si-contact-form-admin.php:1194
+msgid "Enable Form Post security by requiring domain name match for"
+msgstr "Form Yazımı güvenliğini"
+
+#: admin/si-contact-form-admin.php:1199
+msgid "(recommended)."
+msgstr "için gereken etki alan adı eşleşmesiyle etkinleştir (önerilir)."
+
+#: admin/si-contact-form-admin.php:1203
+msgid ""
+"Prevents automated spam bots posting from off-site forms. If you have "
+"multiple domains for your site, you have to disable this."
+msgstr ""
+"Kapalı site formlarından gönderilen otomatikleştirilmiş istenmeyen mesaj "
+"bot'larını önler. Eğer siteniz için çoklu etki alanlarına sahipseniz, bunu "
+"etkisizleştirmek zorundasınız."
+
+#: admin/si-contact-form-admin.php:1208
+msgid ""
+"Enable checking DNS records for the domain name when checking for a valid e-"
+"mail address."
+msgstr ""
+"Geçerli bir e-posta adresini kontrol ederken etki alanı adı için DNS "
+"kayıtlarının kontrol edilmesini etkinleştir."
+
+#: admin/si-contact-form-admin.php:1211
+msgid ""
+"Improves email address validation by checking that the domain of the email "
+"address actually has a valid DNS record."
+msgstr ""
+"Eposta adresinin etki alanını kontrol ederek aslında geçerli bir DNS kaydına "
+"sahip olduğunu onaylamayı geliştirir."
+
+#: admin/si-contact-form-admin.php:1220
+msgid "Confirmation E-mail:"
+msgstr "Onaylama E-postası:"
+
+#: admin/si-contact-form-admin.php:1226
+msgid "Enable confirmation e-mail message."
+msgstr "Onaylama e-postası iletisini etkinleştir."
+
+#: admin/si-contact-form-admin.php:1229
+msgid ""
+"Enable when you want the form to automatically answer with a confirmation e-"
+"mail message."
+msgstr ""
+"Formun otomatik olarak bir onaylama e-postası iletisiyle yanıt vermesini "
+"istediğinizde etkinleştirin."
+
+#: admin/si-contact-form-admin.php:1236
+msgid ""
+"Warning: Enabling this setting requires all the confirmation fields below to "
+"also be set."
+msgstr ""
+"Uyarı: Bu ayarı etkinleştirmek ayrıca aşağıdaki tüm onaylama alanlarını "
+"ayarlamayı gerektirir."
+
+#: admin/si-contact-form-admin.php:1241 admin/si-contact-form-admin.php:1246
+msgid ""
+"Warning: No email address field is set, you will not be able to reply to "
+"emails and the confirmation email will not work."
+msgstr ""
+"Uyarı: Ayarlanan eposta adresi alanı yok, epostaları yanıtlayamayacaksınız "
+"ve onaylama epostası çalışmayacak."
+
+#: admin/si-contact-form-admin.php:1250
+msgid "Confirmation e-mail \"From\" name"
+msgstr "Onaylama e-postası \"Kimden\" adı"
+
+#: admin/si-contact-form-admin.php:1253
+msgid ""
+"This sets the name in the \"from\" field when the confirmation email is sent."
+msgstr ""
+"Bu, onaylama epostası gönderildiğinde \"kimden\" alanındaki adı ayarlar."
+
+#: admin/si-contact-form-admin.php:1257
+msgid "Confirmation e-mail \"From\" address"
+msgstr "Onaylama e-postası \"Kimden\" adresi"
+
+#: admin/si-contact-form-admin.php:1260
+msgid ""
+"This sets the \"from\" email address when the confirmation email is sent. If "
+"your email does not send any email, then set this setting to a real email "
+"address on the same web domain as your web site. (Same applies to the "
+"\"Email-From\" setting on this page)"
+msgstr ""
+"Bu, onaylama epostası gönderildiğinde \"kimden\" e-posta adresini ayarlar. "
+"Eğer epostanız herhangi bir eposta göndermezse, o zaman bu ayarı web siteniz "
+"gibi aynı web etki alanındaki gerçek bir eposta adresine ayarlayın. (Aynısı "
+"bu sayfadaki \"Şu E-postadan\" ayarına uygulanır)"
+
+#: admin/si-contact-form-admin.php:1264
+msgid "Confirmation e-mail \"Reply To\" address"
+msgstr "Onaylama e-postası \"Yanıtla\" adresi"
+
+#: admin/si-contact-form-admin.php:1267
+msgid ""
+"This sets the \"reply to\" email address when the confirmation email is sent."
+msgstr ""
+"Bu, onaylama epostası gönderildiğinde \"Yanıtla\" eposta adresini ayarlar."
+
+#: admin/si-contact-form-admin.php:1271
+msgid "Confirmation e-mail subject"
+msgstr "Onaylama e-postası konusu"
+
+#: admin/si-contact-form-admin.php:1274
+msgid ""
+"Type your confirmation email subject here, then enable it with the setting "
+"above."
+msgstr ""
+"Onaylama epostası konunuzu buraya yazın, ondan sonra yukarıdaki ayar ile "
+"etkinleştirin."
+
+#: admin/si-contact-form-admin.php:1276
+msgid ""
+"Example: to include the name of the form sender, include this tag in the "
+"confirmation email subject:"
+msgstr ""
+"Örnek: form göndereninin adını dahil etmek için onaylama epostası "
+"konusundaki bu etiketi ekleyin:"
+
+#: admin/si-contact-form-admin.php:1288
+msgid "Confirmation e-mail message"
+msgstr "Onaylama e-postası iletisi"
+
+#: admin/si-contact-form-admin.php:1291
+msgid ""
+"Type your confirmation email message here, then enable it with the setting "
+"above."
+msgstr ""
+"Onaylama epostası iletinizi buraya yazın, ondan sonra yukarıdaki ayar ile "
+"etkinleştirin."
+
+#: admin/si-contact-form-admin.php:1292
+msgid ""
+"Listed below is an optional list of field tags for fields you can add to the "
+"confirmation email message."
+msgstr ""
+"Aşağıda listelenen onaylama epostası iletisini ekleyebileceğiniz alanlar "
+"için alan etiketlerinin isteğe bağlı bir listesidir."
+
+#: admin/si-contact-form-admin.php:1293
+msgid ""
+"Example: to include the name of the form sender, include this tag in the "
+"confirmation email message:"
+msgstr ""
+"Örnek: form göndereninin adını dahil etmek için onaylama epostası "
+"iletisindeki bu etiketi ekleyin:"
+
+#: admin/si-contact-form-admin.php:1305
+msgid ""
+"Note: If you add any extra fields, they will show up in this list of "
+"available tags."
+msgstr ""
+"Not: Eğer herhangi bir ekstra alan eklerseniz, kullanılabilir etiketlerin bu "
+"listesinde gösterilecekler."
+
+#: admin/si-contact-form-admin.php:1306
+msgid ""
+"Note: The message fields are intentionally disabled to help prevent spammers "
+"from using this form to relay spam."
+msgstr ""
+"Not: İleti alanları, istenmeyen mesaj göndericilerinin bu formu kullanarak "
+"istenmeyen mesaj gönderimini önlemeye yardımcı olması için kasıtlı olarak "
+"etkisizleştirilir."
+
+#: admin/si-contact-form-admin.php:1307
+msgid ""
+"Try to limit this feature to just using the name field to personalize the "
+"message. Do not try to use it to send a copy of what was posted."
+msgstr ""
+"İletiyi kişiselleştirmek için sadece isim alanını kullanarak bu özelliği "
+"sınırlandırmayı deneyin. Yazılanın bir kopyasını göndermek için kullanmayı "
+"denemeyin."
+
+#: admin/si-contact-form-admin.php:1314
+msgid "Enable using HTML in confirmation email message."
+msgstr "Onaylama eposta iletisinde HTML kullanmayı etkinleştir."
+
+#: admin/si-contact-form-admin.php:1317
+msgid "Enable when you want to use HTML in the confirmation email message."
+msgstr "Onaylama eposta iletisinde HTML kullanmak istediğinizde etkinleştirin."
+
+#: admin/si-contact-form-admin.php:1318
+msgid "Then you can use an HTML message. example:"
+msgstr "Ondan sonra bir HTML iletisi kullanabilirsiniz, örnek:"
+
+#: admin/si-contact-form-admin.php:1320
+msgid "Hello World!"
+msgstr "Merhaba Dünya!"
+
+#: admin/si-contact-form-admin.php:1330
+msgid "Akismet:"
+msgstr "Akismet:"
+
+#: admin/si-contact-form-admin.php:1334
+msgid "Akismet Spam Prevention:"
+msgstr "Akismet İstenmeyen Mesaj Önleme:"
+
+#: admin/si-contact-form-admin.php:1338
+msgid ""
+"Akismet is a WordPress spam prevention plugin. When Akismet is installed and "
+"active, this form will be checked with Akismet to help prevent spam."
+msgstr ""
+"Akismet bir WordPress istenmeyen mesaj önleme eklentisidir. Akismet "
+"yüklendiğinde ve etkinleştirildiğinde, bu form istenmeyen mesajları "
+"önlemekte yardımcı olmak için Akismet ile birlikte kontrol edilecektir."
+
+#: admin/si-contact-form-admin.php:1347
+msgid "Akismet is installed."
+msgstr "Akismet yüklü."
+
+#: admin/si-contact-form-admin.php:1360
+msgid ""
+"Akismet is enabled and the key is valid. This form will be checked with "
+"Akismet to help prevent spam"
+msgstr ""
+"Akismet etkinleştirildi ve anahtar geçerli. Bu form istenmeyen mesajları "
+"önlemekte yardımcı olmak için Akismet ile birlikte kontrol edilecektir."
+
+#: admin/si-contact-form-admin.php:1361
+msgid ""
+"Akismet is installed and the key is valid. This form will be checked with "
+"Akismet to help prevent spam."
+msgstr ""
+"Akismet yüklendi ve anahtar geçerli. Bu form istenmeyen mesajları önlemekte "
+"yardımcı olmak için Akismet ile birlikte kontrol edilecektir."
+
+#: admin/si-contact-form-admin.php:1363
+msgid "Akismet plugin is enabled but key needs to be activated"
+msgstr ""
+"Akismet eklentisi etkinleştirildi ama anahtarın etkinleştirilmesi gerekli."
+
+#: admin/si-contact-form-admin.php:1364
+msgid "Akismet plugin is installed but key needs to be activated."
+msgstr "Akismet eklentisi yüklendi ama anahtarın etkinleştirilmesi gerekli."
+
+#: admin/si-contact-form-admin.php:1366
+msgid "Akismet plugin is enabled but key failed to verify"
+msgstr ""
+"Akismet eklentisi etkinleştirildi ama anahtar doğrulamada başarısız oldu."
+
+#: admin/si-contact-form-admin.php:1367
+msgid "Akismet plugin is installed but key failed to verify."
+msgstr "Akismet eklentisi yüklendi ama anahtar doğrulamada başarısız oldu"
+
+#: admin/si-contact-form-admin.php:1369 admin/si-contact-form-admin.php:1370
+msgid "Akismet plugin is installed but key has not been entered."
+msgstr "Akismet eklentisi yüklendi ama anahtar henüz girilmedi."
+
+#: admin/si-contact-form-admin.php:1376
+msgid ""
+"Check this and click \"Update Options\" to determine if Akismet key is "
+"active."
+msgstr ""
+"Bunu kontrol edin ve Akismet anahtarının aktif olduğunu belirlemek için "
+"\"Seçenekleri Güncelle\"ye tıklayın."
+
+#: admin/si-contact-form-admin.php:1378
+msgid "Configure Akismet"
+msgstr "Akismet'i Yapılandır"
+
+#: admin/si-contact-form-admin.php:1381
+msgid "Akismet plugin is not installed or is deactivated."
+msgstr "Akismet eklentisi yüklenmedi ya da devre dışı bırakıldı."
+
+#: admin/si-contact-form-admin.php:1384
+msgid "Akismet is turned off for this form."
+msgstr "Akismet bu form için kapatıldı."
+
+#: admin/si-contact-form-admin.php:1389
+msgid "What should happen if Akismet determines the message is spam?"
+msgstr ""
+"Eğer Akismet iletinin istenmeyen mesaj olduğuna karar verirse ne olmalı?"
+
+#: admin/si-contact-form-admin.php:1393
+msgid "Block spam messages"
+msgstr "İstenmeyen mesajları engelle"
+
+#: admin/si-contact-form-admin.php:1394
+msgid "Tag as spam and send anyway"
+msgstr "İstenmeyen mesaj olarak etiketle ve yine de gönder"
+
+#: admin/si-contact-form-admin.php:1406
+msgid ""
+"If you select \"block spam messages\". If Akismet determines the message is "
+"spam: An error will display \"Invalid Input - Spam?\" and the form will not "
+"send."
+msgstr ""
+"Eğer \"istenmeyen mesajları engelle\" seçerseniz. Eğer Akismet iletinin "
+"istenmeyen mesaj olduğuna karar verirse: Bir hata görüntülenecek \"Geçersiz "
+"Girdi - İstenmeyen mesaj mı?\" ve form gönderilmeyecek."
+
+#: admin/si-contact-form-admin.php:1407
+msgid ""
+"If you select \"tag as spam and send anyway\". If Akismet determines the "
+"message is spam: The message will send and the subject wil begin with "
+"\"Akismet: Spam\". This way you can have Akismet on and be sure not to miss "
+"a message."
+msgstr ""
+"Eğer \"istenmeyen mesaj olarak etiketle ve yine de gönder\" seçerseniz. Eğer "
+"Akismet iletinin istenmeyen mesaj olduğuna karar verirse: İleti gönderilecek "
+"ve konu \"Akismet: İstenmeyen Mesaj\" ile başlayacak. Bu yolla Akismet açık "
+"tutabilir ve bir ileti kaçırmadığından emin olabilirsiniz."
+
+#: admin/si-contact-form-admin.php:1416
+msgid "Turn off Akismet for this form."
+msgstr "Bu form için Akismet'i kapat."
+
+#: admin/si-contact-form-admin.php:1424
+msgid "CAPTCHA:"
+msgstr "CAPTCHA:"
+
+#: admin/si-contact-form-admin.php:1429
+msgid "Enable CAPTCHA (recommended)."
+msgstr "CAPTCHA etkin (önerilir)."
+
+#: admin/si-contact-form-admin.php:1432
+msgid ""
+"Prevents automated spam bots by requiring that the user pass a CAPTCHA test "
+"before posting. You can disable CAPTCHA if you prefer, because the form also "
+"uses Akismet to prevent spam when Akismet plugin is installed with the key "
+"activated."
+msgstr ""
+"Kullanıcıların yazdıklarını göndermeden önce bir CAPTCHA denemesinden "
+"geçmelerini gerektirerek otomatikleştirilmiş istenmeyen mesaj bot'larını "
+"önler. Eğer tercih ederseniz CAPTCHA'yı etkisizleştirebilirsiniz, çünkü aynı "
+"zamanda form, Akismet eklentisi etkinleştirilmiş anahtarla yüklendiğinde "
+"istenmeyen mesajı önlemek için Akismet kullanır."
+
+#: admin/si-contact-form-admin.php:1436
+msgid "CAPTCHA difficulty level:"
+msgstr "CAPTCHA zorluk seviyesi:"
+
+#: admin/si-contact-form-admin.php:1440
+msgid "Low"
+msgstr "Düşük"
+
+#: admin/si-contact-form-admin.php:1441
+msgid "Medium"
+msgstr "Orta"
+
+#: admin/si-contact-form-admin.php:1442
+msgid "High"
+msgstr "Yüksek"
+
+#: admin/si-contact-form-admin.php:1454
+msgid "Changes level of distortion of the CAPTCHA image text."
+msgstr "CAPTCHA resim metninin çarpıklık seviyesini değiştirir."
+
+#: admin/si-contact-form-admin.php:1459
+msgid "Enable smaller size CAPTCHA image."
+msgstr "Küçük boyutta CAPTCHA resmini etkinleştir."
+
+#: admin/si-contact-form-admin.php:1462
+msgid "Makes the CAPTCHA image smaller."
+msgstr "CAPTCHA resmini daha küçük yapar."
+
+#: admin/si-contact-form-admin.php:1467
+msgid "Hide CAPTCHA for"
+msgstr "CAPTCHA'yı"
+
+#: admin/si-contact-form-admin.php:1468
+msgid "registered"
+msgstr "kayıtlı"
+
+#: admin/si-contact-form-admin.php:1468
+msgid "users who can"
+msgstr "kullanıcılar"
+
+#: admin/si-contact-form-admin.php:1472
+msgid ""
+"Registered users will not have to use the CAPTCHA feature. Do not enable "
+"this setting if you do not trust your registered users as some could be "
+"spammers."
+msgstr ""
+"Kayıtlı kullanıcılar CAPTCHA özelliğini kullanmak zorunda olmayacaklar. Eğer "
+"kayıtlı kullanıcılarınıza, bazılarının istenmeyen mesaj göndericileri "
+"olabilmesinden dolayı güvenmiyorsanız bu ayarı etkinleştirmeyin."
+
+#: admin/si-contact-form-admin.php:1477
+msgid ""
+"Disable CAPTCHA transparent text (only if captcha text is missing on the "
+"image, try this fix)."
+msgstr ""
+"CAPTCHA şeffaf metnini etkisizleştir (sadece captcha metni resimde eksikse, "
+"bu düzeltmeyi deneyin)."
+
+#: admin/si-contact-form-admin.php:1480
+msgid ""
+"Sometimes fixes missing text on the CAPTCHA image. If this does not fix "
+"missing text, your PHP server is not compatible with the CAPTCHA functions. "
+"You can disable CAPTCHA or have your web server fixed."
+msgstr ""
+"Bazen CAPTCHA resmindeki eksik metni düzeltir. Eğer bu eksik metni "
+"düzeltmezse, PHP sunucunuz CAPTCHA işlevleriyle uyumlu değildir. CAPTCHA'yı "
+"etkisizleştirebilirsiniz ya da web sunucunuzu düzeltebilirsiniz."
+
+#: admin/si-contact-form-admin.php:1485
+msgid "Enable honeypot spambot trap."
+msgstr "Honeypot istenmeyen mesaj bot'u tuzağını etkinleştir."
+
+#: admin/si-contact-form-admin.php:1488
+msgid ""
+"Enables empty field and time based honyepot traps for spam bots. For best "
+"results, do not enable unless you have a spam problem."
+msgstr ""
+"İstenmeyen mesaj bot'ları için boş alan ve zaman tabanlı honeypot "
+"tuzaklarını etkinleştirir. En iyi sonuç için istenmeyen mesaj sorunu "
+"olmadıkça etkinleştirmeyin."
+
+#: admin/si-contact-form-admin.php:1502
+msgid "Standard Fields:"
+msgstr "Standart Alanlar:"
+
+#: admin/si-contact-form-admin.php:1506
+msgid ""
+"The standard fields can be set to be required or not, or even be disabled."
+msgstr ""
+"Standart alanlar zorunlu ya da değil olarak ayarlanabilir veya hatta "
+"etkisizleştirilebilir."
+
+#: admin/si-contact-form-admin.php:1511
+msgid "Enable auto form fill"
+msgstr "Otomatik form doldurmayı etkinleştir"
+
+#: admin/si-contact-form-admin.php:1514
+msgid ""
+"Auto form fill email address and name (username) on the contact form for "
+"logged in users who are not administrators."
+msgstr ""
+"Yönetici olmayan oturum açmış kullanıcılar için iletişim formunda eposta "
+"adresi ve adını (kullanıcı adı) formda otomatik doldurur."
+
+#: admin/si-contact-form-admin.php:1518
+msgid "Name field:"
+msgstr "Adı alanı:"
+
+#: admin/si-contact-form-admin.php:1522
+msgid "Not Available"
+msgstr "Mevcut Değil"
+
+#: admin/si-contact-form-admin.php:1523
+msgid "Not Required"
+msgstr "Zorunlu Değil"
+
+#: admin/si-contact-form-admin.php:1524
+msgid "Required"
+msgstr "Zorunlu"
+
+#: admin/si-contact-form-admin.php:1535
+msgid "Name field format:"
+msgstr "Adı alanı biçimi:"
+
+#: admin/si-contact-form-admin.php:1539
+msgid "Name"
+msgstr "Adı"
+
+#: admin/si-contact-form-admin.php:1540
+msgid "First Name, Last Name"
+msgstr "İlk Adı, Soyadı"
+
+#: admin/si-contact-form-admin.php:1541
+msgid "First Name, Middle Initial, Last Name"
+msgstr "İlk Adı, İkinci Adı İlk Harfi, Soyadı"
+
+#: admin/si-contact-form-admin.php:1542
+msgid "First Name, Middle Name, Last Name"
+msgstr "İlk Adı, İkinci Adı, Soyadı"
+
+#: admin/si-contact-form-admin.php:1554
+msgid "Select how the name field is formatted on the form."
+msgstr "Adı alanının formda nasıl biçimlendirileceğini seçin."
+
+#: admin/si-contact-form-admin.php:1558
+msgid "E-mail field:"
+msgstr "E-posta alanı:"
+
+#: admin/si-contact-form-admin.php:1571
+msgid "Subject field:"
+msgstr "Konu alanı:"
+
+#: admin/si-contact-form-admin.php:1585
+msgid "Message field:"
+msgstr "İleti alanı:"
+
+#: admin/si-contact-form-admin.php:1598
+msgid "Preserve Message field spaces."
+msgstr "İleti alanı boşluklarını koru."
+
+#: admin/si-contact-form-admin.php:1601
+msgid ""
+"Normally the Message field will have all extra white space removed. Enabling "
+"this setting will allow all the Message field white space to be preserved."
+msgstr ""
+"Normalde İleti alanının tüm ekstra boşluğu kaldırılmış olacak. Bu ayarı "
+"etkinleştirmek tüm İleti alanının boşluktan korunmasına izin verecek."
+
+#: admin/si-contact-form-admin.php:1607
+msgid "Extra Fields:"
+msgstr "İlave Alanlar:"
+
+#: admin/si-contact-form-admin.php:1608
+msgid "Click here to see instructions for extra fields."
+msgstr "Ekstra alanlar talimatlarını görmek için buraya tıklayın."
+
+#: admin/si-contact-form-admin.php:1611
+msgid "Instructions for how to use Extra Fields:"
+msgstr "Ekstra Alanların nasıl kullanılması için talimatlar:"
+
+#: admin/si-contact-form-admin.php:1613
+msgid ""
+"You can use extra contact form fields for phone number, company name, etc. "
+"To enable an extra field, just enter a label. Then check if you want the "
+"field to be required or not. To disable, empty the label."
+msgstr ""
+"Telefon numarası, şirket adı vs. için ekstra iletişim formu alanları "
+"kullanabilirsiniz. Ekstra alanları etkinleştirmek için sadece bir etiket "
+"girin. Ondan sonra bu alanın zorunlu olmasını ya da olmamasını istiyorsanız "
+"işaretleyin. Etkisizleştirmek için etiketi boşaltın."
+
+#: admin/si-contact-form-admin.php:1614
+msgid "Text and Textarea fields:"
+msgstr "Metin ve Çoklu Metin alanları:"
+
+#: admin/si-contact-form-admin.php:1615
+msgid ""
+"The text field is for single line text entry. The textarea field is for "
+"multiple line text entry."
+msgstr ""
+"Metin alanı tek satırlık metin girişi içindir. Çoklu Metin alanı çok satırlı "
+"metin girişi içindir."
+
+#: admin/si-contact-form-admin.php:1616
+msgid ""
+"Checkbox, Checkbox-multiple, Radio, Select, and Select-multiple extra fields:"
+msgstr ""
+"İşaretleme kutusu, Çoklu işaretleme kutusu, Radyo, Seçim ve Çoklu seçim "
+"ekstra alanları:"
+
+#: admin/si-contact-form-admin.php:1617
+msgid ""
+"To enable a checkbox field with a single option, just enter a label. Then "
+"check if you want the field to be required or not."
+msgstr ""
+"İşaretleme kutusu alanını tek bir seçenekle etkinleştirmek için sadece bir "
+"etiket girin. Ondan sonra bu alanın zorunlu olmasını ya da olmamasını "
+"istiyorsanız işaretleyin."
+
+#: admin/si-contact-form-admin.php:1618
+msgid ""
+"To enable fields with multiple options like checkbox-multiple, radio, "
+"select, or select-multiple field types; first enter the label and a comma, "
+"then include the options separating each one with a semicolon like this "
+"example: Color:,Red;Green;Blue."
+msgstr ""
+"Çoklu işaretleme kutusu, radyo, seçim veya çoklu alan türü seçimi gibi çoklu "
+"seçeneklerle alanları etkinleştirmek için; önce etiket ve bir virgül girin, "
+"ondan sonra bu örnekteki gibi her birini noktalı virgül ile ayırarak "
+"seçenekleri dahil edin: Renk:,Kırmızı;Yeşil;Mavi."
+
+#: admin/si-contact-form-admin.php:1619
+msgid ""
+"If you need to use a comma besides the one needed to separate the label, "
+"escape it with a back slash, like this: \\,"
+msgstr ""
+"Eğer etiketi bölmek için gerekenin dışında bir virgül kullanmanız gerekirse, "
+"onu ters bölü ile atlatın şunun gibi: \\,"
+
+#: admin/si-contact-form-admin.php:1620
+msgid ""
+"You can also use fields that allow multiple options to be checked at once, "
+"such as checkbox-multiple and select-multiple like in this example: Pizza "
+"Toppings:,olives;mushrooms;cheese;ham;tomatoes. Now multiple options can be "
+"checked for the \"Pizza Toppings\" label."
+msgstr ""
+"Aynı zamanda bir defada işaretlenen çoklu seçeneklere izin veren alanları "
+"kullanabilirsiniz, çoklu işaretleme kutusu gibi ve şu örnekteki gibi çoklu "
+"seçim: Pizza Malzemeleri:,zeytin;mantar;peynir;jambon;domates. Artık çoklu "
+"seçenekler \"Pizza Malzemeleri\" etiketi için işaretlenebilir."
+
+#: admin/si-contact-form-admin.php:1621
+msgid ""
+"By default radio and checkboxes are displayed vertical. Here is how to make "
+"them display horizontal: add the tag {inline} before the label, like this: "
+"{inline}Pizza Toppings:,olives;mushrooms;cheese;ham;tomatoes."
+msgstr ""
+"Varsayılan radyo ve işaretleme kutuları dikey olarak görüntülenir. İşte "
+"onları nasıl yatay görüntüleyeceğiniz: etiketten önce {inline} etiketini "
+"ekleyin, şunun gibi: {inline}Pizza Malzemeleri:,zeytin;mantar;peynir;jambon;"
+"domates."
+
+#: admin/si-contact-form-admin.php:1622
+msgid "Attachment:"
+msgstr "Ek:"
+
+#: admin/si-contact-form-admin.php:1623
+msgid ""
+"The attachment is used to allow users to attach a file upload from the form. "
+"You can add multiple attachments. The attachment is sent with your email. "
+"Attachments are deleted from the server after the email is sent."
+msgstr ""
+"Ek, kullanıcılara formdan bir dosya yüklemesine izin vermek için kullanılır. "
+"Çoklu ekler ekleyebilirsiniz. Ek, epostanız ile gönderilir. Ekler eposta "
+"gönderildikten sonra sunucudan silinir."
+
+#: admin/si-contact-form-admin.php:1624
+msgid "Date field:"
+msgstr "Tarih alanı:"
+
+#: admin/si-contact-form-admin.php:1625
+msgid ""
+"The date is used to allow a date field with a calendar pop-up. The date "
+"field ensures that a date entry is in a standard format every time."
+msgstr ""
+"Tarih bir takvim açılır penceresi olan tarih alanına izin vermek için "
+"kullanılır. Tarih alanı her defasında tarih girişinin standart biçimde "
+"olmasını garantiler."
+
+#: admin/si-contact-form-admin.php:1626
+msgid "Time field:"
+msgstr "Saat alanı:"
+
+#: admin/si-contact-form-admin.php:1627
+msgid ""
+"The time is used to allow a time entry field with hours, minutes, and AM/PM. "
+"The time field ensures that a time entry is in a standard format."
+msgstr ""
+"Saat, bir saat girişi alanına saat, dakika ve ÖÖ/ÖS ile birlikte izin vermek "
+"için kullanılır. Saat alanı saat girişinin standart biçimde olmasını "
+"garantiler."
+
+#: admin/si-contact-form-admin.php:1628
+msgid "Email field:"
+msgstr "Eposta alanı:"
+
+#: admin/si-contact-form-admin.php:1629
+msgid ""
+"The email field is used to allow an email address entry field. The email "
+"field ensures that a email entry is in a valid email format."
+msgstr ""
+"Eposta alanı, bir eposta adresi girişi alanına izin vermek için kullanılır. "
+"Eposta alanı, eposta girişinin geçerli bir eposta biçiminde olmasını "
+"garantiler."
+
+#: admin/si-contact-form-admin.php:1630
+msgid "URL field:"
+msgstr "URL alanı:"
+
+#: admin/si-contact-form-admin.php:1631
+msgid ""
+"The URL field is used to allow a URL entry field. The URL field ensures that "
+"a URL entry is in a valid URL format."
+msgstr ""
+"URL alanı, bir URL girişi alanına izin vermek için kullanılır. URL alanı, "
+"URL girişinin geçerli bir URL biçiminde olmasını garantiler."
+
+#: admin/si-contact-form-admin.php:1632
+msgid "Hidden field:"
+msgstr "Gizli alan:"
+
+#: admin/si-contact-form-admin.php:1633
+msgid ""
+"The hidden field is used if you need to pass a hidden value from the form to "
+"the email message. The hidden field does not show on the page. You must set "
+"the label and the value. First enter the label, a comma, then the value. "
+"Like in this example: Language,English"
+msgstr ""
+"Gizli alan, formdan eposta iletisine gizli bir değerin geçmesine ihtiyacınız "
+"varsa kullanılır. Gizli alan sayfada gösterilmez. Etiketini ve değerini "
+"ayarlamak zorundasınız. Önce etiketi, bir virgül, ondan sonra değeri girin. "
+"Şu örnekte olduğu gibi: Dil,Türkçe"
+
+#: admin/si-contact-form-admin.php:1634
+msgid "Password field:"
+msgstr "Parola alanı:"
+
+#: admin/si-contact-form-admin.php:1635
+msgid ""
+"The password field is used for a text field where what is entered shows up "
+"as dots on the screen. The email you receive will have the entered value "
+"fully visible."
+msgstr ""
+"Parola alanı ekranda girilenleri nokta olarak gösteren metin alanı için "
+"kullanılır. Aldığınız eposta tamamen görülür girilmiş değere sahip olacaktır."
+
+#: admin/si-contact-form-admin.php:1636
+msgid "Fieldset:"
+msgstr "Alan seti:"
+
+#: admin/si-contact-form-admin.php:1637
+msgid ""
+"The fieldset(box-open) is used to draw a box around related form elements. "
+"The fieldset label is used for a (legend) title of the group."
+msgstr ""
+"Alan seti(açık kutu) ilgili form öğesi çevresinde bir kutu çizmek için "
+"kullanılır. Alan seti etiketi grubun bir (yazıt) başlığı için kullanılır."
+
+#: admin/si-contact-form-admin.php:1639
+msgid ""
+"The fieldset(box-close) is used to close a box around related form elements. "
+"A label is not required for this type. If you do not close a fieldset box, "
+"it will close automatically when you add another fieldset box."
+msgstr ""
+"Alan seti(kapalı kutu) ilgili form öğesinin çevresini bir kutuyla kapamak "
+"için kullanılır. Bu tür için bir etiket gerekmez. Eğer alan seti kutusunu "
+"kapatmazsanız, başka bir alan seti kutusu eklediğinizde otomatik olarak "
+"kapanacak."
+
+#: admin/si-contact-form-admin.php:1641
+msgid "Optional modifiers:"
+msgstr "İsteğe bağlı değiştiriciler:"
+
+#: admin/si-contact-form-admin.php:1643
+msgid "Default text:"
+msgstr "Varsayılan metin:"
+
+#: admin/si-contact-form-admin.php:1644
+msgid ""
+"Use to pre-fill a value for a text field. Can be used for text or textarea "
+"field types."
+msgstr ""
+"Bir metin alanı için bir alanı ön doldurmada kullanılır. Metin veya çoklu "
+"metin alanı türleri için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:1645 admin/si-contact-form-admin.php:1712
+msgid "Default option:"
+msgstr "Varsayılan seçenek:"
+
+#: admin/si-contact-form-admin.php:1646
+msgid ""
+"To make \"green\" the default selection for a red, green, blue select field: "
+"set \"Default option\" 2. Can be used for checkbox, radio, or select field "
+"types."
+msgstr ""
+"Kırmızı, yeşil, mavi seçme alanı için varsayılan seçimi \"yeşil\" yapmak "
+"için: \"Varsayılan seçenek\"i 2 olarak ayarlayın. İşaretleme kutusu, radyo "
+"ya da seçme alanı türleri için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:1647
+msgid "Max length:"
+msgstr "En fazla uzunluk:"
+
+#: admin/si-contact-form-admin.php:1648
+msgid ""
+"Use to limit the number of allowed characters for a text field. The limit "
+"will be checked when the form is posted. Can be used for text, textarea, and "
+"password field types."
+msgstr ""
+"Bir metin alanının izin verilen karakter sayısını sınırlamak için "
+"kullanılır. Sınır form yazıldığında kontrol edilecektir. Metin, çoklu metin "
+"ve parola alan türleri için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:1649
+msgid "Required field:"
+msgstr "Zorunlu alan:"
+
+#: admin/si-contact-form-admin.php:1650
+msgid ""
+"Check this setting if you want the field to be required when the form is "
+"posted. Can be used for any extra field type."
+msgstr ""
+"Form yazıldığında alanın zorunlu olmasını istiyorsanız bu ayarı işaretleyin. "
+"Herhangi bir ekstra alan türü için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:1651
+msgid "Attributes:"
+msgstr "Öznitelikler:"
+
+#: admin/si-contact-form-admin.php:1652
+msgid ""
+"Use to insert input field attributes. Example: To make a text field "
+"readonly, set to: readonly=\"readonly\" Can be used for any extra field type."
+msgstr ""
+"Girdi alanı özniteliklerini eklemek için kullanılır. Metin alanını salt "
+"okunur yapmak için şöyle ayarlayın: salt okunur=\"readonly\" Herhangi bir "
+"ekstra alan türü için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:1653
+msgid "Validation regex:"
+msgstr "Doğrulama kurallı ifadesi:"
+
+#: admin/si-contact-form-admin.php:1654
+msgid ""
+"Use to validate if form input is in a specific format. Example: If you want "
+"numbers in a text field type but do not allow text, use this regex: /^\\d+$/ "
+"Can be used for text, textarea, date and password field types."
+msgstr ""
+"Form girdisinin belirli bir biçimde olduğunu doğrulamak için kullanılır. "
+"Örnek: Eğer bir metin alanında sayıları istiyorsanız ama metne izin "
+"vermiyorsanız, şu kurallı ifadeyi kullanın: /^\\d+$/ Metin, çoklu metin, "
+"tarih ve parola alan türleri için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:1655
+msgid "Regex fail message:"
+msgstr "Kurallı ifade başarısız mesajı:"
+
+#: admin/si-contact-form-admin.php:1656
+msgid ""
+"Use to customize a message to alert the user when the form fails to validate "
+"a regex after post. Example: Please only enter numbers. For use with "
+"validation regex only."
+msgstr ""
+"Yazıdan sonra kurallı ifadeyi doğrulamada başarısız olduğunda kullanıcıyı "
+"uyaran iletiyi özelleştirmek için kullanılır. Örnek: Lütfen sadece numara "
+"girin. Sadece doğrulama kurallı ifadesi ile kullanmak için."
+
+#: admin/si-contact-form-admin.php:1657
+msgid "Label CSS/Input CSS :"
+msgstr "Etiket CSS/Girdi CSS :"
+
+#: admin/si-contact-form-admin.php:1658
+msgid ""
+"Use to style individual form fields with CSS. CSS class names or style code "
+"are both acceptable. Note: If you do not need to style fields individually, "
+"you should use the CSS DIV settings instead."
+msgstr ""
+"Kişisel form alanlarını CSS ile şekillendirmek için kullanılır. CSS sınıf "
+"(class) adları veya stil (style) kodunun her ikiside kabul edilebilir. Not: "
+"Eğer kişisel olarak alanları şekillendirmeye ihtiyacınız yoksa, bunun yerine "
+"CSS DIV ayarlarını kullanmalısınız."
+
+#: admin/si-contact-form-admin.php:1659
+msgid "HTML before/after field:"
+msgstr "HTML öncesi/sonrası alanı:"
+
+#: admin/si-contact-form-admin.php:1660
+msgid ""
+"Use the HTML before/after field to print some HTML before or after an extra "
+"field on the form. This is for the form display only, not e-mail. HTML is "
+"allowed."
+msgstr ""
+"Formdaki ekstra bir alandan önce ya da sonra bazı HTML'i yazdırmak için HTML "
+"öncesi/sonrası alanı kullanılır. Bu sadece form görüntülemek içindir, e-"
+"posta değil. HTML'e izin verilir."
+
+#: admin/si-contact-form-admin.php:1670
+msgid "text"
+msgstr "metin"
+
+#: admin/si-contact-form-admin.php:1671
+msgid "textarea"
+msgstr "çoklu metin"
+
+#: admin/si-contact-form-admin.php:1672
+msgid "checkbox"
+msgstr "işaretleme kutusu"
+
+#: admin/si-contact-form-admin.php:1673
+msgid "checkbox-multiple"
+msgstr "çoklu işaretleme kutusu"
+
+#: admin/si-contact-form-admin.php:1674
+msgid "radio"
+msgstr "radyo"
+
+#: admin/si-contact-form-admin.php:1675
+msgid "select"
+msgstr "seçme"
+
+#: admin/si-contact-form-admin.php:1676
+msgid "select-multiple"
+msgstr "çoklu seçme"
+
+#: admin/si-contact-form-admin.php:1677
+msgid "attachment"
+msgstr "ek"
+
+#: admin/si-contact-form-admin.php:1678
+msgid "date"
+msgstr "tarih"
+
+#: admin/si-contact-form-admin.php:1679
+msgid "time"
+msgstr "saat"
+
+#: admin/si-contact-form-admin.php:1680
+msgid "email"
+msgstr "eposta"
+
+#: admin/si-contact-form-admin.php:1681
+msgid "url"
+msgstr "url"
+
+#: admin/si-contact-form-admin.php:1682
+msgid "hidden"
+msgstr "gizli"
+
+#: admin/si-contact-form-admin.php:1683
+msgid "password"
+msgstr "parola"
+
+#: admin/si-contact-form-admin.php:1684
+msgid "fieldset(box-open)"
+msgstr "alan seti(açık kutu)"
+
+#: admin/si-contact-form-admin.php:1685
+msgid "fieldset(box-close)"
+msgstr "alan seti(kapalı kutu)"
+
+#: admin/si-contact-form-admin.php:1691
+msgid "Extra field %d"
+msgstr "Ekstra alan %d"
+
+#: admin/si-contact-form-admin.php:1693
+msgid "Label:"
+msgstr "Etiket:"
+
+#: admin/si-contact-form-admin.php:1696
+msgid "Field type:"
+msgstr "Alan türü:"
+
+#: admin/si-contact-form-admin.php:1708
+msgid "Optional modifiers"
+msgstr "İsteğe bağlı değiştiriciler"
+
+#: admin/si-contact-form-admin.php:1709
+msgid "Default text"
+msgstr "Varsayılan metin"
+
+#: admin/si-contact-form-admin.php:1715
+msgid "Max length"
+msgstr "En fazla uzunluk"
+
+#: admin/si-contact-form-admin.php:1719
+msgid "Required field"
+msgstr "Zorunlu alan"
+
+#: admin/si-contact-form-admin.php:1721
+msgid "Attributes"
+msgstr "Öznitelikler"
+
+#: admin/si-contact-form-admin.php:1724
+msgid "Validation regex"
+msgstr "Doğrulama kurallı ifadesi"
+
+#: admin/si-contact-form-admin.php:1727
+msgid "Regex fail message"
+msgstr "Kurallı ifade başarısız mesajı"
+
+#: admin/si-contact-form-admin.php:1730
+msgid "Label CSS"
+msgstr "Etiket CSS"
+
+#: admin/si-contact-form-admin.php:1733
+msgid "Input CSS"
+msgstr "Girdi CSS"
+
+#: admin/si-contact-form-admin.php:1736
+msgid "HTML before form field %d:"
+msgstr "HTML öncesi form alanı %d:"
+
+#: admin/si-contact-form-admin.php:1739
+msgid "HTML after form field %d:"
+msgstr "HTML sonrası form alanı %d:"
+
+#: admin/si-contact-form-admin.php:1749
+msgid "Number of available extra fields"
+msgstr "Kullanılabilir ekstra alan sayısı"
+
+#: admin/si-contact-form-admin.php:1750 admin/si-contact-form-admin.php:1753
+msgid ""
+"Caution: Increase the number of extra fields as needed, but make sure you do "
+"not change to a lower number than what is being used on this form."
+msgstr ""
+"Dikkat: İhtiyaca göre ekstra alan sayısını arttırın ama bu formda "
+"kullanıldığından daha düşük bir sayıya değiştirmediğinizden emin olun."
+
+#: admin/si-contact-form-admin.php:1758
+msgid "Move extra fields to after the Message field."
+msgstr "İleti alanından sonra ekstra alanları taşı."
+
+#: admin/si-contact-form-admin.php:1761
+msgid ""
+"Normally the extra fields are inserted into the form between the e-mail "
+"address and the subject fields. Enabling this setting will move the extra "
+"fields to after the Message field."
+msgstr ""
+"Normalde ekstra alanlar e-posta adresi ve konu alanları arasında form "
+"içerisine yerleştirilirler. Bu ayarı etkinleştirmek ekstra alanları İleti "
+"alanından sonraya taşıyacak."
+
+#: admin/si-contact-form-admin.php:1765
+msgid "Date field - Date format:"
+msgstr "Tarih alanı - Tarih biçimi:"
+
+#: admin/si-contact-form-admin.php:1770 si-contact-form-display.php:219
+#: si-contact-form-ex-fields.php:544 si-contact-form-process.php:336
+msgid "mm/dd/yyyy"
+msgstr "aa/gg/yyyy"
+
+#: admin/si-contact-form-admin.php:1771 si-contact-form-display.php:220
+#: si-contact-form-ex-fields.php:545 si-contact-form-process.php:337
+msgid "dd/mm/yyyy"
+msgstr "gg/aa/yyyy"
+
+#: admin/si-contact-form-admin.php:1772 si-contact-form-display.php:221
+#: si-contact-form-ex-fields.php:546 si-contact-form-process.php:338
+msgid "mm-dd-yyyy"
+msgstr "aa-gg-yyyy"
+
+#: admin/si-contact-form-admin.php:1773 si-contact-form-display.php:222
+#: si-contact-form-ex-fields.php:547 si-contact-form-process.php:339
+msgid "dd-mm-yyyy"
+msgstr "gg-aa-yyyy"
+
+#: admin/si-contact-form-admin.php:1774 si-contact-form-display.php:223
+#: si-contact-form-ex-fields.php:548 si-contact-form-process.php:340
+msgid "mm.dd.yyyy"
+msgstr "aa.gg.yyyy"
+
+#: admin/si-contact-form-admin.php:1775 si-contact-form-display.php:224
+#: si-contact-form-ex-fields.php:549 si-contact-form-process.php:341
+msgid "dd.mm.yyyy"
+msgstr "gg.aa.yyyy"
+
+#: admin/si-contact-form-admin.php:1776 si-contact-form-display.php:225
+#: si-contact-form-ex-fields.php:550 si-contact-form-process.php:342
+msgid "yyyy/mm/dd"
+msgstr "yyyy/aa/gg"
+
+#: admin/si-contact-form-admin.php:1777 si-contact-form-display.php:226
+#: si-contact-form-ex-fields.php:551 si-contact-form-process.php:343
+msgid "yyyy-mm-dd"
+msgstr "yyyy-aa-gg"
+
+#: admin/si-contact-form-admin.php:1778 si-contact-form-display.php:227
+#: si-contact-form-ex-fields.php:552 si-contact-form-process.php:344
+msgid "yyyy.mm.dd"
+msgstr "yyyy.aa.gg"
+
+#: admin/si-contact-form-admin.php:1789
+msgid "Use to set the date format for the date field."
+msgstr "Tarih alanının tarih biçimini ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:1793
+msgid "Date field - Calendar Start Day of the Week"
+msgstr "Tarih alanı - Haftanın İlk Takvim Günü"
+
+#: admin/si-contact-form-admin.php:1796
+msgid ""
+"Use to set the day the week the date field calendar will start on: 0(Sun) to "
+"6(Sat)."
+msgstr ""
+"Tarih alanı takviminin başlayacağı haftanın gününü ayarlamak için "
+"kullanılır: 0(Paz) to 6(Cts)."
+
+#: admin/si-contact-form-admin.php:1800
+msgid "Time field - Time format:"
+msgstr "Saat alanı - Saat biçimi:"
+
+#: admin/si-contact-form-admin.php:1805
+msgid "12 Hour"
+msgstr "12 Saatlik"
+
+#: admin/si-contact-form-admin.php:1806
+msgid "24 Hour"
+msgstr "24 Saatlik"
+
+#: admin/si-contact-form-admin.php:1817
+msgid "Use to set the time format for the time field."
+msgstr "Saat alanının saat biçimini ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:1822
+msgid "Attached files acceptable types"
+msgstr "Ekli dosyaların kabul edilebilir türleri"
+
+#: admin/si-contact-form-admin.php:1825
+msgid ""
+"Set the acceptable file types for the file attachment feature. Any file type "
+"not on this list will be rejected."
+msgstr ""
+"Dosya eki özelliği için kabul edilebilir dosya türlerini ayarlar. Bu listede "
+"olmayan herhangi bir dosya türü reddedilecektir."
+
+#: admin/si-contact-form-admin.php:1826
+msgid "Separate each file type with a comma character. example:"
+msgstr "Her dosya türünü bir virgül karakteriyle ayırın. örnek:"
+
+#: admin/si-contact-form-admin.php:1831
+msgid "Attached files maximum size allowed"
+msgstr "Ekli dosyaların izin verilen en fazla boyutu"
+
+#: admin/si-contact-form-admin.php:1834
+msgid "Set the acceptable maximum file size for the file attachment feature."
+msgstr ""
+"Dosya eki özelliği için kabul edilebilir en fazla dosya boyutunu ayarlar."
+
+#: admin/si-contact-form-admin.php:1835
+msgid "example: 1mb equals one Megabyte, 1kb equals one Kilobyte"
+msgstr "örnek: 1mb, bir Megabayt'a eşittir, 1kb, bir Kilobayt'a eşittir"
+
+#: admin/si-contact-form-admin.php:1841
+msgid ""
+"Note: Maximum size is limited to available server resources and various PHP "
+"settings. Very few servers will accept more than 2mb. Sizes under 1mb will "
+"usually have best results. examples:"
+msgstr ""
+"Not: En fazla boyut sunucuda mevcut kaynaklarla ve çeşitli PHP ayarlarıyla "
+"sınırlıdır. Oldukça az sayıda sunucu 2mb'tan büyüğünü kabul edecektir. 1mb "
+"altındaki boyutlar genellikle en iyi sonuçlardır. örnekler:"
+
+#: admin/si-contact-form-admin.php:1843
+msgid ""
+"Note: If you set the value higher than your server can handle, users will "
+"have problems uploading big files. The form can time out and may not even "
+"show an error."
+msgstr ""
+"Not: Eğer değeri sunucunuz başa çıkabileceğinden daha yükseğe ayarlarsanız, "
+"kullanıcılar büyük dosyaları gönderirken sorunlar yaşayacak. Form zaman "
+"aşımına uğrayabilir ve hatta bir hata bile gösteremeyebilir."
+
+#: admin/si-contact-form-admin.php:1844
+msgid "Your server will not allow uploading files larger than than:"
+msgstr "Sunucunuz şu değerden büyük dosyaları göndermeye izin vermeyecek:"
+
+#: admin/si-contact-form-admin.php:1849
+msgid "Enable users to send HTML code in the textarea extra field types."
+msgstr ""
+"Kullanıcıları çoklu metin ekstra alan türlerinde HTML kodu göndermeleri için "
+"etkinleştir."
+
+#: admin/si-contact-form-admin.php:1852
+msgid ""
+"This setting is disabled by default for better security. Enable only if you "
+"want users to be able to send HTML code in the textarea extra field types. "
+"HTML code allowed will be filtered and limited to a few safe tags only."
+msgstr ""
+"Bu ayar daha iyi bir güvenlik için varsayılan olarak etkisizleştirilir. "
+"Sadece kullanıcıların çoklu metin ekstra alan türlerinde HTML kodu "
+"gönderebilmelerini istiyorsanız etkinleştirin. İzin verilen HTML kodu "
+"süzülecektir ve sadece birkaç güvenli etikete sınırlandırılacaktır."
+
+#: admin/si-contact-form-admin.php:1857
+msgid "Enable a \"Reset\" button on the form."
+msgstr "İletişim formunda \"Sıfırla\" düğmesini etkinleştir."
+
+#: admin/si-contact-form-admin.php:1860
+msgid ""
+"When a visitor clicks a reset button, the form entries are reset to the "
+"default values."
+msgstr ""
+"Ziyaretçi sıfırla düğmesine tıkladığında, form girişleri varsayılan "
+"değerlere sıfırlanır."
+
+#: admin/si-contact-form-admin.php:1865
+msgid "Enable an \"Are you sure?\" popup for the submit button."
+msgstr ""
+"Gönder düğmesi için bir \"Emin misiniz?\" açılır penceresi etkinleştirir."
+
+#: admin/si-contact-form-admin.php:1868
+msgid ""
+"When a visitor clicks the form submit button, a popup message will ask \"Are "
+"you sure?\". This message can be changed in the \"change field labels\" "
+"settings below."
+msgstr ""
+"Ziyaretçi form gönder düğmesine tıkladığında, bir açılır pencere \"Emin "
+"misiniz?\" diye soracak. Bu ileti aşağıdan \"alan etiketlerini değiştir\" "
+"ayarlarından değiştirilebilir."
+
+#: admin/si-contact-form-admin.php:1873
+msgid "Enable plugin credit link:"
+msgstr "Eklenti tanıtım bağlantısını etkinleştir:"
+
+#: admin/si-contact-form-admin.php:1873 si-contact-form-display.php:845
+msgid "Powered by"
+msgstr "Destekleyen"
+
+#: admin/si-contact-form-admin.php:1902
+msgid "Meeting Scheduler - by vCita:"
+msgstr "Toplantı Zamanlayıcısı - vCita tarafından:"
+
+#: admin/si-contact-form-admin.php:1927
+msgid "Email Address:"
+msgstr "Eposta Adresi:"
+
+#: admin/si-contact-form-admin.php:1929
+msgid "Privacy Policy"
+msgstr "Gizlilik İlkesi"
+
+#: admin/si-contact-form-admin.php:1932
+msgid ""
+"Your email and name will only be used to send you meeting requests and "
+"additional communication from vCita, and will not be shared with your "
+"clients or third party."
+msgstr ""
+"Epostanız ve adınız sadece toplantı isteklerini size göndermek için ve "
+"vCita'dan ilave iletişim için kullanılacaktır ve müşterileriniz ya da üçüncü "
+"partiler ile paylaşılmayacaktır."
+
+#: admin/si-contact-form-admin.php:1936 admin/si-contact-form-admin.php:2590
+#: si-contact-form-display.php:551 si-contact-form-process.php:616
+#: si-contact-form-process.php:624 si-contact-form-process.php:637
+msgid "First Name:"
+msgstr "İlk Adı:"
+
+#: admin/si-contact-form-admin.php:1939 admin/si-contact-form-admin.php:2591
+#: si-contact-form-display.php:563 si-contact-form-process.php:618
+#: si-contact-form-process.php:632 si-contact-form-process.php:645
+msgid "Last Name:"
+msgstr "Soyadı:"
+
+#: admin/si-contact-form-admin.php:1952
+msgid "Accept Meeting Requests via vCita"
+msgstr "vCita yoluyla Toplantı İsteklerini Kabul Et"
+
+#: admin/si-contact-form-admin.php:1955
+msgid ""
+"Check this option to add \"Set a Meeting\" button to your Contact Form, and "
+"let users send meeting requests"
+msgstr ""
+"Bu seçeneği İletişim Formunuza \"Bir Toplantı Ayarla\" düğmesini eklemek "
+"için işaretleyin ve bırakın kullanıcılar toplantı isteği göndersin"
+
+#: admin/si-contact-form-admin.php:1970
+msgid "Redirect:"
+msgstr "Yönlendirme:"
+
+#: admin/si-contact-form-admin.php:1975
+msgid "Enable redirect after the message sends"
+msgstr "İleti gönderimlerinden sonra yönlendirmeyi etkinleştir"
+
+#: admin/si-contact-form-admin.php:1978
+msgid ""
+"If enabled: After a user sends a message, the web browser will display "
+"\"message sent\" for x seconds, then redirect to the redirect URL. This can "
+"be used to redirect to the blog home page, or a custom \"Thank You\" page."
+msgstr ""
+"Eğer etkinleştirildiyse: Kullanıcı bir ileti gönderdikten sonra, web "
+"tarayıcısı x saniyeliğine \"ileti gönderildi\" iletisi görüntüleyecek, ondan "
+"sonra yönlendirme URL'sine yönlendirecek. Bu, blog ana sayfasına ya da özel "
+"\"Teşekkür Ederim\" sayfasına yönlendirmek için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:1982
+msgid "Redirect delay in seconds"
+msgstr "Saniye olarak yönlendirme gecikmesi"
+
+#: admin/si-contact-form-admin.php:1986
+msgid ""
+"How many seconds the web browser will display \"message sent\" before "
+"redirecting to the redirect URL. Values of 0-60 are allowed."
+msgstr ""
+"Yönlendirme URL'sine yönlendirmeden önce web tarayıcısı kaç saniye \"ileti "
+"gönderildi\" iletisini görüntüleyecek. 0-60 arası değerlere izin verilir."
+
+#: admin/si-contact-form-admin.php:1990
+msgid "Redirect URL"
+msgstr "Yönlendirme URL'si"
+
+#: admin/si-contact-form-admin.php:1993
+msgid ""
+"The form will redirect to this URL after success. This can be used to "
+"redirect to the blog home page, or a custom \"Thank You\" page."
+msgstr ""
+"Bu form başarılı olduktan sonra bu URL'ye yönlendirecek. Bu, blog ana "
+"sayfasına ya da özel bir \"Teşekkür Ederiz\" sayfasına yönlendirmek için "
+"kullanılabilir."
+
+#: admin/si-contact-form-admin.php:1994 admin/si-contact-form-admin.php:2158
+msgid "Use FULL URL including http:// for best results."
+msgstr "En iyi sonuçlar için http:// dahil TAM URL kullanın."
+
+#: admin/si-contact-form-admin.php:2000
+msgid ""
+"Warning: Enabling this setting requires the \"Enable redirect\" to also be "
+"set."
+msgstr ""
+"Uyarı: Bu ayarı etkinleştirmek aynı zamanda \"Yönlendirmeyi etkinleştir\" "
+"ayarlanmasını gerektirir."
+
+#: admin/si-contact-form-admin.php:2005
+msgid "Enable posted data to be sent as a query string on the redirect URL."
+msgstr ""
+"Yazılan veriyi yönlendirme URL'sine sorgu dizgisi olarak gönderilmesini "
+"etkinleştir."
+
+#: admin/si-contact-form-admin.php:2008
+msgid ""
+"If enabled: The posted data is sent to the redirect URL. This can be used to "
+"send the posted data via GET query string to a another form."
+msgstr ""
+"Eğer etkinleştirildiyse: Yazılan veri yönlendirme URL'sine gönderilir. Bu, "
+"yazılan veriyi GET sorgusu dizgisi yoluyla başka bir forma göndermek için "
+"kullanılabilir."
+
+#: admin/si-contact-form-admin.php:2011
+msgid "FAQ: Posted data can be sent as a query string on the redirect URL"
+msgstr ""
+"SSS: Yazılan veri yönlendirme URL'sine sorgu dizgisi olarak gönderilebilir"
+
+#: admin/si-contact-form-admin.php:2017
+msgid "Query string fields to ignore"
+msgstr "Yoksayma için sorgu dizgisi alanları"
+
+#: admin/si-contact-form-admin.php:2020
+msgid ""
+"Optional list of field names for fields you do not want included in the "
+"query string."
+msgstr ""
+"Sorgu dizgisi içine dahil edilmesini istemediğiniz alanlar için alan "
+"adlarının isteğe bağlı listesi."
+
+#: admin/si-contact-form-admin.php:2021 admin/si-contact-form-admin.php:2040
+#: admin/si-contact-form-admin.php:2065 admin/si-contact-form-admin.php:2170
+#: admin/si-contact-form-admin.php:2189 admin/si-contact-form-admin.php:2214
+#: admin/si-contact-form-admin.php:2285 admin/si-contact-form-admin.php:2305
+#: admin/si-contact-form-admin.php:2330
+msgid "Start each entry on a new line."
+msgstr "Her girişi yeni bir satırda başlatın."
+
+#: admin/si-contact-form-admin.php:2022 admin/si-contact-form-admin.php:2046
+#: admin/si-contact-form-admin.php:2171 admin/si-contact-form-admin.php:2195
+#: admin/si-contact-form-admin.php:2286 admin/si-contact-form-admin.php:2311
+msgid "Available fields on this form:"
+msgstr "Bu formdaki mevcut alanlar:"
+
+#: admin/si-contact-form-admin.php:2036
+msgid "Query string fields to rename"
+msgstr "Yeniden adlandırma için sorgu dizgisi alanları"
+
+#: admin/si-contact-form-admin.php:2039
+msgid ""
+"Optional list of field names for fields that need to be renamed for the "
+"query string."
+msgstr ""
+"Sorgu dizgisi için yeniden adlandırılması gereken alanlar için alan "
+"adlarının isteğe bağlı listesi."
+
+#: admin/si-contact-form-admin.php:2041 admin/si-contact-form-admin.php:2190
+#: admin/si-contact-form-admin.php:2306
+msgid ""
+"Type the old field name separated by the equals character, then type the new "
+"name, like this: oldname=newname"
+msgstr ""
+"Eski alan adını eşittir karakteriyle ayırarak yazın, ondan sonra yeni adı "
+"yazın, şunun gibi: eskiadı=yeniadı"
+
+#: admin/si-contact-form-admin.php:2042 admin/si-contact-form-admin.php:2067
+#: admin/si-contact-form-admin.php:2191 admin/si-contact-form-admin.php:2216
+#: admin/si-contact-form-admin.php:2307 admin/si-contact-form-admin.php:2332
+msgid "Examples:"
+msgstr "Örnekler:"
+
+#: admin/si-contact-form-admin.php:2060
+msgid "Query string key value pairs to add"
+msgstr "Eklemek için sorgu dizgisi anahtarı değeri eşlemeleri"
+
+#: admin/si-contact-form-admin.php:2063 admin/si-contact-form-admin.php:2212
+#: admin/si-contact-form-admin.php:2328
+msgid "Optional list of key value pairs that need to be added."
+msgstr "Eklenmesi gereken anahtar değeri eşlemelerinin isteğe bağlı listesi."
+
+#: admin/si-contact-form-admin.php:2064 admin/si-contact-form-admin.php:2213
+#: admin/si-contact-form-admin.php:2329
+msgid ""
+"Sometimes the outgoing connection will require fields that were not posted "
+"on your form."
+msgstr "Bazen giden bağlantı formunuzda yazılmamış alanları gerektirecek."
+
+#: admin/si-contact-form-admin.php:2066 admin/si-contact-form-admin.php:2215
+#: admin/si-contact-form-admin.php:2331
+msgid ""
+"Type the key separated by the equals character, then type the value, like "
+"this: key=value"
+msgstr ""
+"Anahtarı eşittir karakteriyle ayırarak yazın, ondan sonra değeri yazın, "
+"şunun gibi: anahtar=değer"
+
+#: admin/si-contact-form-admin.php:2083
+msgid ""
+"Warning: Enabling this setting requires the \"Enable redirect\" and \"Enable "
+"posted data to be sent as a query string\" to also be set."
+msgstr ""
+"Uyarı: Bu ayarı etkinleştirmek aynı zamanda \"Yönlendirmeyi etkinleştir\" ve "
+"\"Yazılan veriyi sorgu dizgisi olarak gönderilmesini etkinleştir\" "
+"ayarlanmasını gerektirir."
+
+#: admin/si-contact-form-admin.php:2090
+msgid ""
+"Warning: You have turned off email sending in the redirect settings below. "
+"This is just a reminder in case that was a mistake. If that is what you "
+"intended, then ignore this message."
+msgstr ""
+"Uyarı: Aşağıdaki yönlendirme ayarlarında eposta gönderimini kapattınız. Bu "
+"sadece bir hata olduğu durumda bir hatırlatıcıdır. Eğer bunu bilinçli "
+"yaptıysanız, o zaman bu iletiyi yoksayın."
+
+#: admin/si-contact-form-admin.php:2092 admin/si-contact-form-admin.php:2241
+#: admin/si-contact-form-admin.php:2357
+msgid ""
+"Warning: You have turned off email sending in the setting below. This is "
+"just a reminder in case that was a mistake. If that is what you intended, "
+"then ignore this message."
+msgstr ""
+"Uyarı: Aşağıdaki ayarda eposta gönderimini kapattınız. Bu sadece bir hata "
+"olduğu durumda bir hatırlatıcıdır. Eğer bunu bilinçli yaptıysanız, o zaman "
+"bu iletiyi yoksayın."
+
+#: admin/si-contact-form-admin.php:2097
+msgid ""
+"Disable email sending (use only when required while you have enabled query "
+"string on the redirect URL)."
+msgstr ""
+"Eposta gönderimini etkisizleştir (sadece yönlendirme URL'sindeki sorgu "
+"dizgisini etkinleştirmeniz gerektiğinde kullanın)."
+
+#: admin/si-contact-form-admin.php:2100
+msgid ""
+"No email will be sent to you!! The posted data will ONLY be sent to the "
+"redirect URL. This can be used to send the posted data via GET query string "
+"to a another form. Note: the autoresponder will still send email if it is "
+"enabled."
+msgstr ""
+"Size eposta gönderilmeyecek!! Yazılan veri SADECE yönlendirme URL'sine "
+"gönderilecek. Bu, yazılan veriyi başka bir forma GET sorgu dizgisi yoluyla "
+"göndermek için kullanılabilir. Not: otomatik cevaplandırıcı "
+"etkinleştirilirse hala eposta gönderecek."
+
+#: admin/si-contact-form-admin.php:2110 admin/si-contact-form-admin.php:2120
+msgid "Silent Remote Sending:"
+msgstr "Sessiz Uzak Gönderim:"
+
+#: admin/si-contact-form-admin.php:2114
+msgid ""
+"Posted form data can be sent silently to a remote form using the method GET "
+"or POST."
+msgstr ""
+"Yazılan form verisi GET veya POST yöntemi kullanılarak sessizce uzak forma "
+"gönderilebilir."
+
+#: admin/si-contact-form-admin.php:2116
+msgid "FAQ: Send the posted form data to another site."
+msgstr "SSS: Yazılan form verisini başka bir siteye gönderme."
+
+#: admin/si-contact-form-admin.php:2124
+msgid "Off"
+msgstr "Kapalı"
+
+#: admin/si-contact-form-admin.php:2125
+msgid "Enabled: Method GET"
+msgstr "Etkinleştirildi: Yöntem GET"
+
+#: admin/si-contact-form-admin.php:2126
+msgid "Enabled: Method POST"
+msgstr "Etkinleştirildi: Yöntem POST"
+
+#: admin/si-contact-form-admin.php:2141
+msgid ""
+"If enabled: After a user sends a message, the form can silently send the "
+"posted data to a third party remote URL. This can be used for a third party "
+"service such as a mailing list API."
+msgstr ""
+"Eğer etkinleştirildiyse: Kullanıcı bir ileti gönderdikten sonra, form "
+"sessizce yazılan veriyi üçüncü parti bir uzak URL'ye gönderebilir. Bu, "
+"postalama listesi API'si gibi üçüncü parti bir hizmet için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:2142
+msgid "Select method GET or POST based on the remote API requirement."
+msgstr "Uzak API gereksinimine bağlı olarak GET veya POST yöntemini seçin."
+
+#: admin/si-contact-form-admin.php:2149
+msgid ""
+"Warning: Enabling this setting requires the \"Silent Remote URL\" to also be "
+"set."
+msgstr ""
+"Uyarı: Bu ayarı etkinleştirmek aynı zamanda \"Sessiz Uzak URL\" "
+"ayarlanmasını gerektirir."
+
+#: admin/si-contact-form-admin.php:2154
+msgid "Silent Remote URL"
+msgstr "Sessiz Uzak URL"
+
+#: admin/si-contact-form-admin.php:2157
+msgid ""
+"The form will silently send the form data to this URL after success. This "
+"can be used for a third party service such as a mailing list API."
+msgstr ""
+"Form, başarılı olduktan sonra form verisini bu URL'ye sessizce gönderecek. "
+"Bu, postalama listesi API'si gibi üçüncü parti hizmet için kullanılabilir."
+
+#: admin/si-contact-form-admin.php:2166
+msgid "Silent send fields to ignore"
+msgstr "Yoksaymak için sessiz gönderme alanları"
+
+#: admin/si-contact-form-admin.php:2169
+msgid "Optional list of field names for fields you do not want included."
+msgstr ""
+"Dahil etmek istemeyeceğiniz alanlar için alan adlarının isteğe bağlı listesi."
+
+#: admin/si-contact-form-admin.php:2185
+msgid "Silent send fields to rename"
+msgstr "Yeniden adlandırmak için sessiz gönderme alanları"
+
+#: admin/si-contact-form-admin.php:2188
+msgid "Optional list of field names for fields that need to be renamed."
+msgstr ""
+"Yeniden adlandırılması gereken alanlar için alan adlarının isteğe bağlı "
+"listesi."
+
+#: admin/si-contact-form-admin.php:2209
+msgid "Silent send key value pairs to add"
+msgstr "Eklemek için sessiz gönderme anahtarı değeri eşlemesi"
+
+#: admin/si-contact-form-admin.php:2232
+msgid ""
+"Warning: Enabling this setting requires the \"Silent Remote Send\" and "
+"\"Silent Remote URL\" to also be set."
+msgstr ""
+"Uyarı: Bu ayarı etkinleştirmek aynı zamanda \"Sessiz Uzak Gönderme\" ve "
+"\"Sessiz Uzak URL'si\" ayarlanmasını gerektirir."
+
+#: admin/si-contact-form-admin.php:2239
+msgid ""
+"Warning: You have turned off email sending in the Silent Remote Send "
+"settings below. This is just a reminder in case that was a mistake. If that "
+"is what you intended, then ignore this message."
+msgstr ""
+"Uyarı: Aşağıda Sessiz Uzak Gönderme ayarlarındaki eposta gönderimini "
+"kapattınız. Bu sadece bir hata olduğu durumda bir hatırlatıcıdır. Eğer bunu "
+"bilinçli yaptıysanız, o zaman bu iletiyi yoksayın."
+
+#: admin/si-contact-form-admin.php:2246
+msgid ""
+"Disable email sending (use only when required while you have enabled silent "
+"remote sending)."
+msgstr ""
+"Eposta gönderimini etkisizleştir (sadece sessiz uzak gönderimi "
+"etkinleştirmeniz gerektiğinde kullanın)."
+
+#: admin/si-contact-form-admin.php:2249
+msgid ""
+"No email will be sent to you!! The posted data will ONLY be sent to the "
+"silent remote URL. This can be used for a third party service such as a "
+"mailing list API. Note: the autoresponder will still send email if it is "
+"enabled."
+msgstr ""
+"Size eposta gönderilmeyecek!! Yazılan veri SADECE sessiz uzak URL'sine "
+"gönderilecek. Bu, postalama listesi API'si gibi üçüncü parti hizmet için "
+"kullanılabilir. Not: otomatik cevaplandırıcı etkinleştirilirse hala eposta "
+"gönderecek."
+
+#: admin/si-contact-form-admin.php:2259
+msgid "Data Export:"
+msgstr "Veriyi Dışa Aktarma:"
+
+#: admin/si-contact-form-admin.php:2263
+msgid ""
+"Posted fields data can be exported to another plugin such as the <a href=\"%s"
+"\" target=\"_new\">Contact Form 7 to DB Extension Plugin</a>."
+msgstr ""
+"Yazılan alanların verisi <a href=\"%s\" target=\"_new\">Contact Form 7 to DB "
+"Extension Eklentisi</a> gibi başka bir eklentiye aktarılabilir."
+
+#: admin/si-contact-form-admin.php:2265
+msgid "FAQ: Save to a database or export to CSV file."
+msgstr "SSS: Veritabanına kaydet veya CSV dosyasına aktar."
+
+#: admin/si-contact-form-admin.php:2269
+msgid "Enable data export after the message"
+msgstr "İletiden sonra veriyi dışa aktarmayı etkinleştir"
+
+#: admin/si-contact-form-admin.php:2272
+msgid ""
+"This settings requires a compatible data export plugin to be installed. If "
+"enabled: After a user sends a message, the posted fields data can be "
+"exported to another plugin such as the <a href=\"%s\">Contact Form 7 to DB "
+"Extension Plugin</a>."
+msgstr ""
+"Bu ayarlar, yüklenmesi için uyumlu bir veriyi dışa aktarma eklentisi "
+"gerektirir. Eğer etkinleştirildiyse: Kullanıcı bir ileti gönderdikten sonra, "
+"yazılan alanların verisi <a href=\"%s\" target=\"_new\">Contact Form 7 to DB "
+"Extension Eklentisi</a> gibi başka bir eklentiye aktarılabilir."
+
+#: admin/si-contact-form-admin.php:2273
+msgid " You can uncheck this setting to turn off data export for this form."
+msgstr ""
+" Bu form için veriyi dışa aktarmayı kapatmak için bu ayarın işaretini "
+"kaldırabilirsiniz."
+
+#: admin/si-contact-form-admin.php:2281
+msgid "Data export fields to ignore"
+msgstr "Yoksaymak için veriyi dışa aktarma alanları"
+
+#: admin/si-contact-form-admin.php:2284
+msgid ""
+"Optional list of field names for fields you do not want included in the data "
+"export."
+msgstr ""
+"Veriyi dışa aktarmada dahil etmek istemeyeceğiniz alanlar için alan "
+"adlarının isteğe bağlı listesi."
+
+#: admin/si-contact-form-admin.php:2301
+msgid "Data export fields to rename"
+msgstr "Yeniden adlandırmak için veriyi dışa aktarma alanları"
+
+#: admin/si-contact-form-admin.php:2304
+msgid ""
+"Optional list of field names for fields that need to be renamed before data "
+"export."
+msgstr ""
+"Veriyi dışa aktarmadan önce yeniden adlandırılması gereken alanlar için alan "
+"adlarının isteğe bağlı listesi."
+
+#: admin/si-contact-form-admin.php:2325
+msgid "Data export key value pairs to add"
+msgstr "Eklemek için veriyi dışa aktarma anahtarı değeri eşlemesi"
+
+#: admin/si-contact-form-admin.php:2348
+msgid ""
+"Warning: Enabling this setting requires the \"Enable data export\" to also "
+"be set."
+msgstr ""
+"Uyarı: Bu ayarı etkinleştirmek aynı zamanda \"Veriyi dışa aktarmayı "
+"etkinleştir\" ayarlanmasını gerektirir."
+
+#: admin/si-contact-form-admin.php:2355
+msgid ""
+"Warning: You have turned off email sending in the data export settings "
+"below. This is just a reminder in case that was a mistake. If that is what "
+"you intended, then ignore this message."
+msgstr ""
+"Uyarı: Aşağıda veriyi aktarma ayarlarındaki eposta gönderimini kapattınız. "
+"Bu sadece bir hata olduğu durumda bir hatırlatıcıdır. Eğer bunu bilinçli "
+"yaptıysanız, o zaman bu iletiyi yoksayın."
+
+#: admin/si-contact-form-admin.php:2362
+msgid ""
+"Disable email sending (use only when required while you have enabled data "
+"export)."
+msgstr ""
+"Eposta gönderimini etkisizleştir (sadece veriyi aktarmayı etkinleştirmeniz "
+"gerektiğinde kullanın)."
+
+#: admin/si-contact-form-admin.php:2365
+msgid ""
+"No email will be sent to you!! The posted data will ONLY be sent to the data "
+"export. Note: the autoresponder will still send email if it is enabled."
+msgstr ""
+"Size eposta gönderilmeyecek!! Yazılan veri SADECE veriyi aktarmaya "
+"gönderilecek. Not: otomatik cevaplandırıcı etkinleştirilirse hala eposta "
+"gönderecek."
+
+#: admin/si-contact-form-admin.php:2374
+msgid "Style:"
+msgstr "Stil:"
+
+#: admin/si-contact-form-admin.php:2378
+msgid "Modifiable CSS Style Feature:"
+msgstr "Değiştirilebilir CSS Stili Özelliği:"
+
+#: admin/si-contact-form-admin.php:2381
+msgid "Use to adjust the font colors or other styling of the contact form."
+msgstr ""
+"İletişim formunun yazı tipi renklerini veya diğer şekillendirmelerini "
+"ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2382
+msgid ""
+"You can use inline css, or add a class property to be used by your own "
+"stylsheet."
+msgstr ""
+"Satıriçi css kullanabilir ya da sizin kendi stil sayfanızın kullandığı class "
+"özelliğini ekleyebilirsiniz."
+
+#: admin/si-contact-form-admin.php:2383
+msgid "Acceptable Examples:"
+msgstr "Kabul Edilebilir Örnekler:"
+
+#: admin/si-contact-form-admin.php:2391
+msgid "Reset the styles to labels on top (default)."
+msgstr "En üstteki stilleri etiketlere sıfırla (varsayılan)."
+
+#: admin/si-contact-form-admin.php:2394
+msgid "Reset the styles to labels on left."
+msgstr "Soldaki stilleri etiketlere sıfırla (varsayılan)."
+
+#: admin/si-contact-form-admin.php:2398
+msgid "Enable border on contact form"
+msgstr "İletişim formunda kenarlığı etkinleştir"
+
+#: admin/si-contact-form-admin.php:2401
+msgid ""
+"Enable to draw a fieldset box around all the form elements. You can add a "
+"border label or remove it with the setting below."
+msgstr ""
+"Tüm form öğeleri etrafında alan seti kutusu çizmeyi etkinleştirir. Kenarlık "
+"etiketi ekleyebilir veya aşağıdaki ayar ile kaldırabilirsiniz."
+
+#: admin/si-contact-form-admin.php:2404
+msgid "Border label"
+msgstr "Kenarlık etiketi"
+
+#: admin/si-contact-form-admin.php:2408
+msgid "CSS style for border"
+msgstr "Kenarlık için CSS stili"
+
+#: admin/si-contact-form-admin.php:2411
+msgid ""
+"Use to adjust the style of the contact form border (if border is enabled)."
+msgstr ""
+"İletişim formu kenarlığı stilini ayarlamak için kullanılır (eğer kenarlık "
+"etkinleştirilirse)."
+
+#: admin/si-contact-form-admin.php:2417
+msgid "CSS style for form DIV"
+msgstr "Form DIV'i için CSS stili"
+
+#: admin/si-contact-form-admin.php:2420
+msgid "Use to adjust the style in the form wrapping DIV."
+msgstr "Formu kapsayan DIV içindeki stili ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2425
+msgid "CSS style for required field text"
+msgstr "Zorunlu alan metni için CSS stili"
+
+#: admin/si-contact-form-admin.php:2428
+msgid ""
+"Use to adjust the style of the message that says a field is required, and "
+"the required field indicator."
+msgstr ""
+"Zorunlu alan göstergesi ve alan zorunlu diyen iletinin stilini ayarlamak "
+"için kullanılır."
+
+#: admin/si-contact-form-admin.php:2432
+msgid "CSS style for extra field HTML"
+msgstr "Ekstra alan HTML'i için CSS stili"
+
+#: admin/si-contact-form-admin.php:2435
+msgid ""
+"Use to adjust the style in the HTML before and after DIVs for extra fields."
+msgstr ""
+"Ekstra alanlar için DIV'lerden önce ve sonra HTML içindeki stili ayarlamak "
+"için kullanılır."
+
+#: admin/si-contact-form-admin.php:2439
+msgid "CSS style for form input field labels"
+msgstr "Form girdi alanı etiketleri için CSS stili"
+
+#: admin/si-contact-form-admin.php:2442
+msgid "Use to adjust the style for the form field labels."
+msgstr "Form alanı etiketleri stilini ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2446
+msgid "CSS style inside form input fields"
+msgstr "Form girdi alanları içindeki CSS stili"
+
+#: admin/si-contact-form-admin.php:2449
+msgid ""
+"Use to adjust the style inside the form input fields such as text field "
+"types."
+msgstr ""
+"Metin alanı türleri gibi form girdi alanları içindeki stili ayarlamak için "
+"kullanılır."
+
+#: admin/si-contact-form-admin.php:2453
+msgid "CSS style for form input fields DIV"
+msgstr "Form girdi alanları DIV'i için CSS stili"
+
+#: admin/si-contact-form-admin.php:2456
+msgid ""
+"Use to adjust the style in the form input field alignment wrapping DIVs."
+msgstr ""
+"Form girdi alanı hizalamasını kapsayan DIV içindeki stili ayarlamak için "
+"kullanılır."
+
+#: admin/si-contact-form-admin.php:2460
+msgid "CSS style for form input errors"
+msgstr "Form girdi hataları için CSS stili"
+
+#: admin/si-contact-form-admin.php:2463
+msgid "Use to adjust the style of form input validation messages."
+msgstr "Form girdi doğrulaması iletilerinin stilini ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2467
+msgid "CSS style for contact drop down select"
+msgstr "İletişim aşağı açılır menüsü seçimi için CSS stili"
+
+#: admin/si-contact-form-admin.php:2470
+msgid ""
+"Use to adjust the style of any form select field types including subject, if "
+"enabled."
+msgstr ""
+"Herhangi bir form seçme alanı türlerinin, konu dahil, stilini ayarlamak için "
+"kullanılır, eğer etkinleştirilmişse."
+
+#: admin/si-contact-form-admin.php:2474
+msgid "CSS style for Small CAPTCHA DIV"
+msgstr "Küçük CAPTCHA DIV'i için CSS stili"
+
+#: admin/si-contact-form-admin.php:2477
+msgid ""
+"Use to adjust the style in the form Small CAPTCHA wrapping DIV, if enabled."
+msgstr ""
+"Form Küçük CAPTCHA'sını kapsayan DIV içindeki stili ayarlamak için "
+"kullanılır."
+
+#: admin/si-contact-form-admin.php:2481
+msgid "CSS style for CAPTCHA DIV"
+msgstr "CAPTCHA DIV'i için CSS stili"
+
+#: admin/si-contact-form-admin.php:2484
+msgid "Use to adjust the style in the form CAPTCHA wrapping DIV."
+msgstr ""
+"Form CAPTCHA'sını kapsayan DIV içindeki stili ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2488
+msgid "CSS style for CAPTCHA input field"
+msgstr "CAPTCHA girdi alanı için CSS stili"
+
+#: admin/si-contact-form-admin.php:2491
+msgid "Use to adjust the style in the CAPTCHA code input text field."
+msgstr ""
+"CAPTCHA kodu metni girdi alanı içindeki stili ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2495
+msgid "CSS style for Submit DIV"
+msgstr "Gönder DIV'i için CSS stili"
+
+#: admin/si-contact-form-admin.php:2498
+msgid "Use to adjust the style in the form submit button wrapping DIV."
+msgstr ""
+"Form gönder düğmesini kapsayan DIV içindeki stili ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2502
+msgid "CSS style for Submit button"
+msgstr "Gönder düğmesi için CSS stili"
+
+#: admin/si-contact-form-admin.php:2505
+msgid "Use to adjust the style for the form submit button text."
+msgstr "Form gönder düğmesi metni stilini ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2509
+msgid "CSS style for Reset button"
+msgstr "Sıfırla düğmesi için CSS stili"
+
+#: admin/si-contact-form-admin.php:2512
+msgid "Use to adjust the style for the form reset button text, if enabled."
+msgstr ""
+"Form sıfırla düğmesi metni stilini ayarlamak için kullanılır, eğer "
+"etkinleştirilmişse."
+
+#: admin/si-contact-form-admin.php:2516
+msgid "CSS style for \"Powered by\" message"
+msgstr "\"Destekleyen\" iletisi için CSS stili"
+
+#: admin/si-contact-form-admin.php:2519
+msgid "Use to adjust the style for the \"powered by\" message link."
+msgstr "\"Destekleyen\" iletisi bağlantısı stilini ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2523
+msgid "CSS style for redirecting message"
+msgstr "Yönlendirme iletisi için CSS stili"
+
+#: admin/si-contact-form-admin.php:2526
+msgid ""
+"Use to adjust the style for the \"redirecting\" message shown after the form "
+"is sent."
+msgstr ""
+"Form gönderildikten sonra gösterilen \"yönlendiriliyor\" iletisi stilini "
+"ayarlamak için kullanılır."
+
+#: admin/si-contact-form-admin.php:2531
+msgid "Input Text Field Size"
+msgstr "Metin Girdi Alanı Boyutu"
+
+#: admin/si-contact-form-admin.php:2534
+msgid ""
+"Use to adjust the size of the contact form text input fields. Note: your "
+"theme CSS might override this setting."
+msgstr ""
+"İletişim formu metni girdi alanlarının boyutunu ayarlamak için kullanılır. "
+"Not: tema CSS'niz bu ayarı geçersiz kılabilir."
+
+#: admin/si-contact-form-admin.php:2538
+msgid "Input CAPTCHA Field Size"
+msgstr "CAPTCHA Girdi Alanı Boyutu"
+
+#: admin/si-contact-form-admin.php:2541
+msgid ""
+"Use to adjust the size of the contact form CAPTCHA input field. Note: your "
+"theme CSS might override this setting."
+msgstr ""
+"İletişim formu CAPTCHA girdi alanının boyutunu ayarlamak için kullanılır. "
+"Not: tema CSS'niz bu ayarı geçersiz kılabilir."
+
+#: admin/si-contact-form-admin.php:2545
+msgid "Input Textarea Field Cols"
+msgstr "Çoklu Metin Girdi Alanı Sütunları"
+
+#: admin/si-contact-form-admin.php:2546
+msgid "Rows"
+msgstr "Satırlar"
+
+#: admin/si-contact-form-admin.php:2549
+msgid ""
+"Use to adjust the size of the contact form message textarea. Note: your "
+"theme CSS might override this setting."
+msgstr ""
+"İletişim formu ileti çoklu metin boyutunu ayarlamak için kullanılır. Not: "
+"tema CSS'niz bu ayarı geçersiz kılabilir."
+
+#: admin/si-contact-form-admin.php:2554
+msgid "Enable aria-required tags for screen readers"
+msgstr "Ekran okuyucuları için aria-zorunlu etiketlerini etkinleştir"
+
+#: admin/si-contact-form-admin.php:2557
+msgid ""
+"aria-required is a form input WAI ARIA tag. Screen readers use it to "
+"determine which fields are required. Enabling this is good for "
+"accessability, but will cause the HTML to fail the W3C Validation (there is "
+"no attribute \"aria-required\"). WAI ARIA attributes are soon to be accepted "
+"by the HTML validator, so you can safely ignore the validation error it will "
+"cause."
+msgstr ""
+"aria-zorunlu, bir WAI ARIA form girdisi etiketidir. Ekran okuyucuları bunu "
+"hangi alanların zorunlu olduğunu belirlemek için kullanırlar. Bunu "
+"etkinleştirmek erişim kolaylığına yarar, ama HTML'in W3C Doğrulamasının "
+"başarısız olmasına neden olacaktır (\"aria-zorunlu\" diye bir öznitelik "
+"yoktur). WAI ARIA öznitelikleri yakın zamanda HTML doğrulayıcıları "
+"tarafından kabul görmeye başlayacak, bu yüzden neden olacağı doğrulama "
+"hatasını güvenle görmezden gelebilirsiniz."
+
+#: admin/si-contact-form-admin.php:2566
+msgid "Fields:"
+msgstr "Alanlar:"
+
+#: admin/si-contact-form-admin.php:2570
+msgid "Change field labels:"
+msgstr "Alan etiketlerini değiştir:"
+
+#: admin/si-contact-form-admin.php:2573 admin/si-contact-form-admin.php:2617
+msgid ""
+"Some people wanted to change the labels for the contact form. These fields "
+"can be filled in to override the standard labels."
+msgstr ""
+"Bazı insanlar iletişim formu için etiketleri değiştirmek istediler. Bu "
+"alanlar, standart etiketleri geçersiz kılmak için doldurulabilir."
+
+#: admin/si-contact-form-admin.php:2578
+msgid "Enable required field label on contact form:"
+msgstr "İletişim formunda zorunlu alan etiketini etkinleştir:"
+
+#: admin/si-contact-form-admin.php:2578 admin/si-contact-form-admin.php:2580
+#: si-contact-form-display.php:451
+msgid "(denotes required field)"
+msgstr "(zorunlu alanı belirtir)"
+
+#: admin/si-contact-form-admin.php:2583
+msgid "Enable required field indicators on contact form"
+msgstr "İletişim formunda zorunlu alan göstergelerini etkinleştir"
+
+#: admin/si-contact-form-admin.php:2585
+msgid "Required field indicator:"
+msgstr "Zorunlu alan göstergesi:"
+
+#: admin/si-contact-form-admin.php:2587 si-contact-form-display.php:483
+msgid "Department to Contact:"
+msgstr "Ulaşılmak istenen Bölüm:"
+
+#: admin/si-contact-form-admin.php:2588 si-contact-form-display.php:491
+#: si-contact-form-display.php:705
+msgid "Select"
+msgstr "Seçme"
+
+#: admin/si-contact-form-admin.php:2589 si-contact-form-display.php:580
+msgid "Name:"
+msgstr "Adı:"
+
+#: admin/si-contact-form-admin.php:2592 si-contact-form-display.php:621
+#: si-contact-form-process.php:641
+msgid "Middle Name:"
+msgstr "İkinci Adı:"
+
+#: admin/si-contact-form-admin.php:2593 si-contact-form-display.php:604
+#: si-contact-form-process.php:628
+msgid "Middle Initial:"
+msgstr "İkinci Adı İlk Harfi:"
+
+#: admin/si-contact-form-admin.php:2594 si-contact-form-display.php:638
+#: si-contact-form-display.php:664
+msgid "E-Mail Address:"
+msgstr "E-Posta Adresi:"
+
+#: admin/si-contact-form-admin.php:2595 si-contact-form-display.php:649
+msgid "E-Mail Address again:"
+msgstr "E-Posta Adresi tekrar:"
+
+#: admin/si-contact-form-admin.php:2596
+msgid "Please enter your e-mail Address a second time."
+msgstr "Lütfen e-posta adresinizi ikinci kez girin."
+
+#: admin/si-contact-form-admin.php:2597 si-contact-form-display.php:694
+#: si-contact-form-display.php:744
+msgid "Subject:"
+msgstr "Konu:"
+
+#: admin/si-contact-form-admin.php:2598 si-contact-form-display.php:762
+#: si-contact-form-process.php:655 si-contact-form-process.php:800
+msgid "Message:"
+msgstr "İleti:"
+
+#: admin/si-contact-form-admin.php:2599 si-contact-form.php:1321
+msgid "CAPTCHA Code:"
+msgstr "CAPTCHA Kodu:"
+
+#: admin/si-contact-form-admin.php:2600 si-contact-form-display.php:814
+msgid "Submit"
+msgstr "Gönder"
+
+#: admin/si-contact-form-admin.php:2601 si-contact-form-display.php:824
+msgid "Reset"
+msgstr "Sıfırla"
+
+#: admin/si-contact-form-admin.php:2602 si-contact-form-display.php:818
+msgid "Are you sure?"
+msgstr "Emin misiniz?"
+
+#: admin/si-contact-form-admin.php:2603 si-contact-form-process.php:1250
+msgid "Your message has been sent, thank you."
+msgstr "İletiniz gönderildi, teşekkür ederiz."
+
+#: admin/si-contact-form-admin.php:2611
+msgid "Tooltips:"
+msgstr "İpuçları:"
+
+#: admin/si-contact-form-admin.php:2614
+msgid "Change tooltips labels:"
+msgstr "İpuçları etiketlerini değiştir:"
+
+#: admin/si-contact-form-admin.php:2621 si-contact-form.php:1297
+#: si-contact-form.php:1299
+msgid "CAPTCHA Image"
+msgstr "CAPTCHA Resmi"
+
+#: admin/si-contact-form-admin.php:2622
+msgid "CAPTCHA Audio"
+msgstr "CAPTCHA Sesi"
+
+#: admin/si-contact-form-admin.php:2623 si-contact-form.php:1306
+#: si-contact-form.php:1312
+msgid "Refresh Image"
+msgstr "Resmi Yenile"
+
+#: admin/si-contact-form-admin.php:2624 si-contact-form-ex-fields.php:529
+msgid "Acceptable file types:"
+msgstr "Kabul edilebilir dosya türleri:"
+
+#: admin/si-contact-form-admin.php:2625 si-contact-form-ex-fields.php:531
+msgid "Maximum file size:"
+msgstr "En fazla dosya boyutu:"
+
+#: admin/si-contact-form-admin.php:2633
+msgid "Errors:"
+msgstr "Hatalar:"
+
+#: admin/si-contact-form-admin.php:2636
+msgid "Change error labels:"
+msgstr "Hata etiketlerini değiştir:"
+
+#: admin/si-contact-form-admin.php:2639
+msgid ""
+"Some people wanted to change the error messages for the contact form. These "
+"fields can be filled in to override the standard included error messages."
+msgstr ""
+"Bazı insanlar iletişim formu için hata iletilerini değiştirmek istediler. Bu "
+"alanlar, hata iletileri dahil standartı geçersiz kılmak için doldurulabilir."
+
+#: admin/si-contact-form-admin.php:2642 si-contact-form-process.php:167
+msgid "Selecting a contact is required."
+msgstr "Bir kişi seçmek zorunlu."
+
+#: admin/si-contact-form-admin.php:2643 si-contact-form-process.php:291
+#: si-contact-form-process.php:297 si-contact-form-process.php:301
+msgid "Your name is required."
+msgstr "Adınız zorunlu."
+
+#: admin/si-contact-form-admin.php:2644 si-contact-form-process.php:314
+#: si-contact-form-process.php:318
+msgid "A proper e-mail address is required."
+msgstr "Uygun bir e-posta adresi zorunlu."
+
+#: admin/si-contact-form-admin.php:2645 si-contact-form-process.php:322
+msgid "The two e-mail addresses did not match, please enter again."
+msgstr "İki e-posta adresi eşleşmiyor, lütfen tekrar girin."
+
+#: admin/si-contact-form-admin.php:2646 si-contact-form-process.php:350
+#: si-contact-form-process.php:377 si-contact-form-process.php:426
+#: si-contact-form-process.php:470 si-contact-form-process.php:487
+#: si-contact-form-process.php:509 si-contact-form.php:1095
+msgid "This field is required."
+msgstr "Bu alan zorunlu."
+
+#: admin/si-contact-form-admin.php:2647 si-contact-form-process.php:528
+msgid "Subject text is required."
+msgstr "Konu metni zorunlu."
+
+#: admin/si-contact-form-admin.php:2648 si-contact-form-process.php:533
+msgid "Message text is required."
+msgstr "İleti metni zorunlu."
+
+#: admin/si-contact-form-admin.php:2649
+msgid "Contact Form has Invalid Input"
+msgstr "İletişim Formu Geçersiz Girdiye sahip"
+
+#: admin/si-contact-form-admin.php:2650 si-contact-form-process.php:559
+msgid "Please complete the CAPTCHA."
+msgstr "Lütfen CAPTCHA'yı tamamlayın."
+
+#: admin/si-contact-form-admin.php:2651 si-contact-form-process.php:576
+msgid "That CAPTCHA was incorrect."
+msgstr "Bu CAPTCHA yanlış oldu."
+
+#: admin/si-contact-form-admin.php:2652 si-contact-form-process.php:571
+#: si-contact-form-process.php:587
+msgid "Possible spam bot."
+msgstr "Olası istenmeyen mesaj botu."
+
+#: admin/si-contact-form-admin.php:2653 si-contact-form-display.php:410
+msgid "Please make corrections below and try again."
+msgstr "Lütfen aşağıdaki düzeltmeleri yapın ve tekrar deneyin."
+
+#: admin/si-contact-form-admin.php:2666
+msgid "Send a Test E-mail"
+msgstr "Bir Deneme E-postası Gönder"
+
+#: admin/si-contact-form-admin.php:2667
+msgid ""
+"If you are not receiving email from your form, try this test because it can "
+"display troubleshooting information."
+msgstr ""
+"Eğer formunuzdan eposta almıyorsanız, bu denemeyi yapın çünkü sorun giderme "
+"bilgisi görüntüleyebilir."
+
+#: admin/si-contact-form-admin.php:2668
+msgid ""
+"There are settings you can use to try to fix email delivery problems, see "
+"this FAQ for help:"
+msgstr ""
+"Eposta teslim sorunlarını düzeltmek için kullanabileceğiniz ayarlar vardır, "
+"yardım için bu SSS bakın:"
+
+#: admin/si-contact-form-admin.php:2670
+msgid ""
+"Type an email address here and then click Send Test to generate a test email."
+msgstr ""
+"Bir deneme epostası oluşturmak için buraya bir eposta adresi yazın ve ondan "
+"sonra Deneme Gönder'e tıklayın."
+
+#: admin/si-contact-form-admin.php:2678
+msgid "To:"
+msgstr "Kime:"
+
+#: admin/si-contact-form-admin.php:2694
+msgid ""
+"This tool can copy your contact form settings from this form number to any "
+"of your other forms."
+msgstr ""
+"Bu araç, iletişim formu ayarlarınızı bu form numarasından diğer "
+"formlarınızın herhangi birine kopyalayabilir."
+
+#: admin/si-contact-form-admin.php:2695
+msgid ""
+"Use to copy just the style settings, or all the settings from this form."
+msgstr ""
+"Sadece stil ayarlarını ya da bu formdan tüm ayarları kopyalamak için "
+"kullanılır."
+
+#: admin/si-contact-form-admin.php:2696
+msgid ""
+"It is a good idea to backup all forms with the backup tool before you use "
+"this copy tool. Changes are permanent!"
+msgstr ""
+"Bu kopyalama aracını kullanmadan önce yedekleme aracı ile tüm formları "
+"yedeklemeniz için iyi bir fikir. Değişikllikler kalıcıdır!"
+
+#: admin/si-contact-form-admin.php:2698
+msgid "What to copy:"
+msgstr "Ne kopyalanacak:"
+
+#: admin/si-contact-form-admin.php:2702
+msgid "Form %d - all settings"
+msgstr "Form %d - tüm ayarlar"
+
+#: admin/si-contact-form-admin.php:2703
+msgid "Form %d - style settings"
+msgstr "Form %d - stil ayarları"
+
+#: admin/si-contact-form-admin.php:2715
+msgid "Select a form to copy form %d settings to:"
+msgstr "Form %d ayarlarını kopyalamak için bir form seçin:"
+
+#: admin/si-contact-form-admin.php:2719 admin/si-contact-form-admin.php:2759
+#: admin/si-contact-form-admin.php:2796
+msgid "All Forms"
+msgstr "Tüm Formlar"
+
+#: admin/si-contact-form-admin.php:2738 admin/si-contact-form-admin.php:2817
+msgid "Are you sure you want to permanently make this change?"
+msgstr "Bu değişikliği kalıcı olarak yapmak istediğinize emin misiniz?"
+
+#: admin/si-contact-form-admin.php:2751 admin/si-contact-form-admin.php:2776
+#: admin/si-contact-form-backup.php:16
+msgid "Backup Settings"
+msgstr "Yedekleme Ayarları"
+
+#: admin/si-contact-form-admin.php:2752
+msgid "This tool can save a backup of your contact form settings."
+msgstr "Bu araç, iletişim formu ayarlarınızın yedeğini kaydedebilir."
+
+#: admin/si-contact-form-admin.php:2753
+msgid ""
+"Use to transfer one, or all, of your forms from one site to another. Or just "
+"make a backup to save."
+msgstr ""
+"Formlarınızın birini ya da tümünü bir siteden başka bir siteye aktarmak için "
+"kullanılır. Ya da sadece kaydetmek için bir yedekleme yapar."
+
+#: admin/si-contact-form-admin.php:2754
+msgid "Select a form to backup:"
+msgstr "Yedeklemek için bir form seçin:"
+
+#: admin/si-contact-form-admin.php:2789
+msgid ""
+"This tool can restore a backup of your contact form settings. If you have "
+"previously made a backup, you can restore one or all your forms."
+msgstr ""
+"Bu araç, iletişim formu ayarlarınızın yedeğini geri yükleyebilir. Eğer "
+"önceden bir yedekleme yaptıysanız, formlarınızın birini ya da tümünü geri "
+"yükleyebilirsiniz."
+
+#: admin/si-contact-form-admin.php:2790
+msgid ""
+"It is a good idea to backup all forms with the backup tool before you "
+"restore any. Changes are permanent!"
+msgstr ""
+"Bu herhangi bir geri yüklemeden önce yedekleme aracı ile tüm formları "
+"yedeklemeniz için iyi bir fikir. Değişikllikler kalıcıdır!"
+
+#: admin/si-contact-form-admin.php:2791
+msgid "Select a form to restore:"
+msgstr "Geri yüklemek için bir form seçin:"
+
+#: admin/si-contact-form-admin.php:2813
+msgid "Upload Backup File:"
+msgstr "Yedekleme Dosyasını Karşıya Yükle:"
+
+#: admin/si-contact-form-admin.php:2832
+msgid "More WordPress plugins by Mike Challis:"
+msgstr "Mike Challis'ten daha fazla WordPress eklentileri:"
+
+#: admin/si-contact-form-admin.php:2835
+msgid "SI CAPTCHA Anti-Spam"
+msgstr "SI CAPTCHA Anti-İstenmeyen Mesaj"
+
+#: admin/si-contact-form-admin.php:2836
+msgid "Visitor Maps and Who's Online"
+msgstr "Ziyaretçi Haritaları ve Kim Çevrimiçi"
+
+#: admin/si-contact-form-admin.php:2842
+msgid ""
+"\"I recommend <a href=\"%s\" target=\"_blank\">HostGator Web Hosting</a>. "
+"All my sites are hosted there. The prices are great and they offer great "
+"features for WordPress users. If you click this link and start an account at "
+"HostGator, I get a small commission.\" - Mike Challis"
+msgstr ""
+"\"<a href=\"%s\" target=\"_blank\">HostGator Web Barındırma</a> firmasını "
+"tavsiye ederim. Tüm sitelerim burada barındırılıyor. Fiyatları harika ve "
+"WordPress kullanıcıları için harika özellikler sunuyorlar. Eğer bu "
+"bağlantıya tıklarsanız ve HostGator'da bir hesap alırsanız, küçük bir "
+"komisyon alırım.\" - Mike Challis"
+
+#: admin/si-contact-form-admin.php:2844
+msgid "Web Site Hosting"
+msgstr "Web Sitesi Barındırma"
+
+#: admin/si-contact-form-backup.php:78
+msgid "Requested form to backup is not found."
+msgstr "Yedeklemek için istenen form bulunamıyor."
+
+#: admin/si-contact-form-do-test-mail.php:21
+msgid "WordPress Contact Form Test"
+msgstr "WordPress İletişim Formu Denemesi"
+
+#: admin/si-contact-form-do-test-mail.php:24
+msgid "Test mail to "
+msgstr "Şuna deneme postası"
+
+#: admin/si-contact-form-do-test-mail.php:25
+msgid ""
+"This is a test mail generated by the Fast Secure Contact Form WordPress "
+"plugin."
+msgstr ""
+"Bu, Fast and Secure Contact Form WordPress eklentisi tarafından oluşturulmuş "
+"bir deneme postasıdır."
+
+#: admin/si-contact-form-do-test-mail.php:119
+msgid "Test Message Sent"
+msgstr "Deneme İletisi Gönderildi"
+
+#: admin/si-contact-form-do-test-mail.php:121
+msgid "The result was:"
+msgstr "Sonuç:"
+
+#: admin/si-contact-form-do-test-mail.php:122
+#: admin/si-contact-form-do-test-mail.php:128
+#: admin/si-contact-form-do-test-mail.php:134
+#: admin/si-contact-form-do-test-mail.php:139
+msgid "See FAQ"
+msgstr "SSS bakın"
+
+#: admin/si-contact-form-do-test-mail.php:127
+msgid "The full debugging output is shown below:"
+msgstr "Tam hata ayıklama çıktısı aşağıda gösterilmektedir:"
+
+#: admin/si-contact-form-do-test-mail.php:133
+msgid "Be sure to check your email to see if you received it."
+msgstr "Aldığınızı görmek için epostanızı kontrol ettiğinizden emin olun."
+
+#: admin/si-contact-form-do-test-mail.php:138
+msgid "The E-mail debugging output is shown below:"
+msgstr "E-posta hata ayıklama çıktısı aşağıda gösterilmektedir:"
+
+#: admin/si-contact-form-do-test-mail.php:144
+msgid "Test failed: Invalid E-mail address"
+msgstr "Deneme başarısız: Geçersiz E-posta adresi"
+
+#: admin/si-contact-form-restore.php:17 admin/si-contact-form-restore.php:23
+msgid "Restore failed: Backup file is required."
+msgstr "Geri yükleme başarısız oldu: Yedekleme dosyası gerekir."
+
+#: admin/si-contact-form-restore.php:20
+msgid "Restore failed: Backup file upload failed."
+msgstr ""
+"Geri yükleme başarısız oldu: Yedekleme dosyasını karşıya yükleme başarısız "
+"oldu."
+
+#: admin/si-contact-form-restore.php:28
+msgid "Restore failed: Backup file type not allowed."
+msgstr "Geri yükleme başarısız oldu: Yedekleme dosyası türüne izin verilmez."
+
+#: admin/si-contact-form-restore.php:33
+msgid "Restore failed: Backup file size is too large."
+msgstr "Geri yükleme başarısız oldu: Yedekleme dosyası boyutu çok büyük."
+
+#: admin/si-contact-form-restore.php:41
+msgid "Restore failed: Backup file contains invalid data."
+msgstr "Geri yükleme başarısız oldu: Yedekleme dosyası geçersiz veri içeriyor."
+
+#: admin/si-contact-form-restore.php:51 admin/si-contact-form-restore.php:59
+msgid ""
+"Restore failed: Selected All to restore, but backup file is a single form."
+msgstr ""
+"Geri yükleme başarısız oldu: Geri yüklemek için Tümü seçildi ama yedekleme "
+"dosyası tek bir form."
+
+#: admin/si-contact-form-restore.php:92
+msgid "All form settings have been restored from the backup file."
+msgstr "Tüm form ayarları yedekleme dosyasından geri yüklendi."
+
+#: admin/si-contact-form-restore.php:100
+msgid "Restore failed: Form to restore to does not exist."
+msgstr "Geri yükleme başarısız oldu: Geri yüklemek için form mevcut değil."
+
+#: admin/si-contact-form-restore.php:137
+msgid "Form %d settings have been restored from the backup file."
+msgstr "Form %d ayarları yedekleme dosyasından geri yüklendi."
+
+#: admin/si-contact-form-settings-copy.php:92
+msgid "Requested form to copy settings from is not found."
+msgstr "Kopyalama ayarlarından istenen form bulunamıyor."
+
+#: admin/si-contact-form-settings-copy.php:97
+msgid "Form %d settings have been copied to all forms."
+msgstr "Form %d ayarları tüm formlara kopyalandı."
+
+#: admin/si-contact-form-settings-copy.php:99
+msgid "Form %d settings have been copied to form %d."
+msgstr "Form %d ayarları %d nolu forma kopyalandı."
+
+#: si-contact-form-display.php:379
+msgid ""
+"Attachments are only supported when the Send E-Mail function is set to "
+"WordPress. You can find this setting on the contact form edit page."
+msgstr ""
+"Ekler sadece E-Posta Gönder işlevi WordPress'e ayarlandığında desteklenir. "
+"Bu ayarı iletişim formu düzenle sayfasında bulabilirsiniz."
+
+#: si-contact-form-display.php:383
+msgid "The temporary folder for the attachment field does not exist."
+msgstr "Ek alanı için geçici klasör mevcut değil."
+
+#: si-contact-form-display.php:386
+msgid "The temporary folder for the attachment field is not writable."
+msgstr "Ek alanı için geçici klasör yazılabilir değil."
+
+#: si-contact-form-display.php:441
+msgid "ERROR: Misconfigured E-mail address in options."
+msgstr "HATA: Seçeneklerde hatalı E-posta adresi."
+
+#: si-contact-form-display.php:654
+msgid "Please enter your E-mail Address a second time."
+msgstr "Lütfen E-posta Adresinizi ikinci kez girin."
+
+#: si-contact-form-display.php:797
+msgid "Leave this field empty"
+msgstr "Bu alanı boş bırakın."
+
+#: si-contact-form-display.php:826
+msgid "Do you really want to reset the form?"
+msgstr "Formu gerçekten sıfırlamak istiyor musunuz?"
+
+#: si-contact-form-ex-fields.php:58
+msgid "Error: A hidden field is not configured properly in settings."
+msgstr "Hata: Gizli alan ayarlarda doğru olarak yapılandırılmadı."
+
+#: si-contact-form-ex-fields.php:170 si-contact-form-ex-fields.php:179
+msgid "Error: A select field is not configured properly in settings."
+msgstr "Hata: Seçme alanı ayarlarda doğru olarak yapılandırılmadı."
+
+#: si-contact-form-ex-fields.php:246 si-contact-form-ex-fields.php:256
+#: si-contact-form-process.php:440
+msgid "Error: A select-multiple field is not configured properly in settings."
+msgstr "Hata: Çoklu seçme alanı ayarlarda doğru olarak yapılandırılmadı."
+
+#: si-contact-form-ex-fields.php:331 si-contact-form-ex-fields.php:341
+msgid "Error: A checkbox field is not configured properly in settings."
+msgstr "Hata: İşaretleme kutusu alanı ayarlarda doğru olarak yapılandırılmadı."
+
+#: si-contact-form-ex-fields.php:448 si-contact-form-ex-fields.php:457
+msgid "Error: A radio field is not configured properly in settings."
+msgstr "Hata: Radyo alanı ayarlarda doğru olarak yapılandırılmadı."
+
+#: si-contact-form-ex-fields.php:637
+msgid "AM"
+msgstr "ÖÖ"
+
+#: si-contact-form-ex-fields.php:637
+msgid "PM"
+msgstr "ÖS"
+
+#: si-contact-form-ex-fields.php:680
+msgid "Su"
+msgstr "Pa"
+
+#: si-contact-form-ex-fields.php:680
+msgid "Mo"
+msgstr "Pt"
+
+#: si-contact-form-ex-fields.php:680
+msgid "Tu"
+msgstr "Sa"
+
+#: si-contact-form-ex-fields.php:680
+msgid "We"
+msgstr "Ça"
+
+#: si-contact-form-ex-fields.php:680
+msgid "Th"
+msgstr "Pe"
+
+#: si-contact-form-ex-fields.php:680
+msgid "Fr"
+msgstr "Kdn"
+
+#: si-contact-form-ex-fields.php:680
+msgid "Sa"
+msgstr "Ct"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Jan"
+msgstr "Oca"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Feb"
+msgstr "Şub"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Mar"
+msgstr "Mar"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Apr"
+msgstr "Nis"
+
+#: si-contact-form-ex-fields.php:681
+msgid "May"
+msgstr "May"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Jun"
+msgstr "Haz"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Jul"
+msgstr "Tem"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Aug"
+msgstr "Ağu"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Sep"
+msgstr "Eyl"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Oct"
+msgstr "Eki"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Nov"
+msgstr "Kas"
+
+#: si-contact-form-ex-fields.php:681
+msgid "Dec"
+msgstr "Ara"
+
+#: si-contact-form-ex-fields.php:682
+msgid "Go to the next month"
+msgstr "Sonraki aya git"
+
+#: si-contact-form-ex-fields.php:683
+msgid "Go to the previous month"
+msgstr "Önceki aya git"
+
+#: si-contact-form-ex-fields.php:684
+msgid "Clear"
+msgstr "Temizle"
+
+#: si-contact-form-ex-fields.php:685
+msgid "Clears any dates selected on the calendar"
+msgstr "Takvimde seçilmiş herhangi bir tarihi temizler"
+
+#: si-contact-form-ex-fields.php:686
+msgid "This is the maximum range"
+msgstr "Bu en fazla aralıktır"
+
+#: si-contact-form-process.php:171
+msgid "Requested Contact not found."
+msgstr "İstenen Kişi bulunamadı."
+
+#: si-contact-form-process.php:243
+msgid "Selecting a subject is required."
+msgstr "Bir konu seçmek zorunlu."
+
+#: si-contact-form-process.php:247
+msgid "Requested subject not found."
+msgstr "İstenen konu bulunamadı."
+
+#: si-contact-form-process.php:355 si-contact-form-process.php:475
+#: si-contact-form-process.php:492 si-contact-form-process.php:514
+msgid "Maximum of %d characters exceeded."
+msgstr "En fazla %d karakter aşıldı."
+
+#: si-contact-form-process.php:360
+msgid "Invalid input."
+msgstr "Geçersiz girdi."
+
+#: si-contact-form-process.php:402
+msgid ""
+"Error: A checkbox field is not configured properly in settings. If you are "
+"trying to use multiple checkbox options, make sure this field type is set to "
+"checkbox-multiple instead of just checkbox"
+msgstr ""
+"Hata: İşaretleme kutusu alanı ayarlarda doğru olarak yapılandırılmadı. Eğer "
+"çoklu işaretleme kutusu seçeneklerini kullanmayı deniyorsanız, bu alan "
+"türünü sadece işaretleme kutusu yerine çoklu işaretleme kutusuna "
+"ayarladığınızdan emin olun"
+
+#: si-contact-form-process.php:419 si-contact-form-process.php:458
+msgid "At least one item in this field is required."
+msgstr "Bu alanda en az bir öğe gerekir."
+
+#: si-contact-form-process.php:463
+msgid ""
+"Error: A checkbox-multiple field is not configured properly in settings."
+msgstr ""
+"Hata: Çoklu işaretleme kutusu alanı ayarlarda doğru olarak yapılandırılmadı."
+
+#: si-contact-form-process.php:480
+msgid "Invalid e-mail address."
+msgstr "Geçersiz e-posta adresi."
+
+#: si-contact-form-process.php:497
+msgid "Invalid URL."
+msgstr "Geçersiz URL."
+
+#: si-contact-form-process.php:519
+msgid "Invalid regex."
+msgstr "Geçersiz kurallı ifade."
+
+#: si-contact-form-process.php:555
+msgid "Could not read CAPTCHA cookie. Try again."
+msgstr "CAPTCHA tanımlama bilgisi okunamadı. Tekrar deneyin."
+
+#: si-contact-form-process.php:605
+msgid "To"
+msgstr "Kime"
+
+#: si-contact-form-process.php:607
+msgid "From"
+msgstr "Kimden"
+
+#: si-contact-form-process.php:682 si-contact-form-process.php:683
+msgid "File is attached:"
+msgstr "Eklenen dosya:"
+
+#: si-contact-form-process.php:752 si-contact-form-process.php:753
+msgid "selected"
+msgstr "seçilen"
+
+#: si-contact-form-process.php:788
+msgid "Form Page"
+msgstr "Form Sayfası"
+
+#: si-contact-form-process.php:854
+msgid "From a WordPress user"
+msgstr "Bir WordPress kullanıcısından"
+
+#: si-contact-form-process.php:855
+msgid "User email"
+msgstr "Kullanıcı epostası"
+
+#: si-contact-form-process.php:856
+msgid "User first name"
+msgstr "Kullanıcı ilk adı"
+
+#: si-contact-form-process.php:857
+msgid "User last name"
+msgstr "Kullanıcı soyadı"
+
+#: si-contact-form-process.php:858
+msgid "User display name"
+msgstr "Kullanıcı görüntü adı"
+
+#: si-contact-form-process.php:861 si-contact-form-process.php:921
+#: si-contact-form-process.php:925
+msgid "Sent from (ip address)"
+msgstr "Gönderen (ip adresi)"
+
+#: si-contact-form-process.php:863 si-contact-form-process.php:864
+msgid "Location"
+msgstr "Yeri"
+
+#: si-contact-form-process.php:866
+msgid "Date/Time"
+msgstr "Tarih/Saat"
+
+#: si-contact-form-process.php:867
+msgid "Coming from (referer)"
+msgstr "Geldiği yer (göndereni)"
+
+#: si-contact-form-process.php:868
+msgid "Using (user agent)"
+msgstr "Kullanılan (kullanıcı tanıtıcı)"
+
+#: si-contact-form-process.php:913
+msgid "Invalid Input - Spam?"
+msgstr "Geçersiz Girdi - İstenmeyen Mesaj mı?"
+
+#: si-contact-form-process.php:916
+msgid ""
+"Akismet determined your message is spam. This can be caused by the message "
+"content, your email address, or your IP address being on the Akismet spam "
+"system. The administrator can turn off Akismet for the form on the form edit "
+"menu."
+msgstr ""
+"Akismet iletinizin istenmeyen mesaj olduğuna karar verdi. Buna, iletinin "
+"içeriği, eposta adresiniz ya da Akismet istenmeyen mesaj sistemi tarafında "
+"bulunan IP adresiniz neden olabilir. Yönetici form düzenleme menüsündeki "
+"form için Akismet'i kapatabilir."
+
+#: si-contact-form-process.php:920
+msgid "Akismet: Spam"
+msgstr "Akismet: İstenmeyen Mesaj"
+
+#: si-contact-form-process.php:921
+msgid "Akismet Spam Check: probably spam"
+msgstr "Akismet İstenmeyen Mesaj Kontrolü: mutemelen istenmeyen mesaj"
+
+#: si-contact-form-process.php:922
+msgid "probably spam"
+msgstr "mutemelen istenmeyen mesaj"
+
+#: si-contact-form-process.php:925
+msgid "Akismet Spam Check: passed"
+msgstr "Akismet İstenmeyen Mesaj Kontrolü: geçti"
+
+#: si-contact-form-process.php:926
+msgid "passed"
+msgstr "geçti"
+
+#: si-contact-form-process.php:1255 si-contact-form-process.php:1256
+msgid "Redirecting"
+msgstr "Yönlendiriliyor"
+
+#: si-contact-form.php:53
+msgid "FS Contact Form Options"
+msgstr "FS Contact Form Seçenekleri"
+
+#: si-contact-form.php:75 si-contact-form.php:1607
+msgid "Contact:"
+msgstr "İletişim:"
+
+#: si-contact-form.php:712
+msgid "All registered users"
+msgstr "Tüm kayıtlı kullanıcılar için gizle"
+
+#: si-contact-form.php:713
+msgid "Edit posts"
+msgstr "Yazıları Düzenleyen için gizle"
+
+#: si-contact-form.php:714
+msgid "Publish Posts"
+msgstr "Yazıları Yayımlayan için gizle"
+
+#: si-contact-form.php:715
+msgid "Moderate Comments"
+msgstr "Yorumları Onaylayan için gizle"
+
+#: si-contact-form.php:716
+msgid "Administer site"
+msgstr "Yönetici tarafındaki için gizle"
+
+#: si-contact-form.php:835
+msgid "No form selected"
+msgstr "Seçilen form yok"
+
+#: si-contact-form.php:1083
+msgid "Attachments not supported."
+msgstr "Ekler desteklenmiyor."
+
+#: si-contact-form.php:1089
+msgid "Attachment upload failed."
+msgstr "Ekleri karşıya yükleme başarısız oldu."
+
+#: si-contact-form.php:1111
+msgid "Attachment file type not allowed."
+msgstr "Ek dosyası türüne izin verilmez."
+
+#: si-contact-form.php:1128
+msgid "Attachment file size is too large."
+msgstr "Ek dosyası boyutu çok büyük."
+
+#: si-contact-form.php:1146
+msgid "Attachment upload failed while moving file."
+msgstr "Dosya taşınırken eki karşıya yükleme başarısız oldu."
+
+#: si-contact-form.php:1195
+msgid ""
+"ERROR: si-contact-form.php plugin says GD image support not detected in PHP!"
+msgstr ""
+"HATA: si-contact-form.php eklentisi, PHP'de GD resim desteği saptanamadı "
+"diyor!"
+
+#: si-contact-form.php:1196
+msgid ""
+"Contact your web host and ask them why GD image support is not enabled for "
+"PHP."
+msgstr ""
+"Web barındırıcınızla irtibata geçin ve PHP için GD resim desteğinin neden "
+"etkin olmadığını sorun."
+
+#: si-contact-form.php:1200
+msgid ""
+"ERROR: si-contact-form.php plugin says imagepng function not detected in PHP!"
+msgstr ""
+"HATA: si-contact-form.php eklentisi, PHP'de imagepng işlevi bulunamadı diyor!"
+
+#: si-contact-form.php:1201
+msgid ""
+"Contact your web host and ask them why imagepng function is not enabled for "
+"PHP."
+msgstr ""
+"Web barındırıcınızla irtibata geçin ve PHP için imagepng işlevinin neden "
+"etkin olmadığını sorun."
+
+#: si-contact-form.php:1205
+msgid "ERROR: si-contact-form.php plugin says captcha_library not found."
+msgstr "HATA: si-contact-form.php eklentisi, captcha_library bulunamadı diyor."
+
+#: si-contact-form.php:1487 si-contact-form.php:1546
+msgid "Illegal characters in POST. Possible email injection attempt"
+msgstr "POST içinde yasak karakterler. Muhtemelen epostaya sızma denemesi"
+
+#: si-contact-form.php:1499
+msgid "Invalid User Agent"
+msgstr "Geçersiz Kullanıcı Tanıtıcı"
+
+#: si-contact-form.php:1505
+msgid "Invalid POST"
+msgstr "Geçersiz POST"
+
+#: si-contact-form.php:1530
+msgid ""
+"Invalid HTTP_REFERER domain. See FAQ. The domain name posted from does not "
+"match the allowed domain names of this form: %s"
+msgstr ""
+"Geçersiz HTTP_REFERER etki alanı. SSS bakın. Yazıldığı yerin etki alanı adı "
+"şu formun izin verilen etki alanı adlarıyla eşleşmiyor: %s"
+
+#: si-contact-form.php:1560
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: si-contact-form.php:1694
+msgid "Contact Form:"
+msgstr "İletişim Formu:"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.FastSecureContactForm.com/"
+msgstr "http://www.FastSecureContactForm.com/"
+
+#. Description of the plugin/theme
+msgid ""
+"Fast Secure Contact Form for WordPress. The contact form lets your visitors "
+"send you a quick E-mail message. Super customizable with a multi-form "
+"feature, optional extra fields, and an option to redirect visitors to any "
+"URL after the message is sent. Includes CAPTCHA and Akismet support to block "
+"all common spammer tactics. Spam is no longer a problem. <a href=\"plugins."
+"php?page=si-contact-form/si-contact-form.php\">Settings</a> | <a href="
+"\"http://www.FastSecureContactForm.com/donate\">Donate</a>"
+msgstr ""
+"WordPress için Fast Secure Contact Form. İletişim formu ziyatretçilerinizin "
+"size hızlı bir E-posta iletisi göndermesine izin verir. Çoklu form özelliği, "
+"isteğe bağlı ekstra alanları ve ileti gönderildikten sonra ziyaretçileri "
+"herhangi bir URL'ye yönlendirme seçeneği ile süper özelleştirilebilirdir. "
+"CAPTCHA ve Akismet dahil tüm genel istenmeyen mesaj göndericisi taktiklerini "
+"engellemeyi destekler. İstenmeyen mesaj artık bir sorun olmaz. <a href="
+"\"plugins.php?page=si-contact-form/si-contact-form.php\">Ayarlar</a> | <a "
+"href=\"http://www.FastSecureContactForm.com/donate\">Bağış Yapın</a>"
+
+#. Author of the plugin/theme
+msgid "Mike Challis"
+msgstr "Mike Challis"
+
+#. Author URI of the plugin/theme
+msgid "http://www.642weather.com/weather/scripts.php"
+msgstr "http://www.642weather.com/weather/scripts.php"

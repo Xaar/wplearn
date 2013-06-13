@@ -266,6 +266,16 @@ function create_post_type() {
 }
 add_action( 'init', 'create_post_type' );
 
+if ( function_exists('register_sidebar') ) {
+
+   register_sidebar('heartworksNav');
+   register_sidebar('events');
+   register_sidebar('carousel');
+   register_sidebar('products');
+   register_sidebar('quicklinks');
+   register_sidebar('news');
+}
+
 function change_default_title( $title ){
      $screen = get_current_screen();
  

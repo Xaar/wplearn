@@ -3,17 +3,17 @@ var simplemaps_continentmap_mapdata = {
 	main_settings:{
 		//General settings
 		width: 800,
-		background_color: '#FFFFFF',	
-		background_transparent: 'no',
+		background_color: '#FAFAFA',	
+		background_transparent: 'yes',
 		label_color: '#d5ddec',		
 		border_color: '#FFFFFF',
 		zoom: 'yes',
-		pop_ups: 'detect', //on_click, on_hover, or detect
+		pop_ups: 'on_click', //on_click, on_hover, or detect
 	
 		//Country defaults
 		state_description:   'Country description',
-		state_color: '#88A4BC',
-		state_hover_color: '#3B729F',
+		state_color: '#DDDDDD',
+		state_hover_color: '#888888',
 		state_url: 'http://simplemaps.com',
 		all_states_inactive: 'no',
 		
@@ -84,7 +84,7 @@ var simplemaps_continentmap_mapdata = {
 	
 	ME: {
 		name: 'Middle East',
-		description: 'default',
+		description: 'EWG International<br>P.O.Box 18475<br>Jebel Ali --<br>Dubai UAE<br><span class="email">kassemtofailli@gmail.com</span>',
 		color: 'default',
 		hover_color: 'default',
 		url: 'default' //Note:  You must omit the comma after the last property in an object to prevent errors in internet explorer.
@@ -100,9 +100,18 @@ var simplemaps_continentmap_mapdata = {
 },
 	
 	locations:{
+		0: {
+			name: "Middle East",
+			lat: 25.009011, 
+			lng: 55.073967,
+			description: 'EWG International<br>P.O.Box 18475<br>Jebel Ali --<br>Dubai UAE<br><span class="email">kassemtofailli@gmail.com</span>',
+			color: 'default',
+			url: 'default',
+			size: 'default' //Note:  You must omit the comma after the last property in an object to prevent errors in internet explorer.
+		},
 
 
-} //end of simplemaps_worldmap_mapdata
+	} //end of simplemaps_worldmap_mapdata
 
 }
 
