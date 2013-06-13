@@ -18,16 +18,17 @@ $wp_query = new WP_Query( array ( 'post_type' => 'news-events', 'posts_per_page'
 $i=$page*$ppp-$ppp;
 while ( $wp_query->have_posts() ) : $wp_query->the_post();
         $i++;
+	$type = strtolower(get_post_meta($post->ID, "article_type", true));
         $featured = ($i==1 ? true : false);
-?>              <div class="<?=($featured ? 'hero-news-content row' : 'content-listing');?>">
+?>              <div class="<?=($featured ? "hero-$type-content row" : 'content-listing');?>">
 <?php
         if ( has_post_thumbnail()) : ?><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" ><?php { the_post_thumbnail($featured ? 'sixteen-nine-large' : 'thumbnail') ; } ?></a>
 <?php
         endif;?>
-                        <div class="<?=($featured ? "hero-news-listing-text" : "news-listing-text");?>">
+                        <div class="<?=($featured ? "$type-news-listing-text" : "$type-listing-text");?>">
                                 <?=($featured ? '<h3>Featured News</h3>' : '');?>
                                 <h3><?php the_title(); ?></h3>
-                                <p><?php if(get_post_meta($post->ID, "article_type", true)=='Event') echo date_range();?></p>
+                                <p><?php if($type=='event') echo date_range();?></p>
                                 <p><?php echo get_post_meta($post->ID, ($featured ? 'summary' : 'excerpt'), true); ?></p>
                                 <a href="<?php the_permalink(); ?>">Read full story &raquo;</a>
                         </div>

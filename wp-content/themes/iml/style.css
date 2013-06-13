@@ -1087,7 +1087,7 @@ Homepage promo styles Latest News, events etc.
 
 }
 
-.news-leftcol-wrapper {
+.news-leftcol-wrapper , .event-leftcol-wrapper {
 	max-width: 850px;
 }
 .news-rightcol-wrapper {
@@ -1636,13 +1636,13 @@ text-align: center;
 	font-size: 90%
 }
 
-.news-leftcol-wrapper {
+.news-leftcol-wrapper , .event-leftcol-wrapper {
 
 
 
 }
 
-.hero-news-content , .content-listing {
+.hero-news-content , .hero-event-content, .content-listing {
 	-webkit-border-radius: 8px;
 	 border-radius: 8px;
 	 -webkit-box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .2);
@@ -1662,7 +1662,7 @@ text-align: center;
 
 }
 
-.hero-news-content img {
+.hero-news-content , .hero-event-content img {
 -webkit-border-radius: 8px 8px 0 0;
 	 border-radius: 8px 8px 0 0;
 border: 1px solid #fff;
@@ -1678,16 +1678,26 @@ border: 1px solid #fff;
 
 }
 
-.news-listing-text , .hero-news-listing-text {
+.event-listing-text , .hero-event-listing-text , .event-listing-text-right {
+        background: url('images/events-icon.png') no-repeat top left;
+        padding-left: 40px;
+        margin: 10px;
+}
+
+
+.news-listing-text , .hero-news-listing-text , .news-listing-text-right {
 	background: url('images/news-icon.png') no-repeat top left;
 	padding-left: 40px;
 	margin: 10px 20px;
 }
 
-.news-listing-text {
+.news-listing-text-right , .event-listing-text-right {
 	max-width: 280px;
-	float: right;
+}
+
+.news-listing-text , .event-listing-text {
 	width: 55%;
+	float: right;
 }
 
 .news-listing-text a , .hero-news-listing-text a {
@@ -1874,7 +1884,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_5 {
             width:54.6666666667%;
         }
-.span_6 , .news-leftcol-wrapper  {
+.span_6 , .news-leftcol-wrapper , .event-leftcol-wrapper  {
             width:66.0%;
         }
 .span_7 {
@@ -1943,7 +1953,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_8 , .featured-prod-img {
             width:66.0%;
         }
-.span_9 , .news-leftcol-wrapper {
+.span_9 , .news-leftcol-wrapper , .event-leftcol-wrapper {
 
             width:74.5%;
         }
@@ -2012,7 +2022,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_7 {
             width:57.8125%;
         }
-.span_8 , .featured-prod-img , .news-leftcol-wrapper  {
+.span_8 , .featured-prod-img , .news-leftcol-wrapper  , .event-leftcol-wrapper {
             width:66.25%;
         }
 .span_9  {
