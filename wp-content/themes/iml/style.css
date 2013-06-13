@@ -692,7 +692,7 @@ p , a {
 	font-size: 85%;
 }
 
-#header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , .product-carousel, .gateway-promo-wrapper , .page-title , .hw-nav-collapsed, .hw-menu-expanded-wrapper {
+#header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , .product-carousel, .gateway-promo-wrapper , .page-title , .hw-menu-collapsed, .hw-menu-expanded-wrapper {
      width: 90%;
      min-width: 440px;
      max-width: 1280px;
@@ -874,7 +874,6 @@ input[name="navsearchbtn"] {
 */
 
 .hero-content {
-	margin-top: 70px;
 	margin-bottom: 20px;
 }
 
@@ -1184,7 +1183,7 @@ ul.footer-links li:last-child {border-right: none;}
 ::::::::::::::::::: C O L L A P S E D ::::::::::::::::::::
 */
 
-.hw-nav-collapsed {
+.hw-menu-collapsed {
 
 border: 1px solid #ddd;
 border-radius: 6px;
@@ -1213,7 +1212,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 }
 
-.hw-nav-collapsed:hover {
+.hw-menu-collapsed:hover {
 	background: #ddd; /* Old browsers */
 /* IE9 SVG, needs conditional override of 'filter' to 'none' */
 background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI0OSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI1MSUiIHN0b3AtY29sb3I9IiNlZWVlZWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZWVlZWVlIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
@@ -1257,7 +1256,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
 	}
 
-.hw-nav-collapsed:hover > .hw-menu-btn {
+.hw-menu-collapsed:hover > .hw-menu-btn {
 	background: #ffffff; /* Old browsers */
 /* IE9 SVG, needs conditional override of 'filter' to 'none' */
 background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI0OSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI1MSUiIHN0b3AtY29sb3I9IiNmMGYwZjAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjBmMGYwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
@@ -1270,7 +1269,7 @@ background: linear-gradient(to bottom,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-8 */
 	}
 
-	.hw-nav-collapsed:hover > .hw-menu-btn a {
+	.hw-menu-collapsed:hover > .hw-menu-btn a {
 	color: #c00;
 	}
 
@@ -1324,20 +1323,131 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	padding:12px;
 }
 
-.hw-nav-collapsed h1 {
+.hw-menu-collapsed h1 {
 	color: #c00;
 
 
 	}
 
-/*	::::::::::::::::::: Expanded HW Nav ::::::::::::::::::::*/
+/*	::::::::::::::::::: Expanded HW menu ::::::::::::::::::::*/
 
 
 .hw-menu-expanded-wrapper {
 
+	border: 1px solid #ddd;
+border-radius: 6px;
+-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+-moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+overflow: hidden;
+	position: relative;
+	display: block;
+	margin: 20px auto;
+ 	padding: 0;
+ 	background: #ffffff; 
+ 
 
 }
 
+.hw-menu-expanded-title {
+
+	background: #fff;
+	height: 30px;
+	width: 100%;
+	display: inline-block;
+	float: left;
+	padding: 20px;
+}
+
+.hw-menu-expanded-title h1 {
+	display: inline;
+	color: #c00;
+}
+
+.hw-menu-expanded-logo {
+
+		background: url('images/hw-menu-logo.png') no-repeat 0 0;
+	width: 170px;
+	height: 38px;
+	float: right;
+	display: block;
+	position: absolute;
+	padding:0;
+	right: 24px;
+	top: 14px;
+
+}
+
+.hw-menu-content-wrapper {
+	width: 100%;
+	margin: 0;
+	display: block;
+	position: relative;
+	background: #f0f0f0;
+
+}
+
+.hw-menu-content-wrapper:hover {
+	background: #ededed;
+	}
+
+.hw-menu-lists {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	background: #fff;
+	width: 90%;
+
+}
+
+.hw-menu-list {
+	position: relative;
+	width: 24%;
+	clip: both;
+	margin: 0;
+	padding:0;
+
+}
+
+.hw-menu-list ul {
+	margin: 0;
+	padding: 0 0 30px 0;
+}
+
+.hw-menu-list ul li {
+
+	list-style: none;
+	text-indent: none;
+	padding: 6px;
+	border: 1px solid #f0f0f0;
+	background: #fff url('images/hw-menu-item-arrow.png') no-repeat 97% center;
+	cursor: pointer;
+
+}
+
+.hw-menu-list ul li:hover {
+	background: #ffffff; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI0OSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI1MSUiIHN0b3AtY29sb3I9IiNmMGYwZjAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjBmMGYwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top,  #ffffff 49%, #f0f0f0 51%, #f0f0f0 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(49%,#ffffff), color-stop(51%,#f0f0f0), color-stop(100%,#f0f0f0)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-8 */
+	border: 1px solid #fff;
+	background-image: url('images/hw-menu-item-arrow.png');
+	background-repeat: no-repeat;
+	background-position: 97% center;
+
+
+	}
+
+a.hw-menu-link {
+
+
+}
 
 /*	::::::::::::::::::: More Heartworks styles ::::::::::::::::::::*/
 
@@ -1350,6 +1460,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	
 
 }
+
 
 
 .product-carousel {
@@ -1621,7 +1732,7 @@ div.clearfix {
 .page-title {
 position: relative;
 display: block;
-margin: 70px auto 20px auto;
+margin: 10px auto 20px auto;
 text-align: center;
 
 }
@@ -1880,7 +1991,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_7 {
             width:77.3333333333%;
         }
-.span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , .hw-nav-collapsed {
+.span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper {
             width:88.6666666667% !important;
         }
 .span_9  , .menu-mainnav-container , .logo {
@@ -1950,7 +2061,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_10 , .product-carousel , .gateway-promo-wrapper  {
             width:83.0%;
         }
-.span_11 , .hw-nav-collapsed {
+.span_11 , .hw-menu-collapsed , .hw-menu-expanded-wrapper {
             width:91.5%;
         }
 .span_12  {
@@ -2022,7 +2133,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
             
             width:83.125%;
         }
-.span_11 , .hw-nav-collapsed{
+.span_11 , .hw-menu-collapsed , .hw-menu-expanded-wrapper {
             width:91.5625%;
         }
 .span_12  {

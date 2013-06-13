@@ -45,10 +45,7 @@ key: "right"
 
 </script>
 
-
-<div id="content" class="hero-content row" role="main">
-
-<div class="hw-nav-collapsed row">
+<div class="hw-menu-collapsed row">
 	<div class="hw-menu-btn-arrows">
 		<img src="<?php bloginfo('template_directory'); ?>/images/hw-menu-arrows.png" />
 	</div>
@@ -64,19 +61,23 @@ key: "right"
 	</div>
 </div>	
 
-<div class="hw-menu-expanded-wrapper">
+<div class="hw-menu-expanded-wrapper row">
 
-<div class="hw-nav-expanded-title row">
-	<div class="hw-menu-title">
+<div class="hw-menu-expanded-title">
 	<h1>Learn More about Heartworks</h1> 
-	</div>
-	<div class="hw-menu-logo">
-	</div>
+	
 </div> <!-- Expanded menu title -->
-<div class="hw-menu-content row">
+<div class="hw-menu-expanded-logo">
+	</div>
+	<div class="clearfix">
+	</div>
+<div class="hw-menu-content-wrapper row">
+	<div class="hw-menu-lists">
 	<div class="hw-menu-list col">
 		<h2>About</h2>
 		<ul>
+				<!-- Leave as static for now - client to confirm -->
+
 			<li><a class="hw-menu-link">About us</a></li>
 			<li><a class="hw-menu-link">The team</a></li>
 			<li><a class="hw-menu-link">Another link</a></li>
@@ -85,13 +86,17 @@ key: "right"
 	<div class="hw-menu-list col">
 		<h2>Education</h2>
 		<ul>
+				<!-- write wp query for products > elearning -->
+
 			<li><a class="hw-menu-link">e-Learning</a></li>
 			<li><a class="hw-menu-link">Media store</a></li>
 		</ul>
 	</div>
 	<div class="hw-menu-list col">
 		<h2>Simulators</h2>
-		<ul>
+		<ul> 
+			<!-- write wp query for products > simulators -->
+
 			<li><a class="hw-menu-link">Anatomy Module</a></li>
 			<li><a class="hw-menu-link">Ultrasound Module</a></li>
 			<li><a class="hw-menu-link">EE Manakin Simulator</a></li>
@@ -101,16 +106,19 @@ key: "right"
 		</ul>
 	</div>
 	<div class="hw-menu-list col">
-		<h2>Education</h2>
+		<h2>Professional Products</h2>
 		<ul>
-			<li><a class="hw-menu-link">e-Learning</a></li>
+			<li><a class="hw-menu-link">Watchman Device</a></li>
 			<li><a class="hw-menu-link">Media store</a></li>
 		</ul>
 	</div>
+	
 
+</div> <!-- Expanded menu lists -->
 </div> <!-- Expanded menu content -->
-
+	
 </div> <!-- Expanded menu wrapper -->
+<div id="content" class="hero-content row" role="main">
 
 
 
