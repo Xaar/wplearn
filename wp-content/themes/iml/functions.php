@@ -273,6 +273,7 @@ if ( function_exists('register_sidebar') ) {
    register_sidebar('carousel');
    register_sidebar('products');
    register_sidebar('quicklinks');
+   register_sidebar('news');
 }
 
 function change_default_title( $title ){

@@ -96,7 +96,31 @@ if(get_post_meta($post->ID, ('product_type'), true)=='Pathologies') {
 		<div class="panes">
 			<div>
 				<p>
-                               		<img class="right" src="<?=wp_get_attachment_url(get_post_meta($post->ID, ('overview_image'), true));?>"/>
+       
+<!--                        		<img class="right" src="<?=wp_get_attachment_url(get_post_meta($post->ID, ('overview_image'), true));?>"/>
+-->
+<?php
+
+$custom_fields = get_post_custom($post->ID);
+$x =  $custom_fields['test'];
+$gallery = maybe_unserialize($x[0]);
+$thumb = wp_get_attachment_image_src( $gallery[0], 'medium' );
+foreach($gallery as $id) {
+$x = wp_get_attachment_image_src( $id, 'large' );
+$url[] = $x[0];
+}
+
+foreach($url as $src) {
+  $i++;
+  $visible = ($i=='1') ? " " : "style='display:none' ";
+  echo "<a href='$src' class='right' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a><br>";
+}
+
+?>
+
+<div class="clearfix"></div>
+
+
 					<strong><?=get_post_meta($post->ID, ('product_type'), true); ?></strong>
 					<?=get_post_meta($post->ID, ('product_overview'), true); ?>
 					<br>

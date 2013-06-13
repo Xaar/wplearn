@@ -35,7 +35,7 @@ endwhile; endif; ?>
 					</div>
 					<div class="promo news-home col">
 						<h4>events</h4>
-						<?php echo get_new_royalslider(7); ?>
+						<?php echo get_new_royalslider(3); ?>
 					</div>
 				</div> <!-- promo-band -->
 
