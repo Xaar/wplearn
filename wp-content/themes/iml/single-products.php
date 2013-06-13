@@ -1,14 +1,8 @@
 <?php
-/*
-Template Name: News-Events
-*/
-?>
-
-<?php
 define("THISPAGE", "products");
 
 get_header();
-get_sidebar();
+/*get_sidebar(); Removed by Andy so nav can be hard coded (CSS)    */
 ?>
 <script type="text/javascript">
 /* CarouFredSel: a circular, responsive jQuery carousel.

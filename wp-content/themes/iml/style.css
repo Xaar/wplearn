@@ -694,7 +694,7 @@ p , a {
 	font-size: 85%;
 }
 
-#header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , .product-carousel, .gateway-promo-wrapper , .page-title {
+#header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , .product-carousel, .gateway-promo-wrapper , .page-title , .hw-nav-collapsed, .hw-menu-expanded-wrapper {
      width: 90%;
      min-width: 440px;
      max-width: 1280px;
@@ -1177,6 +1177,172 @@ ul.footer-links li:last-child {border-right: none;}
 /*
 ::::::::::::::::::: H E A R T W O R K S  P A G E S ::::::::::::::::::::
 */
+
+
+/*
+::::::::::::::::::: H E A R T W O R K S  M E N U ::::::::::::::::::::
+
+
+::::::::::::::::::: C O L L A P S E D ::::::::::::::::::::
+*/
+
+.hw-nav-collapsed {
+
+border: 1px solid #ddd;
+border-radius: 6px;
+-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+-moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+height: 70px;
+overflow: hidden;
+	position: relative;
+	display: block;
+	margin: 20px auto;
+ 	padding: 0;
+ 	background: #ffffff; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI0OSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI1MSUiIHN0b3AtY29sb3I9IiNmMGYwZjAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjBmMGYwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+background: -moz-linear-gradient(top,  #ffffff 49%, #f0f0f0 51%, #f0f0f0 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(49%,#ffffff), color-stop(51%,#f0f0f0), color-stop(100%,#f0f0f0)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-8 */
+
+ 	cursor: pointer;
+
+
+}
+
+.hw-nav-collapsed:hover {
+	background: #ddd; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI0OSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI1MSUiIHN0b3AtY29sb3I9IiNlZWVlZWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZWVlZWVlIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+background: -moz-linear-gradient(top,  #f0f0f0 49%, #dddddd 51%, #dddddd 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(49%,#f0f0f0), color-stop(51%,#dddddd), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f0f0f0 49%,#dddddd 51%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f0f0f0 49%,#dddddd 51%,#dddddd 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f0f0f0 49%,#dddddd 51%,#dddddd 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f0f0f0 49%,#dddddd 51%,#dddddd 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#dddddd',GradientType=0 ); /* IE6-8 */
+
+
+
+}
+
+
+
+.hw-menu-btn {
+	min-width: 200px;
+	width: 20%;
+	background-color: #f0f0f0;
+	position: relative;
+	display: block;
+	text-align: center;
+	height: 70px;
+	float: left;
+	
+
+}
+
+
+
+.hw-menu-btn a {
+	display: block;
+	position: relative;
+	text-decoration: none;
+	color: #333;
+	font-weight: 600;
+	font-size: 16px;
+	padding-top: 21px;
+
+	}
+
+.hw-nav-collapsed:hover > .hw-menu-btn {
+	background: #ffffff; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI0OSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI1MSUiIHN0b3AtY29sb3I9IiNmMGYwZjAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjBmMGYwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+background: -moz-linear-gradient(top,  #ffffff 49%, #f0f0f0 51%, #f0f0f0 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(49%,#ffffff), color-stop(51%,#f0f0f0), color-stop(100%,#f0f0f0)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-8 */
+	}
+
+	.hw-nav-collapsed:hover > .hw-menu-btn a {
+	color: #c00;
+	}
+
+.hw-menu-btn-arrows {
+	width: 24px;
+	height: 100%;
+	position: relative;
+	display: block;
+	float: left;
+
+	background: #cc0000; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2NjMDAwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2NjMDAwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2FmMDAwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjYzAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #cc0000 0%, #cc0000 50%, #af0000 51%, #cc0000 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cc0000), color-stop(50%,#cc0000), color-stop(51%,#af0000), color-stop(100%,#cc0000)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #cc0000 0%,#cc0000 50%,#af0000 51%,#cc0000 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #cc0000 0%,#cc0000 50%,#af0000 51%,#cc0000 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #cc0000 0%,#cc0000 50%,#af0000 51%,#cc0000 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #cc0000 0%,#cc0000 50%,#af0000 51%,#cc0000 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc0000',GradientType=0 ); /* IE6-8 */
+
+}
+
+.hw-menu-btn-arrows img {
+	position: relative;
+	display: block;
+	margin: 25px auto;
+
+}
+
+.hw-menu-title {
+	float: left;
+	display: block;
+	position: relative;
+	padding: 12px 20px 0 30px;
+	background: none;
+	width: 55%;
+	border-left: 1px solid #ddd;
+	height: 100%;
+	
+}
+
+.hw-menu-logo {
+	
+	background: url('images/hw-menu-logo.png') no-repeat 0 14px;
+	width: 170px;
+	height: 38px;
+	float: right;
+	display: block;
+	position: relative;
+	padding:12px;
+}
+
+.hw-nav-collapsed h1 {
+	color: #c00;
+
+
+	}
+
+/*	::::::::::::::::::: Expanded HW Nav ::::::::::::::::::::*/
+
+
+.hw-menu-expanded-wrapper {
+
+
+}
+
+
+/*	::::::::::::::::::: More Heartworks styles ::::::::::::::::::::*/
+
 
 .hw-endorsements-wrapper {
 	width: 100%;
@@ -1701,7 +1867,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_2 {
             width:20.6666666667%;
         }
-.span_3  , .cta-gateway {
+.span_3  , .cta-gateway  {
             width:32.0%;
         }
  .span_4  , .gateway-promo-bullets ul {
@@ -1710,13 +1876,13 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_5 {
             width:54.6666666667%;
         }
-.span_6 , .news-leftcol-wrapper {
+.span_6 , .news-leftcol-wrapper  {
             width:66.0%;
         }
 .span_7 {
             width:77.3333333333%;
         }
-.span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper {
+.span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , .hw-nav-collapsed {
             width:88.6666666667% !important;
         }
 .span_9  , .menu-mainnav-container , .logo {
@@ -1758,7 +1924,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_1 {
             width:6.5%;
         }
-.span_2  {
+.span_2 {
             width:15.0%;
         }
 .span_3  , .cta-gateway {
@@ -1783,10 +1949,10 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 
             width:74.5%;
         }
-.span_10 , .product-carousel , .gateway-promo-wrapper {
+.span_10 , .product-carousel , .gateway-promo-wrapper  {
             width:83.0%;
         }
-.span_11 {
+.span_11 , .hw-nav-collapsed {
             width:91.5%;
         }
 .span_12  {
@@ -1829,7 +1995,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_1 {
             width:7.1875%;
         }
-.span_2 {
+.span_2 , {
             width:15.625%;
         }
 .span_3 , .cta-gateway {
@@ -1848,7 +2014,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_7 {
             width:57.8125%;
         }
-.span_8 , .featured-prod-img , .news-leftcol-wrapper {
+.span_8 , .featured-prod-img , .news-leftcol-wrapper  {
             width:66.25%;
         }
 .span_9  {
@@ -1858,7 +2024,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
             
             width:83.125%;
         }
-.span_11 {
+.span_11 , .hw-nav-collapsed{
             width:91.5625%;
         }
 .span_12  {

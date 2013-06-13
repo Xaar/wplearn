@@ -47,6 +47,73 @@ key: "right"
 
 
 <div id="content" class="hero-content row" role="main">
+
+<div class="hw-nav-collapsed row">
+	<div class="hw-menu-btn-arrows">
+		<img src="<?php bloginfo('template_directory'); ?>/images/hw-menu-arrows.png" />
+	</div>
+	<div class="hw-menu-btn">
+	<a href="">Click for Menu</a>
+	</div>
+	<div class="hw-menu-title">
+	<h1>Heartworks Echocardiography Simultators and E-Learning Products</h1> <!-- Needs to display the current product when on a single product page -->
+</div>
+<div class="hw-menu-logo">
+</div>
+<div class="clearfix">
+	</div>
+</div>	
+
+<div class="hw-menu-expanded-wrapper">
+
+<div class="hw-nav-expanded-title row">
+	<div class="hw-menu-title">
+	<h1>Learn More about Heartworks</h1> 
+	</div>
+	<div class="hw-menu-logo">
+	</div>
+</div> <!-- Expanded menu title -->
+<div class="hw-menu-content row">
+	<div class="hw-menu-list col">
+		<h2>About</h2>
+		<ul>
+			<li><a class="hw-menu-link">About us</a></li>
+			<li><a class="hw-menu-link">The team</a></li>
+			<li><a class="hw-menu-link">Another link</a></li>
+		</ul>
+	</div>
+	<div class="hw-menu-list col">
+		<h2>Education</h2>
+		<ul>
+			<li><a class="hw-menu-link">e-Learning</a></li>
+			<li><a class="hw-menu-link">Media store</a></li>
+		</ul>
+	</div>
+	<div class="hw-menu-list col">
+		<h2>Simulators</h2>
+		<ul>
+			<li><a class="hw-menu-link">Anatomy Module</a></li>
+			<li><a class="hw-menu-link">Ultrasound Module</a></li>
+			<li><a class="hw-menu-link">EE Manakin Simulator</a></li>
+			<li><a class="hw-menu-link">TTE Manakin Simulator</a></li>
+			<li><a class="hw-menu-link">Dual Manakin Simulator</a></li>
+			<li><a class="hw-menu-link">Pathologies</a></li>
+		</ul>
+	</div>
+	<div class="hw-menu-list col">
+		<h2>Education</h2>
+		<ul>
+			<li><a class="hw-menu-link">e-Learning</a></li>
+			<li><a class="hw-menu-link">Media store</a></li>
+		</ul>
+	</div>
+
+</div> <!-- Expanded menu content -->
+
+</div> <!-- Expanded menu wrapper -->
+
+
+
 <?php the_post(); ?>	
 <?php the_content(); ?>
 <?php echo get_new_royalslider(2); ?>
