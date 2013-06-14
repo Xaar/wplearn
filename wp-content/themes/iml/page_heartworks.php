@@ -74,42 +74,46 @@ key: "right"
 <div class="hw-menu-content-wrapper row">
 	<div class="hw-menu-lists">
 	<div class="hw-menu-list col">
-		<h2>About</h2>
+		<div id="about-icon" class="hw-menu-category-icon"></div>
+		<h2>About Heartworks</h2>
 		<ul>
 				<!-- Leave as static for now - client to confirm -->
 
-			<li><a class="hw-menu-link">About us</a></li>
-			<li><a class="hw-menu-link">The team</a></li>
-			<li><a class="hw-menu-link">Another link</a></li>
+			<li><a class="hw-menu-link">About us<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">The team<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">Another link<div class="hw-menu-arrow"></div></a></li>
 		</ul>
 	</div>
 	<div class="hw-menu-list col">
+		<div id="elearn-icon" class="hw-menu-category-icon"></div>
 		<h2>Education</h2>
 		<ul>
 				<!-- write wp query for products > elearning -->
 
-			<li><a class="hw-menu-link">e-Learning</a></li>
-			<li><a class="hw-menu-link">Media store</a></li>
+			<li><a class="hw-menu-link">e-Learning<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">Media store<div class="hw-menu-arrow"></div></a></li>
 		</ul>
 	</div>
 	<div class="hw-menu-list col">
-		<h2>Simulators</h2>
+		<div id="simulator-icon" class="hw-menu-category-icon"></div>
+		<h2>Echo Simulators</h2>
 		<ul> 
 			<!-- write wp query for products > simulators -->
 
-			<li><a class="hw-menu-link">Anatomy Module</a></li>
-			<li><a class="hw-menu-link">Ultrasound Module</a></li>
-			<li><a class="hw-menu-link">EE Manakin Simulator</a></li>
-			<li><a class="hw-menu-link">TTE Manakin Simulator</a></li>
-			<li><a class="hw-menu-link">Dual Manakin Simulator</a></li>
-			<li><a class="hw-menu-link">Pathologies</a></li>
+			<li><a class="hw-menu-link">Anatomy Module<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">Ultrasound Module<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">EE Manakin Simulator<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">TTE Manakin Simulator<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">Dual Manakin Simulator<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">Pathologies<div class="hw-menu-arrow"></div></a></li>
 		</ul>
 	</div>
 	<div class="hw-menu-list col">
+		<div id="professional-icon" class="hw-menu-category-icon"></div>
 		<h2>Professional Products</h2>
 		<ul>
-			<li><a class="hw-menu-link">Watchman Device</a></li>
-			<li><a class="hw-menu-link">Media store</a></li>
+			<li><a class="hw-menu-link">Watchman Device<div class="hw-menu-arrow"></div></a></li>
+			<li><a class="hw-menu-link">Media store<div class="hw-menu-arrow"></div></a></li>
 		</ul>
 	</div>
 	

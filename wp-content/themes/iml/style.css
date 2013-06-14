@@ -1409,6 +1409,16 @@ overflow: hidden;
 
 }
 
+.hw-menu-list h2 {
+	text-align: center;
+	display: block;
+	text-transform: uppercase;
+	font-size: 15px;
+	color: #c00;
+	font-weight: 400;
+	padding: 5px 0;
+}
+
 .hw-menu-list ul {
 	margin: 0;
 	padding: 0 0 30px 0;
@@ -1420,7 +1430,7 @@ overflow: hidden;
 	text-indent: none;
 	padding: 6px;
 	border: 1px solid #f0f0f0;
-	background: #fff url('images/hw-menu-item-arrow.png') no-repeat 97% center;
+	background-color: #fff;
 	cursor: pointer;
 
 }
@@ -1437,15 +1447,74 @@ overflow: hidden;
 	background: linear-gradient(to bottom,  #ffffff 49%,#f0f0f0 51%,#f0f0f0 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-8 */
 	border: 1px solid #fff;
-	background-image: url('images/hw-menu-item-arrow.png');
-	background-repeat: no-repeat;
-	background-position: 97% center;
+	
 
 
 	}
 
 a.hw-menu-link {
+	width: 100%;
+	height: 100%;
+	display: block;
+	
 
+
+}
+
+.hw-menu-arrow {
+	
+	width: 7px;
+	height: 11px;
+	position: relative;
+	float: right;
+	top: 5px;
+	background-image: url('images/hw-menu-list-arrows.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	
+}
+a.hw-menu-link:hover > div.hw-menu-arrow {
+
+	background-position: -7px 0;
+}
+
+
+.hw-menu-category-icon {
+	display: block;
+	position: relative;
+	top: 5px;
+	margin: 8px auto;
+	background-image: url('images/hw-menu-icons.png');
+	background-repeat: no-repeat;
+
+
+}
+
+#about-icon {
+	width: 47px;
+	height: 45px;
+	background-position: 0 0;
+
+}
+
+#elearn-icon {
+	width: 52px;
+	height: 45px;
+	background-position: -56px 0;
+
+}
+
+#simulator-icon {
+	width: 70px;
+	height: 45px;
+	background-position: -120px 0;
+
+}
+
+#professional-icon {
+	width: 71px;
+	height: 45px;
+	background-position: -199px 0;
 
 }
 
@@ -2068,10 +2137,10 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 
             width:74.5%;
         }
-.span_10 , .product-carousel , .gateway-promo-wrapper  {
+.span_10 , .product-carousel , .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper  {
             width:83.0%;
         }
-.span_11 , .hw-menu-collapsed , .hw-menu-expanded-wrapper {
+.span_11  {
             width:91.5%;
         }
 .span_12  {
@@ -2139,11 +2208,11 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_9  {
             width:74.6875%;
         }
-.span_10 , .product-carousel , .gateway-promo-wrapper  {
+.span_10 , .product-carousel , .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper {
             
             width:83.125%;
         }
-.span_11 , .hw-menu-collapsed , .hw-menu-expanded-wrapper {
+.span_11  {
             width:91.5625%;
         }
 .span_12  {
