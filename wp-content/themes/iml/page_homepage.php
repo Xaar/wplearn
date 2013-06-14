@@ -58,7 +58,7 @@ endwhile; endif; ?>
 								 <h2><?php the_title(); ?></h2>
 								 <?php the_content(); ?>
 								 <div class="cta-green">
-								 	<a href= "<?php echo get_permalink( $featuredprod->ID ); ?>">Learn more &raquo; </a> 
+								 	<a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">New test &raquo; </a> 
 								 </div>
 								<div class="cta-green">
 								 	<a href= "<?php echo get_permalink( $featuredprod->ID ); ?>">Learn more &raquo; </a> 

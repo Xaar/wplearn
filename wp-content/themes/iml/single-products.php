@@ -45,11 +45,7 @@ $(function() {
 });
 </script>
 
-<div class="page-wrapper site-content">
-	<div class="page-title row">
-		<h1><?php the_title(); ?></h1>
-	</div>
-
+<div class="page">
 	<div class="hero-product-content row">
 		<div class="hero-product-listing-text">
 			<h3><?=(get_post_meta($post->ID, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
@@ -70,8 +66,9 @@ $(function() {
 
 	<div class="product-quote-listing">
 	</div>
+<div class="products-tabs-wrapper">
 
-	<div class="product-overview">
+	<div class="product-tabs">
 		<ul class="tabs">
 			<li><a href="#">Product Overview</a></li>
 <?php
@@ -84,16 +81,17 @@ if(get_post_meta($post->ID, ('product_type'), true)=='Pathologies') {
 }		
 ?>
 			<li><a href="#">FAQ</a></li>
-			<button class='right'>How to Buy</button>
+			
 		</ul>
-
+		<div class="cta-green-tabs right">
+								 	<a href= "">How to Buy &raquo; </a> 
+								 </div>
+ </div>
 		<!-- tab "panes" -->
 		<div class="panes">
 			<div>
 				<p>
        
-<!--                        		<img class="right" src="<?=wp_get_attachment_url(get_post_meta($post->ID, ('overview_image'), true));?>"/>
--->
 <?php
 
 $custom_fields = get_post_custom($post->ID);
@@ -142,11 +140,14 @@ foreach($questions as $var => $val) {
 }?>
                         </div>
 		</div>
- 	</div>
+ 	</div> <!-- close panes -->
+
+
+</div> <!-- Close the wrapper -->
 
 <?php get_sidebar('products'); ?>
 
-</div><!-- page-wrapper -->
+
 
 <?php get_sidebar('quicklinks'); ?>
 
