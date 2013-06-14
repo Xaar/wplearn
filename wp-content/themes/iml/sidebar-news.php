@@ -25,9 +25,6 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
     </div>
 <?php
 endwhile;
-
-
-
 ?>
   </div>
 

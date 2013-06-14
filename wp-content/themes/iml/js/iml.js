@@ -60,12 +60,13 @@ jQuery(document).ready(function($){
 
 				$modal.css({
 					'display': 'none',
-					'position' : 'fixed',
+					'position' : 'absolute',
 					'z-index': 2001,
 					'left' : 50 + '%',
-					'top' : parseInt(o.top) > -1 ? o.top + 'px' : 50 + '%',
-					'margin-left' : -($modal.outerWidth()/2) + 'px',
-					'margin-top' : (parseInt(o.top) > -1 ? 0 : -($modal.outerHeight()/2)) + 'px'
+//					'top' : parseInt(o.top) > -1 ? o.top + 'px' : 50 + '%',
+					'top' : 60,
+					'margin-left' : -($modal.outerWidth()/2) + 'px'
+//					'margin-top' : (parseInt(o.top) > -1 ? 0 : -($modal.outerHeight()/2)) + 'px'
 				});
 
 				$modal.bind('openModal', function(){
@@ -87,6 +88,14 @@ jQuery(document).ready(function($){
 						}
 					});
 				});
+
+				// Resize Window
+                                jQuery(window).resize(function(e) {
+	                               $modal.css({
+                        //        	        'left' : 50 + '%',
+                                        	'margin-left' : -($modal.outerWidth()/2) + 'px'
+					});
+                                });
 
 				// Close on overlay click
 				$overlay.on('click', function(e) {

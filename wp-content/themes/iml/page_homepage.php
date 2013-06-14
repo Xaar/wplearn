@@ -45,7 +45,7 @@ endwhile; endif; ?>
 					<div id="featured-product-home" class="featured-product row">
 						<?php
 						// The Query
-						$the_query_home2 = new WP_Query( 'post_type=featured-products&posts_per_page=1' );
+						$the_query_home2 = new WP_Query( 'post_type=featured-products&posts_per_page=1&orderby=rand' );
 						// The Loop
 						while ( $the_query_home2->have_posts() ) : $the_query_home2->the_post();
 						?>
@@ -58,16 +58,16 @@ endwhile; endif; ?>
 								 <h2><?php the_title(); ?></h2>
 								 <?php the_content(); ?>
 								 <div class="cta-green">
-								 	<a href= "<?php echo get_permalink( $featuredprod->ID ); ?>">Learn more &raquo; </a> 
+								 	<a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">Learn more &raquo; </a> 
 								 </div>
 								<div class="cta-green">
-								 	<a href= "<?php echo get_permalink( $featuredprod->ID ); ?>">Learn more &raquo; </a> 
+								 	<a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">Learn more &raquo; </a> 
 								 </div>
 								</div>
 							
 								 <?php if ( has_post_thumbnail()) : ?>
 						 <div class="featured-prod-img">
-						   <a href="<?php echo get_permalink( $featuredprod->ID ); ?>" title="<?php the_title_attribute(); ?>" >
+						   <a href="<?php echo get_permalink( $featuredprod[0]->ID ); ?>" title="<?php the_title_attribute(); ?>" >
 						   <?php the_post_thumbnail(); ?>
 						   </a></div>
 						 <?php endif; ?>

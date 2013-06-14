@@ -3,7 +3,6 @@
 define("THISPAGE", "products");
 
 get_header();
-get_sidebar();
 ?>
 <script type="text/javascript">
 /* CarouFredSel: a circular, responsive jQuery carousel.
@@ -44,6 +43,8 @@ $(function() {
     $("ul.tabs").tabs("div.panes > div");
 });
 </script>
+
+<?php get_sidebar('navigation');?>
 
 <div class="page-wrapper site-content">
 	<div class="page-title row">
