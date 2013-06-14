@@ -649,6 +649,10 @@ object {
 	padding-top: 60px;
 }
 
+.page-wrapper {
+	top: 60px;
+}
+
 h1 {
 	font-family: 'Source Sans Pro' , arial;
 	font-style: normal;
@@ -692,7 +696,9 @@ p , a {
 	font-size: 85%;
 }
 
-#header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , .product-carousel, .gateway-promo-wrapper , .page-title , .hw-menu-collapsed, .hw-menu-expanded-wrapper {
+#header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , 
+.product-carousel, .gateway-promo-wrapper , .page-title , .hw-menu-collapsed, .hw-menu-expanded-wrapper, .hero-product-content ,
+.products-tabs-wrapper {
      width: 90%;
      min-width: 440px;
      max-width: 1280px;
@@ -882,7 +888,7 @@ input[name="navsearchbtn"] {
 
 }
 
-.cta-green a {
+.cta-green a , .cta-green-tabs a {
 	-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
 	box-shadow:inset 0px 1px 0px 0px #caefab;
@@ -908,7 +914,7 @@ input[name="navsearchbtn"] {
 
 }
 
-.cta-green a:hover {
+.cta-green a:hover , .cta-green-tabs a:hover{
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4ca305), color-stop(1, #58bd00) );
 	background:-moz-linear-gradient( center top, #4ca305 5%, #58bd00 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4ca305', endColorstr='#58bd00');
@@ -919,6 +925,7 @@ input[name="navsearchbtn"] {
 	position:relative;
 	top:1px;
 }
+
 
 
 .featured-prod-txt {
@@ -960,7 +967,7 @@ input[name="navsearchbtn"] {
 
 }
 
-.cta-red , .cta-green {
+.cta-red , .cta-green , .cta-green-tabs {
 	
 	display: inline-block;
 	margin: auto;
@@ -1335,11 +1342,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 .hw-menu-expanded-wrapper {
 
 	border: 1px solid #ddd;
-border-radius: 6px;
--webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
--moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
-overflow: hidden;
+	border-radius: 6px;
+	-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	-moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	overflow: hidden;
 	position: relative;
 	display: block;
 	margin: 20px auto;
@@ -1650,24 +1657,183 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	display: block;
 
 	background: #ffffff; /* Old browsers */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2YxZjFmMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2UxZTFlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNmY2ZjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-8 */
--webkit-border-radius: 8px;
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2YxZjFmMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2UxZTFlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNmY2ZjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-8 */
+	-webkit-border-radius: 8px;
 	 border-radius: 8px;
 	 -webkit-box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .1);
  	box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .1);
-border: 1px solid #eee;
+	border: 1px solid #eee;
         z-index: 600;
         margin-bottom: 1px;
 
 }
+
+
+/* :::::::::::::::::::::::::::::::::::; Heartworks Products tabs  ::::::::::::::::::::::::::::::;*/
+
+.product-tabs {
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	-moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	height: 50px;
+	overflow: hidden;
+	position: relative;
+	display: block;
+	margin: 40px auto 0 auto;
+ 	padding: 0;
+ 	background: #e1e1e1; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2UxZTFlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2UxZTFlMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNmY2ZjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e1e1e1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#e1e1e1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e1e1e1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#e1e1e1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e1e1e1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#e1e1e1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-8 */
+
+
+
+
+
+}
+
+
+ul.tabs {
+    list-style:none;
+    margin:0 !important;
+    padding:0;
+    
+    height:100%;
+}
+
+ul.tabs li {
+    float:left;
+    text-indent:0;
+    padding:0;
+    margin:0 !important;
+    list-style-image:none !important;
+    border: 1px solid #fff;
+}
+
+ul.tabs a {
+
+    display:block;
+    height: 38px;
+    width: 200px;
+    text-align:center;
+    text-decoration:none;
+    color:#333;
+    padding:0;
+    margin:0;
+    position:relative;
+    padding-top:12px;
+}
+
+ul.tabs a:active {
+    outline:none;
+   
+
+}
+
+/* when mouse enters the tab move the background image */
+ul.tabs a:hover {
+     background: #f0f0f0; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YwZjBmMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2NjY2NjYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUzJSIgc3RvcC1jb2xvcj0iI2MxYzFjMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNmY2ZjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #f0f0f0 0%, #cccccc 50%, #c1c1c1 53%, #f6f6f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(50%,#cccccc), color-stop(53%,#c1c1c1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f0f0f0 0%,#cccccc 50%,#c1c1c1 53%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f0f0f0 0%,#cccccc 50%,#c1c1c1 53%,#f6f6f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f0f0f0 0%,#cccccc 50%,#c1c1c1 53%,#f6f6f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f0f0f0 0%,#cccccc 50%,#c1c1c1 53%,#f6f6f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-8 */
+
+	color: #c00;
+}
+
+/* active tab uses a class name "current". its highlight is also done by moving the background image. */
+ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
+    cursor:default !important;
+    color:#c00 !important;
+     background: #ffffff; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2YzZjNmMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2VkZWRlZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f3f3f3 50%, #ededed 51%, #ffffff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f3f3f3), color-stop(51%,#ededed), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-8 */
+    
+}
+
+/*style the green cta in the tabs... inherits the rest of styles from cta-green*/
+
+.cta-green-tabs a {
+
+	-webkit-border-top-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	-moz-border-radius-bottomright: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	width: 150px;
+	height: 50px;
+	border: none;
+
+}
+
+/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
+
+
+/* width 1 */
+/*ul.tabs a.s { background-position: -553px 0; width:81px; }
+ul.tabs a.s:hover { background-position: -553px -31px; }
+ul.tabs a.s.current  { background-position: -553px -62px; }*/
+
+/* width 2 */
+/*ul.tabs a.l { background-position: -248px -0px; width:174px; }
+ul.tabs a.l:hover { background-position: -248px -31px; }
+ul.tabs a.l.current { background-position: -248px -62px; }*/
+
+
+/* width 3 */
+/*ul.tabs a.xl { background-position: 0 -0px; width:248px; }
+ul.tabs a.xl:hover { background-position: 0 -31px; }
+ul.tabs a.xl.current { background-position: 0 -62px; }*/
+
+
+/* initially all panes are hidden */
+.panes .pane {
+    display:none;
+}
+/* tab pane styling */
+.panes div {
+    display:none;
+    padding:30px 10px;
+    border:none;
+    min-height:240px;
+    background-color:#fff;
+}
+.panes div img {
+	float: right;
+}
+
 
 div.clearfix {
 	float: none;
@@ -2070,7 +2236,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_7 {
             width:77.3333333333%;
         }
-.span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper {
+.span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper {
             width:88.6666666667% !important;
         }
 .span_9  , .menu-mainnav-container , .logo {
@@ -2137,7 +2303,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 
             width:74.5%;
         }
-.span_10 , .product-carousel , .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper  {
+.span_10 , .product-carousel , .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper  {
             width:83.0%;
         }
 .span_11  {
@@ -2208,7 +2374,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_9  {
             width:74.6875%;
         }
-.span_10 , .product-carousel , .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper {
+.span_10 , .product-carousel , .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper {
             
             width:83.125%;
         }
@@ -2222,185 +2388,6 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
     }
 
 
-.oe_overlay{
-	background:#000;
-	opacity:0;
-	position:fixed;
-	top:0px;
-	left:0px;
-	width:100%;
-	height:100%;
-}
-ul.oe_menu{
-	list-style:none;
-	position:relative;
-	margin:30px 0px 0px 40px;
-	width:560px;
-	float:left;
-	clear:both;
-}
-ul.oe_menu > li{
-	width:112px;
-	height:101px;
-	padding-bottom:2px;
-	float:left;
-	position:relative;
-}
-ul.oe_menu > li > a{
-	display:block;
-	background-color:#101010;
-	color:#aaa;
-	text-decoration:none;
-	font-weight:bold;
-	font-size:12px;
-	width:90px;
-	height:80px;
-	padding:10px;
-	margin:1px;
-	text-shadow:0px 0px 1px #000;
-	opacity:0.8;
-}
-ul.oe_menu > li > a:hover,
-ul.oe_menu > li.selected > a{
-	background:#fff;
-	color:#101010;
-	opacity:1.0;
-}
-.oe_wrapper ul.hovered > li > a{
-	background:#fff;
-	text-shadow:0px 0px 1px #FFF;
-}
-ul.oe_menu div{
-	position:absolute;
-	top:103px;
-	left:1px;
-	background:#fff;
-	width:498px;
-	height:180px;
-	padding:30px;
-	display:none;
-}
-ul.oe_menu div ul li a{
-	text-decoration:none;
-	color:#222;
-	padding:2px 2px 2px 4px;
-	margin:2px;
-	display:block;
-	font-size:12px;
-}
-ul.oe_menu div ul.oe_full{
-	width:100%;
-}
-ul.oe_menu div ul li a:hover{
-	background:#000;
-	color:#fff;
-}
-ul.oe_menu li ul{
-	list-style:none;
-	float:left;
-	width: 150px;
-	margin-right:10px;
-}
-li.oe_heading{
-	color:#aaa;
-	font-size:16px;
-	margin-bottom:10px;
-	padding-bottom:6px;
-	border-bottom:1px solid #ddd;
-}
-#primary {
-	min-height: 600px;
-}
 
 
 
-
-/* root element for tabs  */
-ul.tabs {
-    list-style:none;
-    margin:0 !important;
-    padding:0;
-    border-bottom:1px solid #666;
-    height:30px;
-}
-
-/* single tab */
-ul.tabs li {
-    float:left;
-    text-indent:0;
-    padding:0;
-    margin:0 !important;
-    list-style-image:none !important;
-}
-
-/* link inside the tab. uses a background image */
-ul.tabs a {
-    background: url(/wp-content/themes/iml/blue.png) no-repeat -420px 0;
-    font-size:11px;
-    display:block;
-    height: 30px;
-    line-height:30px;
-    width: 134px;
-    text-align:center;
-    text-decoration:none;
-    color:#333;
-    padding:0px;
-    margin:0px;
-    position:relative;
-    top:1px;
-}
-
-ul.tabs a:active {
-    outline:none;
-}
-
-/* when mouse enters the tab move the background image */
-ul.tabs a:hover {
-    background-position: -420px -31px;
-    color:#fff;
-}
-
-/* active tab uses a class name "current". its highlight is also done by moving the background image. */
-ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
-    background-position: -420px -62px;
-    cursor:default !important;
-    color:#000 !important;
-}
-
-/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
-
-
-/* width 1 */
-ul.tabs a.s { background-position: -553px 0; width:81px; }
-ul.tabs a.s:hover { background-position: -553px -31px; }
-ul.tabs a.s.current  { background-position: -553px -62px; }
-
-/* width 2 */
-ul.tabs a.l { background-position: -248px -0px; width:174px; }
-ul.tabs a.l:hover { background-position: -248px -31px; }
-ul.tabs a.l.current { background-position: -248px -62px; }
-
-
-/* width 3 */
-ul.tabs a.xl { background-position: 0 -0px; width:248px; }
-ul.tabs a.xl:hover { background-position: 0 -31px; }
-ul.tabs a.xl.current { background-position: 0 -62px; }
-
-
-/* initially all panes are hidden */
-.panes .pane {
-    display:none;
-}
-/* tab pane styling */
-.panes div {
-    display:none;
-    padding:15px 10px;
-    border:1px solid #999;
-    border-top:0;
-    height:340px;
-    font-size:14px;
-    background-color:#fff;
-}
-.panes div img {
-	float: right;
-}
