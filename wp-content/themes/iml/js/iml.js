@@ -18,7 +18,7 @@ jQuery(document).ready(function($){
 * URL: https://github.com/flaviusmatis/easyModal.js
 */
 
-(function($){
+(function(jQuery){
 
 	var methods = {
 		init : function(options) {
@@ -36,13 +36,13 @@ jQuery(document).ready(function($){
 				onClose: false
 			};
 
-			options = $.extend(defaults, options);
+			options = jQuery.extend(defaults, options);
 
 			return this.each(function() {
 
 				var o = options;
 
-				var $overlay = $('<div class="lean-overlay"></div>');
+				var $overlay = jQuery('<div class="lean-overlay"></div>');
 
 				$overlay.css({
 					'display': 'none',
@@ -69,7 +69,7 @@ jQuery(document).ready(function($){
 				});
 
 				$modal.bind('openModal', function(){
-					$(this).css('display', 'block');
+					jQuery(this).css('display', 'block');
 					$overlay.fadeIn(200, function(){
 						if (o.onOpen && typeof (o.onOpen) === 'function') {
 							// onOpen callback receives as argument the modal window
@@ -79,7 +79,7 @@ jQuery(document).ready(function($){
 				});
 
 				$modal.bind('closeModal', function(){
-					$(this).css('display', 'none');
+					jQuery(this).css('display', 'none');
 					$overlay.fadeOut(200, function(){
 						if (o.onClose && typeof(o.onClose) === 'function') {
 							// onClose callback receives as argument the modal window
@@ -89,12 +89,11 @@ jQuery(document).ready(function($){
 				});
 
 				// Close on overlay click
-				$overlay.click(function() {
-					if (o.overlayClose)
-						$modal.trigger('closeModal');
+				$overlay.on('click', function(e) {
+					$modal.trigger('closeModal');
 				});
 
-				$(document).keydown(function(e) {
+				jQuery(document).keydown(function(e) {
 					// ESCAPE key pressed
 					if (o.closeOnEscape && e.keyCode == 27) {
 						$modal.trigger('closeModal');
@@ -116,7 +115,7 @@ jQuery(document).ready(function($){
 		}
 	};
 
-	$.fn.easyModal = function(method) {
+	jQuery.fn.easyModal = function(method) {
 
 		// Method calling logic
 		if (methods[method]) {
@@ -124,7 +123,7 @@ jQuery(document).ready(function($){
 		} else if (typeof method === 'object' || ! method) {
 			return methods.init.apply(this, arguments);
 		} else {
-			$.error('Method ' + method + ' does not exist on jQuery.easyModal');
+			jQuery.error('Method ' + method + ' does not exist on jQuery.easyModal');
 		}
 
 	};
@@ -132,12 +131,12 @@ jQuery(document).ready(function($){
 })(jQuery);
 
 
-$('#testmodal').easyModal({
+jQuery('#testmodal').easyModal({
   overlay : 0.4,
   overlayClose: false 
 });
 
-$('.open-testmodal').click(function(e){
+jQuery('.open-testmodal').click(function(e){
   $('#testmodal').trigger('openModal');
   e.preventDefault();
 });

@@ -45,7 +45,7 @@ key: "right"
 
 </script>
 
-<div class="hw-menu-collapsed row">
+<div class="hw-menu-collapsed row open-testmodal">
   <div class="hw-menu-btn-arrows">
     <img src="<?php bloginfo('template_directory'); ?>/images/hw-menu-arrows.png" />
   </div>
@@ -60,7 +60,7 @@ key: "right"
 </div>	
 
 
-<div class="hw-menu-expanded-wrapper row">
+<div id="testmodal" class="hw-menu-expanded-wrapper row">
   <div class="hw-menu-expanded-title">
     <h1>Learn More about Heartworks</h1> 
   </div> <!-- Expanded menu title -->
