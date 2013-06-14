@@ -197,54 +197,25 @@ define("THISPAGE", "sales");
 
 <div id="content" class="hero-content row" role="main">
 
-
-<div id="vtab">
-  <ul>
-    <li class="home">How to Buy</li>
-    <li class="sales">Sales Enquires</li>
-    <li class="support">Support Enquiries</li>
-  </ul>
-  <div>
-    <h4>Regional Map</h4>
-    <?=do_shortcode('[simplemap]');?>
+  <div id="vtab">
+    <ul>
+      <li class="home">How to Buy</li>
+      <li class="sales">Sales Enquires</li>
+      <li class="support">Support Enquiries</li>
+    </ul>
+    <div>
+      <h4>Regional Map</h4>
+      <?=do_shortcode('[simplemap]');?>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <?=do_shortcode('[si-contact-form form=\'1\']');?>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <?=do_shortcode('[si-contact-form form=\'1\']');?>
+    </div>
   </div>
-  <div>
-    <h4>Contact Us</h4>
-    <?=do_shortcode('[si-contact-form form=\'1\']');?>
-  </div>
-  <div>
-    <h4>Contact Us</h4>
-    <?=do_shortcode('[si-contact-form form=\'1\']');?>
-</div>
-</div>
-
-<a href="#" class="open-testmodal">test modal</a>
-
-
-<div id="testmodal">
-	<div class="header">
-		<h3>Create a new account</h3>
-	</div>
-	<form action="">
-		<div class="txt">
-			<label for="username">Username:</label>
-			<input type="text" name="" id="username">
-		</div>
-		<div class="txt">
-			<label for="email">Email address:</label>
-			<input type="text" name="" id="email">
-		</div>
-		<div class="txt">
-			<label for="password">Password:</label>
-			<input type="password" name="" id="password">
-		</div>
-		<div class="btn clearfix">
-			<a class="close" href="#">Sign Up</a>
-			<a class="close cancel" href="#">Cancel</a>
-		</div>
-	</form>
-</div>
-
 
 </div><!-- hero-content -->
 
