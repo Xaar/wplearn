@@ -1095,8 +1095,9 @@ Homepage promo styles Latest News, events etc.
 .news-leftcol-wrapper , .event-leftcol-wrapper {
 	max-width: 850px;
 }
-.news-rightcol-wrapper {
-	max-width: 300px;
+.events-rightcol-wrapper , .news-rightcol-wrapper {
+	width: 24%;
+	margin-bottom: 30px;
 }
 /*
 ::::: Q U I C K :: L I N K S :::
@@ -2066,6 +2067,9 @@ border: 1px solid #fff;
 
 	color: #333;
 
+}
+.fb-root {
+	margin-bottom: 30px;
 }
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/

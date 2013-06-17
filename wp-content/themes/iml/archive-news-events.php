@@ -39,7 +39,9 @@ jQuery(document).ready(function($){
 
 	</div> <!-- .news-leftcol -->
 
-<?php get_sidebar( 'events' ); ?>
+<?php get_sidebar( 'upcoming-events' ); ?>
+<?php get_sidebar( 'past-events' ); ?>
+<?php get_sidebar( 'facebook' ); ?>
 
 <?php
 

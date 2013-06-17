@@ -269,11 +269,13 @@ add_action( 'init', 'create_post_type' );
 if ( function_exists('register_sidebar') ) {
 
    register_sidebar('heartworksNav');
-   register_sidebar('events');
+   register_sidebar('upcoming-events');
    register_sidebar('carousel');
    register_sidebar('products');
    register_sidebar('quicklinks');
    register_sidebar('news');
+   register_sidebar('past-events');
+   register_sidebar('facebook');
 }
 
 function change_default_title( $title ){

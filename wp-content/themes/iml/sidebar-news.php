@@ -28,4 +28,8 @@ endwhile;
 ?>
   </div>
 
+  <div class='clearfix'></div>
+
+  <?php get_sidebar('facebook');?>
+
 </div>
