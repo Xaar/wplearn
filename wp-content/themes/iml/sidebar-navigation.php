@@ -1,14 +1,3 @@
-<?php
-
-if ( function_exists ( dynamic_sidebar(0) ) ) : ?>
-<!-- ... regular html ... -->
-<!-- ... regular html ... -->
-
-
-<?php dynamic_sidebar (0); ?>
-
-<?php endif; ?>
-
 <div class="hw-menu-collapsed row open-testmodal">
   <div class="hw-menu-btn-arrows">
     <img src="<?php bloginfo('template_directory'); ?>/images/hw-menu-arrows.png" />

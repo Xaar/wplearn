@@ -1,14 +1,3 @@
-<?php
-
-if ( function_exists ( dynamic_sidebar(5) ) ) : ?>
-<!-- ... regular html ... -->
-<!-- ... regular html ... -->
-
-
-<?php dynamic_sidebar (5); ?>
-
-<?php endif; ?>
-
 <div class="quick-links-wrapper">
   <div class="quick-links row">
     <h4>Quick Links</h4>

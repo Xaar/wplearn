@@ -1,14 +1,3 @@
-<?php
-
-if ( function_exists ( dynamic_sidebar(4) ) ) : ?>
-<!-- ... regular html ... -->
-<!-- ... regular html ... -->
-
-
-<?php dynamic_sidebar (4); ?>
-
-<?php endif; ?>
-
 <div id="products" class="product-carousel row">
   <div class="previous"></div>
   <div class="next"></div>

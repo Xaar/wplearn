@@ -1,17 +1,5 @@
 <?php
 
-if ( function_exists ( dynamic_sidebar(3) ) ) : ?>
-<!-- ... regular html ... -->
-<!-- ... regular html ... -->
-
-
-<?php dynamic_sidebar (3); ?>
-
-<?php endif; ?>
-
-
-<?php
-
 $custom_fields = get_post_custom(783);
 $x =  $custom_fields['test'];
 $gallery = maybe_unserialize($x[0]);

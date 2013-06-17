@@ -13,7 +13,7 @@ $page = (get_query_var('page')) ? get_query_var('page') : 1;
 $filter = ucfirst($_GET['filter']);
 //$page = ($filter!='All') ? 1 : $page;
 $pagex = $page;
-$ppp = 3;
+$ppp = 6;
 $wp_query = new WP_Query( array ( 'post_type' => 'news-events', 'posts_per_page' => "$ppp", 'meta_key' => 'article_type', 'meta_compare' => '!=', 'meta_value' => "$filter", 'orderby' => 'menu_order', 'order' => 'ASC', 'paged' => "$page" ));
 $i=$page*$ppp-$ppp;
 while ( $wp_query->have_posts() ) : $wp_query->the_post();

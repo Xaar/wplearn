@@ -642,7 +642,7 @@ object {
 
 /*Some more defaults */
 
-.page , .post , .single , .archive , .search {
+.page , .post , .single , .archive , .search , .error404 {
 
 	margin: 0 auto;
 	max-width: 100%;
@@ -689,6 +689,15 @@ h4 {
 	text-transform: uppercase;
 	color: #666;
 	padding: 0;
+}
+
+h5 {
+	text-align: center;
+        font-family: 'Source Sans Pro' , arial;
+        font-weight: 400;
+        font-size: 30px;
+        color: #c00;
+        margin: 15px auto;
 }
 
 p , a {
