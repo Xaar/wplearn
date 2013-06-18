@@ -44,15 +44,18 @@ $(function() {
 });
 </script>
 
-<?php get_sidebar('navigation');?>
+<?php 
+$postid=$post->ID;
+get_sidebar('navigation');
+?>
 
 <div class="page">
 	<div class="hero-product-content row">
 		<div class="hero-product-listing-text">
-			<h3><?=(get_post_meta($post->ID, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
-			<h2><?=get_post_meta($post->ID, ('subtitle'), true); ?></h2>
-			<p><?=get_post_meta($post->ID, ('product_description'), true); ?>
-				<img class='right' src="<?=wp_get_attachment_url(get_post_meta($post->ID, ('product_image'), true));?>"/>
+			<h3><?=(get_post_meta($postid, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
+			<h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
+			<p><?=get_post_meta($postid, ('product_description'), true); ?>
+				<img class='right' src="<?=wp_get_attachment_url(get_post_meta($postid, ('product_image'), true));?>"/>
 			</p>
 		</div>
 	</div>
@@ -60,7 +63,7 @@ $(function() {
 
         <div class="hw-endorsements-wrapper">
                 <div class="hw-endorsements row">
-			<h3><?=get_post_meta($post->ID, ('quote'), true); ?></h3>
+			<h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
                 </div> <!-- promo-band -->
         </div> <!-- promo-band-wrapper -->
 
@@ -74,8 +77,8 @@ $(function() {
 			<li><a href="#">Product Overview</a></li>
 <?php
 // Check if patholgies, and loop through each module if so
-if(get_post_meta($post->ID, ('product_type'), true)=='Pathologies') {
-	$pathologies = get_post_meta($post->ID, ('pathologies'), true);
+if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
+	$pathologies = get_post_meta($postid, ('pathologies'), true);
 	foreach($pathologies as $module) {?>
 			<li><a href="#"><?=get_the_title($module);?></a></li>
 <?php	}
@@ -95,7 +98,7 @@ if(get_post_meta($post->ID, ('product_type'), true)=='Pathologies') {
        
 <?php
 
-$custom_fields = get_post_custom($post->ID);
+$custom_fields = get_post_custom($postid);
 $x =  $custom_fields['test'];
 $gallery = maybe_unserialize($x[0]);
 $thumb = wp_get_attachment_image_src( $gallery[0], 'medium' );
@@ -115,27 +118,27 @@ foreach($url as $src) {
 <div class="clearfix"></div>
 
 
-					<strong><?=get_post_meta($post->ID, ('product_type'), true); ?></strong>
-					<?=get_post_meta($post->ID, ('product_overview'), true); ?>
+					<strong><?=get_post_meta($postid, ('product_type'), true); ?></strong>
+					<?=get_post_meta($postid, ('product_overview'), true); ?>
 					<br>
-					<a href="<?=get_permalink(get_post_meta($post->ID, ('ask_a_question'), true)); ?>">Ask a Question</a>
+					<a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
 				</p>
 			</div>
 <?php
 // Check if patholgies, and loop through each module if so
-if(get_post_meta($post->ID, ('product_type'), true)=='Pathologies') {
-        $pathologies = get_post_meta($post->ID, ('pathologies'), true);
+if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
+        $pathologies = get_post_meta($postid, ('pathologies'), true);
         foreach($pathologies as $module) {?>
                         <div>
 				<h2><?=get_the_title($module);?></h2>
-				<p><?=get_post_meta($post->ID, ('content'), true); ?></p>				
+				<p><?=get_post_meta($postid, ('content'), true); ?></p>				
 			</div>
 <?php   }
 }
 ?>
                         <div>
 <?php
-$questions = get_post_meta($post->ID, ('frequently_asked_questions'), true);
+$questions = get_post_meta($postid, ('frequently_asked_questions'), true);
 foreach($questions as $var => $val) {
         echo "<strong>". get_the_title($val) . "</strong> " . get_post_meta($val, 'answer', true) . "<br>";
 }?>
@@ -147,8 +150,6 @@ foreach($questions as $var => $val) {
 </div> <!-- Close the wrapper -->
 
 <?php get_sidebar('products'); ?>
-
-
 
 <?php get_sidebar('quicklinks'); ?>
 
