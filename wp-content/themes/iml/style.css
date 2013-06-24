@@ -803,7 +803,7 @@ body {
 
 .menu-mainnav-container ul li:last-child {border-right: none;}
 
-li.current_page_item {
+li.current_page_item , li.current-menu-item {
 	background-color: #585858;
 }
 
@@ -823,7 +823,7 @@ li.current_page_item {
 
 }*/
 
-li.current_page_item:hover {
+li.current_page_item:hover , li.current-menu-item:hover {
 	background-color: #585858 !important;
 }
 
@@ -1686,7 +1686,32 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 }
 
 
-/* :::::::::::::::::::::::::::::::::::; Heartworks Products tabs  ::::::::::::::::::::::::::::::;*/
+/* :::::::::::::::::::::::::::::::::::; Heartworks Products Page  ::::::::::::::::::::::::::::::;*/
+
+
+.hero-product-content {
+
+}
+
+.hero-product-listing-text {
+	position: relative;
+	display: block;
+	margin-top: 3%;
+	left: 3%
+
+
+}
+
+.hero-product-img img {
+	display: block;
+	position: relative;
+	margin: 0 auto;
+
+}
+
+
+
+/* :::::::::::::::::::::::::::::::::::; Heartworks Products Page tabs  ::::::::::::::::::::::::::::::;*/
 
 .product-tabs {
 	border: 1px solid #ddd;
@@ -1739,7 +1764,7 @@ ul.tabs a {
 
     display:block;
     height: 38px;
-    width: 200px;
+    width: 150px;
     text-align:center;
     text-decoration:none;
     color:#333;
@@ -1804,7 +1829,8 @@ ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
 	width: 150px;
 	height: 50px;
 	border: none;
-
+	text-align: center;
+	padding-top: 16px;
 }
 
 /* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
@@ -1834,7 +1860,7 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 /* tab pane styling */
 .panes div {
     display:none;
-    padding:30px 10px;
+    padding:10px;
     border:none;
     min-height:240px;
     background-color:#fff;

@@ -49,15 +49,23 @@ $postid=$post->ID;
 get_sidebar('navigation');
 ?>
 
-<div class="page">
+
   <div class="hero-product-content row">
-    <div class="hero-product-listing-text">
+    <div class="hero-product-listing-text heroTxtContent col">
       <h3><?=(get_post_meta($postid, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
       <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
       <p><?=get_post_meta($postid, ('product_description'), true); ?>
-        <img class='right' src="<?=wp_get_attachment_url(get_post_meta($postid, ('product_image'), true));?>"/>
       </p>
+      <div class="cta-green">
+                  <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">New test &raquo; </a> 
+                 </div>
+                <div class="cta-green">
+                  <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">Learn more &raquo; </a> 
+                 </div>
     </div><!-- hero-product-listing-text -->
+    <div class="hero-product-img">
+     <img class='right hero-product-img' src="<?=wp_get_attachment_url(get_post_meta($postid, ('product_image'), true));?>"/>
+   </div>
   </div><!-- hero-product-content row -->
 
   <div class="hw-endorsements-wrapper">
@@ -94,7 +102,7 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
 
     <div class="panes">
       <div>
-        <p>
+       
 <?php
 
 $custom_fields = get_post_custom($postid);
@@ -117,9 +125,9 @@ foreach($url as $src) {
 
           <strong><?=get_post_meta($postid, ('product_type'), true); ?></strong>
           <?=get_post_meta($postid, ('product_overview'), true); ?>
-          <br>
+          <br />
           <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
-        </p>
+       
       </div>
 
 <?php
@@ -157,6 +165,6 @@ foreach($questions as $var => $val) {
 
 <?php get_sidebar('quicklinks'); ?>
 
-</div>
+
 
 <?php get_footer(); ?>
