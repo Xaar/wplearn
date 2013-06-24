@@ -6,7 +6,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires at least: 3.2.1
 Tested up to: 3.5.1
-Stable tag: 2.6
+Stable tag: 2.6.1
 
 Saves submitted form data to the database and provides short codes to display it. Captures data from Contact Form 7 and Fast Secure Contact Form
 
@@ -86,6 +86,11 @@ You can always deactivate the plugin without loosing data.
 1. Admin Panel view of submitted form data
 
 == Changelog ==
+
+= 2.6.2 =
+* Admin page has checkbox for selecting all visible rows
+* New option: #Rows (of maximum above) visible in the Admin datatable
+* Custom short code filters (alpha)
 
 = 2.6.1 =
 * Minor bug fix: needed to strip slashes from dt_options when using cfdb-datatable by URL

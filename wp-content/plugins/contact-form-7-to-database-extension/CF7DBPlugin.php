@@ -60,6 +60,7 @@ class CF7DBPlugin extends CF7DBPluginLifeCycle {
                     ' <a target="_blank" href="http://cfdbplugin.com/?p=918">' . __('(Creates a security hole)', 'contact-form-7-to-database-extension') . '</a>', 'false', 'true'),
             'Timezone' => array(__('Timezone to capture Submit Time. Blank will use WordPress Timezone setting. <a target="_blank" href="http://www.php.net/manual/en/timezones.php">Options</a>', 'contact-form-7-to-database-extension')),
             'MaxRows' => array(__('Maximum number of rows to retrieve from the DB for the Admin display', 'contact-form-7-to-database-extension')),
+            'MaxVisibleRows' => array(__('#Rows (of maximum above) visible in the Admin datatable', 'contact-form-7-to-database-extension')),
             'UseDataTablesJS' => array(__('Use Javascript-enabled tables in Admin Database page', 'contact-form-7-to-database-extension'), 'true', 'false'),
             'ShowLineBreaksInDataTable' => array(__('Show line breaks in submitted data table', 'contact-form-7-to-database-extension'), 'true', 'false'),
             'UseCustomDateTimeFormat' => array(__('Use Custom Date-Time Display Format (below)', 'contact-form-7-to-database-extension'), 'true', 'false'),
@@ -975,11 +976,11 @@ class CF7DBPlugin extends CF7DBPluginLifeCycle {
     }
 
     public function setTimezone() {
-        $timezone = $this->getOption('Timezone');
-        if (!$timezone) {
+        $timezone = trim($this->getOption('Timezone'));
+        if (empty($timezone)) {
             $timezone = get_option('timezone_string');
         }
-        if ($timezone) {
+        if (!empty($timezone)) {
             date_default_timezone_set($timezone);
         }
     }
@@ -1028,7 +1029,7 @@ class CF7DBPlugin extends CF7DBPluginLifeCycle {
         if (!$this->isEditorActive()) {
             return;
         }
-        $requiredEditorVersion = '1.2';
+        $requiredEditorVersion = '1.2.1';
         $editorData = $this->getEditorPluginData();
         if (isset($editorData['Version'])) {
             if (version_compare($editorData['Version'], $requiredEditorVersion) == -1) {
