@@ -70,7 +70,9 @@ get_sidebar('navigation');
 
   <div class="hw-endorsements-wrapper">
     <div class="hw-endorsements row">
+      <div class = "product-quote col right">
       <h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
+    </div>
     </div> <!-- hw-endorsements row -->
   </div> <!-- hw-endorsements-wrapper -->
 
@@ -101,7 +103,17 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
     </div><!-- product-tabs -->
 
     <div class="panes">
-      <div>
+      <div class="pane">
+       
+          
+      <div class="tabs-text col">
+          <h2><?=get_post_meta($postid, ('product_type'), true); ?></h2>
+          <p> <?=get_post_meta($postid, ('product_overview'), true); ?></p>
+          <div class="cta-green-inline">
+          <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
+           </div>
+       </div>
+        <div class="tabs-gallery">
        
 <?php
 
@@ -117,17 +129,12 @@ $url[] = $x[0];
 foreach($url as $src) {
   $i++;
   $visible = ($i=='1') ? " " : "style='display:none' ";
-  echo "        <a href='$src' class='right' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a><br>";
+  echo "        <a href='$src' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a>";
 }
 
 ?>
-          <div class="clearfix"></div>
+      </div>
 
-          <strong><?=get_post_meta($postid, ('product_type'), true); ?></strong>
-          <?=get_post_meta($postid, ('product_overview'), true); ?>
-          <br />
-          <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
-       
       </div>
 
 <?php
@@ -135,7 +142,7 @@ foreach($url as $src) {
 if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
         $pathologies = get_post_meta($postid, ('pathologies'), true);
         foreach($pathologies as $module) {?>
-      <div>
+      <div class="pane">
         <h2><?=get_the_title($module);?></h2>
         <p><?=get_post_meta($postid, ('content'), true); ?></p>				
       </div>
@@ -144,18 +151,24 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
 }
 ?>
       <!-- FAQ's -->
-      <div>
+      <div class="pane">
+        <div class="faq-text col">
+        <h2>Frequently Asked Questions</h2>
 <?php
 $questions = get_post_meta($postid, ('frequently_asked_questions'), true);
 foreach($questions as $var => $val) {
-  echo "        <strong>". get_the_title($val) . "</strong> " . get_post_meta($val, 'answer', true) . "<br>";
+  echo "        <h3 class=\'faq-question\'>". get_the_title($val) . "</h3> <p>" . get_post_meta($val, 'answer', true) . "</p><br>";
 }?>
       </div>
+    </div>
       
       <!-- Enquiries -->
-      <div>
+      <div class="pane">
+        <div class="tabs-contact col">
+           <h2>Submit an Enquiry</h2>
 <?=do_shortcode('[si-contact-form form=\'1\']');?>
       </div>
+    </div>
 
     </div> <!-- close panes -->
   </div><!-- products-tabs-wrapper -->

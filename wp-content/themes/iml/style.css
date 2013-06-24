@@ -676,7 +676,7 @@ h3 {
 	font-family: 'Source Sans Pro' , arial;
 	font-style: italic;
 	font-weight: 400;
-	font-size: 13px;
+	font-size: 15px;
 	color: #c00;
 	margin: 8px auto;
 }
@@ -701,12 +701,12 @@ h5 {
 }
 
 p , a {
-	font-size: 85%;
+	font-size: 15px;
 }
 
 #header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , 
 .product-carousel, .gateway-promo-wrapper , .page-title , .hw-menu-collapsed, .hw-menu-expanded-wrapper, .hero-product-content ,
-.products-tabs-wrapper {
+.products-tabs-wrapper , .hw-endorsements {
      width: 90%;
      min-width: 440px;
      max-width: 1280px;
@@ -896,7 +896,7 @@ input[name="navsearchbtn"] {
 
 }
 
-.cta-green a , .cta-green-tabs a {
+.cta-green a , .cta-green-tabs a , .cta-green-inline a {
 	-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
 	box-shadow:inset 0px 1px 0px 0px #caefab;
@@ -912,7 +912,7 @@ input[name="navsearchbtn"] {
 	color:#ffffff;
 	color:#ffffff;
 	font-family: 'Source Sans Pro' , arial;
-	font-size:14px;
+	font-size:15px;
 	font-weight:400;
 	padding:10px 24px;
 	text-decoration:none;
@@ -922,7 +922,7 @@ input[name="navsearchbtn"] {
 
 }
 
-.cta-green a:hover , .cta-green-tabs a:hover{
+.cta-green a:hover , .cta-green-tabs a:hover , .cta-green-inline a:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4ca305), color-stop(1, #58bd00) );
 	background:-moz-linear-gradient( center top, #4ca305 5%, #58bd00 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4ca305', endColorstr='#58bd00');
@@ -996,7 +996,7 @@ input[name="navsearchbtn"] {
 	display:inline-block;
 	color:#ffffff;
 	font-family: 'Source Sans Pro' , arial;
-	font-size:14px;
+	font-size:15px;
 	font-weight:400;
 	padding:10px 24px;
 	text-decoration:none;
@@ -1711,6 +1711,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 
 
+
 /* :::::::::::::::::::::::::::::::::::; Heartworks Products Page tabs  ::::::::::::::::::::::::::::::;*/
 
 .product-tabs {
@@ -1858,15 +1859,59 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
     display:none;
 }
 /* tab pane styling */
-.panes div {
+.pane {
     display:none;
-    padding:10px;
+    padding:20px 10px;
     border:none;
-    min-height:240px;
     background-color:#fff;
 }
-.panes div img {
-	float: right;
+
+
+.panes div div {
+	display: inline-block;
+}
+
+.faq-text , .tabs-contact {
+	width: 100%;
+
+}
+
+.faq-text p {
+	margin-bottom: 0;
+}
+
+.cta-green-inline a {
+	margin: 0 !important;
+}
+
+.cta-green-inline {
+	margin: 0;
+	padding: 0 !important;
+}
+
+.tabs-gallery {
+
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.tabs-gallery a {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none;
+
+}
+
+.tabs-gallery a img {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none;
+	
+}
+
+.form-col {
+	background-color: #c00;
+	display: block;
 }
 
 
@@ -2282,7 +2327,8 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_7 {
             width:77.3333333333%;
         }
-.span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , .hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper {
+.span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , 
+.hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper , .tabs-text {
             width:88.6666666667% !important;
         }
 .span_9  , .menu-mainnav-container , .logo {
@@ -2330,16 +2376,16 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_3  , .cta-gateway {
             width:23.5%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link {
+.span_4 , .heroTxtContent , .promo , .quick-link , .tabs-text   {
             width:32.0%;
         }
-.span_5  {
+.span_5   {
             width:40.5%;
         }
 .span_6 , .gateway-promo-bullets ul {
             width:49.0%;
         }
-.span_7 {
+.span_7 , .tabs-gallery {
             width:57.5%;
         }
 .span_8 , .featured-prod-img {
@@ -2401,17 +2447,17 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_3 , .cta-gateway {
             width:24.0625%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link {
+.span_4 , .heroTxtContent , .promo , .quick-link  {
             width:32.5%;
         }
- .span_5   {
+ .span_5  , .tabs-text   {
             width:40.9375%;
         }
-.span_6  , .gateway-promo-bullets ul {	
+.span_6  , .gateway-promo-bullets ul  {	
 
             width:49.375%;
         }
-.span_7 {
+.span_7 , .tabs-gallery {
             width:57.8125%;
         }
 .span_8 , .featured-prod-img , .news-leftcol-wrapper  , .event-leftcol-wrapper {
