@@ -11,31 +11,31 @@ at caroufredsel.dev7studios.com
 */
 
 $(window).load(function() {
-	$(".carousel-ul").carouFredSel({
-		circular: true,
-		infinite: true,
-		width: "100%",
-		height: 200,
-		items: {
-			visible: 4,
-			width: 180,
-			height: 200
-		},
-		scroll: {
-			items: 1,
-			fx: "scroll",
-			duration: "auto"
-		},
-		auto: false,
-		prev: {
-			button: ".previous",
-			key: "left"
-		},
-		next: {
-			button: ".next",
-			key: "right"
-		}
-	});
+  $(".carousel-ul").carouFredSel({
+    circular: true,
+    infinite: true,
+    width: "100%",
+    height: 200,
+    items: {
+      visible: 4,
+      width: 180,
+      height: 200
+    },
+    scroll: {
+      items: 1,
+      fx: "scroll",
+      duration: "auto"
+    },
+    auto: false,
+    prev: {
+      button: ".previous",
+      key: "left"
+    },
+    next: {
+      button: ".next",
+      key: "right"
+    }
+  });
 });
 
 $(function() {
@@ -50,52 +50,51 @@ get_sidebar('navigation');
 ?>
 
 <div class="page">
-	<div class="hero-product-content row">
-		<div class="hero-product-listing-text">
-			<h3><?=(get_post_meta($postid, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
-			<h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
-			<p><?=get_post_meta($postid, ('product_description'), true); ?>
-				<img class='right' src="<?=wp_get_attachment_url(get_post_meta($postid, ('product_image'), true));?>"/>
-			</p>
-		</div>
-	</div>
+  <div class="hero-product-content row">
+    <div class="hero-product-listing-text">
+      <h3><?=(get_post_meta($postid, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
+      <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
+      <p><?=get_post_meta($postid, ('product_description'), true); ?>
+        <img class='right' src="<?=wp_get_attachment_url(get_post_meta($postid, ('product_image'), true));?>"/>
+      </p>
+    </div><!-- hero-product-listing-text -->
+  </div><!-- hero-product-content row -->
 
+  <div class="hw-endorsements-wrapper">
+    <div class="hw-endorsements row">
+      <h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
+    </div> <!-- hw-endorsements row -->
+  </div> <!-- hw-endorsements-wrapper -->
 
-        <div class="hw-endorsements-wrapper">
-                <div class="hw-endorsements row">
-			<h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
-                </div> <!-- promo-band -->
-        </div> <!-- promo-band-wrapper -->
+  <div class="product-quote-listing"></div>
 
-
-	<div class="product-quote-listing">
-	</div>
-<div class="products-tabs-wrapper">
-
-	<div class="product-tabs">
-		<ul class="tabs">
-			<li><a href="#">Product Overview</a></li>
+  <div class="products-tabs-wrapper">
+    <div class="product-tabs">
+      <ul class="tabs">
+        <li><a href="#">Product Overview</a></li>
 <?php
 // Check if patholgies, and loop through each module if so
 if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
-	$pathologies = get_post_meta($postid, ('pathologies'), true);
-	foreach($pathologies as $module) {?>
-			<li><a href="#"><?=get_the_title($module);?></a></li>
-<?php	}
+  $pathologies = get_post_meta($postid, ('pathologies'), true);
+  foreach($pathologies as $module) {
+?>
+        <li><a href="#"><?=get_the_title($module);?></a></li>
+<?php
+  }
 }		
 ?>
-			<li><a href="#">FAQ</a></li>
-			
-		</ul>
-		<div class="cta-green-tabs right">
-								 	<a href= "">How to Buy &raquo; </a> 
-								 </div>
- </div>
-		<!-- tab "panes" -->
-		<div class="panes">
-			<div>
-				<p>
-       
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Enquiries</a></li>
+      </ul>
+
+      <div class="cta-green-tabs right">
+        <a href= "">How to Buy &raquo; </a> 
+      </div>
+    </div><!-- product-tabs -->
+
+    <div class="panes">
+      <div>
+        <p>
 <?php
 
 $custom_fields = get_post_custom($postid);
@@ -110,43 +109,48 @@ $url[] = $x[0];
 foreach($url as $src) {
   $i++;
   $visible = ($i=='1') ? " " : "style='display:none' ";
-  echo "<a href='$src' class='right' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a><br>";
+  echo "        <a href='$src' class='right' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a><br>";
 }
 
 ?>
+          <div class="clearfix"></div>
 
-<div class="clearfix"></div>
+          <strong><?=get_post_meta($postid, ('product_type'), true); ?></strong>
+          <?=get_post_meta($postid, ('product_overview'), true); ?>
+          <br>
+          <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
+        </p>
+      </div>
 
-
-					<strong><?=get_post_meta($postid, ('product_type'), true); ?></strong>
-					<?=get_post_meta($postid, ('product_overview'), true); ?>
-					<br>
-					<a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
-				</p>
-			</div>
 <?php
 // Check if patholgies, and loop through each module if so
 if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
         $pathologies = get_post_meta($postid, ('pathologies'), true);
         foreach($pathologies as $module) {?>
-                        <div>
-				<h2><?=get_the_title($module);?></h2>
-				<p><?=get_post_meta($postid, ('content'), true); ?></p>				
-			</div>
+      <div>
+        <h2><?=get_the_title($module);?></h2>
+        <p><?=get_post_meta($postid, ('content'), true); ?></p>				
+      </div>
+
 <?php   }
 }
 ?>
-                        <div>
+      <!-- FAQ's -->
+      <div>
 <?php
 $questions = get_post_meta($postid, ('frequently_asked_questions'), true);
 foreach($questions as $var => $val) {
-        echo "<strong>". get_the_title($val) . "</strong> " . get_post_meta($val, 'answer', true) . "<br>";
+  echo "        <strong>". get_the_title($val) . "</strong> " . get_post_meta($val, 'answer', true) . "<br>";
 }?>
-                        </div>
-		</div>
- 	</div> <!-- close panes -->
+      </div>
+      
+      <!-- Enquiries -->
+      <div>
+<?=do_shortcode('[si-contact-form form=\'1\']');?>
+      </div>
 
-
+    </div> <!-- close panes -->
+  </div><!-- products-tabs-wrapper -->
 </div> <!-- Close the wrapper -->
 
 <?php get_sidebar('products'); ?>

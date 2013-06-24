@@ -2410,4 +2410,12 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 
 
 
-
+#tt_14 {
+	top: auto !important;
+	left: 20px !important;
+	bottom: 20px !important;
+	width: 300px !important;
+	color: white !important;
+	filter: alpha(opacity=50) !important;
+	opacity: 0.5 !important;
+}
