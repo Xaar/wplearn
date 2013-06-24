@@ -71,6 +71,17 @@ get_sidebar('navigation');
   <div class="hw-endorsements-wrapper">
     <div class="hw-endorsements row">
       <h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
+      <div class='movie-wrapper'>
+<?php
+
+$custom_fields = get_post_custom($postid);
+$x =  $custom_fields['video'];
+$videos = maybe_unserialize($x[0]);
+foreach($videos as $vid) {
+  echo "<div class='movie-single'>".do_shortcode("[flplaylist id=\"$vid\"]")."</div>";
+}
+
+?>      </div><!-- move-wrapper -->
     </div> <!-- hw-endorsements row -->
   </div> <!-- hw-endorsements-wrapper -->
 
@@ -106,7 +117,7 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
 <?php
 
 $custom_fields = get_post_custom($postid);
-$x =  $custom_fields['test'];
+$x =  $custom_fields['lightbox'];
 $gallery = maybe_unserialize($x[0]);
 $thumb = wp_get_attachment_image_src( $gallery[0], 'medium' );
 foreach($gallery as $id) {
@@ -117,7 +128,7 @@ $url[] = $x[0];
 foreach($url as $src) {
   $i++;
   $visible = ($i=='1') ? " " : "style='display:none' ";
-  echo "        <a href='$src' class='right' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a><br>";
+  echo "        <a href='$src' class='right' rel='lightbox[images]' $visible><img src='$thumb[0]'/></a><br>";
 }
 
 ?>
