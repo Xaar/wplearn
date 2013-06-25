@@ -94,13 +94,13 @@ $gallery = maybe_unserialize($x[0]);
 $thumb = wp_get_attachment_image_src( $gallery[0], 'thumbnail' );
 $url = $thumb[0];
 foreach($videos as $vid) {
-#  $cs = get_post_custom($vid);
+  $cs = get_post_custom($vid);
   $y = $cs['thumbnail'];
-  $thumb = wp_get_attachment_image_src( $y[0], 'thumbnail' );
-  $url = $thumb[0];
+  $xthumb = wp_get_attachment_image_src( $y[0], 'thumbnail' );
+  $xurl = $xthumb[0];
 ?>
         <div class="flow-single left">
-          <img src="<?=$url;?>" class="open-mov-modal-<?=$vid;?>" />
+          <img src="<?=$xurl;?>" class="open-mov-modal-<?=$vid;?>" />
         </div>
         <script>
           jQuery('#mov-modal-<?=$vid;?>').easyModal({
@@ -118,11 +118,6 @@ foreach($videos as $vid) {
       </div><!-- move-wrapper -->
     </div> <!-- hw-endorsements row -->
   </div> <!-- hw-endorsements-wrapper -->
-
-
-<?php
-  echo "postid = $postid && post->id = $post->ID";
-?>
 
   <div class="products-tabs-wrapper">
     <div class="product-tabs">
