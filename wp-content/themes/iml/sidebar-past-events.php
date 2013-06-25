@@ -9,9 +9,9 @@ if ( function_exists ( dynamic_sidebar(6) ) ) : ?>
 
 <?php endif; ?>
 
-<div class='events-rightcol-wrapper alignright'>
+<div class='events-rightcol-wrapper col'>
   <div id="upcoming-events">
-    <h2>PAST EVENTS</h2>
+    <h2 class="heading-sidebar">PAST EVENTS</h2>
 <?php
 $wp_query = new WP_Query( array ( 'post_type' => 'news-events', 'posts_per_page' => 6, 'meta_key' => 'event_end_date', 'meta_compare' => '<', 'meta_value' => date('Ymd'), 'orderby' => 'meta_value', 'order' => 'DESC'));
 $i=0;

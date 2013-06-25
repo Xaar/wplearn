@@ -24,18 +24,21 @@ jQuery(document).ready(function($){
 });
 </script>
 <div class="page-wrapper site-content">
+	
 	<div class="page-title row">
+
 		<h1>Latest News and Events</h1>
-		<h2>View latest news from Inventive Medical and get information about upcoming events our team will be attending.</h2>
+		
 	</div>
+
 	<div id='filter'>
 		<select id='select-filter'>
-			<option value='all'>Filter: news and events</option>
-			<option value='event'>Filter: news</option>
-			<option value='news'>Filter: events</option>
+			<option value='all'>Show: News and Events</option>
+			<option value='event'>Show: News only</option>
+			<option value='news'>Show: Events only</option>
 		</select>
 	</div>
-	<div id='news-event-ajax' class="news-leftcol-wrapper alignleft">
+	<div id='news-event-ajax' class="news-leftcol-wrapper">
 
 	</div> <!-- .news-leftcol -->
 

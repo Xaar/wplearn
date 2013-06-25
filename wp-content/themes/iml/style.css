@@ -91,7 +91,7 @@ blockquote, q {
 	quotes: "" "";
 }
 a:focus {
-	outline: thin dotted;
+	
 }
 a:hover,
 a:active { /* Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test */
@@ -111,7 +111,7 @@ input,
 select,
 textarea {
 	color: #404040;
-	font-family: sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 16px;
 	font-size: 1.6rem;
 	line-height: 1.5;
@@ -624,6 +624,23 @@ object {
 :::::::::::::::::: I M L :::::::: C U S T O M ::::::: S T Y L E S ::::::::::::::::::
 
 */
+/*
+:focus {
+	outline:none;
+	border: none;
+}
+
+
+::-moz-focus-inner {
+	border:none;
+	outline: none;
+}
+
+input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner
+    {   
+        border : 0px;
+    } 
+*/
 
 /* Reusable column setup */
 
@@ -649,7 +666,7 @@ object {
 	overflow:hidden;
 	position:relative;
 	padding: 0;
-	padding-top: 60px;
+	padding-top: 66px;
 }
 
 h1 {
@@ -1105,9 +1122,11 @@ Homepage promo styles Latest News, events etc.
 	max-width: 850px;
 }
 .events-rightcol-wrapper , .news-rightcol-wrapper {
-	width: 24%;
-	margin-bottom: 30px;
+	width: 30%;
+	margin: 10px 0;
 }
+
+
 /*
 ::::: Q U I C K :: L I N K S :::
 */
@@ -1893,11 +1912,17 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
     padding:20px 10px;
     border:none;
     background-color:#fff;
+    clear: both;
+    float: none;
 }
 
 
 .panes div div {
 	display: inline-block;
+}
+
+.tabs-text {
+	display: block;
 }
 
 .faq-text , .tabs-contact {
@@ -1922,6 +1947,7 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 
 	margin: 0 !important;
 	padding: 0 !important;
+	float: right;
 }
 
 .tabs-gallery a {
@@ -1935,6 +1961,10 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 	margin: 0 !important;
 	padding: 0 !important;
 	border: none;
+	clear: both;
+	display: block;
+	height: 100%;
+
 	
 }
 
@@ -2079,6 +2109,7 @@ display: block;
 margin: 10px auto 20px auto;
 text-align: center;
 
+
 }
 
 .page-title h1{
@@ -2093,7 +2124,8 @@ text-align: center;
 
 .news-leftcol-wrapper , .event-leftcol-wrapper {
 
-
+	float:left;
+	margin-left: 3px;
 
 }
 
@@ -2112,7 +2144,13 @@ text-align: center;
 	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
 	background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-8 */
-	margin: 30px 0;
+	margin: 20px 0;
+}
+
+.news-title {
+
+	font-weight: normal;
+	font-size: 20px;
 }
 
 .search-listing {
@@ -2180,6 +2218,89 @@ border: 1px solid #fff;
 .fb-root {
 	margin-bottom: 30px;
 }
+
+#filter {
+	display: block;
+	width: 200px;
+	height: 22px;
+	overflow: hidden;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	padding: 10px;
+	background-image:  url('images/drop-down.png');
+	background-repeat: no-repeat;
+	background-position: 94% 50%;
+	position: absolute;
+	top: 18px;
+	left: 0;
+	z-index: 40;
+
+}
+
+#filter:hover {
+	background-color: #fff;
+
+}
+
+#filter a:active, #filter a:selected, #filter a:visited { 
+    border: none;
+    outline: none;
+}
+
+#filter select {
+
+	font-style: italic;
+	background:none !important;
+	background-image: !important;
+	border: none !important;
+	width: 225px;
+	cursor: pointer;
+	box-shadow: none;
+	-webkit-appearance:none;
+	outline: none;
+
+
+}
+
+#filter option {
+	border: none;
+	width: 100%;
+
+}
+
+#filter option:hover , #filter a:hover , #filter option a:hover {
+
+}
+
+#filter ul, #filter div  {
+	border: none;
+}
+
+h2.heading-sidebar , h2.heading-leftcol{
+	text-transform: uppercase;
+	color: #777;
+	font-size: 15px;
+	text-align: center;
+	display: block;
+	border-bottom: 1px solid #ccc;
+	font-weight: normal;
+
+
+}
+
+h2.heading-sidebar {
+	margin:0;
+}
+
+h2.heading-leftcol {
+	margin-top: 10px !important;
+}
+
+.sidebar-contents {
+	border-top: 1px solid #fff;
+}
+
+
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
@@ -2402,7 +2523,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_2 {
             width:15.0%;
         }
-.span_3  , .cta-gateway {
+.span_3  , .cta-gateway  {
             width:23.5%;
         }
 .span_4 , .heroTxtContent , .promo , .quick-link , .tabs-text , .product-quote  {
@@ -2473,13 +2594,13 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_2 , {
             width:15.625%;
         }
-.span_3 , .cta-gateway {
+.span_3 , .cta-gateway   {
             width:24.0625%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote {
+.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote , .tabs-text {
             width:32.5%;
         }
- .span_5  , .tabs-text  {
+ .span_5    {
             width:40.9375%;
         }
 .span_6  , .gateway-promo-bullets ul  {	
