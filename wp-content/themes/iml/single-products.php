@@ -68,38 +68,61 @@ get_sidebar('navigation');
    </div>
   </div><!-- hero-product-content row -->
 
-  <div class="hw-endorsements-wrapper">
-    <div class="hw-endorsements row">
-      <div class = "product-quote col right">
-        <h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
-      </div>
-      <div class='movie-wrapper'>
-<?php
+  <script type="text/javascript" src="/wp-content/themes/iml/js/easyModal.js"></script>
 
+  <div id="modal-wrapper">
+<?php // Loop to place hidden videos
 $custom_fields = get_post_custom($postid);
 $x =  $custom_fields['video'];
 $videos = maybe_unserialize($x[0]);
 foreach($videos as $vid) {
-  echo "<div id=\"mov-modal-$vid\" class='movie-single'>".do_shortcode("[flplaylist id=\"$vid\"]")."</div>";
+  echo "<div id=\"mov-modal-$vid\" class='movie-single'>".do_shortcode("[flplaylist id=\"$vid\"]")."</div>\n";
+}
+?>  </div>
+
+  <div class="hw-endorsements-wrapper">
+    <div class="hw-endorsements row">
+      <div class = "product-quote col">
+        <h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
+        <p class="quote-credit"><?=get_post_meta($postid, ('quote_credit'), true); ?></p>
+      </div>
+
+      <script type="text/javascript" src="js/easyModal.js"></script>
+      <div class='movie-wrapper left'>
+<?php
+$gallery = maybe_unserialize($x[0]);
+$thumb = wp_get_attachment_image_src( $gallery[0], 'thumbnail' );
+$url = $thumb[0];
+foreach($videos as $vid) {
+#  $cs = get_post_custom($vid);
+  $y = $cs['thumbnail'];
+  $thumb = wp_get_attachment_image_src( $y[0], 'thumbnail' );
+  $url = $thumb[0];
 ?>
-<script>
-jQuery('#mov-modal-<?=$vid;?>').on("load", easyModal({
-  overlay : 0.4,
-  overlayClose: false
-}));
-jQuery('.open-mov-modal-<?=$vid;?>').on("click", function(e){
-  $('#mov-modal-<?=$vid;?>').trigger('openModal');
-  e.preventDefault();
-});
-</script>
+        <div class="flow-single left">
+          <img src="<?=$url;?>" class="open-mov-modal-<?=$vid;?>" />
+        </div>
+        <script>
+          jQuery('#mov-modal-<?=$vid;?>').easyModal({
+            overlay : 0.4,
+            overlayClose: false
+          });
+          jQuery('.open-mov-modal-<?=$vid;?>').on("click", function(e){
+            $('#mov-modal-<?=$vid;?>').trigger('openModal');
+            e.preventDefault();
+          });
+        </script>
 <?php
 }
-
-?>      </div><!-- move-wrapper -->
+?>        <div class="clearfix"></div>
+      </div><!-- move-wrapper -->
     </div> <!-- hw-endorsements row -->
   </div> <!-- hw-endorsements-wrapper -->
 
-  <div class="product-quote-listing"></div>
+
+<?php
+  echo "postid = $postid && post->id = $post->ID";
+?>
 
   <div class="products-tabs-wrapper">
     <div class="product-tabs">
@@ -127,19 +150,15 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
 
     <div class="panes">
       <div class="pane">
-       
-          
-      <div class="tabs-text col">
+        <div class="tabs-text col">
           <h2><?=get_post_meta($postid, ('product_type'), true); ?></h2>
           <p> <?=get_post_meta($postid, ('product_overview'), true); ?></p>
           <div class="cta-green-inline">
-          <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
-           </div>
-       </div>
+            <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
+          </div>
+        </div>
         <div class="tabs-gallery">
-       
 <?php
-
 $custom_fields = get_post_custom($postid);
 $x =  $custom_fields['lightbox'];
 $gallery = maybe_unserialize($x[0]);
@@ -157,11 +176,8 @@ foreach($url as $src) {
 
 }
 
-?>
-      </div>
-
-      </div>
-
+?>        </div><!-- tabs-gallery -->
+      </div><!-- pane -->
 <?php
 // Check if patholgies, and loop through each module if so
 if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
