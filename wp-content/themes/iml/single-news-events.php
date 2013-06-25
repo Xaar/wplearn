@@ -9,20 +9,19 @@ define("THISPAGE", "news-events");
 
 get_header(); 
 ?>
-<div class="page-wrapper site-content">
-	<div class="page-title row">
-		<h2><?php
+<div class="page-wrapper site-content single-news">
+	<?php
 			$oid = $post->ID; 
 			$type = strtolower(get_post_meta($oid, "article_type", true));
+			?>
+	<div id='news-event' class="<?=$type;?>-leftcol-wrapper">
+		<h2 class="heading-leftcol"><?php
 			if($type=='event') { 
 				echo "Event";
 			}else{ 
 				echo "News Story";
 			}?></h2>
-		<h1><?php the_title(); ?></h1>
-	</div>
-	<div id='news-event' class="<?=$type;?>-leftcol-wrapper alignleft">
-
+			<h1 class="news-title-single"><?php the_title(); ?></h1>
 		<div class="hero-<?=$type;?>-content row">
 			<div><?php the_post_thumbnail('sixteen-nine-large'); ?></div>
                         <div class="hero-<?=$type;?>-listing-text">
@@ -60,7 +59,7 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
 endwhile;
 ?>
 	</div> <!-- .news-leftcol -->
-
+<div class="sidebar-wrapper">
 <?php
 if($type=='news') {
   get_sidebar('upcoming-events');
@@ -71,6 +70,7 @@ if($type=='news') {
 
 //wp_reset_postdata();
 ?>
+</div>
 </div> <!-- page-wrapper -->
 
 <?php get_footer(); ?>

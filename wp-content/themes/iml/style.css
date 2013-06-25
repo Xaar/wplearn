@@ -666,7 +666,7 @@ input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner
 	overflow:hidden;
 	position:relative;
 	padding: 0;
-	padding-top: 66px;
+	padding-top: 76px;
 }
 
 h1 {
@@ -2121,6 +2121,10 @@ text-align: center;
 
 }
 
+.single-news {
+	padding-top: 30px;
+}
+
 .page-title h1{
 	font-weight: 400;
 	font-size: 180%;
@@ -2169,6 +2173,14 @@ text-align: center;
 
 	font-weight: normal;
 	font-size: 20px;
+}
+
+.news-title-single {
+
+	font-weight: normal;
+	font-size: 30px;
+	margin: 30px 0;
+	
 }
 
 .search-listing {
@@ -2230,7 +2242,7 @@ border: 1px solid #fff;
 	float: right;
 }
 
-.news-listing-text a , .hero-news-listing-text a , .news-listing-text-right a , .event-listing-text-right a {
+.news-listing-text a , .event-listing-text a , .hero-news-listing-text a , .news-listing-text-right a , .event-listing-text-right a {
 	text-decoration: none;
 	color: #333;
 	font-weight: 600;
@@ -2239,7 +2251,7 @@ border: 1px solid #fff;
 
 }
 
-.news-listing-text a:hover , .hero-news-listing-text a:hover , .news-listing-text-right a:hover , .event-listing-text-right a:hover {
+.news-listing-text a:hover , .event-listing-text a:hover , .hero-news-listing-text a:hover , .news-listing-text-right a:hover , .event-listing-text-right a:hover {
 
 	color: #c00;
 
