@@ -1,5 +1,4 @@
-<div class='events-rightcol-wrapper col'>
-  <div id="upcoming-events">
+<div class='events-rightcol-wrapper'>
     <h2 class="heading-sidebar">UPCOMING EVENTS</h2>
     <div class="sidebar-contents">
 <?php
@@ -9,18 +8,16 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
         $i++;
 ?>
     <div class="event-listing-text-right">
-      <h3><?=the_title();?></h3>
-      <div><?=date_range();?></div>
-      <div><?=get_post_meta($post->ID, 'location', true); ?></div>
+      <a href="<?php the_permalink(); ?>"><h3><?=the_title();?></h3></a>
+      <p><?=date_range();?><br/>
+      <?=get_post_meta($post->ID, 'location', true); ?></p>
       <a href="<?php the_permalink(); ?>">View event details &raquo;</a>
     </div>
 
-    <div class='clearfix'></div>
 
 <?php
 endwhile;
 ?>
   </div> <!-- sidebar contents -->
 
-  </div>
 </div>
