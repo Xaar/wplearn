@@ -1118,13 +1118,7 @@ Homepage promo styles Latest News, events etc.
 
 }
 
-.news-leftcol-wrapper , .event-leftcol-wrapper {
-	max-width: 850px;
-}
-.events-rightcol-wrapper , .news-rightcol-wrapper {
-	width: 30%;
-	margin: 10px 0;
-}
+
 
 
 /*
@@ -2103,6 +2097,21 @@ div.clearfix {
 ::::::::::::::: N e w s  a n d  e v e n t s ::::::::::::::::
 */
 
+.news-leftcol-wrapper , .event-leftcol-wrapper {
+	max-width: 850px;
+}
+.events-rightcol-wrapper , .news-rightcol-wrapper {
+	width: 100%;
+	margin: 10px 0;
+}
+
+.sidebar-wrapper {
+	width: 31%;
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
 .page-title {
 position: relative;
 display: block;
@@ -2144,7 +2153,16 @@ text-align: center;
 	background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */
 	background: linear-gradient(to bottom,  #ffffff 0%,#e5e5e5 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-8 */
+	
+}
+
+.hero-news-content , .hero-event-content {
 	margin: 20px 0;
+
+}
+
+.content-listing , .search-listing {
+	margin: 40px 0;
 }
 
 .news-title {
@@ -2194,6 +2212,17 @@ border: 1px solid #fff;
 
 .news-listing-text-right , .event-listing-text-right {
 	max-width: 280px;
+
+}
+
+.news-listing-text-right p , .event-listing-text-right p {
+	margin: 0;
+	}
+
+.news-listing-text-right h3 , .event-listing-text-right h3 {
+	font-style: normal;
+	font-weight: 600;
+
 }
 
 .news-listing-text , .event-listing-text {
@@ -2201,22 +2230,31 @@ border: 1px solid #fff;
 	float: right;
 }
 
-.news-listing-text a , .hero-news-listing-text a {
+.news-listing-text a , .hero-news-listing-text a , .news-listing-text-right a , .event-listing-text-right a {
 	text-decoration: none;
-	color: #c00;
+	color: #333;
 	font-weight: 600;
 	margin: 5px 0;
 	padding: 0;
 
 }
 
-.news-listing-text a:hover , .hero-news-listing-text a:hover {
+.news-listing-text a:hover , .hero-news-listing-text a:hover , .news-listing-text-right a:hover , .event-listing-text-right a:hover {
 
-	color: #333;
+	color: #c00;
 
 }
-.fb-root {
-	margin-bottom: 30px;
+
+.fb-like-box {
+	display: block;
+}
+
+.fb-container {
+	position: relative;
+	display: block;
+	margin: 30px auto;
+	width: 292px;
+
 }
 
 #filter {
@@ -2298,6 +2336,7 @@ h2.heading-leftcol {
 
 .sidebar-contents {
 	border-top: 1px solid #fff;
+	padding-left: 20px;
 }
 
 

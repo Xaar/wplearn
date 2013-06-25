@@ -42,9 +42,12 @@ jQuery(document).ready(function($){
 
 	</div> <!-- .news-leftcol -->
 
+
+<div class="sidebar-wrapper">
 <?php get_sidebar( 'upcoming-events' ); ?>
 <?php get_sidebar( 'past-events' ); ?>
 <?php get_sidebar( 'facebook' ); ?>
+</div>
 
 <?php
 
