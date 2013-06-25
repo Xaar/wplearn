@@ -196,7 +196,7 @@ function create_post_type() {
 			'taxonomies' => array('post_tag','category'),
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'news-events', 'with_front' => FALSE),
-			'capability_type' => 'newsevent',
+			'capability_type' => 'post',
 			'hierarchical' => false,
 			'supports' => array('title', 'thumbnail')
 		)
