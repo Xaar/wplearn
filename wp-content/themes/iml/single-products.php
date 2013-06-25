@@ -70,11 +70,11 @@ get_sidebar('navigation');
 
   <div class="hw-endorsements-wrapper">
     <div class="hw-endorsements row">
-      <div class = "product-quote col right">
+      <div class = "product-quote col">
       <h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
-<<<<<<< HEAD
+      <p class="quote-credit"><?=get_post_meta($postid, ('quote_credit'), true); ?></p>
     </div>
-=======
+
       <div class='movie-wrapper'>
 <?php
 
@@ -86,7 +86,7 @@ foreach($videos as $vid) {
 }
 
 ?>      </div><!-- move-wrapper -->
->>>>>>> aa6de7390abc0b47323d2b17b132699418ae1250
+
     </div> <!-- hw-endorsements row -->
   </div> <!-- hw-endorsements-wrapper -->
 

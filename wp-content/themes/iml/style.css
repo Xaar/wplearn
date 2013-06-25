@@ -1709,6 +1709,33 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 }
 
+.product-quote {
+
+	float:right;
+
+	text-align: center;
+	background-image: url('images/open-quotes.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+
+
+}
+
+.product-quote h3 {
+		color: #E3E3E3;
+		text-indent: 10px;
+
+}
+
+.product-quote h3:first-line {
+	text-indent: 20px;
+	}
+
+.quote-credit {
+	color: #999;
+	font-size: 13px;
+	line-height: 140%;
+}
 
 
 
@@ -2378,7 +2405,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_3  , .cta-gateway {
             width:23.5%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link , .tabs-text   {
+.span_4 , .heroTxtContent , .promo , .quick-link , .tabs-text , .product-quote  {
             width:32.0%;
         }
 .span_5   {
@@ -2449,10 +2476,10 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_3 , .cta-gateway {
             width:24.0625%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link  {
+.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote {
             width:32.5%;
         }
- .span_5  , .tabs-text   {
+ .span_5  , .tabs-text  {
             width:40.9375%;
         }
 .span_6  , .gateway-promo-bullets ul  {	
