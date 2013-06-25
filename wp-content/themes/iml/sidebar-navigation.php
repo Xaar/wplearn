@@ -1,4 +1,4 @@
-<div class="hw-menu-collapsed row open-testmodal">
+<div class="hw-menu-collapsed row open-navmodal">
   <div class="hw-menu-btn-arrows">
     <img src="<?php bloginfo('template_directory'); ?>/images/hw-menu-arrows.png" />
   </div>
@@ -15,7 +15,7 @@ $title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Simultat
   <div class="clearfix"></div>
 </div>
 
-<div id="testmodal" class="hw-menu-expanded-wrapper row">
+<div id="navmodal" class="hw-menu-expanded-wrapper row">
   <div class="hw-menu-expanded-title">
     <h1>Learn More about Heartworks</h1>
   </div> <!-- Expanded menu title -->

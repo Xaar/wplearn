@@ -71,10 +71,8 @@ get_sidebar('navigation');
   <div class="hw-endorsements-wrapper">
     <div class="hw-endorsements row">
       <div class = "product-quote col right">
-      <h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
-<<<<<<< HEAD
-    </div>
-=======
+        <h3><?=get_post_meta($postid, ('quote'), true); ?></h3>
+      </div>
       <div class='movie-wrapper'>
 <?php
 
@@ -82,11 +80,22 @@ $custom_fields = get_post_custom($postid);
 $x =  $custom_fields['video'];
 $videos = maybe_unserialize($x[0]);
 foreach($videos as $vid) {
-  echo "<div class='movie-single'>".do_shortcode("[flplaylist id=\"$vid\"]")."</div>";
+  echo "<div id=\"mov-modal-$vid\" class='movie-single'>".do_shortcode("[flplaylist id=\"$vid\"]")."</div>";
+?>
+<script>
+jQuery('#mov-modal-<?=$vid;?>').on("load", easyModal({
+  overlay : 0.4,
+  overlayClose: false
+}));
+jQuery('.open-mov-modal-<?=$vid;?>').on("click", function(e){
+  $('#mov-modal-<?=$vid;?>').trigger('openModal');
+  e.preventDefault();
+});
+</script>
+<?php
 }
 
 ?>      </div><!-- move-wrapper -->
->>>>>>> aa6de7390abc0b47323d2b17b132699418ae1250
     </div> <!-- hw-endorsements row -->
   </div> <!-- hw-endorsements-wrapper -->
 

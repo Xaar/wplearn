@@ -140,16 +140,15 @@ jQuery(document).ready(function($){
 })(jQuery);
 
 
-jQuery('#testmodal').easyModal({
+jQuery('#navmodal').easyModal({
   overlay : 0.4,
   overlayClose: false 
 });
 
-jQuery('.open-testmodal').click(function(e){
-  $('#testmodal').trigger('openModal');
+jQuery('.open-navmodal').click(function(e){
+  $('#navmodal').trigger('openModal');
   e.preventDefault();
 });
-
 
 /*
 $('#select-filter').change(function(){
