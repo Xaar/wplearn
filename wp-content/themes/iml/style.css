@@ -1754,15 +1754,27 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 }
 
-.product-video-thumb p {
-	color: #ccc;
+.product-vid-wrapper {
+	margin: 10px 12px;
 	float: left;
+	width: 20%;
+
+}
+
+.product-vid-wrapper p {
+	color: #999;
+	text-align: center;
+	font-style: italic;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 120%;
+	padding: 12px 0 0 0;
+	margin: 0;
 }
 
 .product-video-thumb {
-	float: left;
-	width: 20%;
-	margin: 10px 12px;
+	width: 100%;
+	
 	cursor: pointer;
 
 }
@@ -1785,6 +1797,8 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 .product-video-thumb:hover > .video-play-btn {
 	background-position: -53px 0;
 }
+
+
 
 
 
@@ -2737,8 +2751,8 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 }
 #modal-wrapper > .movie-single {
 	display: none;
-	padding:10px;
+	padding:20px;
 	background-color:#fff;
-	border:5px solid #333; 
+	border:2px solid #666; 
 	border-radius:5px;
 }
