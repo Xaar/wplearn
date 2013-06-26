@@ -9,35 +9,16 @@ get_header();
 Configuration created by the "Configuration Robot"
 at caroufredsel.dev7studios.com
 */
-
 $(window).load(function() {
   $(".carousel-ul").carouFredSel({
-    circular: true,
-    infinite: true,
-    width: "100%",
-    height: 200,
-    items: {
-      visible: 4,
-      width: 180,
-      height: 200
-    },
-    scroll: {
-      items: 1,
-      fx: "scroll",
-      duration: "auto"
-    },
+    circular: true, infinite: true, width: "100%", height: 200,
+    items: { visible: 4, width: 180, height: 200 },
+    scroll: { items: 1, fx: "scroll", duration: "auto" },
     auto: false,
-    prev: {
-      button: ".previous",
-      key: "left"
-    },
-    next: {
-      button: ".next",
-      key: "right"
-    }
+    prev: { button: ".previous", key: "left" },
+    next: { button: ".next", key: "right" }
   });
 });
-
 $(function() {
     // setup ul.tabs to work as tabs for each div directly under div.panes
     $("ul.tabs").tabs("div.panes > div");
@@ -68,17 +49,16 @@ get_sidebar('navigation');
    </div>
   </div><!-- hero-product-content row -->
 
-  <script type="text/javascript" src="<?= get_template_directory_uri(); ?>/js/easyModal.js"></script>
 
-  <div id="modal-wrapper">
+  <script type="text/javascript" src="<?=get_template_directory_uri();?>/js/easyModal.js"></script>
+
+
 <?php // Loop to place hidden videos
 $custom_fields = get_post_custom($postid);
 $x =  $custom_fields['video'];
 $videos = maybe_unserialize($x[0]);
-foreach($videos as $vid) {
-  echo "<div id=\"mov-modal-$vid\" class='movie-single'>".do_shortcode("[flplaylist id=\"$vid\"]")."</div>\n";
-}
-?>  </div>
+echo insert_videos($videos);
+?>
 
   <div class="hw-endorsements-wrapper">
     <div class="hw-endorsements row">
@@ -87,41 +67,9 @@ foreach($videos as $vid) {
         <p class="quote-credit"><?=get_post_meta($postid, ('quote_credit'), true); ?></p>
       </div>
 
-     
-      <div class='movie-wrapper'>
-<?php
-$gallery = maybe_unserialize($x[0]);
-$thumb = wp_get_attachment_image_src( $gallery[0], 'thumbnail' );
-$url = $thumb[0];
-foreach($videos as $vid) {
-  $cs = get_post_custom($vid);
-  $y = $cs['thumbnail'];
-  $desc = $cs['description'];
-  $xthumb = wp_get_attachment_image_src( $y[0], 'thumbnail' );
-  $xurl = $xthumb[0];
-?>  <div class="product-vid-wrapper">
-        <div class="flow-single product-video-thumb">
-          <div class="video-play-btn open-mov-modal-<?=$vid;?>">
-          </div>
-          <img src="<?=$xurl;?>" class="open-mov-modal-<?=$vid;?>" />
 
-        </div>
-        <p> <?=$desc[0];?></p>
-      </div>
-        <script>
-          jQuery('#mov-modal-<?=$vid;?>').easyModal({
-            overlay : 0.7,
-            overlayClose: false
-          });
-          jQuery('.open-mov-modal-<?=$vid;?>').on("click", function(e){
-            $('#mov-modal-<?=$vid;?>').trigger('openModal');
-            e.preventDefault();
-          });
-        </script>
-        
-<?php
-}
-?>       
+      <div class='movie-wrapper'>
+<?=insert_thumbs($videos);?>
 
       </div><!-- move-wrapper -->
     </div> <!-- hw-endorsements row -->
@@ -221,7 +169,5 @@ foreach($questions as $var => $val) {
 <?php get_sidebar('products'); ?>
 
 <?php get_sidebar('quicklinks'); ?>
-
-
 
 <?php get_footer(); ?>

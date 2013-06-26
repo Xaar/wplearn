@@ -2736,6 +2736,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 	left:50%;
 }
 #modal-wrapper > .movie-single {
+	display: none;
 	padding:10px;
 	background-color:#fff;
 	border:5px solid #333; 
