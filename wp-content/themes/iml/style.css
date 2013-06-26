@@ -1066,7 +1066,7 @@ Homepage promo styles Latest News, events etc.
 
 }
 
-.newsPromoImg {
+.newsPromoImg , .product-video-thumb {
 	position: relative;
 	display: block;
 	width: 80%;
@@ -1084,7 +1084,7 @@ Homepage promo styles Latest News, events etc.
 
 }
 
-.newsPromoImg img {
+.newsPromoImg img , .product-video-thumb img {
 	position: relative;
 	width: 100%;
 	max-width: 280px;
@@ -1748,6 +1748,42 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	color: #999;
 	font-size: 13px;
 	line-height: 140%;
+}
+
+.movie-wrapper {
+
+}
+
+.product-video-thumb p {
+	color: #ccc;
+	float: left;
+}
+
+.product-video-thumb {
+	float: left;
+	width: 20%;
+	margin: 10px 12px;
+	cursor: pointer;
+
+}
+
+.video-play-btn {
+	position: absolute;
+	width: 53px;
+	height: 53px;
+	margin:0 auto;
+	display: block;
+	padding: 0;
+	cursor: pointer;
+	background: url('images/video-play.png') no-repeat 0 0;
+	z-index: 30;
+	left: 39%;
+	top: 31%;
+
+}
+
+.product-video-thumb:hover > .video-play-btn {
+	background-position: -53px 0;
 }
 
 
@@ -2642,7 +2678,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_1 {
             width:7.1875%;
         }
-.span_2 , {
+.span_2  {
             width:15.625%;
         }
 .span_3 , .cta-gateway   {

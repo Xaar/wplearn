@@ -68,7 +68,7 @@ get_sidebar('navigation');
    </div>
   </div><!-- hero-product-content row -->
 
-  <script type="text/javascript" src="/wp-content/themes/iml/js/easyModal.js"></script>
+  <script type="text/javascript" src="<?= get_template_directory_uri(); ?>/js/easyModal.js"></script>
 
   <div id="modal-wrapper">
 <?php // Loop to place hidden videos
@@ -87,8 +87,8 @@ foreach($videos as $vid) {
         <p class="quote-credit"><?=get_post_meta($postid, ('quote_credit'), true); ?></p>
       </div>
 
-      <script type="text/javascript" src="js/easyModal.js"></script>
-      <div class='movie-wrapper left'>
+     
+      <div class='movie-wrapper'>
 <?php
 $gallery = maybe_unserialize($x[0]);
 $thumb = wp_get_attachment_image_src( $gallery[0], 'thumbnail' );
@@ -96,15 +96,21 @@ $url = $thumb[0];
 foreach($videos as $vid) {
   $cs = get_post_custom($vid);
   $y = $cs['thumbnail'];
+  $desc = $cs['description'];
   $xthumb = wp_get_attachment_image_src( $y[0], 'thumbnail' );
   $xurl = $xthumb[0];
-?>
-        <div class="flow-single left">
+?>  <div class="product-vid-wrapper">
+        <div class="flow-single product-video-thumb">
+          <div class="video-play-btn open-mov-modal-<?=$vid;?>">
+          </div>
           <img src="<?=$xurl;?>" class="open-mov-modal-<?=$vid;?>" />
+
         </div>
+        <p> <?=$desc[0];?></p>
+      </div>
         <script>
           jQuery('#mov-modal-<?=$vid;?>').easyModal({
-            overlay : 0.4,
+            overlay : 0.7,
             overlayClose: false
           });
           jQuery('.open-mov-modal-<?=$vid;?>').on("click", function(e){
@@ -112,9 +118,11 @@ foreach($videos as $vid) {
             e.preventDefault();
           });
         </script>
+        
 <?php
 }
-?>        <div class="clearfix"></div>
+?>       
+
       </div><!-- move-wrapper -->
     </div> <!-- hw-endorsements row -->
   </div> <!-- hw-endorsements-wrapper -->
