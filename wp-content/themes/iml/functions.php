@@ -317,3 +317,36 @@ global $post;
                 return "$s_day # $s_month # $s_year - $e_day # $e_month # $e_year <br> $s_date";
         }
 }
+
+function insert_videos($ids) {
+  $return = "      <div id=\"modal-wrapper\">\n";
+  foreach($ids as $id) {
+    $return .= "        <div id=\"mov-modal-$id\" class='movie-single'>".do_shortcode("[flplaylist id=\"$id\"]")."</div>\n";
+  }
+  $return .= "      </div>\n";
+  return $return;
+}
+
+function insert_thumbs($ids) {
+  foreach($ids as $id) {
+    $cp = get_post_custom($id);
+    $x = $cp['thumbnail'];
+    $thumb = wp_get_attachment_image_src( $x[0], 'thumbnail' );
+    $url = $thumb[0];
+    $return .= "        <div class=\"flow-single left\">
+          <img src=\"$url\" class=\"open-mov-modal-$id\" />
+        </div>
+        <script>
+          jQuery('#mov-modal-$id').easyModal({
+            overlay : 0.4,
+            overlayClose: false
+          });
+          jQuery('.open-mov-modal-$id').on(\"click\", function(e){
+            $('#mov-modal-$id').trigger('openModal');
+            e.preventDefault();
+          });
+        </script>\n";
+    }
+  return $return;
+}
+
