@@ -109,11 +109,13 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
           </div>
         </div>
         <div class="tabs-gallery">
+
 <?php
 $custom_fields = get_post_custom($postid);
 $x =  $custom_fields['lightbox'];
 $gallery = maybe_unserialize($x[0]);
 $thumb = wp_get_attachment_image_src( $gallery[0], 'medium' );
+$theme = get_template_directory_uri();
 foreach($gallery as $id) {
 $x = wp_get_attachment_image_src( $id, 'large' );
 $url[] = $x[0];
@@ -124,6 +126,8 @@ foreach($url as $src) {
   $visible = ($i=='1') ? " " : "style='display:none' ";
 
   echo "        <a href='$src' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a>";
+
+  if ($i=='1') echo " <a href='$src' class='slideshow-icon' rel='lightbox[test]'><img src='$theme/images/slideshow-icon.png'/></a>"; 
 
 }
 
