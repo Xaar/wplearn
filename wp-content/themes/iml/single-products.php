@@ -32,7 +32,7 @@ get_sidebar('navigation');
 
 
   <div class="hero-product-content row">
-    <div class="hero-product-listing-text heroTxtContent col">
+    <div class="hero-product-listing-text col">
       <h3><?=(get_post_meta($postid, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
       <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
       <p><?=get_post_meta($postid, ('product_description'), true); ?>
