@@ -2024,6 +2024,23 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 	
 }
 
+.slideshow-icon {
+	width: 40px;
+	height: 40px;
+	opacity: 0.6;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	z-index: 40;
+	border: none;
+
+
+}
+
+.tabs-gallery:hover > .slideshow-icon {
+	opacity: 1;
+}
+
 .form-col {
 	background-color: #c00;
 	display: block;
