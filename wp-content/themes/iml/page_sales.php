@@ -28,6 +28,8 @@ define("THISPAGE", "sales");
 <style type="text/css">
   body {
     background: #fff;
+    font-family: verdana;
+    padding-top: 50px;
   }
   #vtab {
     margin: auto;

@@ -11,7 +11,7 @@ $title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Simultat
 
     <h1 id="hw-menu-title-txt"><?=$title;?></h1> <!-- Needs to display the current product when on a single product page -->
   </div>
-  <div class="hw-menu-logo"></div>
+  <div class="hw-menu-logo"><img src="<?php bloginfo('template_directory'); ?>/images/hw-menu-logo.png" /></div>
   <div class="clearfix"></div>
 </div>
 
@@ -23,7 +23,7 @@ $title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Simultat
   <div class="clearfix"></div>
   <div class="hw-menu-content-wrapper row">
     <div class="hw-menu-lists">
-      <div class="hw-menu-list col">
+      <div class="hw-menu-list">
         <div id="about-icon" class="hw-menu-category-icon"></div>
         <h2>About Heartworks</h2>
         <ul>
@@ -33,7 +33,7 @@ $title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Simultat
           <li><a class="hw-menu-link">Another link<div class="hw-menu-arrow"></div></a></li>
         </ul>
       </div>
-      <div class="hw-menu-list col">
+      <div class="hw-menu-list">
         <div id="elearn-icon" class="hw-menu-category-icon"></div>
         <h2>Education</h2>
         <ul>
@@ -47,7 +47,7 @@ endwhile;
 ?>          <li><a class="hw-menu-link">Media store<div class="hw-menu-arrow"></div></a></li>
         </ul>
       </div>
-      <div class="hw-menu-list col">
+      <div class="hw-menu-list">
         <div id="simulator-icon" class="hw-menu-category-icon"></div>
         <h2>Echo Simulators</h2>
         <ul>
@@ -66,7 +66,7 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
 endwhile;
 ?>        </ul>
       </div>
-      <div class="hw-menu-list col">
+      <div class="hw-menu-list">
         <div id="professional-icon" class="hw-menu-category-icon"></div>
         <h2>Professional Products</h2>
         <ul>
@@ -97,7 +97,7 @@ function menuTitlePosition() {
   }
   else {
     $menuTitle.css({
-      "top":"30%"
+      "top":"20%"
     });
   }
 }

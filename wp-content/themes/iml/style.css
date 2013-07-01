@@ -1335,29 +1335,40 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	position: relative;
 	padding: 0 20px 0 30px;
 	background: none;
-	width: 55%;
+	width: 50%;
 	border-left: 1px solid #ddd;
-	height: 60%;
+	height: 100%;
 
 	
 }
 
 .hw-menu-logo {
 	
-	background: url('images/hw-menu-logo.png') no-repeat 0 14px;
-	width: 170px;
-	height: 38px;
+	width: 19%;
+	height: 100%;
 	float: right;
 	display: block;
 	position: relative;
 	padding:12px;
+
+
 }
+
+.hw-menu-logo img {
+	width: 100%;
+	max-width: 170px;
+	margin: auto;
+	position: relative;
+	display: block;
+
+	}
 
 .hw-menu-collapsed h1 {
 	color: #c00;
 	position: absolute;
 	top: 30%;
 	line-height: 1.2em;
+	display: inline;
 
 
 	}
@@ -1439,6 +1450,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	clip: both;
 	margin: 0;
 	padding:0;
+	float: left;
+	margin-left: 1%; 
 
 }
 
@@ -1489,6 +1502,7 @@ a.hw-menu-link {
 	width: 100%;
 	height: 100%;
 	display: block;
+	text-decoration: none;
 	
 
 
@@ -1731,10 +1745,16 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 }
 
+.hero-product-img {
+	float: left;
+	width: 60%;
+}
+
 .hero-product-img img {
 	display: block;
 	position: relative;
 	margin: 0 auto;
+	width: 100%;
 
 }
 
@@ -2008,6 +2028,7 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 	margin: 10px 0 !important;
 	padding: 0 !important;
 	float: right;
+	max-width: 700px;
 }
 
 .tabs-gallery a {
@@ -2566,6 +2587,10 @@ h2{
 	padding: 14px 16px;
 
 }
+
+.hw-menu-title {
+	padding: 0 0 0 8px;
+	}
 
 .col {
             margin-left:2%;

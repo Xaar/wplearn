@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
 					'z-index': 2001,
 					'left' : 50 + '%',
 //					'top' : parseInt(o.top) > -1 ? o.top + 'px' : 50 + '%',
-					'top' : 60,
+					'top' : 75,
 					'margin-left' : -($modal.outerWidth()/2) + 'px'
 //					'margin-top' : (parseInt(o.top) > -1 ? 0 : -($modal.outerHeight()/2)) + 'px'
 				});
@@ -149,6 +149,8 @@ jQuery('.open-navmodal').click(function(e){
   $('#navmodal').trigger('openModal');
   e.preventDefault();
 });
+
+
 
 /*
 $('#select-filter').change(function(){
