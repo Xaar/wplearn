@@ -75,7 +75,7 @@
 						}
 					});
 					$f("*").each(function() {
-						$f(this.id()).stop();
+						$f(this.id()).pause();
 					});
 				});
 

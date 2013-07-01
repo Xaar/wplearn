@@ -178,7 +178,7 @@ function new_royalslider_add_custom_skin($skins) {
 
 register_new_royalslider_files(2);
 
-
+// Custom image sizes
 if ( function_exists( 'add_image_size' ) ) { 
 	add_image_size( 'sixteen-nine-large', 850, 478, true ); 
 	add_image_size( 'sixteen-nine-medium', 700, 394, true ); //(cropped)
@@ -266,8 +266,8 @@ function create_post_type() {
 }
 add_action( 'init', 'create_post_type' );
 
+// Register all sidebars
 if ( function_exists('register_sidebar') ) {
-
    register_sidebar('heartworksNav');
    register_sidebar('upcoming-events');
    register_sidebar('carousel');
@@ -278,6 +278,7 @@ if ( function_exists('register_sidebar') ) {
    register_sidebar('facebook');
 }
 
+// Fntion to customise backend 'title' for FAQ's
 function change_default_title( $title ){
      $screen = get_current_screen();
  
@@ -287,8 +288,8 @@ function change_default_title( $title ){
  
      return $title;
 }
- 
 add_filter( 'enter_title_here', 'change_default_title' );
+
 // Format dates to a range
 function date_range(){
 global $post;
@@ -356,3 +357,12 @@ function insert_thumbs($ids) {
   return $return;
 }
 
+// Fix to highlight current nav for all child pages
+add_filter('nav_menu_css_class', 'current_type_nav_class', 10, 2 );
+function current_type_nav_class($classes, $item) {
+    $post_type = get_query_var('post_type');
+    if ($item->attr_title != '' && $item->attr_title == $post_type) {
+        array_push($classes, 'current-menu-item');
+    }
+    return $classes;
+}
