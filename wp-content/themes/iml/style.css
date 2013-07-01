@@ -1335,7 +1335,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	position: relative;
 	padding: 0 20px 0 30px;
 	background: none;
-	width: 50%;
+	width: 40%;
 	border-left: 1px solid #ddd;
 	height: 100%;
 
@@ -1344,7 +1344,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 
 .hw-menu-logo {
 	
-	width: 19%;
+	width: 20%;
 	height: 100%;
 	float: right;
 	display: block;
@@ -2617,6 +2617,7 @@ h2{
 
 .hw-menu-title {
 	padding: 0 0 0 8px;
+
 	}
 
 .col {

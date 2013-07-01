@@ -90,9 +90,14 @@ function menuTitlePosition() {
   var $menuTitle =$("#hw-menu-title-txt");
   var $menuTitleHeight = $("#hw-menu-title-txt").height();
 
-  if ($menuTitleHeight > 30 ) {
+  if ($menuTitleHeight > 30 && $menuTitleHeight < 45 ) {
     $menuTitle.css({
       "top":"9%"
+    });
+  }
+   else if ($menuTitleHeight >= 45 ) {
+    $menuTitle.css({
+      "top":"0"
     });
   }
   else {
