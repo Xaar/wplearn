@@ -150,7 +150,7 @@ http://www.642weather.com/weather/scripts.php
                   $string .= ' '.$si_contact_opt['ex_field'.$i.'_attributes'];
                 $string .= '>';
               if($si_contact_opt['ex_field'.$i.'_default_text'] != '' && ${'ex_field'.$i} == '')
-                  $string .=  esc_attr($si_contact_opt['ex_field'.$i.'_default_text']);
+                  $string .=  esc_attr(str_replace('\n', "\n", $si_contact_opt['ex_field'.$i.'_default_text']));
               else
                 $string .= esc_attr(${'ex_field'.$i});
 
@@ -674,7 +674,6 @@ $string .= '
      }
      if (isset($ex_date_found) && count($ex_date_found) > 0 ) {
      $string .=
-/*'<link rel="stylesheet" type="text/css" href="'.WP_PLUGIN_URL.'/si-contact-form/date/ctf_epoch_styles.css?'.time().'" />*/
 '<script type="text/javascript">
 	var ctf_css = document.createElement(\'link\');
 	ctf_css.rel = \'stylesheet\';
@@ -711,7 +710,7 @@ $string .= '
 
  $string .= '\';
 </script>
-<script type="text/javascript" src="'.esc_url(WP_PLUGIN_URL.'/si-contact-form/date/ctf_epoch_classes.js?'.time()).'"></script>
+<script type="text/javascript" src="'.plugins_url('date/ctf_epoch_classes.js?'.time(), __FILE__).'"></script>
 <script type="text/javascript">
 var ';
         $ex_date_var_string = '';

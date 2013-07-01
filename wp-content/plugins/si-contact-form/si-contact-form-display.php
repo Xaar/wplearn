@@ -147,7 +147,7 @@ get_currentuserinfo();
     // Webmaster,user1@example.com (must have name,email)
     // multiple emails allowed
     // Webmaster,user1@example.com;user2@example.com
-   if ( $_SESSION["fsc_shortcode_email_to_$form_id_num"] != '') {
+   if ( !empty($_SESSION["fsc_shortcode_email_to_$form_id_num"]) ) {
      if(preg_match("/,/", $_SESSION["fsc_shortcode_email_to_$form_id_num"]) ) {
        list($key, $value) = preg_split('#(?<!\\\)\,#',$_SESSION["fsc_shortcode_email_to_$form_id_num"]); //string will be split by "," but "\," will be ignored
        $key   = trim(str_replace('\,',',',$key)); // "\," changes to ","
@@ -236,8 +236,8 @@ get_currentuserinfo();
 'yyyy-mm-dd' => __('yyyy-mm-dd', 'si-contact-form'),
 'yyyy.mm.dd' => __('yyyy.mm.dd', 'si-contact-form'),
 );
-               // required validate
-               //${'ex_field'.$i} = $this->si_contact_post_var("si_contact_ex_field$i");
+              // required validate
+              ${'ex_field'.$i} = $this->si_contact_post_var("si_contact_ex_field$i",$display_only);
 
           }else if ($si_contact_opt['ex_field'.$i.'_type'] == 'hidden') {
                ${'ex_field'.$i} = $this->si_contact_post_var("si_contact_ex_field$i",$display_only);
@@ -405,45 +405,41 @@ if ($have_attach){
 
 // print any input errors
 if ($have_error) {
-    $string .= '<div '.$this->ctf_required_style.'>
+    $string .= '
     <div '.$this->ctf_error_style.'>
 ';
     $string .= esc_html(($si_contact_opt['error_correct'] != '') ? $si_contact_opt['error_correct'] : __('Please make corrections below and try again.', 'si-contact-form'));
     $string .= '
     </div>
-</div>
 ';
 
 // print attach error if there is one
 if($have_attach && $have_attach_error ) {
-      $string .= '<div '.$this->ctf_required_style.'>
+      $string .= '
       <div '.$this->ctf_error_style.'>
 ';
       $string .= esc_html($fsc_error_message['attach_dir_error']);
       $string .= '
       </div>
-</div>
 ';
     }
      if ( !$this->isCaptchaEnabled() && $this->si_contact_error_var('captcha',$display_only) != '' ) {
       // honeypot without captcha
-$string .= '<div '.$this->ctf_required_style.'>
+$string .= '
       <div '.$this->ctf_error_style.'>
 ';
       $string .= esc_html($this->si_contact_error_var('captcha',$display_only));
       $string .= '
       </div>
-</div>
 ';
 
      }
 
 }
 if (empty($contacts)) {
-   $string .= '<div '.$this->ctf_required_style.'>
+   $string .= '
    <div '.$this->ctf_error_style.'>'.__('ERROR: Misconfigured E-mail address in options.', 'si-contact-form').'
    </div>
-</div>
 ';
 }
 
@@ -458,7 +454,7 @@ if ($si_contact_opt['req_field_label_enable'] == 'true' && $si_contact_opt['req_
 }
 
 // allow shortcode hidden fields
-if ( $_SESSION["fsc_shortcode_hidden_$form_id_num"] != '') {
+if ( !empty($_SESSION["fsc_shortcode_hidden_$form_id_num"]) ) {
    $hidden_fields_test = explode(",",$_SESSION["fsc_shortcode_hidden_$form_id_num"]);
    if ( !empty($hidden_fields_test) ) {
       foreach($hidden_fields_test as $line) {
@@ -801,12 +797,10 @@ if ( $this->isCaptchaEnabled() ) {
           <input type="text" name="email_'.$form_id_num.'" id="email_'.$form_id_num.'" value="" />
         </div>
 ';
-      // server-side timestamp forgery token.
-      $string .= '    <input type="hidden" name="si_tok_'.$form_id_num.'" value="'. wp_hash( time() ).','.time() .'" />
-';
-   }
-// server-side no back button mail again token.
-      $string .= '    <input type="hidden" name="si_postonce_'.$form_id_num.'" value="'. wp_hash( time() ).','.time() .'" />
+}
+
+   // server-side token.
+   $string .= '    <input type="hidden" name="si_postonce_'.$form_id_num.'" value="'. wp_hash( time() ).','.time() .'" />
 ';
 
 $string .= '

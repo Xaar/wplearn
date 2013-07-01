@@ -179,7 +179,7 @@ get_currentuserinfo();
     // Webmaster,user1@example.com (must have name,email)
     // multiple emails allowed
     // Webmaster,user1@example.com;user2@example.com
-   if ( $_SESSION["fsc_shortcode_email_to_$form_id_num"] != '') {
+   if ( !empty($_SESSION["fsc_shortcode_email_to_$form_id_num"]) ) {
      if(preg_match("/,/", $_SESSION["fsc_shortcode_email_to_$form_id_num"]) ) {
        list($key, $value) = preg_split('#(?<!\\\)\,#',$_SESSION["fsc_shortcode_email_to_$form_id_num"]); //string will be split by "," but "\," will be ignored
        $key   = trim(str_replace('\,',',',$key)); // "\," changes to ","
@@ -565,7 +565,7 @@ get_currentuserinfo();
            $valid = $img->check("$captcha_code");
            // Check, that the right CAPTCHA password has been entered, display an error message otherwise.
            if($valid == true) {
-              // some empty field and time based honyepot traps for spam bots
+              // empty field honyepot trap for spam bots
               $hp_check = $this->si_contact_check_honeypot("$form_id_num");
               if($hp_check != 'ok') {
                   $this->si_contact_error = 1;
@@ -779,7 +779,7 @@ get_currentuserinfo();
     } // end for
 
    // allow shortcode hidden fields   http://www.fastsecurecontactform.com/shortcode-options
-   if ( $_SESSION["fsc_shortcode_hidden_$form_id_num"] != '') {
+   if ( !empty($_SESSION["fsc_shortcode_hidden_$form_id_num"]) ) {
       $hidden_fields_test = explode(",",$_SESSION["fsc_shortcode_hidden_$form_id_num"]);
       if ( !empty($hidden_fields_test) ) {
          foreach($hidden_fields_test as $line) {
@@ -985,6 +985,9 @@ get_currentuserinfo();
     $mail_to = trim($mail_to_arr[0]);
     unset($mail_to_arr[0]);
     $ctf_email_address_cc = '';
+    //This is a bit of a hack, but it will send a carbon copy to the sender:
+    // $ctf_email_address_cc .= "$email,";
+
     if ($ctf_email_address_bcc != '')
             $ctf_email_address_bcc = $ctf_email_address_bcc. ',';
 	foreach ( $mail_to_arr as $key => $this_mail_to ) {
@@ -1163,7 +1166,7 @@ get_currentuserinfo();
           $ctf_redirect_url = $si_contact_opt['redirect_url'];
        }
        // allow shortcode redirect to override options redirect settings
-       if ( $_SESSION["fsc_shortcode_redirect_$form_id_num"] != '') {
+       if ( !empty($_SESSION["fsc_shortcode_redirect_$form_id_num"]) ) {
            $ctf_redirect_enable = 'true';
            $ctf_redirect_url = strip_tags($_SESSION["fsc_shortcode_redirect_$form_id_num"]);
        }
@@ -1181,6 +1184,19 @@ get_currentuserinfo();
                    $ctf_redirect_url .= '?'.$query_string;
                else
                   $ctf_redirect_url .= '&'.$query_string;
+           }
+           // direct redirect, not meta refresh (and no thank you mesage sent!!)
+            $ctf_redirect_timeout = absint($si_contact_opt['redirect_seconds']); // time in seconds to wait before loading another Web page
+           if ($ctf_redirect_timeout == 0) {
+           // use direct only when not set to same page, and redirect timeout seconds is 0.
+              if ($have_attach){
+                // unlink attachment temp files
+                 foreach ( (array) $this->uploaded_files as $path ) {
+                   @unlink( $path );
+                 }
+             }
+              wp_redirect( $ctf_redirect_url );
+		      exit;
            }
 		}
     $fsc_message_sent = 1;
