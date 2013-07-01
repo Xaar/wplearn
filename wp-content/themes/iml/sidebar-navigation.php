@@ -5,11 +5,11 @@
   <div class="hw-menu-btn">
     <a href="">Click for Menu</a>
   </div>
-  <div class="hw-menu-title">
+  <div class="hw-menu-title" id="hw-title-container">
 <?php
 $title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Simultators and E-Learning Products" : get_the_title();?>
 
-    <h1><?=$title;?></h1> <!-- Needs to display the current product when on a single product page -->
+    <h1 id="hw-menu-title-txt"><?=$title;?></h1> <!-- Needs to display the current product when on a single product page -->
   </div>
   <div class="hw-menu-logo"></div>
   <div class="clearfix"></div>
@@ -77,4 +77,31 @@ endwhile;
     </div> <!-- Expanded menu lists -->
   </div> <!-- Expanded menu content -->
 </div> <!-- Expanded menu wrapper -->
+<script type="text/javascript">
+
+$(document).ready(function () {
+    menuTitlePosition();
+    $(window).resize(function() {
+        menuTitlePosition();
+    });
+});
+
+function menuTitlePosition() {
+  var $menuTitle =$("#hw-menu-title-txt");
+  var $menuTitleHeight = $("#hw-menu-title-txt").height();
+
+  if ($menuTitleHeight > 30 ) {
+    $menuTitle.css({
+      "top":"9%"
+    });
+  }
+  else {
+    $menuTitle.css({
+      "top":"30%"
+    });
+  }
+}
+
+
+</script>
 

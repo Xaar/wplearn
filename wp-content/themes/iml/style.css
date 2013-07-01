@@ -673,7 +673,7 @@ h1 {
 	font-family: 'Source Sans Pro' , arial;
 	font-style: normal;
 	font-weight: 600;
-	font-size: 120%;
+	font-size: 20px;
 	color: #333;
 	margin: 8px auto;
 	line-height: 140%;
@@ -683,7 +683,7 @@ h2 {
 	font-family: 'Source Sans Pro' , arial;
 	font-style: normal;
 	font-weight: 600;
-	font-size: 120%;
+	font-size: 18px;
 	color: #333;
 	margin: 8px auto;
 	line-height: 140%;
@@ -1333,11 +1333,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	float: left;
 	display: block;
 	position: relative;
-	padding: 12px 20px 0 30px;
+	padding: 0 20px 0 30px;
 	background: none;
 	width: 55%;
 	border-left: 1px solid #ddd;
-	height: 100%;
+	height: 60%;
+
 	
 }
 
@@ -1354,6 +1355,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 
 .hw-menu-collapsed h1 {
 	color: #c00;
+	position: absolute;
+	top: 30%;
+	line-height: 1.2em;
 
 
 	}
@@ -2248,10 +2252,16 @@ text-align: center;
 	margin: 40px 0;
 }
 
+             
+.content-listing img {
+	
+}
+
 .news-title {
 
-	font-weight: normal;
+	font-weight: 600;
 	font-size: 20px;
+	color: #c00;
 }
 
 .news-title-single {
@@ -2272,7 +2282,7 @@ text-align: center;
 	margin-bottom: 0.5em;
 }
 
-.hero-news-content , .hero-event-content img {
+.hero-news-content img , .hero-event-content img {
 -webkit-border-radius: 8px 8px 0 0;
 	 border-radius: 8px 8px 0 0;
 border: 1px solid #fff;
@@ -2285,20 +2295,21 @@ float: left;
 -webkit-border-radius: 8px 0 0 8px;
 	 border-radius: 8px 0 0 8px;
 border: 1px solid #fff;
+max-width: 37%;
 
 }
 
 .event-listing-text , .hero-event-listing-text , .event-listing-text-right {
-        background: url('images/events-icon.png') no-repeat top left;
+        background: url('images/events-icon.png') no-repeat 0 5px;
         padding-left: 40px;
-        margin: 10px;
+        margin: 5px 10px;
 }
 
 
 .news-listing-text , .hero-news-listing-text , .news-listing-text-right {
-	background: url('images/news-icon.png') no-repeat top left;
+	background: url('images/news-icon.png') no-repeat 0 5px;
 	padding-left: 40px;
-	margin: 10px 20px;
+	margin: 5px 10px;
 }
 
 .news-listing-text-right , .event-listing-text-right {
@@ -2306,20 +2317,31 @@ border: 1px solid #fff;
 
 }
 
-.news-listing-text-right p , .event-listing-text-right p {
-	margin: 0;
-	}
+
+.news-listing-text h2 , .event-listing-text h2 {
+	font-style: normal;
+	color: #c00;
+	font-size: 18px;
+}
+
 
 .news-listing-text-right h3 , .event-listing-text-right h3 {
 	font-style: normal;
 	font-weight: 600;
 
+
 }
 
 .news-listing-text , .event-listing-text {
-	width: 55%;
-	float: right;
+	float: left;
+	width: 52%;
 }
+
+
+.news-listing-text p , .event-listing-text p , .hero-news-listing-text p , .hero-event-listing-text p , .news-listing-text-right p , .event-listing-text-right p{
+	margin: 5px 0;
+}
+
 
 .news-listing-text a , .event-listing-text a , .hero-news-listing-text a , .news-listing-text-right a , .event-listing-text-right a {
 	text-decoration: none;
@@ -2462,6 +2484,17 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 
 		}
 
+h1 {
+	font-size: 16px;
+
+}	
+
+h2{
+	font-size: 15px
+
+}	
+
+
 #header_inner_wrapper {
 			height: auto;
 		}
@@ -2479,6 +2512,8 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 			position: relative;
 
 		}
+
+
 
 .menu-mainnav-container {
 			width: 100%;
@@ -2575,7 +2610,11 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 
 .site-header form {
 	display: none;
-}        
+}  
+
+.content-listing img {
+	display: none;
+}      
         
         /*
         Add your semantic classnames in alongside their corresponding spans here. e.g.
@@ -2592,16 +2631,16 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_2 {
             width:20.6666666667%;
         }
-.span_3  , .cta-gateway  {
+.span_3  , .cta-gateway , .sidebar-wrapper  {
             width:32.0%;
         }
  .span_4  , .gateway-promo-bullets ul {
             width:43.3333333333%;
         }
-.span_5 {
+.span_5  {
             width:54.6666666667%;
         }
-.span_6 , .news-leftcol-wrapper , .event-leftcol-wrapper  {
+.span_6  , .news-leftcol-wrapper , .event-leftcol-wrapper  {
             width:66.0%;
         }
 .span_7 {
@@ -2645,15 +2684,26 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
         
 .row .col:first-child {
             margin-left:0;
-        }                
-        
+        }   
+
+h1 {
+	font-size: 17px;
+
+}	
+
+h2{
+	font-size: 15px
+
+}	
+
+
 .span_1 {
             width:6.5%;
         }
 .span_2 {
             width:15.0%;
         }
-.span_3  , .cta-gateway  {
+.span_3  , .cta-gateway , .sidebar-wrapper {
             width:23.5%;
         }
 .span_4 , .heroTxtContent , .promo , .quick-link , .tabs-text , .product-quote  {
@@ -2715,8 +2765,8 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .row .col:first-child {
             margin-left:0;
         }
-        
-        
+
+      
         
 .span_1 {
             width:7.1875%;
@@ -2727,7 +2777,7 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 .span_3 , .cta-gateway   {
             width:24.0625%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote , .tabs-text {
+.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote , .tabs-text, .sidebar-wrapper {
             width:32.5%;
         }
  .span_5    {
