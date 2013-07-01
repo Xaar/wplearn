@@ -2473,6 +2473,33 @@ h2.heading-leftcol {
 	padding-left: 20px;
 }
 
+.pagination {
+	padding: 0 0 20px 0;
+	margin-bottom: 30px;
+}
+
+
+.pagination a {
+	text-decoration: none;
+	padding: 5px;
+	background-color: #e0e0e0;
+	margin: 0 !important;
+	border-left: 1px solid #fff;
+
+}
+
+.pagination a:first-child {
+	border-left: none;
+}
+
+.pagination-selected {
+	background-color: #ccc !important;
+	color: #c00 !important;
+	margin: 0;
+	font-weight: 600;
+
+}
+
 
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/

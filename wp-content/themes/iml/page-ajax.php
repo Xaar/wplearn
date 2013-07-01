@@ -39,19 +39,19 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
 endwhile;
 
 if($wp_query->max_num_pages>1){?>
-    <p class="navrechts">
+    <div class="pagination">
     <?php
       if ($pagex > 1) { ?>
         <a href="<?php echo '?page=' . ($pagex -1); //prev link ?>"><</a>
                         <?php }
     for($i=1;$i<=$wp_query->max_num_pages;$i++){?>
-        <a href="<?php echo '?page=' . $i; ?>" <?php echo ($pagex==$i)? 'class="selected"':'';?>><?php echo $i;?></a>
+        <a href="<?php echo '?page=' . $i; ?>" <?php echo ($pagex==$i)? 'class="pagination-selected"':'';?>><?php echo $i;?></a>
         <?php
     }
     if($pagex < $wp_query->max_num_pages){?>
         <a href="<?php echo '?page=' . ($pagex + 1); //next link ?>">></a>
     <?php } ?>
-    </p>
+    </div>
 <?php }elseif($pagex>0 && $wp_query->max_num_pages==0){?>
 	<a href="<?php echo '?page=1'; //prev link ?>">Return to first page</a>
 <?php
