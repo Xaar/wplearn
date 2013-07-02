@@ -11,7 +11,8 @@ get_header();
 //$pagex = (get_query_var('page')) ? "?page=".get_query_var('page') : "?page=1";
 $pagex = (get_query_var('page')) ? get_query_var('page') : 1;
 ?>
-<!--<script type="text/javascript" src="<?=get_template_directory_uri();?>/js/jquery.dropkick-1.0.0.js" />-->
+<script type="text/javascript" src="<?=get_template_directory_uri();?>/js/jquery.dropkick-1.0.0.js">
+</script>
 <script>
 var page = <?=$pagex;?>;
 jQuery(document).ready(function($){
