@@ -7,7 +7,7 @@
   </div>
   <div class="hw-menu-title" id="hw-title-container">
 <?php
-$title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Simultators and E-Learning Products" : get_the_title();?>
+$title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Training Products" : get_the_title();?>
 
     <h1 id="hw-menu-title-txt"><?=$title;?></h1> <!-- Needs to display the current product when on a single product page -->
   </div>

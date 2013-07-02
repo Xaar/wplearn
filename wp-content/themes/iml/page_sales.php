@@ -26,11 +26,7 @@ define("THISPAGE", "sales");
   </style>
 <![endif]-->
 <style type="text/css">
-  body {
-    background: #fff;
-    font-family: verdana;
-    padding-top: 50px;
-  }
+
   #vtab {
     margin: auto;
     width: 1000px;
@@ -117,6 +113,12 @@ define("THISPAGE", "sales");
 </script>
 
 <div id="content" class="hero-content row" role="main">
+
+  <div class="page-title row">
+
+    <h1>Sales and Support</h1>
+    
+  </div>
 
   <div id="vtab">
     <ul>
