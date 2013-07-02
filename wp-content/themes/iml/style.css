@@ -2445,17 +2445,26 @@ p.news-event-summary {
 }
 
 #filter {
+	position: absolute;
+	top: 18px;
+	left: 0;
+	z-index: 40;
+
+
+}
+
+/*#filter {
 	display: block;
 	width: 200px;
 	height: 22px;
-/*	overflow: hidden;
+	overflow: hidden;
 	background-color: #eee;
 	border: 1px solid #ccc;
 	padding: 10px;
 	background-image:  url('images/drop-down.png');
 	background-repeat: no-repeat;
 	background-position: 94% 50%;
-*/	position: absolute;
+	position: absolute;
 	top: 18px;
 	left: 0;
 	z-index: 40;
@@ -2499,7 +2508,7 @@ p.news-event-summary {
 
 #filter ul, #filter div  {
 	border: none;
-}
+}*/
 
 h2.heading-sidebar , h2.heading-leftcol{
 	text-transform: uppercase;
@@ -3005,18 +3014,19 @@ button#catapultCookie {
 
 /* One container to bind them... */
 .dk_container {
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f5f5f5));
-  background: -moz-linear-gradient(top, #fff, #f5f5f5);
-  background: -o-linear-gradient(top, #fff, #f5f5f5);
-  background-color: #f5f5f5;
-  font-family: 'Helvetica', Arial, sans-serif;
+
   font-size: 12px;
-  font-weight: bold;
+  font-weight: normal;
+  font-style: italic;
   line-height: 14px;
   margin-bottom: 18px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+	padding: 0;
+	
+	position: absolute;
+	top: 18px;
+	left: 0;
+	z-index: 40;
+
 }
   .dk_container:focus {
     outline: 0;
@@ -3032,20 +3042,20 @@ button#catapultCookie {
    * Help: Arrow image not appearing
    * Try updating this property to your correct dk_arrows.png path
    */
-  background-image: url('images/dk_arrows.png');
+  background-image:  url('images/drop-down.png');
   background-repeat: no-repeat;
-  background-position: 90% center;
+  background-position: 94% 50%;
   border: 1px solid #ccc;
   color: #333;
   padding: 7px 45px 7px 10px;
-  text-shadow: #fff 1px 1px 0;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   -webkit-transition: border-color .5s;
   -moz-transition: border-color .5s;
   -o-transition: border-color .5s;
   transition: border-color .5s;
+  width: 200px;
+	height: 22px;
+	background-color: #eee;
+	border: 1px solid #ccc;
 }
   .dk_toggle:hover {
     border-color: #8c8c8c;
@@ -3075,10 +3085,9 @@ button#catapultCookie {
     background-color: #ececec;
     border-color: #8c8c8c;
     color: #ccc;
-    box-shadow: inset 0 -2px 5px #ccc;
-    border-radius: 5px 5px 0 0;
-    -moz-border-radius: 5px 5px 0 0;
-    -webkit-border-radius: 5px 5px 0 0;
+
+    
+
   }
 
 /* The outer container of the options */
@@ -3086,14 +3095,12 @@ button#catapultCookie {
   box-shadow: rgba(0, 0, 0, .2) 0 2px 8px;
   -moz-box-shadow: rgba(0, 0, 0, .2) 0 2px 8px;
   -webkit-box-shadow: rgba(0, 0, 0, .2) 0 2px 8px;
-  border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  -webkit-border-radius: 0 0 5px 5px;
+
 }
   .dk_options a {
     background-color: #fff;
     border-bottom: 1px solid #999;
-    font-weight: bold;
+    font-weight: normal;
     padding: 8px 10px;
   }
   .dk_options li:last-child a {
@@ -3101,8 +3108,8 @@ button#catapultCookie {
   }
   .dk_options a:hover,
   .dk_option_current a {
-    background-color: #0084c7;
-    border-bottom-color: #004c72;
+    background-color: #ccc;
+    border-bottom-color: #999;
     color: #fff;
     text-decoration: none;
     text-shadow: rgba(0, 0, 0, .5) 0 1px 0;
@@ -3116,9 +3123,10 @@ button#catapultCookie {
   color: #333;
   max-height: 250px;
   text-shadow: #fff 0 1px 0;
-  border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-  -webkit-border-radius: 0 0 5px 5px;
+
+  margin: 0;
+  
+
 }
 
 /* Set a max-height on the options inner */
@@ -3138,6 +3146,7 @@ button#catapultCookie {
 }
   .dk_container a {
     outline: 0;
+    padding-top: 12px;
   }
 
 .dk_toggle {
@@ -3156,6 +3165,7 @@ button#catapultCookie {
   }
   .dk_open .dk_label {
     color: inherit;
+
   }
 
 .dk_options {
