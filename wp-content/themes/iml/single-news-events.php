@@ -21,15 +21,28 @@ get_header();
 			}else{ 
 				echo "News Story";
 			}?></h2>
-			<h1 class="news-title-single"><?php the_title(); ?></h1>
-			<?php if($type=='event') echo  " <p class='date-range'>". date_range() .', '. get_post_meta($oid, ('location'), true). "</p>";?>
+			<h1 <?php echo ($type=='event')? 'class="event-title-single"':'class="news-title-single"';?>><?php the_title(); ?></h1>
+
+
+			<?php if($type=='event') echo  " <p class='date-range-hero'>". date_range() .', '. get_post_meta($oid, ('location'), true). "</p>";?>
 		<div class="hero-<?=$type;?>-content row">
 			<div><?php the_post_thumbnail('sixteen-nine-large'); ?></div>
                         <div class="hero-<?=$type;?>-listing-text">
                                <p class="news-event-summary"><?php echo get_post_meta($oid, ('summary'), true); ?></p>
                                 <p><?php echo get_post_meta($oid, ('article'), true); ?></p>
 				<div class="social-buttons">
-
+					<h3>Share this:</h3>
+					<!-- AddThis Button BEGIN -->
+					<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+					<a class="addthis_button_preferred_1"></a>
+					<a class="addthis_button_preferred_2"></a>
+					<a class="addthis_button_preferred_3"></a>
+					<a class="addthis_button_compact"></a>
+					<a class="addthis_counter addthis_bubble_style"></a>
+					</div>
+					<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+					<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=glassworkslon"></script>
+<!-- AddThis Button END -->
 				</div>
                         </div>
                 </div>
@@ -53,8 +66,8 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
                                 <h3><?php the_title(); ?></h3>
                                 <?php if($type=='event') echo  " <p class='date-range'>". date_range() .', '. get_post_meta($oid, ('location'), true). "</p>";?>
                                 <p><?php echo get_post_meta($post->ID, ('excerpt'), true); ?></p>
-                                 <?php if($type=='news') echo  " <a href='<?php the_permalink(); ?>''>Read full story &raquo;</a>";?>
-                                 <?php if($type=='event') echo  " <a href='<?php the_permalink(); ?>''>View event details &raquo;</a>";?>
+                                 <?php if($type=='news') echo  " <a href='".get_permalink($post->ID)."'>Read full story &raquo;</a>";?>
+                                 <?php if($type=='event') echo  " <a href='".get_permalink($post->ID)."'>View event details &raquo;</a>";?>
                         </div>
                 </div>
 <?php

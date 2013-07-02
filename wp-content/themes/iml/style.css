@@ -1103,6 +1103,7 @@ Homepage promo styles Latest News, events etc.
 	text-decoration: none;
 	color: #ccc;
 	border: none;
+	z-index: 100;
 
 
 }
@@ -2289,19 +2290,38 @@ text-align: center;
 	padding-top: 8px;
 }
 
-.date-range {
+.date-range , .date-range-hero {
 	font-weight: 600;
 }
 
-.news-title-single {
+.date-range-hero {
+	text-align: center;
+	
+}
+
+.news-title-single , .event-title-single {
 
 	font-weight: normal;
 	font-size: 30px;
-	margin: 30px 0;
 	text-align: center;
 	color: #c00;
 	
 }
+
+.news-title-single {
+	margin: 20px 0;
+}
+
+.event-title-single {
+	margin: 20px 0 5px 0;
+}
+
+
+.event-title-single {
+
+}
+
+
 
 .search-listing {
 	margin: 15px 10%;
@@ -2317,6 +2337,7 @@ text-align: center;
 -webkit-border-radius: 8px 8px 0 0;
 	 border-radius: 8px 8px 0 0;
 border: 1px solid #fff;
+margin-bottom: 20px;
 
 
 }
@@ -2402,7 +2423,13 @@ p.news-event-summary {
 	font-size: 18px;
 	padding-top: 10px;
 	line-height: 1.2em;
+	font-weight: 200;
+}
 
+.social-buttons {
+	position: relative;
+	right: 5px;
+	top: 0;
 }
 
 .fb-like-box {
