@@ -16,10 +16,10 @@ var page = <?=$pagex;?>;
 jQuery(document).ready(function($){
   filter = $('#select-filter option:selected').val();
   $('#news-event-ajax').load("<?php echo get_site_url(); ?>/ajax/"+page+'/?filter='+filter);
-
-  $('#select-filter').on("change", function(){
-    filter = $('#select-filter option:selected').val();
-    $('#news-event-ajax').load("<?php echo get_site_url(); ?>/ajax/"+page+'/?filter='+filter);
+  $('.filter').dropkick({
+    change: function (filter) {
+      $('#news-event-ajax').load("<?php echo get_site_url(); ?>/ajax/"+page+'/?filter='+filter);
+    }
   });
 });
 </script>
@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
 	</div>
 
 	<div id='filter'>
-		<select id='select-filter'>
+		<select name="filter" tabindex="1" class="filter dk">
 			<option value='all'>Show: News and Events</option>
 			<option value='event'>Show: News only</option>
 			<option value='news'>Show: Events only</option>
