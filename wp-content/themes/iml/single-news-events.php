@@ -22,10 +22,11 @@ get_header();
 				echo "News Story";
 			}?></h2>
 			<h1 class="news-title-single"><?php the_title(); ?></h1>
+			<?php if($type=='event') echo  " <p class='date-range'>". date_range() .', '. get_post_meta($oid, ('location'), true). "</p>";?>
 		<div class="hero-<?=$type;?>-content row">
 			<div><?php the_post_thumbnail('sixteen-nine-large'); ?></div>
                         <div class="hero-<?=$type;?>-listing-text">
-                                <p><?php if($type=='event') echo date_range();?></p>
+                               <p class="news-event-summary"><?php echo get_post_meta($oid, ('summary'), true); ?></p>
                                 <p><?php echo get_post_meta($oid, ('article'), true); ?></p>
 				<div class="social-buttons">
 
@@ -33,8 +34,8 @@ get_header();
                         </div>
                 </div>
 
-		<div class="page-title row">
-			<h2>More <?=($type=='news') ? "News Stories" : "Events";?></h2>
+		<div class="more-news row">
+			<h2 class="heading-leftcol">More <?=($type=='news') ? "News Stories" : "Events";?></h2>
 		</div>
 <?php
 // 5 Latest posts
@@ -50,9 +51,10 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
         endif;?>
                         <div class="<?=$type;?>-listing-text">
                                 <h3><?php the_title(); ?></h3>
-                                <p><?php if(get_post_meta($post->ID, "article_type", true)=='Event') echo date_range();?></p>
+                                <?php if($type=='event') echo  " <p class='date-range'>". date_range() .', '. get_post_meta($oid, ('location'), true). "</p>";?>
                                 <p><?php echo get_post_meta($post->ID, ('excerpt'), true); ?></p>
-                                <a href="<?php the_permalink(); ?>">Read full story &raquo;</a>
+                                 <?php if($type=='news') echo  " <a href='<?php the_permalink(); ?>''>Read full story &raquo;</a>";?>
+                                 <?php if($type=='event') echo  " <a href='<?php the_permalink(); ?>''>View event details &raquo;</a>";?>
                         </div>
                 </div>
 <?php

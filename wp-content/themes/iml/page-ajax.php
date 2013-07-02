@@ -30,9 +30,10 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
                         <div class="<?=($featured ? "hero-news-listing-text" : "$type-listing-text");?>">
                                 
                                <?=($featured ? '<h1 class="news-title">'. get_the_title().' </h1>' : '<h2>'. get_the_title().' </h2>');?>   
-                                <p><?php if($type=='event') echo date_range();?></p>
+                               <?php if($type=='event') echo  " <p class='date-range'>". date_range() .', '. get_post_meta($post->ID, ('location'), true). "</p>";?>
                                 <p><?php echo get_post_meta($post->ID, ($featured ? 'summary' : 'excerpt'), true); ?></p>
-                                <a href="<?php the_permalink(); ?>">Read full story &raquo;</a>
+                                <?php if($type=='news') echo  " <a href='<?php the_permalink(); ?>''>Read full story &raquo;</a>";?>
+                                 <?php if($type=='event') echo  " <a href='<?php the_permalink(); ?>''>View event details &raquo;</a>";?>
                         </div>
                 </div>
 <?php
