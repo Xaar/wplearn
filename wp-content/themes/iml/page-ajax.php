@@ -27,7 +27,7 @@ while ( $wp_query->have_posts() ) : $wp_query->the_post();
         if ( has_post_thumbnail()) : ?><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" ><?php { the_post_thumbnail($featured ? 'sixteen-nine-large' : 'thumbnail') ; } ?></a>
 <?php
         endif;?>
-                        <div class="<?=($featured ? "hero-news-listing-text" : "$type-listing-text");?>">
+                        <div class="<?=($featured ? "hero-$type-listing-text" : "$type-listing-text");?>">
                                 
                                <?=($featured ? '<h1 class="news-title">'. get_the_title().' </h1>' : '<h2>'. get_the_title().' </h2>');?>   
                                <?php if($type=='event') echo  " <p class='date-range'>". date_range() .', '. get_post_meta($post->ID, ('location'), true). "</p>";?>
