@@ -1120,6 +1120,10 @@ Homepage promo styles Latest News, events etc.
 
 }
 
+.promoLink-about {
+	margin-bottom: 40px !important;
+}
+
 
 
 
@@ -2600,6 +2604,10 @@ h2.heading-leftcol {
 
 	width: 100% !important;
 }
+
+#map_inner svg {
+
+	}
 
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
