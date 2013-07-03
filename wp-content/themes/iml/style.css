@@ -41,6 +41,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	outline: 0;
 	padding: 0;
 	vertical-align: baseline;
+
 }
 html {
 	font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
@@ -2204,8 +2205,10 @@ div.clearfix {
 ::::::::::::::: N e w s  a n d  e v e n t s ::::::::::::::::
 */
 
-.news-leftcol-wrapper , .event-leftcol-wrapper , .about-leftcol-wrapper {
+.news-leftcol-wrapper , .event-leftcol-wrapper , .about-leftcol-wrapper , .sales-leftcol-wrapper {
 	max-width: 850px;
+	float:left;
+	margin-left: 3px;
 }
 .events-rightcol-wrapper , .news-rightcol-wrapper {
 	width: 100%;
@@ -2242,12 +2245,7 @@ text-align: center;
 	font-size: 90%
 }
 
-.news-leftcol-wrapper , .event-leftcol-wrapper , .about-leftcol-wrapper {
 
-	float:left;
-	margin-left: 3px;
-
-}
 
 .hero-news-content , .hero-event-content , .content-listing , .search-listing {
 	-webkit-border-radius: 8px;
@@ -2594,6 +2592,15 @@ h2.heading-leftcol {
 }
 
 
+/*
+::::::::::::::: Sales and support ::::::::::::::::
+*/
+
+#map_inner {
+
+	width: 100% !important;
+}
+
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
@@ -2786,7 +2793,7 @@ h2{
 .span_5  {
             width:54.6666666667%;
         }
-.span_6  , .news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper {
+.span_6  , .news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper {
             width:66.0%;
         }
 .span_7 {
@@ -2867,7 +2874,7 @@ h2{
 .span_8 , .featured-prod-img {
             width:66.0%;
         }
-.span_9 , .news-leftcol-wrapper , .event-leftcol-wrapper , .about-leftcol-wrapper {
+.span_9 , .news-leftcol-wrapper , .event-leftcol-wrapper , .about-leftcol-wrapper , .sales-leftcol-wrapper {
 
             width:74.5%;
         }
@@ -2936,7 +2943,7 @@ h2{
 .span_7 , .tabs-gallery {
             width:57.8125%;
         }
-.span_8 , .featured-prod-img , .news-leftcol-wrapper  , .event-leftcol-wrapper , .about-leftcol-wrapper {
+.span_8 , .featured-prod-img , .news-leftcol-wrapper  , .event-leftcol-wrapper , .about-leftcol-wrapper , ., .sales-leftcol-wrapper{
             width:66.25%;
         }
 .span_9  {
@@ -3202,4 +3209,5 @@ button#catapultCookie {
 
 /***** End Critical to the continued enjoyment of working dropdowns ******/
 
-		
+
+

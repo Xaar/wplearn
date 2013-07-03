@@ -57,7 +57,7 @@ endwhile; endif; ?>
 
 
 ?>
-</div>
+</div> <!-- sidebar wrapper -->
 
 
 
