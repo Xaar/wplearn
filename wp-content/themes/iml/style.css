@@ -1120,6 +1120,10 @@ Homepage promo styles Latest News, events etc.
 
 }
 
+.promoLink-about {
+	margin-bottom: 40px !important;
+}
+
 
 
 
@@ -2601,6 +2605,10 @@ h2.heading-leftcol {
 	width: 100% !important;
 }
 
+#map_inner svg {
+
+	}
+
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
@@ -2943,7 +2951,7 @@ h2{
 .span_7 , .tabs-gallery {
             width:57.8125%;
         }
-.span_8 , .featured-prod-img , .news-leftcol-wrapper  , .event-leftcol-wrapper , .about-leftcol-wrapper , ., .sales-leftcol-wrapper{
+.span_8 , .featured-prod-img , .news-leftcol-wrapper  , .event-leftcol-wrapper , .about-leftcol-wrapper , .sales-leftcol-wrapper {
             width:66.25%;
         }
 .span_9  {

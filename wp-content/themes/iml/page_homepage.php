@@ -26,8 +26,8 @@ endwhile; endif; ?>
 
 				<div class="promo-band row">
 					<div class="promo elearn-home col">
-						<h4>products</h4>
-						<?php echo get_new_royalslider(3); ?>
+						<h4>about Inventive Medical</h4>
+						<?php echo get_new_royalslider(5); ?>
 					</div>
 					<div class="promo simulator-home col">
 						<h4>news</h4>
@@ -35,7 +35,7 @@ endwhile; endif; ?>
 					</div>
 					<div class="promo news-home col">
 						<h4>events</h4>
-						<?php echo get_new_royalslider(3); ?>
+						<?php echo get_new_royalslider(4); ?>
 					</div>
 				</div> <!-- promo-band -->
 
