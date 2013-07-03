@@ -1,0 +1,112 @@
+  #cookie th {
+    text-align: left;
+  }
+
+  #cookie .h {
+    background-color: #888;
+    color: #FFF;
+    font-size: 15px;
+    border: 1px solid #888888;
+    -webkit-border-radius: 11px 11px 0 0;
+    -moz-border-radius: 11px 11px 0 0;
+    -ms-border-radius: 11px 11px 0 0;
+    -o-border-radius: 11px 11px 0 0;
+    border-radius: 11px 11px 0 0;
+  }
+  #cookie th,td {
+    vertical-align: top;
+    padding: 10px;
+  }
+  #cookie td textarea {
+    width: 100%;
+    height: 150px;
+  }
+  #cookie td input[type=text],
+  #cookie td select {
+    width: 100%;
+  }
+
+  #cookie .left {
+    border-left: 1px solid #888888;
+  }
+
+  #cookie .right {
+    border-right: 1px solid #888888;
+  }
+
+  #cookie .closer td {
+    border-bottom: 1px solid #888888;
+  }
+
+  #cookie tr.closer .left {
+    -webkit-border-radius: 0 0 0 11px;
+    -moz-border-radius: 0 0 0 11px;
+    -ms-border-radius: 0 0 0 11px;
+    -o-border-radius: 0 0 0 11px;
+    border-radius: 0 0 0 11px;
+  }
+
+  #cookie tr.closer .right {
+    -webkit-border-radius: 0 0 11px 0;
+    -moz-border-radius: 0 0 11px 0;
+    -ms-border-radius: 0 0 11px 0;
+    -o-border-radius: 0 0 11px 0;
+    border-radius: 0 0 11px 0;
+  }
+
+  #cookie .lefth {
+    -webkit-border-radius: 11px 0 0 0;
+    -moz-border-radius: 11px 0 0 0;
+    -ms-border-radius: 11px 0 0 0;
+    -o-border-radius: 11px 0 0 0;
+    border-radius: 11px 0 0 0;
+  }
+
+  #cookie .righth {
+    -webkit-border-radius: 0 11px 0 0;
+    -moz-border-radius: 0 11px 0 0;
+    -ms-border-radius: 0 11px 0 0;
+    -o-border-radius: 0 11px 0 0;
+    border-radius: 0 11px 0 0;
+  }
+
+  #cookie .middleh {
+    -webkit-border-radius: 0 0 0 0;
+    -moz-border-radius: 0 0 0 0;
+    -ms-border-radius: 0 0 0 0;
+    -o-border-radius: 0 0 0 0;
+    border-radius: 0 0 0 0;
+  }
+
+  #col1, #col2, #col3, #col4 {
+    width: 25%;
+  }
+
+  #coia-donations {
+    display: block;
+    width: 300px;
+    height: auto;
+    float: right;
+    border: 1px solid #373737;
+    padding: 0 15px 15px;
+    margin: 0 10px 10px;
+    border-top: 0;
+    -webkit-border-radius: 0 0 11px 11px;
+    -moz-border-radius: 0 0 11px 11px;
+    -ms-border-radius: 0 0 11px 11px;
+    -o-border-radius: 0 0 11px 11px;
+    border-radius: 0 0 11px 11px;
+}
+
+  #coia-donations.on-bottom {
+    float: none;
+    width: auto;
+    padding: 0 15px 15px;
+    margin: 20px 0 0;
+    border: 1px solid #373737;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    -ms-border-radius: 11px;
+    -o-border-radius: 11px;
+    border-radius: 11px;
+}

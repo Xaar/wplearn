@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: UK Cookie Consent\n"
+"POT-Creation-Date: 2013-01-10 07:14-0000\n"
+"PO-Revision-Date: 2013-01-10 07:14-0000\n"
+"Last-Translator: Ben Huson <ben@thewhiteroom.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../uk-cookie-consent.php:17
+msgid "Cookie Consent"
+msgstr ""
+
+#: ../uk-cookie-consent.php:22
+msgid "UK Cookie Consent"
+msgstr ""
+
+#: ../uk-cookie-consent.php:26
+msgid "Your settings"
+msgstr ""
+
+#: ../uk-cookie-consent.php:30
+msgid "Cookie Policy"
+msgstr ""
+
+#: ../uk-cookie-consent.php:35
+msgid ""
+"This site uses cookies - small text files that are placed on your machine to "
+"help the site provide a better user experience. In general, cookies are used "
+"to retain user preferences, store information for things like shopping "
+"carts, and provide anonymised tracking data to third party applications like "
+"Google Analytics."
+msgstr ""
+
+#: ../uk-cookie-consent.php:36
+msgid ""
+"As a rule, cookies will make your browsing experience better. However, you "
+"may prefer to disable cookies on this site and on others. The most effective "
+"way to do this is to disable cookies in your browser. We suggest consulting "
+"the Help section of your browser or taking a look at <a href=\"http://www."
+"aboutcookies.org\">the About Cookies website</a> which offers guidance for "
+"all modern browsers."
+msgstr ""
+
+#: ../uk-cookie-consent.php:43
+msgid "Failed to create page."
+msgstr ""
+
+#: ../uk-cookie-consent.php:45
+msgid "Cookie Policy page successfully created."
+msgstr ""
+
+#: ../uk-cookie-consent.php:51
+msgid "Save Changes"
+msgstr ""
+
+#: ../uk-cookie-consent.php:57
+#, php-format
+msgid ""
+"Your Cookies Policy page is <a href=\"%s\">here</a>. You may wish to create "
+"a menu item or other link on your site to this page."
+msgstr ""
+
+#: ../uk-cookie-consent.php:64
+msgid "Resources"
+msgstr ""
+
+#: ../uk-cookie-consent.php:66
+msgid "Information Commissioner's Office Guidance on Cookies"
+msgstr ""
+
+#: ../uk-cookie-consent.php:68
+msgid "Our interpretation of the guidance"
+msgstr ""
+
+#: ../uk-cookie-consent.php:80
+msgid "Notification text"
+msgstr ""
+
+#: ../uk-cookie-consent.php:81
+msgid "Accept text"
+msgstr ""
+
+#: ../uk-cookie-consent.php:82
+msgid "More info text"
+msgstr ""
+
+#: ../uk-cookie-consent.php:83
+msgid "Info page permalink"
+msgstr ""
+
+#: ../uk-cookie-consent.php:87
+msgid ""
+"You can just use these settings as they are or update the text as you wish. "
+"We recommend keeping it brief."
+msgstr ""
+
+#: ../uk-cookie-consent.php:88
+msgid ""
+"The plug-in automatically creates a page called \"Cookie Policy\" and sets "
+"the default More Info link to yoursitename.com/cookie-policy."
+msgstr ""
+
+#: ../uk-cookie-consent.php:89
+msgid ""
+"If you find the page hasn't been created, hit the Save Changes button on "
+"this page."
+msgstr ""
+
+#: ../uk-cookie-consent.php:90
+msgid ""
+"If you would like to change the permalink, just update the Info page "
+"permalink setting, e.g. enter \"?page_id=4\" if you are using the default "
+"permalink settings (and 4 is the id of your new Cookie Policy page)."
+msgstr ""
+
+#: ../uk-cookie-consent.php:91
+#, php-format
+msgid ""
+"For any support queries, please post on the <a href=\"%s\">WordPress forum</"
+"a>."
+msgstr ""
+
+#: ../uk-cookie-consent.php:92
+#, php-format
+msgid ""
+"And if this plug-in has been helpful to you, then <a href=\"%s\">please rate "
+"it</a>."
+msgstr ""
+
+#: ../uk-cookie-consent.php:99 ../uk-cookie-consent.php:154
+msgid "This site uses cookies"
+msgstr ""
+
+#: ../uk-cookie-consent.php:107
+msgid "No problem"
+msgstr ""
+
+#: ../uk-cookie-consent.php:115
+msgid "More info"
+msgstr ""
+
+#: ../uk-cookie-consent.php:123
+msgid "cookie-policy"
+msgstr ""
+
+#: ../uk-cookie-consent.php:159
+msgid "Okay, thanks"
+msgstr ""
+
+#: ../uk-cookie-consent.php:164
+msgid "Find out more"
+msgstr ""

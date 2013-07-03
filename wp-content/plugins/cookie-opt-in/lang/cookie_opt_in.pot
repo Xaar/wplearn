@@ -1,0 +1,520 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cookie opt in\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-28 09:28+0100\n"
+"PO-Revision-Date: 2012-09-28 09:33+0100\n"
+"Last-Translator: Remon Pel <remon@clearsite.nl>\n"
+"Language-Team: Clearsite <support@clearite.nl>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.3\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../wp_cookie_opt_in.php:66 ../wp_cookie_opt_in.php:68
+#: ../wp_cookie_opt_in.php:70
+msgid "WordPress default language"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:101
+msgid "Cookie-Opt-In"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:102
+msgid "Cookie-Opt-In Info"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:102
+msgid "Information"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:103
+msgid "Cookie-Opt-In Developers Info"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:103
+msgid "Developers info"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:104 ../templates/admin_page.php:2
+msgid "Cookie-Opt-In Settings"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:104
+msgid "Settings"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:105
+msgid "Cookie-Opt-In Actions Overview"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:105
+msgid "Actions overview"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:121
+msgid "No actions have been cached. Please visit your website and return here."
+msgstr ""
+"Er zijn nog geen acties bekend. Bezoek je website en kom daarna hier terug."
+
+#: ../wp_cookie_opt_in.php:224
+msgid "Ok"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:225
+msgid "Deny"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:226
+msgid "Allow"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:299
+msgid "Cookie preferences"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:300
+msgid "Allow advertisement cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:301
+msgid "Allow tracking cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:302
+msgid "Allow social cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:303
+msgid "Allow functional cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:304
+msgid ""
+"This website uses cookies for advertisement purposes, for example: to give "
+"you offers specifically suited to your wishes."
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:305
+msgid "This website uses cookies for tracking purposes like Google Analytics."
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:306
+msgid ""
+"This website uses cookies for tracking purposes on social networks like "
+"Facebook, Google+ etc."
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:307
+msgid ""
+"This website uses cookies for storing session information. These cookies "
+"will self-destruct when you close your browser. The cookies are required for "
+"the website to function."
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:314
+msgid "More info"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:315
+msgid "We need your permission"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:316
+msgid ""
+"This website cannot operate without these cookies. By law, these cookies are "
+"permitted."
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:328
+msgid "advertisement"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:329
+msgid "ecommerce"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:330
+msgid "tracking"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:331
+msgid "social"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:332
+msgid "functional"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:333
+msgid "Advertisement Cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:334
+msgid "Ecommerce Cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:335
+msgid "Tracking Cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:336
+msgid "Social Cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:337
+msgid "Functional Cookies"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:338 ../wp_cookie_opt_in_cls.php:47
+#: ../wp_cookie_opt_in_skin.php:29
+msgid "View details"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:461
+msgid "Donations"
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:462
+msgid ""
+"Although Clearsite Webdesigners are webdesigners by trade, this plugin is "
+"presented to the community free of charge. To keep this plugin up to date, "
+"funds are needed. If you like this plugin and continue to use it, please "
+"consider donating."
+msgstr ""
+
+#: ../wp_cookie_opt_in.php:463
+msgid "Thank you very much for your support."
+msgstr ""
+
+#: ../templates/admin_actions.php:2
+msgid "Cookie-Opt-In Action reference."
+msgstr ""
+
+#: ../templates/admin_actions.php:6
+msgid "Registered action"
+msgstr ""
+
+#: ../templates/admin_actions.php:6
+msgid "Function or method called"
+msgstr ""
+
+#: ../templates/admin_actions.php:6
+msgid "Priority"
+msgstr ""
+
+#: ../templates/admin_actions.php:6
+msgid "Use this in the settings"
+msgstr ""
+
+#: ../templates/admin_actions.php:12
+msgid "PLEASE NOTE"
+msgstr ""
+
+#: ../templates/admin_actions.php:13
+msgid ""
+"This information mathes the FRONT-end, NOT the back-end. It is refreshed on "
+"page load, just before the page is shown."
+msgstr ""
+
+#: ../templates/admin_actions.php:14
+msgid ""
+"Removed actions (by settings) are NOT present in this list if you chose not "
+"to accept cookies on your front-end."
+msgstr ""
+
+#: ../templates/admin_developers.php:2
+msgid "en.admin_developers.php"
+msgstr ""
+
+#: ../templates/admin_info.php:2
+msgid "en.admin_info.php"
+msgstr ""
+
+#: ../templates/admin_page.php:11
+msgid "Language independent settings"
+msgstr ""
+
+#: ../templates/admin_page.php:14
+msgid ""
+"Language specific settings are hidden, please pick a language using the WPML-"
+"Admin-Language-Selector above."
+msgstr ""
+
+#: ../templates/admin_page.php:19
+msgid "Language specific settings for"
+msgstr ""
+
+#: ../templates/admin_page.php:23
+#, php-format
+msgid ""
+"Regardless of selected language, settings marked %s are for ALL languages, "
+"settings marked %s are for the selected language: %s."
+msgstr ""
+
+#: ../templates/admin_page.php:37
+msgid "General settings"
+msgstr ""
+
+#: ../templates/admin_page.php:47
+msgid "Form Title"
+msgstr ""
+
+#: ../templates/admin_page.php:53
+msgid ""
+"This is the title above the form that asks the user to choose what is and is "
+"not allowed"
+msgstr ""
+
+#: ../templates/admin_page.php:61
+msgid "Anchor Title"
+msgstr ""
+
+#: ../templates/admin_page.php:67
+msgid "This is the title of the preferences link"
+msgstr ""
+
+#: ../templates/admin_page.php:74
+msgid "Consent mode."
+msgstr ""
+
+#: ../templates/admin_page.php:78
+msgid "Allow/Deny all cookies"
+msgstr ""
+
+#: ../templates/admin_page.php:79
+msgid "Pick individual"
+msgstr ""
+
+#: ../templates/admin_page.php:83
+msgid ""
+"You can either have the visitor pick individual functionalities or just "
+"Allow/Deny."
+msgstr ""
+
+#: ../templates/admin_page.php:90
+msgid "More info link text."
+msgstr ""
+
+#: ../templates/admin_page.php:97
+msgid "Generic more-info link url."
+msgstr ""
+
+#: ../templates/admin_page.php:103
+msgid "Open in the same window"
+msgstr ""
+
+#: ../templates/admin_page.php:110
+msgid "The name of the cookie."
+msgstr ""
+
+#: ../templates/admin_page.php:116
+msgid "Usually this does not have to be changed."
+msgstr ""
+
+#: ../templates/admin_page.php:123
+msgid "Inform-only remark."
+msgstr ""
+
+#: ../templates/admin_page.php:129
+msgid ""
+"Remark for cookie-types that do not require permission but they do require "
+"the visitor to be informed."
+msgstr ""
+
+#: ../templates/admin_page.php:136
+msgid "The TTL of the cookie. The cookie expires..."
+msgstr ""
+
+#: ../templates/admin_page.php:140
+msgid "never"
+msgstr ""
+
+#: ../templates/admin_page.php:141
+msgid "at browser close"
+msgstr ""
+
+#: ../templates/admin_page.php:142
+msgid "in 5 years"
+msgstr ""
+
+#: ../templates/admin_page.php:143
+msgid "in 1 year"
+msgstr ""
+
+#: ../templates/admin_page.php:144
+msgid "in 6 months"
+msgstr ""
+
+#: ../templates/admin_page.php:145
+msgid "in 1 month"
+msgstr ""
+
+#: ../templates/admin_page.php:146
+msgid "in 1 week"
+msgstr ""
+
+#: ../templates/admin_page.php:147
+msgid "in 1 day"
+msgstr ""
+
+#: ../templates/admin_page.php:148
+msgid "in 12 hours"
+msgstr ""
+
+#: ../templates/admin_page.php:149
+msgid "in 6 hours"
+msgstr ""
+
+#: ../templates/admin_page.php:150
+msgid "in 3 hours"
+msgstr ""
+
+#: ../templates/admin_page.php:151
+msgid "in 1 hour"
+msgstr ""
+
+#: ../templates/admin_page.php:152
+msgid "in 30 minutes"
+msgstr ""
+
+#: ../templates/admin_page.php:153
+msgid "in 15 minutes"
+msgstr ""
+
+#: ../templates/admin_page.php:158
+msgid "When does the preference expire?"
+msgstr ""
+
+#: ../templates/admin_page.php:159
+msgid ""
+"Selecting 'at browser close', a user must set his preference every new "
+"visit. Closing the browser will dismiss the preferences."
+msgstr ""
+
+#: ../templates/admin_page.php:160
+msgid ""
+"With 'never', a user sets his preference once for a hundred years (or the "
+"time the cookies are reset)."
+msgstr ""
+
+#: ../templates/admin_page.php:161
+msgid ""
+"With an expiry time selected, the preference remains for that amount of time."
+msgstr ""
+
+#: ../templates/admin_page.php:178
+msgid "Section"
+msgstr ""
+
+#: ../templates/admin_page.php:187
+#, php-format
+msgid "Site has %s?"
+msgstr ""
+
+#: ../templates/admin_page.php:191 ../templates/admin_page.php:206
+msgid "Yes"
+msgstr ""
+
+#: ../templates/admin_page.php:192 ../templates/admin_page.php:207
+msgid "No"
+msgstr ""
+
+#: ../templates/admin_page.php:196
+msgid "If Yes, set the following options."
+msgstr ""
+
+#: ../templates/admin_page.php:202
+msgid "Default value for new visitors."
+msgstr ""
+
+#: ../templates/admin_page.php:202
+msgid "Remember the rules!!!"
+msgstr ""
+
+#: ../templates/admin_page.php:213
+msgid "Indicative label"
+msgstr ""
+
+#: ../templates/admin_page.php:227
+msgid "Long description"
+msgstr ""
+
+#: ../templates/admin_page.php:236
+msgid "Page for more info"
+msgstr ""
+
+#: ../templates/admin_page.php:246
+msgid ""
+"If denied by visitor, try to un-register the following actions. Please be "
+"careful."
+msgstr ""
+
+#: ../templates/admin_page.php:247
+msgid "Format"
+msgstr ""
+
+#: ../templates/admin_page.php:247 ../templates/admin_page.php:248
+msgid "action_name"
+msgstr ""
+
+#: ../templates/admin_page.php:247
+msgid "function"
+msgstr ""
+
+#: ../templates/admin_page.php:247 ../templates/admin_page.php:248
+msgid "PRIO"
+msgstr ""
+
+#: ../templates/admin_page.php:248
+msgid "For a class method"
+msgstr ""
+
+#: ../templates/admin_page.php:248
+msgid "classname"
+msgstr ""
+
+#: ../templates/admin_page.php:248
+msgid "method"
+msgstr ""
+
+#: ../templates/admin_page.php:249
+msgid "Example"
+msgstr ""
+
+#: ../templates/admin_page.php:254
+#, php-format
+msgid "Found working action removal for CookieOptIn section %s"
+msgstr ""
+
+#: ../templates/admin_page.php:255
+#, php-format
+msgid "For section: %s"
+msgstr ""
+
+#: ../templates/admin_page.php:258
+msgid "FOUND A WORKING REMOVAL??"
+msgstr ""
+
+#: ../templates/admin_page.php:259
+#, php-format
+msgid "Please <a href=\"%s\">MAIL us</a>."
+msgstr ""
+
+#: ../templates/admin_page.php:260
+msgid "We thank you in advance."
+msgstr ""
+
+#: ../templates/admin_page.php:264
+msgid ""
+"The following actions are known to us and ability to remove these actions is "
+"verified."
+msgstr ""
+
+#: ../templates/admin_page.php:282
+msgid "Save settings"
+msgstr ""

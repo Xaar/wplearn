@@ -1,0 +1,121 @@
+#cookie_opt_in_anchor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  height: 30px;
+  width: 30px;
+}
+
+body.admin-bar #cookie_opt_in_anchor {
+  top: 28px;
+}
+
+#cookie_opt_in_toggle {
+  text-indent: -10000em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  height: 30px;
+  width: 30px;
+  background: url(cookie_anchor.gif) no-repeat;
+}
+
+#cookie_opt_in_container {
+  text-align: left;
+  position: absolute;
+  padding: 10px;
+  z-index: 1001;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: auto;
+  -webkit-border-radius: 0 0 0 15px;
+  -moz-border-radius: 0 0 0 15px;
+  -ms-border-radius: 0 0 0 15px;
+  -o-border-radius: 0 0 0 15px;
+  border-radius: 0 0 0 15px;
+  background-color: #000000;
+}
+
+body.admin-bar #cookie_opt_in_container {
+  top: 28px;
+}
+
+
+#cookie_opt_in_container h1 {
+  color: white;
+  font-size: 14px;
+  text-shadow: grey;
+  text-align: center;
+}
+
+#cookie_opt_in_container label {
+  color: white;
+  font-size: 12px;
+  text-shadow: grey;
+  text-align: center;
+}
+
+#cookie_opt_in_container label .qmark {
+  border: 1px solid white;
+  background-color: blue;
+  padding: 0 4px;
+  margin-left: 5px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  cursor: help;
+}
+
+#cookie_opt_in_container span.checkbox {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#cookie_opt_in_container span.info {
+  display: none;
+}
+
+#cookie_opt_in_container input.button {
+  width: 50%;
+  font-size: 12px;
+  margin-left: 25%;
+}
+
+#cookie_opt_in_container input#coia-accept-all, #cookie_opt_in_container input#coia-deny-all {
+  width: 48%;
+  font-size: 12px;
+  margin-left: 1%;
+}
+
+#cookie_opt_in_container .checkbox .info {
+  width: 190px;
+  padding: 15px;
+  height: auto;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
+  background-color: #000000;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  color: white;
+  font-size: 12px;
+}
+
+#cookie_opt_in_container .checkbox .info .always-on{
+  clear: both;
+  display: block;
+  color: #DB3A27;
+}
+
+#cookie_opt_in_container .checkbox .info .more {
+  float: right;
+}

@@ -1,0 +1,277 @@
+/* available tags for easy color changing;
+  For the bar background color, search for            BAR COLOR
+  For the bar text color                              BAR TEXT COLOR
+  For the bar link color and icon                     BAR INFO LINK
+  For the background color of the form                FORM COLOR
+  For the Checkbox-Label color                        FORM LABEL COLOR
+  For the extra information color near a checkbox     FORM INFO COLOR
+  For the color of the generic more info link         FORM MORE INFO COLOR
+  For the color of the no-permission-required notice  FORM NOTICE COLOR
+*/
+
+#cookie_opt_in_top_bar_container {
+  background-color: #333333; /* BAR COLOR */
+}
+
+#cookie_opt_in_container h1 {
+  color: #c4c4c4; /* BAR TEXT COLOR */
+}
+
+#cookie_opt_in_container .coia-show-details {
+  color: #ffffff; /* BAR INFO LINK */
+}
+
+#cookie_opt_in_container form {
+  background: #443b6c; /* FORM COLOR */
+  color: #ffffff; /* FORM TEXT COLOR */
+}
+
+#cookie_opt_in_container form label {
+  color: #ffffff; /* FORM LABEL COLOR */
+}
+
+#cookie_opt_in_container .checkbox .info {
+  color: #c4c4c4; /* FORM INFO COLOR */
+}
+
+#cookie_opt_in_container .checkbox .info .always-on{
+  color: #DB3A27; /* FORM NOTICE COLOR */
+}
+
+#cookie_opt_in_container a,
+#cookie_opt_in_toggle {
+  color: #ffffff; /* FORM MORE INFO COLOR */
+}
+
+/* No more colors after this line */
+
+#cookie_opt_in_top_bar_container *,
+#cookie_opt_in_anchor * {
+  font-family: "Lucida Grande", Arial, sans-serif;
+}
+
+#cookie_opt_in_anchor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+  height: 30px;
+  width: 30px;
+}
+
+body.admin-bar #cookie_opt_in_anchor {
+  top: 28px;
+}
+
+#cookie_opt_in_toggle {
+  text-indent: 55px;
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  z-index: 10001;
+  height: 44px;
+  width: 44px;
+  background: url(cls-anchor.png) no-repeat;
+  -webkit-transition: all 350ms ease-in-out;
+  -moz-transition: all 350ms ease-in-out;
+  -ms-transition: all 350ms ease-in-out;
+  -o-transition: all 350ms ease-in-out;
+  transition: all 350ms ease-in-out;
+  font-size: 12px;
+  line-height: 40px;
+}
+
+#cookie_opt_in_toggle:hover {
+  width: 180px;
+  text-decoration: none;
+  -webkit-transition: all 350ms ease-in-out;
+  -moz-transition: all 350ms ease-in-out;
+  -ms-transition: all 350ms ease-in-out;
+  -o-transition: all 350ms ease-in-out;
+  transition: all 350ms ease-in-out;
+}
+
+#cookie_opt_in_top_bar_container {
+  text-align: left;
+  position: fixed;
+  z-index: 10002;
+  zoom: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  border-bottom: 1px solid #000;
+}
+
+body.admin-bar #cookie_opt_in_top_bar_container {
+  top: 28px;
+}
+
+#cookie_opt_in_container {
+  padding: 0 10px 0 40px;
+}
+
+#cookie_opt_in_container a {
+  text-decoration: none;
+}
+
+#cookie_opt_in_container a:hover {
+  text-decoration: underline;
+}
+
+#cookie_opt_in_container h1 {
+  padding: 12px 0 8px;
+  font-size: 14px;
+  text-shadow: grey;
+  float: left;
+  text-transform: inherit;
+  margin: inherit;
+}
+
+#cookie_opt_in_container form h1 {
+  float: none;
+  clear: none;
+  padding-left: 40px;
+}
+
+#cookie_opt_in_container .coia-bar-buttons {
+  float: right;
+  padding-top: 2px;
+}
+
+#cookie_opt_in_container .coia-bar-buttons input {
+  width: auto;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+#cookie_opt_in_container button.button {
+  width: 144px;
+  height: 40px;
+  border: 0;
+  overflow: hidden;
+  text-indent: 150px;
+  cursor: pointer;
+}
+
+#cookie_opt_in_container button.coia-accept-all {
+  background: transparent url(cls-accept.png) no-repeat left top;
+}
+
+.lang-nl #cookie_opt_in_container button.coia-accept-all {
+  background: transparent url(cls-accept-nl_NL.png) no-repeat left top;
+}
+
+#cookie_opt_in_container button.coia-ok {
+  background: transparent url(cls-save.png) no-repeat left top;
+}
+
+.lang-nl #cookie_opt_in_container button.coia-ok {
+  background: transparent url(cls-save-nl_NL.png) no-repeat left top;
+}
+
+#cookie_opt_in_container button.hover,
+#cookie_opt_in_container button.button:hover {
+  background-position: left bottom;
+}
+
+#cookie_opt_in_container label {
+  font-size: 12px;
+  text-shadow: grey;
+  text-align: center;
+}
+
+#cookie_opt_in_container label .qmark {
+  display: none;
+}
+
+#cookie_opt_in_container form {
+  display: none;
+  background: #313131;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+#cookie_opt_in_container form .coia-bar-buttons {
+  margin-right: 10px;
+}
+
+
+#cookie_opt_in_container span.checkbox {
+  width: auto;
+  height: auto;
+  display: block;
+  clear: both;
+  margin-left: 40px;
+  position: relative;
+  line-height: 18px;
+  margin-bottom: 5px;
+}
+
+#cookie_opt_in_container span.checkbox input {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+#cookie_opt_in_container span.checkbox label,
+#cookie_opt_in_container span.checkbox .info {
+  margin-left: 30px;
+}
+
+#cookie_opt_in_container span.checkbox label {
+  font-weight: bold;
+}
+
+#cookie_opt_in_container input.button {
+  width: auto;
+  font-size: 12px;
+}
+
+#cookie_opt_in_container input#coia-accept-all, #cookie_opt_in_container input#coia-deny-all {
+  width: 48%;
+  font-size: 12px;
+  margin-left: 1%;
+}
+
+#cookie_opt_in_container .checkbox .info {
+  display: block;
+  clear: both;
+  padding-right: 300px;
+  max-width: 800px;
+  _width: 800px;
+  font-size: 12px;
+}
+
+#cookie_opt_in_container .checkbox .info .always-on{
+  clear: both;
+  display: block;
+}
+
+#cookie_opt_in_container .checkbox .info .more {
+  float: right;
+}
+
+#cookie_opt_in_container a.generic-more {
+  margin-left: 70px;
+  padding: 10px 0 40px;
+  display: block;
+}
+
+#cookie_opt_in_container .coia-show-details {
+  background: url(cls-plus-min.png) no-repeat right -23px;
+  padding-right: 30px;
+}
+
+#cookie_opt_in_container .coia-hide-details {
+  background: url(cls-plus-min.png) no-repeat right -2px;
+  padding-right: 30px;
+}
