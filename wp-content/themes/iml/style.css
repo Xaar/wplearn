@@ -1848,7 +1848,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 /* :::::::::::::::::::::::::::::::::::; Heartworks Products Page tabs  ::::::::::::::::::::::::::::::;*/
 
-.product-tabs {
+.product-tabs , .sales-tabs {
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
@@ -1857,8 +1857,8 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	height: 50px;
 	overflow: hidden;
 	position: relative;
-	display: block;
-	margin: 40px auto 0 auto;
+	
+	
  	padding: 0;
  	background: #e1e1e1; /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -1871,9 +1871,11 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	background: linear-gradient(to bottom,  #ffffff 0%,#e1e1e1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-8 */
 
+}
 
-
-
+.product-tabs {
+	margin: 40px auto 0 auto;
+	display: block;
 
 }
 
@@ -2057,12 +2059,12 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 	
 }
 
-.slideshow-icon {
+#slide-icon {
 	width: 40px;
 	height: 40px;
 	opacity: 0.6;
 	position: absolute;
-	bottom: 10px;
+
 	right: 10px;
 	z-index: 40;
 	border: none;
@@ -2070,7 +2072,7 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 
 }
 
-.tabs-gallery:hover > .slideshow-icon {
+.tabs-gallery:hover > #slide-icon {
 	opacity: 1;
 }
 
@@ -2600,14 +2602,32 @@ h2.heading-leftcol {
 ::::::::::::::: Sales and support ::::::::::::::::
 */
 
-#map_inner {
-
-	width: 100% !important;
+.sales-leftcol-wrapper {
+	margin: 0;
+	padding: 0;
 }
 
-#map_inner svg {
+.sales-tabs-wrapper {
+	margin: 0;
+	padding: 0;
+	text-align: center;
 
-	}
+
+}
+
+.sales-tabs {
+	margin: 0 auto;
+	width: 457px;
+	margin: 6px auto 0 auto;
+ 	
+
+}
+
+#map_inner {
+
+	
+}
+
 
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/

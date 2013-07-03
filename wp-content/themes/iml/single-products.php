@@ -127,7 +127,7 @@ foreach($url as $src) {
 
   echo "        <a href='$src' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a>";
 
-  if ($i=='1') echo " <a href='$src' class='slideshow-icon' rel='lightbox[test]'><img src='$theme/images/slideshow-icon.png'/></a>"; 
+  if ($i=='1') echo " <a href='$src' id='slide-icon' class='slideshow-icon' rel='lightbox[test]'><img src='$theme/images/slideshow-icon.png'/></a>"; 
 
 }
 

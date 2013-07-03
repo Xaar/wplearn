@@ -81,6 +81,7 @@ endwhile;
 
 $(document).ready(function () {
     menuTitlePosition();
+/*    slideshowIconPosition();*/
     $(window).resize(function() {
         menuTitlePosition();
     });
@@ -105,6 +106,18 @@ function menuTitlePosition() {
       "top":"20%"
     });
   }
+}
+
+/*function slideshowIconPosition() {
+  var $sIcon =$("#side-icon");
+  var $imgHeight = $("#current-image").height();
+
+  
+    $sIcon.css({
+      "bottom": ($imgHeight-40)+'px'
+    }); */
+   
+  
 }
 
 

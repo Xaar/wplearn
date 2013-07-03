@@ -27,10 +27,10 @@ $(function() {
   </div>
 
   <div class="sales-leftcol-wrapper">
-    <div class="products-tabs-wrapper">
-      <div class="product-tabs">
+    <div class="sales-tabs-wrapper">
+      <div class="sales-tabs">
         <ul class="tabs">
-          <li><a href="#">How to Buy</a></li>
+          <li><a href="#">Distributors</a></li>
           <li><a href="#">Sales Enquiries</a></li>
           <li><a href="#">Support Enquiries</a></li>
         </ul>
@@ -51,7 +51,7 @@ $(function() {
         <!-- FAQ's -->
         <div class="pane">
           <div class="faq-text col">
-          <h2>Frequently Asked Questions</h2>
+          <h2>Submit a Sales Enquiries</h2>
 <?=do_shortcode('[si-contact-form form=\'1\']');?>
 
           </div>
@@ -60,7 +60,7 @@ $(function() {
         <!-- Enquiries -->
         <div class="pane">
           <div class="tabs-contact col">
-             <h2>Submit an Enquiry</h2>
+             <h2>Submit a Support Enquiry</h2>
 <?=do_shortcode('[si-contact-form form=\'1\']');?>
           </div>
         </div><!-- pane -->
