@@ -41,10 +41,10 @@ $(function() {
         <div class="pane">
           <div class="tabs-text col">
             <h2>Find a distributor</h2>
+          </div>
 <?=do_shortcode('[simplemap]');?>
-            <div class="cta-green-inline">
-              <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
-            </div>
+          <div class="cta-green-inline">
+            <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
           </div>
         </div><!-- pane -->
 

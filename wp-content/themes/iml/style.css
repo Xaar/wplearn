@@ -2008,7 +2008,7 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 
 
 .panes div div {
-	display: inline-block;
+	display: block;
 }
 
 .tabs-text {
@@ -2991,16 +2991,22 @@ h2{
     }
 
 
+#map_inner {
+	position: relative;
+}
 
-
-#tt_14 {
-	top: auto !important;
-	left: 20px !important;
-	bottom: 20px !important;
-	width: 300px !important;
-	color: white !important;
-	filter: alpha(opacity=50) !important;
-	opacity: 0.5 !important;
+#tt {
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	display: block;
+	left: 20px;
+	bottom: 20px;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+	text-align: left;
+	z-index:10000;
 }
 
 #modal-wrapper {
