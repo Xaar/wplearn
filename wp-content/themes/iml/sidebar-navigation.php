@@ -88,37 +88,26 @@ $(document).ready(function () {
 });
 
 function menuTitlePosition() {
-  var $menuTitle =$("#hw-menu-title-txt");
-  var $menuTitleHeight = $("#hw-menu-title-txt").height();
+  var menuTitle =$("#hw-menu-title-txt");
+  var menuTitleHeight = $("#hw-menu-title-txt").height();
 
-  if ($menuTitleHeight > 30 && $menuTitleHeight < 45 ) {
-    $menuTitle.css({
+  if (menuTitleHeight > 30 && menuTitleHeight < 45 ) {
+    menuTitle.css({
       "top":"9%"
     });
   }
-   else if ($menuTitleHeight >= 45 ) {
-    $menuTitle.css({
+   else if (menuTitleHeight >= 45 ) {
+    menuTitle.css({
       "top":"0"
     });
   }
   else {
-    $menuTitle.css({
+    menuTitle.css({
       "top":"20%"
     });
   }
 }
 
-/*function slideshowIconPosition() {
-  var $sIcon =$("#side-icon");
-  var $imgHeight = $("#current-image").height();
-
-  
-    $sIcon.css({
-      "bottom": ($imgHeight-40)+'px'
-    }); */
-   
-  
-}
 
 
 </script>
