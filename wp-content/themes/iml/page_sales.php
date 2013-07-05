@@ -38,31 +38,58 @@ $(function() {
 
       <div class="panes">
         <!-- MAP -->
-        <div class="pane">
-          <div class="tabs-text col">
-            <h2>Find a distributor</h2>
-          </div>
+        <div class="pane pane-sales">
+          
+            <h2>Find a Heartworks distributor</h2>
+          <p>Click on the map to find a Heartworks distributor in your region</p>
 <?=do_shortcode('[simplemap]');?>
-          <div class="cta-green-inline">
-            <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
-          </div>
+          
+          <hr/>
+          
+          <div class="sales-team">
+          <h2>Contact our Sales Team Directly</h2>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+        <div class="row">
+        <div class="contact-sales">
+          <h2>Craig Henshaw</h2>
+          <h3>Global Sales Manager</h3>
+          <p>Tel: +44 (0) 203 447 9360<br/>
+              Mob: +44 (0) 790 801 0253<br/>
+              <a href="mailto:craig.henshaw@inventivemedical.com">craig.henshaw@inventivemedical.com</a></p>
+        </div>
+        <div class="contact-sales">
+          <h2>Thomas Brown</h2>
+          <h3>Vice President North American Sales (Eastern Region) </h3>
+          <p>Tel: +44 (0) 203 447 9360<br/>
+              Mob: +44 (0) 790 801 0253<br/>
+              <a href="mailto:craig.henshaw@inventivemedical.com">craig.henshaw@inventivemedical.com</a></p>
+        </div>
+        <div class="contact-sales">
+          <h2>Michelle Press</h2>
+          <h3>UK & Europe Sales Manager</h3>
+          <p>Tel: +44 (0) 203 447 9360<br/>
+              Mob: +44 (0) 790 801 0253<br/>
+              <a href="mailto:craig.henshaw@inventivemedical.com">craig.henshaw@inventivemedical.com</a></p>
+        </div>
+      </div><!-- row -->
+        </div><!-- sales-team -->
         </div><!-- pane -->
 
         <!-- FAQ's -->
-        <div class="pane">
-          <div class="faq-text col">
-          <h2>Submit a Sales Enquiries</h2>
+        <div class="pane pane-sales">
+         <h2>Submit a Sales Enquiries</h2>
+
 <?=do_shortcode('[si-contact-form form=\'1\']');?>
 
-          </div>
+         
         </div><!-- pane -->
       
         <!-- Enquiries -->
-        <div class="pane">
-          <div class="tabs-contact col">
+        <div class="pane pane-sales">
+          
              <h2>Submit a Support Enquiry</h2>
 <?=do_shortcode('[si-contact-form form=\'1\']');?>
-          </div>
+        
         </div><!-- pane -->
       </div> <!-- close panes -->
     </div><!-- products-tabs-wrapper -->

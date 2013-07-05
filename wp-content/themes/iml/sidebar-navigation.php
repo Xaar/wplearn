@@ -107,16 +107,5 @@ function menuTitlePosition() {
     });
   }
 }
-
-/*function slideshowIconPosition() {
-  var $sIcon =$("#side-icon");
-  var $imgHeight = $("#current-image").height();
-
-  
-    $sIcon.css({
-      "bottom": ($imgHeight-40)+'px'
-    }); */
-   
-  
 </script>
 

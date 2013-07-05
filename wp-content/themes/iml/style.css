@@ -1374,7 +1374,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 .hw-menu-collapsed h1 {
 	color: #c00;
 	position: absolute;
-	top: 30%;
 	line-height: 1.2em;
 	display: inline;
 
@@ -2000,8 +1999,8 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 
     display:none;
     padding:20px 10px;
-    border:none;
-    background-color:#fff;
+
+  
     clear: both;
     float: none;
 }
@@ -2617,9 +2616,60 @@ h2.heading-leftcol {
 
 .sales-tabs {
 	margin: 0 auto;
-	width: 457px;
+	width: 100%;
 	margin: 6px auto 0 auto;
  	
+
+}
+
+.sales-tabs ul {
+	width: 457px;
+	margin: 0 auto;
+	text-align: center;
+	display: inline-block;
+	}
+
+.pane-sales h2 {
+	color: #c00;
+
+}	
+
+	#map_inner {
+	position: relative;
+}
+
+.distributor {
+	margin: 5px 0;
+}
+
+#tt {
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	display: block;
+	left: 20px;
+	bottom: 20px;
+	filter: alpha(opacity=20);
+	opacity: 0.2;
+	text-align: left;
+	z-index:10000;
+	border-radius: 6px;
+	-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	-moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+}
+
+#ttcont {
+	background-color: #f0f0f0;
+	padding: 20px 80px 20px 20px;
+	border: 1px solid #ddd;
+	
+}
+
+#ttcont h3 {
+	margin: 0;
+	padding: 0;
 
 }
 
@@ -2628,6 +2678,34 @@ h2.heading-leftcol {
 	
 }
 
+.sales-team {
+
+}
+
+.contact-sales {
+	width: 28%;
+	float: left;
+	position: relative;
+	display: inline-block;
+	text-align: left;
+	margin: 10px 0 5% 30px;
+
+
+}
+
+.row .contact-sales:first-child {
+	margin-left: 0 !important;
+}
+
+.contact-sales h2 {
+	color: #333;
+	margin: 5px 0;
+	padding: 0;
+}
+
+.contact-sales h3 {
+	margin: 0;
+}
 
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
@@ -2991,23 +3069,7 @@ h2{
     }
 
 
-#map_inner {
-	position: relative;
-}
 
-#tt {
-	position: absolute;
-	padding: 0;
-	margin: 0;
-	overflow: hidden;
-	display: block;
-	left: 20px;
-	bottom: 20px;
-	filter: alpha(opacity=50);
-	opacity: 0.5;
-	text-align: left;
-	z-index:10000;
-}
 
 #modal-wrapper {
 	top: 120px;
