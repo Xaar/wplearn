@@ -12,7 +12,7 @@ at caroufredsel.dev7studios.com
 $(window).load(function() {
   $(".carousel-ul").carouFredSel({
     circular: true, infinite: true, width: "100%", height: 200,
-    items: { visible: 4, width: 180, height: 200 },
+    items: { visible: "variable", width: 180, height: 200 },
     scroll: { items: 1, fx: "scroll", duration: "auto" },
     auto: false,
     prev: { button: ".previous", key: "left" },
