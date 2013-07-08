@@ -55,21 +55,21 @@ $(function() {
           <h3>Global Sales Manager</h3>
           <p>Tel: +44 (0) 203 447 9360<br/>
               Mob: +44 (0) 790 801 0253<br/>
-              <a href="mailto:craig.henshaw@inventivemedical.com">craig.henshaw@inventivemedical.com</a></p>
+              <a href="mailto:craig.henshaw@inventivemedical.com">Email Craig</a></p>
         </div>
         <div class="contact-sales">
           <h2>Thomas Brown</h2>
           <h3>Vice President North American Sales (Eastern Region) </h3>
           <p>Tel: +44 (0) 203 447 9360<br/>
               Mob: +44 (0) 790 801 0253<br/>
-              <a href="mailto:craig.henshaw@inventivemedical.com">craig.henshaw@inventivemedical.com</a></p>
+              <a href="mailto:craig.henshaw@inventivemedical.com">Email Thomas</a></p>
         </div>
         <div class="contact-sales">
           <h2>Michelle Press</h2>
           <h3>UK & Europe Sales Manager</h3>
           <p>Tel: +44 (0) 203 447 9360<br/>
               Mob: +44 (0) 790 801 0253<br/>
-              <a href="mailto:craig.henshaw@inventivemedical.com">craig.henshaw@inventivemedical.com</a></p>
+              <a href="mailto:craig.henshaw@inventivemedical.com">Email Michelle</a></p>
         </div>
       </div><!-- row -->
         </div><!-- sales-team -->
