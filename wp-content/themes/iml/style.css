@@ -2740,6 +2740,26 @@ TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
 
 		}
 
+.dk_container {
+	top: 0 !important;
+	left: 40% !important;
+	position: relative !important;
+    		float: none !important;
+			height: auto !important;
+			display: inline-block !important;
+}		
+
+.clear-nav {
+	margin-top: 0 !important;
+}	
+
+#filter {
+	float: none;
+	display: inline-block !important;
+	margin: 0 auto !important;
+	position: relative;
+}	
+
 h1 {
 	font-size: 16px;
 
@@ -2862,6 +2882,10 @@ h2{
         	min-width: 240px !important;
         	max-width: 400px !important;
         }
+
+ .sidebar-wrapper {
+ 	display: none;
+ }       
      
 
 .hero-content {
@@ -2875,8 +2899,15 @@ h2{
 
 .content-listing img {
 	display: none;
-}      
-        
+}   
+.news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper {
+margin: 0 auto !important;
+        	position: relative !important;
+        	padding: 0 !important;
+        	float: none !important;
+        	display: block !important;
+        	margin: 0 auto !important;   
+        }
         /*
         Add your semantic classnames in alongside their corresponding spans here. e.g.
         
@@ -2901,14 +2932,16 @@ h2{
 .span_5  {
             width:54.6666666667%;
         }
-.span_6  , .news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper {
+.span_6   {
             width:66.0%;
         }
 .span_7 {
             width:77.3333333333%;
         }
 .span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , 
-.hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper , .tabs-text {
+.hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper , .tabs-text ,
+.news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper
+		{
             width:88.6666666667% !important;
         }
 .span_9  , .menu-mainnav-container , .logo {

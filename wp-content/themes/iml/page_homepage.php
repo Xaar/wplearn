@@ -11,6 +11,7 @@ define("THISPAGE", "home");
 <?php get_header(); ?>
 
 
+
 		<div id="content" class="hero-content row clear-nav" role="main">
 			
 
