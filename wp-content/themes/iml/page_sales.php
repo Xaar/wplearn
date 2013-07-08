@@ -20,7 +20,7 @@ $(function() {
 
 <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>-->
 
-<div id="content" class="hero-content row" role="main">
+<div id="content" class="hero-content row clear-nav" role="main">
 
   <div class="page-title row">
     <h1>Sales and Support</h1>

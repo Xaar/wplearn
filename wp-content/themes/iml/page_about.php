@@ -10,7 +10,7 @@ define("THISPAGE", "about");
 
 <?php get_header(); ?>
 
-<div id="content" class="hero-content row" role="main">
+<div id="content" class="hero-content row clear-nav" role="main">
   	<div class="page-title row">
 
 		<h1>About Inventive Medical</h1>

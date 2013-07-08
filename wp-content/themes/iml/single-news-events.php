@@ -9,7 +9,7 @@ define("THISPAGE", "news-events");
 
 get_header(); 
 ?>
-<div class="page-wrapper site-content single-news">
+<div class="page-wrapper site-content single-news clear-nav">
 	<?php
 			$oid = $post->ID; 
 			$type = strtolower(get_post_meta($oid, "article_type", true));

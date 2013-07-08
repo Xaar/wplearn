@@ -25,7 +25,7 @@ jQuery(document).ready(function($){
   });
 });
 </script>
-<div class="page-wrapper site-content">
+<div class="page-wrapper site-content clear-nav">
 	
 	<div class="page-title row">
 
