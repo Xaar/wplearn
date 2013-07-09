@@ -29,7 +29,7 @@ get_header();
 			<div><?php the_post_thumbnail('sixteen-nine-large'); ?></div>
                         <div class="hero-<?=$type;?>-listing-text">
                                <p class="news-event-summary"><?php echo get_post_meta($oid, ('summary'), true); ?></p>
-                                <p><?php echo get_post_meta($oid, ('article'), true); ?></p>
+                                <?php the_field('article'); ?>
 				<div class="social-buttons">
 					<h3>Share this:</h3>
 					<!-- AddThis Button BEGIN -->
