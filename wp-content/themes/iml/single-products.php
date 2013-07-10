@@ -35,8 +35,7 @@ get_sidebar('navigation');
     <div class="hero-product-listing-text col">
       <h3><?=(get_post_meta($postid, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
       <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
-      <?php the_field('product_description'); ?>
-      </p>
+      <?php the_field('product_description', $postid); ?>
       <div class="cta-green">
                   <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">New test &raquo; </a> 
                  </div>
@@ -139,8 +138,24 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
         $pathologies = get_post_meta($postid, ('pathologies'), true);
         foreach($pathologies as $module) {?>
       <div class="pane">
-        <h2><?=get_the_title($module);?></h2>
-        <p><?=get_post_meta($postid, ('content'), true); ?></p>				
+        <div class="tabs-text col">
+          <h2><?=get_the_title($module);?></h2>
+          <?=get_post_meta($module, ('content'), true); ?>
+        </div>
+
+        <div class="tabs-gallery">
+<?php
+$i=0;
+foreach($url as $src) {
+  $i++;
+  $visible = ($i=='1') ? " " : "style='display:none' ";
+
+  echo "        <a href='$src' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a>";
+
+  if ($i=='1') echo " <a href='$src' id='slide-icon' class='slideshow-icon' rel='lightbox[test]'><img src='$theme/images/slideshow-icon.png'/></a>";
+
+}
+?>        </div><!-- tabs-gallery -->
       </div>
 
 <?php   }
@@ -153,7 +168,7 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
 <?php
 $questions = get_post_meta($postid, ('frequently_asked_questions'), true);
 foreach($questions as $var => $val) {
-  echo "        <h3 class=\'faq-question\'>". get_the_title($val) . "</h3> <p>" . get_post_meta($val, 'answer', true) . "</p><br>";
+  echo "        <h3 class='faq-question'>". get_the_title($val) . "</h3> <p>" . get_post_meta($val, 'answer', true) . "</p><br>";
 }?>
       </div>
     </div>
