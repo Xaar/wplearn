@@ -729,7 +729,7 @@ p , a {
 .product-carousel, .gateway-promo-wrapper , .page-title , .hw-menu-collapsed, .hw-menu-expanded-wrapper, .hero-product-content ,
 .products-tabs-wrapper , .hw-endorsements {
      width: 90%;
-     min-width: 440px;
+     min-width: 240px;
      max-width: 1280px;
      overflow:hidden;
      position:relative;
@@ -2768,6 +2768,8 @@ Device-pixel-ratio: 2
 	position: relative;
 }	
 
+
+
 h1 {
 	font-size: 16px;
 
@@ -2916,6 +2918,12 @@ margin: 0 auto !important;
         	display: block !important;
         	margin: 0 auto !important;   
         }
+
+.cta-gateway {
+
+	min-width: 120px;
+
+}         
         /*
         Add your semantic classnames in alongside their corresponding spans here. e.g.
         
