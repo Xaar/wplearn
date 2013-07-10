@@ -2714,7 +2714,7 @@ h2.heading-leftcol {
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
  
-    /* 1. 9 Column Grid 0px - 939px 
+    /* 1. 9 Column Grid 0px - 767px 
     ----------------------------------------------------------------------------- 
     
     Span 1:    9.33333333333%
@@ -2730,8 +2730,15 @@ h2.heading-leftcol {
     ----------------------------------------------------------------------------- */
 /*
 TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
+Screen Width = 320px (CSS Pixels)
+Screen Height = 568px (CSS Pixels)
+
+Screen Width = 640px (Actual Pixels)
+Screen Height = 1136px (Actual Pixels)
+
+Device-pixel-ratio: 2
 */
-    @media screen and (min-width: 0px) and (max-width: 840px) {
+    @media screen and (min-width: 320px) and (max-width: 767px), screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
         
 .site-header {
     		position: relative;
@@ -2970,7 +2977,7 @@ margin: 0 auto !important;
     
     ----------------------------------------------------------------------------- */
 
-@media screen and (min-width: 841px) and (max-width: 1099px) {
+@media screen and (min-width: 768px) and (max-width: 1099px) {
         
 .col {
            margin-left:2%;
