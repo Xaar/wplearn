@@ -1650,7 +1650,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	width: 166px;
 	height: 150px;
 	display: block;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 
 }
