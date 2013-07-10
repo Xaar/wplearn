@@ -36,8 +36,7 @@ get_sidebar('navigation');
       <h3><?=(get_post_meta($postid, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
       <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
       <?php the_field('product_description'); ?>
-      
-      
+      </p>
       <div class="cta-green">
                   <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">New test &raquo; </a> 
                  </div>
@@ -64,7 +63,7 @@ echo insert_videos($videos);
   <div class="hw-endorsements-wrapper">
     <div class="hw-endorsements row">
       <div class = "product-quote col">
-       <?php the_field('quote'); ?>
+        <?php the_field('quote'); ?>
         <p class="quote-credit"><?=get_post_meta($postid, ('quote_credit'), true); ?></p>
       </div>
 
@@ -103,8 +102,8 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
     <div class="panes">
       <div class="pane">
         <div class="tabs-text col">
-          <h2>More About Heartworks <?=get_the_title($postid);?></h2>
-           <?php the_field('product_overview'); ?>
+          <h2>More About Heartworks <?=the_title();?></h2>
+          <?php the_field('product_overview'); ?>
           <div class="cta-green-inline">
             <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
           </div>
@@ -141,7 +140,7 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
         foreach($pathologies as $module) {?>
       <div class="pane">
         <h2><?=get_the_title($module);?></h2>
-       <?php the_field('content'); ?>				
+        <p><?=get_post_meta($postid, ('content'), true); ?></p>				
       </div>
 
 <?php   }
