@@ -1234,7 +1234,7 @@ height: 70px;
 overflow: hidden;
 	position: relative;
 	display: block;
-	margin: 96px auto 20px auto !important;
+	margin: 96px auto 20px auto;
  	padding: 0;
  	background: #ffffff; /* Old browsers */
 /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -2744,6 +2744,7 @@ Device-pixel-ratio: 2
     		position: relative;
     		float: none;
 			height: auto;
+			z-index: 2000;
 
 
 		}
@@ -2782,7 +2783,7 @@ h2{
 
 
 #header_inner_wrapper {
-			height: auto;
+			height: 380px;
 		}
 
 #header_inner_wrapper .logo {
@@ -2810,7 +2811,7 @@ h2{
 
 .menu-mainnav-container	{
 	display: block;
-    float: left;
+    float: none;
     height: auto;
     margin: 0 auto !important;
     position: relative;
@@ -2821,22 +2822,34 @@ h2{
 .menu-mainnav-container ul {
 		margin: 20px auto !important;
 		text-align: center !important;
-		display: inline;
+		display: inline-block;
 		padding: 0;
 		position: relative;
 		height: auto;
-		width: auto;
-		left: 50%;
+		width: 100%;
+		
 
 }
 
 .menu-mainnav-container ul li {
-
-	display: inline !important;
-	width: auto;
-	right: 50%;
+	float: none;
+	display: inline-block !important;
+	width: 100%;
+	
 	padding: 0;
+	border-left: none;
+	border-bottom: 1px solid #999;
+	border-bottom: 1px solid #666;
+	border-right: none;
 
+}
+
+.menu-mainnav-container ul li:first-child {
+	border-top: none;
+}
+
+.menu-mainnav-container ul li:last-child {
+	border-bottom: none;
 }
 
 .menu-mainnav-container ul a {
@@ -2871,6 +2884,153 @@ h2{
 
         	display: none;
         }
+
+/*	::::::::::::::::::: HW menu FOR MOBILE ::::::::::::::::::::*/
+
+
+.hw-menu-collapsed {
+	margin: 20px auto 5px auto;
+}
+
+.hw-menu-expanded-wrapper {
+
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	-moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+	overflow: hidden;
+	position: relative;
+	display: block;
+	margin: 20px auto;
+ 	padding: 0;
+ 	background: #ffffff; 
+ 
+
+}
+
+.hw-menu-expanded-title {
+
+	background: #fff;
+	height: auto;
+	width: 100%;
+	display: block;
+	float: none;
+	padding: 20px;
+	margin: 0 auto;
+}
+
+.hw-menu-expanded-title h1 {
+	display: inline;
+	position: relative;
+	float: left;
+}
+
+.hw-menu-expanded-logo {
+
+	display: inline;
+	position: relative;
+	float: right;
+	top: 0;
+}
+
+.hw-menu-content-wrapper {
+	width: 100%;
+	margin: 0;
+	display: block;
+	position: relative;
+	background: #f0f0f0;
+
+}
+
+.hw-menu-content-wrapper:hover {
+	background: #ededed;
+	}
+
+.hw-menu-lists {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	background: #fff;
+
+}
+
+.hw-menu-list {
+	
+	padding:0;
+	float: none;
+		margin: 0 auto;
+		display: block;
+
+	width: 97%
+
+
+}
+
+.hw-menu-list h2 {
+
+	padding: 10px 0;
+}
+
+.hw-menu-list ul {
+	margin: 0;
+	padding: 0 0 30px 0;
+	text-align: center;
+}
+
+.hw-menu-list ul li {
+
+	padding: 10px 6px;
+	border: 1px solid #f0f0f0;
+
+}
+
+
+a.hw-menu-link {
+	width: 100%;
+	height: 100%;
+	display: block;
+	text-decoration: none;
+	
+
+
+}
+
+.hw-menu-arrow {
+	
+	width: 7px;
+	height: 11px;
+	position: relative;
+	float: right;
+	top: 5px;
+	background-image: url('images/hw-menu-list-arrows.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	
+}
+a.hw-menu-link:hover > div.hw-menu-arrow {
+
+	background-position: -7px 0;
+}
+
+
+.hw-menu-category-icon {
+	display: block;
+	position: relative;
+	top: 5px;
+	margin: 8px auto;
+	background-image: url('images/hw-menu-icons.png');
+	background-repeat: no-repeat;
+
+
+}
+
+#about-icon , #elearn-icon , #simulator-icon , #professional-icon{
+display: none;
+
+}
+
+  
 
 .heroTxtContent {
         	margin: 0 auto !important;
@@ -2923,7 +3083,16 @@ margin: 0 auto !important;
 
 	min-width: 120px;
 
-}         
+} 
+
+.tabs {
+	width: 100%;
+
+}
+
+.tabs li {
+	width: auto;
+}
         /*
         Add your semantic classnames in alongside their corresponding spans here. e.g.
         
@@ -2951,12 +3120,12 @@ margin: 0 auto !important;
 .span_6   {
             width:66.0%;
         }
-.span_7 {
+.span_7  {
             width:77.3333333333%;
         }
 .span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , 
 .hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper , .tabs-text ,
-.news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper
+.news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper , .hw-menu-lists
 		{
             width:88.6666666667% !important;
         }
@@ -3028,10 +3197,10 @@ h2{
 .span_7 , .tabs-gallery {
             width:57.5%;
         }
-.span_8 , .featured-prod-img {
-            width:66.0%;
+.span_8 , .featured-prod-img  {
+            width:66.0% !important;
         }
-.span_9 , .news-leftcol-wrapper , .event-leftcol-wrapper , .about-leftcol-wrapper , .sales-leftcol-wrapper {
+.span_9 , .news-leftcol-wrapper , .event-leftcol-wrapper , .about-leftcol-wrapper , .sales-leftcol-wrapper  {
 
             width:74.5%;
         }

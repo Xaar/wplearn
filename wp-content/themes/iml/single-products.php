@@ -25,7 +25,7 @@ $(function() {
 });
 </script>
 
-<?php 
+<?php
 $postid=$post->ID;
 get_sidebar('navigation');
 ?>
@@ -37,10 +37,10 @@ get_sidebar('navigation');
       <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
       <?php the_field('product_description', $postid); ?>
       <div class="cta-green">
-                  <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">New test &raquo; </a> 
+                  <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">New test &raquo; </a>
                  </div>
                 <div class="cta-green">
-                  <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">Learn more &raquo; </a> 
+                  <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">Learn more &raquo; </a>
                  </div>
     </div><!-- hero-product-listing-text -->
     <div class="hero-product-img">
@@ -87,14 +87,14 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
         <li><a href="#"><?=get_the_title($module);?></a></li>
 <?php
   }
-}		
+}
 ?>
         <li><a href="#">FAQ</a></li>
         <li><a href="#">Enquiries</a></li>
       </ul>
 
       <div class="cta-green-tabs right">
-        <a href= "">How to Buy &raquo; </a> 
+        <a href= "">How to Buy &raquo; </a>
       </div>
     </div><!-- product-tabs -->
 
@@ -126,7 +126,7 @@ foreach($url as $src) {
 
   echo "        <a href='$src' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a>";
 
-  if ($i=='1') echo " <a href='$src' id='slide-icon' class='slideshow-icon' rel='lightbox[test]'><img src='$theme/images/slideshow-icon.png'/></a>"; 
+  if ($i=='1') echo " <a href='$src' id='slide-icon' class='slideshow-icon' rel='lightbox[test]'><img src='$theme/images/slideshow-icon.png'/></a>";
 
 }
 
@@ -172,7 +172,7 @@ foreach($questions as $var => $val) {
 }?>
       </div>
     </div>
-      
+
       <!-- Enquiries -->
       <div class="pane">
         <div class="tabs-contact col">
