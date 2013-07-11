@@ -710,7 +710,7 @@ body {
 #header_inner_wrapper {
 	padding: 0;
 	height: 60px;
-	display: inline;
+	display: block;
 }
 
 .site-header form {
@@ -2731,6 +2731,7 @@ h2.heading-leftcol {
 
 #header_inner_wrapper {
 	height: 380px;
+	display: inline;
 }
 
 #header_inner_wrapper .logo {
