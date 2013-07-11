@@ -149,17 +149,3 @@ jQuery('.open-navmodal').click(function(e){
   $('#navmodal').trigger('openModal');
   e.preventDefault();
 });
-
-jQuery(document).ready(function() {
-	jQuery(".nav-button").click(function() {
-		mobileMenu()
-	});
-
-jQuery(window).resize(function(){
-	var b=jQuery("nav").outerHeight();
-	if(jQuery(window).width()<815&&jQuery(window).height()<b)
-		{var a=jQuery(window).height()-96;jQuery("nav").css({height:a+"px",overflow:"scroll"})}
-	else{jQuery("nav").removeAttr("style")}if(jQuery(window).width()>815){jQuery("nav").removeAttr("style")}})});
-function mobileMenu(){
-	jQuery("nav").slideToggle();jQuery("nav").toggleClass("mobile-menu")
-};

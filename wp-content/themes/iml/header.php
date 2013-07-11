@@ -50,7 +50,7 @@
   </header><!-- #masthead -->
   <script>
     $(document).ready(function () {
-      if($(window).width()<=750) {
+      if($(window).width()<=950) {
         $('.site-title').css('display', 'none');
         $('.mobile-site-title').css('display', 'inline');
         $(".menu-mainnav-container").slideUp();
@@ -64,7 +64,7 @@
 
     $(window).resize(function () {
       var width = $(this).width();
-      if(width<=750){
+      if(width<=950){
         $('.site-title').css('display', 'none');
         $('.mobile-site-title').css('display', 'inline');
         $(".menu-mainnav-container").slideUp(10);
