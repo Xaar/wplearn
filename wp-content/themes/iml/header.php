@@ -31,7 +31,8 @@
 
     <div id="header_inner_wrapper">
       <div class="logo">
-        <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
+        <h1 class="site-title" ><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
+        <h1 class="mobile-site-title" style='display:none'><a href="#" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
       </div>
 
       <nav id="site-navigation" class="navigation-main" role="navigation">
@@ -47,3 +48,30 @@
     </div> <!-- header_inner_wrapper -->
     <hr />
   </header><!-- #masthead -->
+  <script>
+    $(document).ready(function () {
+      if($(window).width()<=750) {
+        $('.site-title').css('display', 'none');
+        $('.mobile-site-title').css('display', 'inline');
+        $(".menu-mainnav-container").slideUp();
+      }
+    });
+
+    $('.mobile-site-title').on('click', (function(){
+      console.log('success');
+      $(".menu-mainnav-container").slideToggle(10);
+    }));
+
+    $(window).resize(function () {
+      var width = $(this).width();
+      if(width<=750){
+        $('.site-title').css('display', 'none');
+        $('.mobile-site-title').css('display', 'inline');
+        $(".menu-mainnav-container").slideUp(10);
+      }else{
+        $('.site-title').css('display', 'inline');
+        $('.mobile-site-title').css('display', 'none');
+        $(".menu-mainnav-container").slideDown(10);
+      }
+    });
+</script>

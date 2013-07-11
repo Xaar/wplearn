@@ -778,7 +778,7 @@ body {
 #header_inner_wrapper {
 	padding: 0;
 	height: 60px;
-
+	display: inline;
 }
 
 .site-header form {
@@ -2783,59 +2783,55 @@ h2{
 
 
 #header_inner_wrapper {
-			height: 380px;
-		}
+	height: 380px;
+}
 
 #header_inner_wrapper .logo {
-			width: 100%;
-			position: relative;
-			display: block;
-			float: none;
-		}
+	width: 100%;
+	position: relative;
+	display: block;
+	float: none;
+}
 
 .logo img {
-			margin: 0 auto;
-			display: block;
-			position: relative;
-
-		}
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	padding-bottom: 10px;
+}
 
 
 
 .menu-mainnav-container {
-			width: 100%;
-			position: relative;
-			display: block;
-			float: none;
-		}
+	width: 100%;
+	position: relative;
+	display: block;
+	float: none;
+}
 
 .menu-mainnav-container	{
 	display: block;
-    float: none;
-    height: auto;
-    margin: 0 auto !important;
-    position: relative;
+	float: none;
+	height: auto;
+	margin: 0 auto !important;
+	position: relative;
 	width: 100%;
-
 }	
 
 .menu-mainnav-container ul {
-		margin: 20px auto !important;
-		text-align: center !important;
-		display: inline-block;
-		padding: 0;
-		position: relative;
-		height: auto;
-		width: 100%;
-		
-
+	margin: 20px auto !important;
+	text-align: center !important;
+	display: inline-block;
+	padding: 0;
+	position: relative;
+	height: auto;
+	width: 100%;
 }
 
 .menu-mainnav-container ul li {
 	float: none;
 	display: inline-block !important;
 	width: 100%;
-	
 	padding: 0;
 	border-left: none;
 	border-bottom: 1px solid #999;
