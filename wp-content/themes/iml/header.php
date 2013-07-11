@@ -65,11 +65,15 @@
     $(window).resize(function () {
       var width = $(this).width();
       if(width<=950){
+        $('.header_inner_wrapper').addClass('mobile_header_inner_wrapper');
+        $('.mobile_header_inner_wrapper').removeClass('header_inner_wrapper');
         $('.site-title').css('display', 'none');
         $('.mobile-site-title').css('display', 'inline');
         $(".menu-mainnav-container").slideUp(10);
       }else{
-        $('.site-title').css('display', 'inline');
+        $('.mobile_header_inner_wrapper').addClass('header_inner_wrapper');
+        $('.header_inner_wrapper').removeClass('mobile_header_inner_wrapper');
+        $('.site-title').css('display', 'block');
         $('.mobile-site-title').css('display', 'none');
         $(".menu-mainnav-container").slideDown(10);
       }
