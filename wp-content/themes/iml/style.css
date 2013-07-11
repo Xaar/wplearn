@@ -2766,7 +2766,7 @@ h2.heading-leftcol {
 }	
 
 .mobile-menu-mainnav-container ul {
-	margin: 20px auto !important;
+	margin: 0 auto !important;
 	text-align: center !important;
 	display: inline-block;
 	padding: 0;
@@ -2812,12 +2812,14 @@ h2.heading-leftcol {
  .mobile_header_inner_wrapper input[name="s"] {
 
    top: 30px;
+   z-index: 2002;
 
 }
 
 
   .mobile_header_inner_wrapper input[name="navsearchbtn"] {
     top: 30px;
+    z-index: 2002;
 }
 
 .mobile-nav-icon {
@@ -2832,7 +2834,7 @@ h2.heading-leftcol {
 	width: 100%;
 	height: 80px;
 	position: absolute;
-	z-index: 2002;
+	z-index: 2001;
 	top: 0;
 	left: 0;
 	padding-top: 40px;
