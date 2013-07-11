@@ -403,75 +403,7 @@ a:active {
 /* =Menu
 ----------------------------------------------- */
 
-.menu-mainnav-container {
 
-	float: left;
-
-}
-.menu-mainnav-container ul {
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-.menu-mainnav-container li {
-	float: left;
-	position: relative;
-}
-.menu-mainnav-container a {
-	display: block;
-	text-decoration: none;
-}
-.menu-mainnav-container ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	display: none;
-	float: left;
-	position: absolute;
-		top: 1.5em;
-		left: 0;
-	z-index: 99999;
-}
-.menu-mainnav-container ul ul ul {
-	left: 100%;
-	top: 0;
-}
-.menu-mainnav-container ul ul a {
-	width: 200px;
-}
-/*.menu-mainnav-container ul ul li {
-}
-.menu-mainnav-container li:hover > a {
-}
-.menu-mainnav-container ul ul :hover > a {
-}
-.menu-mainnav-container ul ul a:hover {
-}*/
-.menu-mainnav-container ul li:hover > ul {
-	display: block;
-}
-/*.menu-mainnav-container li.current_page_item a,
-.menu-mainnav-container li.current-menu-item a {
-}*/
-
-/* Small menu */
-.menu-toggle {
-	display: none;
-	cursor: pointer;
-}
-
-.main-small-navigation ul {
-	display: none;
-}
-
-@media screen and (max-width: 600px) {
-	.menu-toggle,
-	.main-small-navigation ul.nav-menu.toggled-on {
-		display: block;
-	}
-
-	.menu-mainnav-container ul {
-		display: none;
-	}
-}
 
 /* =Content
 ----------------------------------------------- */
@@ -510,7 +442,7 @@ a:active {
 /* =Media
 ----------------------------------------------- */
 
-.entry-content img.wp-smiley,
+/*.entry-content img.wp-smiley,
 .comment-content img.wp-smiley {
 	border: none;
 	margin-bottom: 0;
@@ -552,14 +484,14 @@ a:active {
 .site-content .gallery-columns-4 .gallery-item {
 }
 .site-content .gallery-columns-4 .gallery-item img {
-}
+}*/
 
 /* Make sure embeds and iframes fit their containers */
-embed,
+/*embed,
 iframe,
 object {
 	max-width: 100%;
-}
+}*/
 
 
 /* =Navigation
@@ -653,7 +585,7 @@ input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner
     -moz-background-clip:padding-box !important;
     -webkit-background-clip:padding-box !important;
     background-clip:padding-box !important;
-   min-width: 240px !important;
+   min-width: 100px;
 }
 
 
@@ -791,15 +723,74 @@ body {
 :::::: M A I N  :: N A V :::::::::::
 */
 
+.menu-mainnav-container {
+
+	float: left;
+	width: 65%;
+
+}
+
+.menu-mainnav-container ul ul {
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+	display: none;
+	float: left;
+	position: absolute;
+		top: 1.5em;
+		left: 0;
+	z-index: 99999;
+}
+.menu-mainnav-container ul ul ul {
+	left: 100%;
+	top: 0;
+}
+.menu-mainnav-container ul ul a {
+	
+}
+/*.menu-mainnav-container ul ul li {
+}
+.menu-mainnav-container li:hover > a {
+}
+.menu-mainnav-container ul ul :hover > a {
+}
+.menu-mainnav-container ul ul a:hover {
+}*/
+.menu-mainnav-container ul li:hover > ul {
+	display: block;
+}
+/*.menu-mainnav-container li.current_page_item a,
+.menu-mainnav-container li.current-menu-item a {
+}*/
+
+/* Small menu */
+.menu-toggle {
+	display: none;
+	cursor: pointer;
+}
+
+.main-small-navigation ul {
+	display: none;
+}
+
+@media screen and (max-width: 600px) {
+	.menu-toggle,
+	.main-small-navigation ul.nav-menu.toggled-on {
+		display: none;
+	}
+
+	
+}
+
 .menu-mainnav-container ul {
 	list-style: none;
-	margin: 0 20px;
+	margin: 0 2%;
 	padding: 0;
 	float: left;
 	display: inline;
 	height: 60px;
 	color: #e3e3e3;
 	font-weight: 400;
+	width: 100%;
+
 
 }
 
@@ -808,14 +799,23 @@ body {
 	color: #e3e3e3;
 	border-left: 1px solid #202020;
 	border-right: 1px solid #666;
-	
+	padding-top: 14px;
+	padding-bottom: 0;
+	padding-right: 2.5%;
+	padding-left: 2.5%;
 	height: 60px;
+	max-width: 120px;
 
 }
 
-.menu-mainnav-container ul a {
+.menu-mainnav-container ul li a {
 	color: #e3e3e3;
-	padding: 14px 16px;
+	padding: 0;
+	text-decoration: none;
+	display: inline-block;
+	 line-height: 1.2em;
+	 width: 100%;
+	 height: 100%;
 
 }
 
@@ -855,7 +855,7 @@ li.current_page_item:hover , li.current-menu-item:hover {
 	padding: 0;
 	display: inline;
 	width: 155px;
-	margin-right: 5%;
+	margin-right: 2%;
 	padding: 13px 0 0 0;
 
 }
@@ -875,7 +875,7 @@ input[name="s"] {
     background-color: #e5e5e5;
     font-weight: 300;
     font-size: 13px;
-    width: 200px;
+    width: 18%;
     height: 26px;
     display: inline;
     margin: 0;
@@ -1271,7 +1271,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
 
 .hw-menu-btn {
-	min-width: 200px;
+	min-width: 100px;
 	width: 20%;
 	background-color: #f0f0f0;
 	position: relative;
@@ -1903,7 +1903,8 @@ ul.tabs a {
 
     display:block;
     height: 38px;
-    width: 150px;
+    min-width: 80px;
+    width: 25%;
     text-align:center;
     text-decoration:none;
     color:#333;
@@ -2713,6 +2714,108 @@ h2.heading-leftcol {
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
+
+/* Mainnav gets its own breakpoint */
+
+@media screen and (min-width: 320px) and (max-width: 960px) {
+
+	.site-header {
+    		position: relative;
+    		float: none;
+			height: auto;
+			z-index: 2000;
+
+
+		}
+
+
+#header_inner_wrapper {
+			height: 380px;
+		}
+
+#header_inner_wrapper .logo {
+
+			position: relative;
+			display: block;
+			float: left;
+		}
+
+.logo img {
+			margin: 0 auto;
+			display: block;
+			position: relative;
+
+		}
+
+
+
+.menu-mainnav-container {
+			width: 100%;
+			position: relative;
+			display: inline-block;
+			float: none;
+		}
+
+.menu-mainnav-container	{
+	display: inline;
+    float: none;
+    height: auto;
+    margin: 0 auto !important;
+    position: relative;
+	width: 100%;
+	max-width: 100%;
+
+}	
+
+.menu-mainnav-container ul {
+		margin: 20px auto !important;
+		text-align: center !important;
+		display: inline-block;
+		padding: 0;
+		position: relative;
+		height: auto;
+		width: 100%;
+		max-width: 100%;
+		float: none;
+
+}
+
+.menu-mainnav-container ul li {
+	float: none;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	padding: 0;
+	border-left: none;
+	border-bottom: 1px solid #202020;
+	border-bottom: 1px solid #666;
+	border-right: none;
+
+}
+
+.menu-mainnav-container ul li:first-child {
+	border-top: none;
+}
+
+.menu-mainnav-container ul li:last-child {
+	border-bottom: none;
+}
+
+.menu-mainnav-container ul li a {
+	float: none;
+	
+	height: 100%;
+	font-size: 100%;
+	color: #e3e3e3;
+	padding:0;
+	padding-top: 19px;
+
+}
+
+
+
+}
+
  
     /* 1. 9 Column Grid 0px - 767px 
     ----------------------------------------------------------------------------- 
@@ -2729,25 +2832,14 @@ h2.heading-leftcol {
     
     ----------------------------------------------------------------------------- */
 /*
-TO DO THESE STYLES ARE FOR SMART PHONES - MEDIA QUERY NEEDS WORK!
+THESE STYLES ARE FOR SMART PHONES 
 Screen Width = 320px (CSS Pixels)
 Screen Height = 568px (CSS Pixels)
 
-Screen Width = 640px (Actual Pixels)
-Screen Height = 1136px (Actual Pixels)
-
-Device-pixel-ratio: 2
 */
     @media screen and (min-width: 320px) and (max-width: 767px), screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
         
-.site-header {
-    		position: relative;
-    		float: none;
-			height: auto;
-			z-index: 2000;
 
-
-		}
 
 .dk_container {
 	top: 0 !important;
@@ -2781,90 +2873,6 @@ h2{
 
 }	
 
-
-#header_inner_wrapper {
-			height: 380px;
-		}
-
-#header_inner_wrapper .logo {
-			width: 100%;
-			position: relative;
-			display: block;
-			float: none;
-		}
-
-.logo img {
-			margin: 0 auto;
-			display: block;
-			position: relative;
-
-		}
-
-
-
-.menu-mainnav-container {
-			width: 100%;
-			position: relative;
-			display: block;
-			float: none;
-		}
-
-.menu-mainnav-container	{
-	display: block;
-    float: none;
-    height: auto;
-    margin: 0 auto !important;
-    position: relative;
-	width: 100%;
-
-}	
-
-.menu-mainnav-container ul {
-		margin: 20px auto !important;
-		text-align: center !important;
-		display: inline-block;
-		padding: 0;
-		position: relative;
-		height: auto;
-		width: 100%;
-		
-
-}
-
-.menu-mainnav-container ul li {
-	float: none;
-	display: inline-block !important;
-	width: 100%;
-	
-	padding: 0;
-	border-left: none;
-	border-bottom: 1px solid #999;
-	border-bottom: 1px solid #666;
-	border-right: none;
-
-}
-
-.menu-mainnav-container ul li:first-child {
-	border-top: none;
-}
-
-.menu-mainnav-container ul li:last-child {
-	border-bottom: none;
-}
-
-.menu-mainnav-container ul a {
-	float: none;
-	
-	height: auto;
-	font-size: 100%;
-
-}
-
-.menu-mainnav-container ul a {
-	color: #e3e3e3;
-	padding: 14px 16px;
-
-}
 
 .hw-menu-title {
 	padding: 0 0 0 8px;
@@ -3049,7 +3057,7 @@ display: none;
         	margin: 30px auto !important;
         	width: 80% !important;
         	float: none !important;
-        	min-width: 240px !important;
+        	min-width: 100px;
         	max-width: 400px !important;
         }
 
@@ -3063,9 +3071,6 @@ display: none;
 	margin-bottom: 20px;
 }        
 
-.site-header form {
-	display: none;
-}  
 
 .content-listing img {
 	display: none;
@@ -3129,7 +3134,7 @@ margin: 0 auto !important;
 		{
             width:88.6666666667% !important;
         }
-.span_9  , .menu-mainnav-container , .logo {
+.span_9  , .menu-mainnav-container  {
 
             margin-left:0 !important;
             width:100% !important;
