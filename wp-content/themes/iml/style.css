@@ -1387,7 +1387,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 
 
 .hw-menu-expanded-wrapper {
-
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
@@ -1399,12 +1398,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	margin: 20px auto;
  	padding: 0;
  	background: #ffffff; 
- 
-
 }
 
 .hw-menu-expanded-title {
-
 	background: #fff;
 	height: 30px;
 	width: 100%;
@@ -1419,8 +1415,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 }
 
 .hw-menu-expanded-logo {
-
-		background: url('images/hw-menu-logo.png') no-repeat 0 0;
+	background: url('images/hw-menu-logo.png') no-repeat 0 0;
 	width: 170px;
 	height: 38px;
 	float: right;
@@ -1429,7 +1424,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	padding:0;
 	right: 24px;
 	top: 14px;
-
 }
 
 .hw-menu-content-wrapper {
@@ -1438,7 +1432,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	display: block;
 	position: relative;
 	background: #f0f0f0;
-
 }
 
 .hw-menu-content-wrapper:hover {
@@ -1451,7 +1444,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	margin: 0 auto;
 	background: #fff;
 	width: 90%;
-
 }
 
 .hw-menu-list {
@@ -1462,7 +1454,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 	padding:0;
 	float: left;
 	margin-left: 1%; 
-
 }
 
 .hw-menu-list h2 {
