@@ -30,9 +30,12 @@
   <header id="masthead" class="site-header" role="banner">
 
     <div class="header_inner_wrapper">
+      <div class="mobile-nav-icon">
+        <a class="mobile-nav-toggle"><img src="<?php bloginfo('template_directory'); ?>/images/mobile-nav-icon.png" title="Inventive Medical Ltd." alt="" width="27px" height="19px" /></a>
+      </div>
       <div class="logo">
         <h1 class="site-title" ><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
-        <h1 class="mobile-site-title" style='display:none'><a href="#" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
+        <h1 class="mobile-site-title" style='display:none'><a href="#" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo-mobile.png" title="Inventive Medical Ltd." alt="" width="61px" height="28px" /></a></h1>
       </div>
 
       <nav id="site-navigation" class="navigation-main" role="navigation">
@@ -52,6 +55,7 @@
       if($(window).width()<=950) {
         $('.site-title').css('display', 'none');
         $('.mobile-site-title').css('display', 'inline');
+        $('.mobile-nav-icon').css('display', 'inline');
         $('.header_inner_wrapper').addClass('mobile_header_inner_wrapper');
         $('.mobile_header_inner_wrapper').removeClass('header_inner_wrapper');
 
@@ -65,14 +69,16 @@
       }
     });
 
-    $('.mobile-site-title').on('click', (function(){
+    $('.mobile-nav-toggle').on('click', (function(){
       console.log('success');
-      $(".mobile-menu-mainnav-container").slideToggle(10);
+      $(".mobile-menu-mainnav-container").slideToggle('slow');
     }));
 
     $(window).resize(function () {
       var width = $(this).width();
       if(width<=950){
+        $('.mobile-nav-icon').css('display', 'inline');
+
         $('.header_inner_wrapper').addClass('mobile_header_inner_wrapper');
         $('.mobile_header_inner_wrapper').removeClass('header_inner_wrapper');
 
@@ -86,14 +92,15 @@
         $('.mobile-site-title').css('display', 'inline');
         $(".mobile-menu-mainnav-container").slideUp(10);
       }else{
+         $('.mobile-nav-icon').css('display', 'none');
+
         $('.mobile_header_inner_wrapper').addClass('header_inner_wrapper');
         $('.header_inner_wrapper').removeClass('mobile_header_inner_wrapper');
         $('.site-title').css('display', 'block');
         $('.mobile-site-title').css('display', 'none');
         $(".mobile-menu-mainnav-container").slideDown(10);
-      }
-      if(width>950){
-        $('.mobile_header_inner_wrapper').addClass('header_inner_wrapper');
+
+         $('.mobile_header_inner_wrapper').addClass('header_inner_wrapper');
         $('.header_inner_wrapper').removeClass('mobile_header_inner_wrapper');
 
         $('.mobile-menu-mainnav-container').addClass('menu-mainnav-container');
@@ -101,8 +108,8 @@
 
         $('.mobile-site-header').addClass('site-header');
         $('.site-header').removeClass('mobile-site-header');
-
       }
+    
 
     });
 </script>

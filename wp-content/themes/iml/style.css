@@ -848,7 +848,7 @@ li.current_page_item:hover , li.current-menu-item:hover {
 	background-color: #585858 !important;
 }
 
-.logo {
+.header_inner_wrapper .logo {
 
 	float: left;
 	margin: 0;
@@ -903,6 +903,8 @@ input[name="s"]:focus {
     width: 26px;
     height: 26px;
 }
+
+
 
 /*
 ::::H O M E :: P A G E ::::
@@ -2716,6 +2718,7 @@ h2.heading-leftcol {
 			z-index: 2000;
 			margin: 0;
 			padding: 0;
+
 		}
 
 
@@ -2727,10 +2730,18 @@ h2.heading-leftcol {
 	position: relative;
 	display: block;
 	float: none;
+	width: 61px;
+
+	float: left;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	margin-right: 2%;
+	padding: 13px 0 0 0;
 }
 
-.logo img {
-	margin: 0 auto;
+.mobile_header_inner_wrapper .logo img {
+	margin: 20px auto;
 	display: block;
 	position: relative;
 	padding-bottom: 10px;
@@ -2741,6 +2752,7 @@ h2.heading-leftcol {
 	position: relative;
 	display: inline-block;
 	float: none;
+	margin-top: 20px;
 }
 
 .mobile-menu-mainnav-container	{
@@ -2797,6 +2809,41 @@ h2.heading-leftcol {
 
 }
 
+ .mobile_header_inner_wrapper input[name="s"] {
+
+   top: 30px;
+
+}
+
+
+  .mobile_header_inner_wrapper input[name="navsearchbtn"] {
+    top: 30px;
+}
+
+.mobile-nav-icon {
+	display: none;
+	text-align: center;
+}
+
+.mobile-nav-toggle {
+	text-align: center;
+	border: none;
+	text-decoration: none;
+	width: 100%;
+	height: 80px;
+	position: absolute;
+	z-index: 2002;
+	top: 0;
+	left: 0;
+	padding-top: 40px;
+	cursor: pointer;
+
+}
+
+.mobile-nav-toggle img {
+	margin: 0 auto;
+
+}
 
 
 
