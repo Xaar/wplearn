@@ -2758,7 +2758,7 @@ h2.heading-leftcol {
 .mobile-menu-mainnav-container	{
 	display: inline;
 	float: none;
-	height: 460px;
+	height: auto;
 	margin: 0 auto !important;
 	position: relative;
 	width: 100%;
