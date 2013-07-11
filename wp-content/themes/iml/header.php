@@ -29,14 +29,13 @@
 <?php do_action( 'before' ); ?>
   <header id="masthead" class="site-header" role="banner">
 
-    <div id="header_inner_wrapper">
+    <div class="header_inner_wrapper">
       <div class="logo">
         <h1 class="site-title" ><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
         <h1 class="mobile-site-title" style='display:none'><a href="#" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/inventive-medical-logo.png" title="Inventive Medical Ltd." alt="" width="155px" height="28px" /></a></h1>
       </div>
 
       <nav id="site-navigation" class="navigation-main" role="navigation">
-        <h1 class="menu-toggle"><?php _e( 'Menu', 'IML' ); ?></h1>
         <div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'IML' ); ?>"><?php _e( 'Skip to content', 'IML' ); ?></a></div>
         <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
       </nav><!-- #site-navigation -->
@@ -53,13 +52,22 @@
       if($(window).width()<=950) {
         $('.site-title').css('display', 'none');
         $('.mobile-site-title').css('display', 'inline');
-        $(".menu-mainnav-container").slideUp();
+        $('.header_inner_wrapper').addClass('mobile_header_inner_wrapper');
+        $('.mobile_header_inner_wrapper').removeClass('header_inner_wrapper');
+
+        $('.menu-mainnav-container').addClass('mobile-menu-mainnav-container');
+        $('.mobile-menu-mainnav-container').removeClass('menu-mainnav-container');
+
+        $('.site-header').addClass('mobile-site-header');
+        $('.mobile-site-header').removeClass('site-header');
+
+        $(".mobile-menu-mainnav-container").slideUp();
       }
     });
 
     $('.mobile-site-title').on('click', (function(){
       console.log('success');
-      $(".menu-mainnav-container").slideToggle(10);
+      $(".mobile-menu-mainnav-container").slideToggle(10);
     }));
 
     $(window).resize(function () {
@@ -67,15 +75,34 @@
       if(width<=950){
         $('.header_inner_wrapper').addClass('mobile_header_inner_wrapper');
         $('.mobile_header_inner_wrapper').removeClass('header_inner_wrapper');
+
+        $('.menu-mainnav-container').addClass('mobile-menu-mainnav-container');
+        $('.mobile-menu-mainnav-container').removeClass('menu-mainnav-container');
+
+        $('.site-header').addClass('mobile-site-header');
+        $('.mobile-site-header').removeClass('site-header');
+
         $('.site-title').css('display', 'none');
         $('.mobile-site-title').css('display', 'inline');
-        $(".menu-mainnav-container").slideUp(10);
+        $(".mobile-menu-mainnav-container").slideUp(10);
       }else{
         $('.mobile_header_inner_wrapper').addClass('header_inner_wrapper');
         $('.header_inner_wrapper').removeClass('mobile_header_inner_wrapper');
         $('.site-title').css('display', 'block');
         $('.mobile-site-title').css('display', 'none');
-        $(".menu-mainnav-container").slideDown(10);
+        $(".mobile-menu-mainnav-container").slideDown(10);
       }
+      if(width>950){
+        $('.mobile_header_inner_wrapper').addClass('header_inner_wrapper');
+        $('.header_inner_wrapper').removeClass('mobile_header_inner_wrapper');
+
+        $('.mobile-menu-mainnav-container').addClass('menu-mainnav-container');
+        $('.menu-mainnav-container').removeClass('mobile-menu-mainnav-container');
+
+        $('.mobile-site-header').addClass('site-header');
+        $('.site-header').removeClass('mobile-site-header');
+
+      }
+
     });
 </script>
