@@ -65,12 +65,17 @@
         $('.site-header').addClass('mobile-site-header');
         $('.mobile-site-header').removeClass('site-header');
 
+         $('.clear-nav').addClass('clear-nav-mobile');
+        $('.clear-nav-mobile').removeClass('clear-nav');
+
+        $('.hw-menu-collapsed').css('margin-top', '40px');
+
         $(".mobile-menu-mainnav-container").slideUp(1);
       }
     });
 
     $('.mobile-nav-toggle').on('click', (function(){
-      $(".mobile-menu-mainnav-container").slideToggle('slow');
+      $(".mobile-menu-mainnav-container").slideToggle(600);
     }));
 
     function mobile_view () {
@@ -78,25 +83,30 @@
       $('.header_inner_wrapper').addClass('mobile_header_inner_wrapper');
       $('.mobile_header_inner_wrapper').removeClass('header_inner_wrapper');
       $('.menu-mainnav-container').addClass('mobile-menu-mainnav-container');
-      $('.mobile-menu-mainnav-container').slideUp(1);
       $('.mobile-menu-mainnav-container').removeClass('menu-mainnav-container');
       $('.site-header').addClass('mobile-site-header');
       $('.mobile-site-header').removeClass('site-header');
       $('.site-title').css('display', 'none');
       $('.mobile-site-title').css('display', 'inline');
+      $('.clear-nav').addClass('clear-nav-mobile');
+      $('.clear-nav-mobile').removeClass('clear-nav');
+      $('.hw-menu-collapsed').css('margin-top', '40px');
     }
 
     function desktop_view () {
       $('.mobile-nav-icon').css('display', 'none');
       $('.mobile_header_inner_wrapper').addClass('header_inner_wrapper');
       $('.header_inner_wrapper').removeClass('mobile_header_inner_wrapper');
-      $('.site-title').css('display', 'block');
+      $('.site-title').css('display', 'inline');
       $('.mobile-site-title').css('display', 'none');
       $('.mobile-menu-mainnav-container').slideDown(10);
       $('.mobile-menu-mainnav-container').addClass('menu-mainnav-container');
       $('.menu-mainnav-container').removeClass('mobile-menu-mainnav-container');
       $('.mobile-site-header').addClass('site-header');
       $('.site-header').removeClass('mobile-site-header');
+      $('.clear-nav-mobile').addClass('clear-nav');
+      $('.clear-nav').removeClass('clear-nav-mobile');
+      $('.hw-menu-collapsed').css('margin-top', '96px');
     }
 
     function resizedw(){

@@ -230,13 +230,14 @@ textarea {
 	*vertical-align: middle; /* Improves appearance and consistency in all browsers */
 }
 button,
-input {
+input ,.cta-grey {
 	line-height: normal; /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
 }
 button,
 html input[type="button"],
 input[type="reset"],
-input[type="submit"] {
+input[type="submit"] , 
+.cta-grey {
 	border: 1px solid #ccc;
 	border-color: #ccc #ccc #bbb #ccc;
 	border-radius: 3px;
@@ -251,6 +252,7 @@ input[type="submit"] {
 	padding: .6em 1em .4em;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
+.cta-grey:hover ,
 button:hover,
 html input[type="button"]:hover,
 input[type="reset"]:hover,
@@ -258,6 +260,7 @@ input[type="submit"]:hover {
 	border-color: #ccc #bbb #aaa #bbb;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
 }
+.cta-grey:focus , 
 button:focus,
 html input[type="button"]:focus,
 input[type="reset"]:focus,
@@ -269,6 +272,18 @@ input[type="submit"]:active {
 	border-color: #aaa #bbb #bbb #bbb;
 	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
 }
+
+.cta-grey {
+	cursor: pointer;
+	display: inline-block;
+	padding: 8px;
+}
+.cta-grey a {
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+
 input[type="checkbox"],
 input[type="radio"] {
 	box-sizing: border-box; /* Addresses box sizing set to content-box in IE8/9 */
@@ -595,6 +610,10 @@ input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner
 	margin-top: 76px !important;
 }
 
+.clear-nav-mobile {
+	margin-top: 10px !important;
+}
+
 .page , .post , .single , .archive , .search , .error404 {
 
 	margin: 0 auto;
@@ -799,7 +818,7 @@ body {
 	color: #e3e3e3;
 	border-left: 1px solid #202020;
 	border-right: 1px solid #666;
-	padding-top: 14px;
+	padding-top: 0;
 	padding-bottom: 0;
 	padding-right: 2.5%;
 	padding-left: 2.5%;
@@ -808,11 +827,15 @@ body {
 
 }
 
+.menu-mainnav-container ul li a {
+	padding: 15px 2px !important;
+}
+
 .menu-mainnav-container ul li a , .mobile-menu-mainnav-container ul li a {
 	color: #e3e3e3;
 	padding: 0;
 	text-decoration: none;
-	display: inline-block;
+	display: block;
 	 line-height: 1.2em;
 	 width: 100%;
 	 height: 100%;
@@ -886,6 +909,7 @@ form {
     -moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	border-radius:4px;
+	min-width: 120px;
 
 }
 
@@ -941,7 +965,7 @@ input[name="s"]:focus {
 	text-decoration:none;
 	text-shadow:1px 1px 0px #416124;
 	margin: 7px;
-	min-width: 100px;
+	min-width: 70px;
 
 }
 
@@ -963,7 +987,8 @@ input[name="s"]:focus {
 	position: relative;
 	display: block;
 	margin-top: 3%;
-	left: 3%
+	left: 3%;
+	margin-bottom: 20px;
 }
 
 .featured-prod-img {
@@ -1001,7 +1026,8 @@ input[name="s"]:focus {
 .cta-red , .cta-green , .cta-green-tabs {
 	
 	display: inline-block;
-	margin: auto;
+	margin:  auto;
+
 }
 
 .cta-red a {
@@ -1025,7 +1051,7 @@ input[name="s"]:focus {
 	text-decoration:none;
 	text-shadow:1px 1px 0px #b23e35;
 	margin: 7px;
-	min-width: 100px;
+	min-width: 70px;
 	
 }
 
@@ -1877,27 +1903,30 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 ul.tabs {
     list-style:none;
-    margin:0 !important;
+    margin:0 auto !important;
     padding:0;
     
     height:100%;
 }
 
-ul.tabs li {
+.product-tabs ul.tabs li , .sales-tabs ul.tabs li  {
     float:left;
     text-indent:0;
     padding:0;
     margin:0 !important;
     list-style-image:none !important;
     border: 1px solid #fff;
+    width: 30%;
+    min-width: 50px;
+    max-width: 150px;
 }
 
-ul.tabs a {
+.product-tabs ul.tabs li a , .sales-tabs ul.tabs li a {
 
     display:block;
     height: 38px;
     min-width: 80px;
-    width: 25%;
+    width: 100%;
     text-align:center;
     text-decoration:none;
     color:#333;
@@ -1905,6 +1934,11 @@ ul.tabs a {
     margin:0;
     position:relative;
     padding-top:12px;
+    line-height: 1.3em;
+}
+
+.product-tabs ul.tabs li {
+	width: 20%;
 }
 
 ul.tabs a:active {
@@ -1959,7 +1993,8 @@ ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
 	position: absolute;
 	top: -10px;
 	right: -10px;
-	width: 150px;
+	width: 15%;
+	min-width: 70px;
 	height: 50px;
 	border: none;
 	text-align: center;
@@ -2068,8 +2103,32 @@ ul.tabs a.xl.current { background-position: 0 -62px; }*/
 	margin-top: -40px !important;
 
 }
+/*
+lightbox*/
 
+#imageDetails p {
+	font-family: 'Source Sans Pro' , arial;
+}
 
+#numberDisplay a {
+
+}
+
+#numberDisplay a:hover {
+	color: #c00;
+}
+
+#jqlb_closelabel {
+	background-image: url('images/close-btn-lightbox.gif') !important;
+}
+
+#prevLink:hover {
+	background-image: url('images/prev.gif') !important;
+}
+
+#nextLink:hover {
+	background-image: url('images/next.gif') !important;
+}
 
 .form-col {
 	background-color: #c00;
@@ -2095,7 +2154,7 @@ div.clearfix {
 	margin: -12px auto 0 auto !important;
 	position: relative;
 	display: block;
-	min-width: 230px;
+	min-width: 100px;
 	text-align: center;
 } 	
 
@@ -2625,8 +2684,9 @@ h2.heading-leftcol {
 	display: inline-block;
 	}
 
-.pane-sales h2 {
+.pane-sales h2 , .sales-team h2 {
 	color: #c00;
+
 
 }	
 
@@ -2675,7 +2735,7 @@ h2.heading-leftcol {
 }
 
 .sales-team {
-
+	text-align: center;
 }
 
 .contact-sales {
@@ -2701,6 +2761,10 @@ h2.heading-leftcol {
 
 .contact-sales h3 {
 	margin: 0;
+}
+
+.contact-form-mobile {
+	display: none;
 }
 
 
@@ -2746,22 +2810,16 @@ h2.heading-leftcol {
 	padding-bottom: 10px;
 }
 
-.mobile-menu-mainnav-container {
-	width: 100%;
-	position: relative;
-	display: inline-block;
-	float: none;
-	margin-top: 20px;
-}
 
 .mobile-menu-mainnav-container	{
 	display: inline;
 	float: none;
 	height: auto;
-	margin: 0 auto !important;
+	margin: 0 auto;
 	position: relative;
 	width: 100%;
 	max-width: 100%;
+	margin-bottom: 10px;
 }	
 
 .mobile-menu-mainnav-container ul {
@@ -2781,7 +2839,7 @@ h2.heading-leftcol {
 	display: block;
 	width: 100%;
 	max-width: 100%;
-	padding: 5px 0 20px 0;
+	padding: 0;
 	border-left: none;
 	border-bottom: 1px solid #202020;
 	border-bottom: 1px solid #666;
@@ -2803,8 +2861,7 @@ h2.heading-leftcol {
 	height: 100%;
 	font-size: 100%;
 	color: #e3e3e3;
-	padding:0;
-	padding-top: 19px;
+	padding: 20px 0;
 
 }
 
@@ -2882,10 +2939,6 @@ Screen Height = 568px (CSS Pixels)
 			display: inline-block !important;
 }		
 
-.clear-nav {
-	margin-top: 0 !important;
-}	
-
 #filter {
 	float: none;
 	display: inline-block !important;
@@ -2917,13 +2970,40 @@ h2{
         }
         
 .row .col:first-child {
-            margin-left:0;
+            margin-left:auto;
         }
 
 .rsMainSlideImage {
 
         	display: none;
         }
+
+.featured-prod-txt {
+	float: none;
+	
+}
+
+.featured-prod-txt h3 {
+	margin-top: 30px;
+}
+
+.product-vid-wrapper {
+	float: none;
+	width: 100%;
+}
+
+.contact-form-mobile {
+	display: block;
+	margin: 20px auto;
+}
+
+.contact-sales {
+	float: none;
+	width: 100%;
+	margin: 20px auto;
+	text-align: center;
+}
+
 
 /*	::::::::::::::::::: HW menu FOR MOBILE ::::::::::::::::::::*/
 
@@ -3101,7 +3181,14 @@ display: none;
 .hero-content {
 	margin-top: 20px;
 	margin-bottom: 20px;
-}        
+}   
+
+.hero-product-listing-text {
+	float: none;
+	margin: 20px auto;
+	display: inline-block;
+	position: relative;
+}     
 
 
 .content-listing img {
@@ -3118,7 +3205,7 @@ margin: 0 auto !important;
 
 .cta-gateway {
 
-	min-width: 120px;
+	min-width: 80px;
 
 } 
 
@@ -3129,6 +3216,51 @@ margin: 0 auto !important;
 
 .tabs li {
 	width: auto;
+}
+
+.sales-tabs-wrapper {
+	display: none;
+}
+
+.gateway-promo-bullets {
+
+}
+
+.bullets-left , .bullets-right {
+	float: none;
+	width: 100%;
+	margin: 0;
+}
+
+.gateway-promo-bullets ul li {
+	width: 90%;
+}
+
+
+.product-quote {
+	float: none;
+}
+
+/*
+::::::::::::::: About IML Mobile ::::::::::::::::
+*/
+
+.team-member {
+	margin: 20px 0;
+}
+
+.team-member img {
+	width: 100%;
+	max-width: 280px;
+	 float: none;
+	 margin: 0 auto;
+	 display: block;
+}
+
+.biog-wrapper {
+	float: none;
+	width: 100%;
+	margin-left: 20px;
 }
         /*
         Add your semantic classnames in alongside their corresponding spans here. e.g.
@@ -3148,7 +3280,7 @@ margin: 0 auto !important;
 .span_3  , .cta-gateway , .sidebar-wrapper  {
             width:32.0%;
         }
- .span_4  , .gateway-promo-bullets ul {
+ .span_4  {
             width:43.3333333333%;
         }
 .span_5  {
@@ -3162,7 +3294,8 @@ margin: 0 auto !important;
         }
 .span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , 
 .hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper , .tabs-text ,
-.news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper , .hw-menu-lists
+.news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper , .hw-menu-lists ,
+.team-member , .hero-product-listing-text , .hero-product-img , .gateway-promo-bullets ul , .product-quote
 		{
             width:88.6666666667% !important;
         }

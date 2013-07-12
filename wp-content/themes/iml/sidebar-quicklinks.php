@@ -6,22 +6,37 @@
 
   <div class="quick-links row">
     <div class="quick-link col">
-      <img src="<?php bloginfo('template_directory'); ?>/images/link-pathology.png">
-      <h2><a href="">New Pathology Modules</a></h2>
-      <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-      <button>Learn more &raquo;</button>
-    </div>
+      <img src="<?php bloginfo('template_directory'); ?>/images/link-gateway.png">
+      <h2><?php  $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Pathologies'));
+        while ( $wp_query->have_posts() ) : $wp_query->the_post();
+        ?>         <a href="<?=the_permalink();?>">Heartworks Pathology Modules</a></h2>
+      <p>Heartworks has recently created the first release of our Pathological Models. Focusing primarily on ventricular function, they are intended to address differing pathology found in day to day and emergency clinical environment cases. </p>
+      <div class="cta-grey">
+        <a href="<?=the_permalink();?>">Learn more &raquo;</a>
+      </div>
+        <?php
+        endwhile;
+        ?> 
+      </div>
     <div class="quick-link col">
       <img src="<?php bloginfo('template_directory'); ?>/images/link-gateway.png">
-      <h2><a href="">HeartWorks GateWay</a></h2>
-      <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage.</p>
-      <button>Learn more &raquo;</button>
+      <h2><?php  $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Gateway'));
+        while ( $wp_query->have_posts() ) : $wp_query->the_post();
+        ?>         <a href="<?=the_permalink();?>">Heartworks Gateway</a></h2>
+      <p>Gateway is our 12-month, or multi-year, fixed price subscription service, designed to ensure that Heartworks customers receive the latest software developments and enhancements that keep your Heartworks system current.</p>
+      <div class="cta-grey">
+        <a href="<?=the_permalink();?>">Learn more &raquo;</a>
+         </div>
+        <?php
+        endwhile;
+        ?> 
     </div>
     <div class="quick-link col">
       <img src="<?php bloginfo('template_directory'); ?>/images/link-sales.png">
       <h2><a href="">Sales &amp; Support</a></h2>
-      <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.</p>
-      <button>Learn more &raquo;</button>
+      <p>Find a Heartworks distributor in your region or contact a member of the IML team directly. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.</p>
+      <div class="cta-grey">
+      <a href="<?php bloginfo('url'); ?>/sales-support">Learn more &raquo;</a>
     </div>
   </div> <!-- .quick-links row -->
 </div><!--  .quick-links-wrapper -->
