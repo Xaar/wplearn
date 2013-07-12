@@ -138,19 +138,40 @@
 					]
 				});
 				
-				/*
-				acf.media.frame.on('all', function(e){
+				
+				/*acf.media.frame.on('all', function(e){
 					
 					console.log( e );
 					
-				});
-				*/
+				});*/
+				
 				
 				// customize model / view
-				acf.media.frame.on('open', function(){
+				acf.media.frame.on('content:activate', function(){
+
+					// vars
+					var toolbar = null,
+						filters = null;
+						
 					
-					var content = acf.media.frame.content.get(),
-						filters = content.toolbar._views.filters;
+					// populate above vars making sure to allow for failure
+					try
+					{
+						toolbar = acf.media.frame.content.get().toolbar;
+						filters = toolbar.get('filters');
+					} 
+					catch(e)
+					{
+						// one of the objects was 'undefined'... perhaps the frame open is Upload Files
+						//console.log( e );
+					}
+					
+					
+					// validate
+					if( !filters )
+					{
+						return false;
+					}
 					
 					
 					// filter only images
@@ -221,13 +242,14 @@
 					    	// select / add another image field?
 					    	if( i > 1 )
 							{
-								var tr = _media.div.closest('tr'),
+								var key = _media.div.closest('td').attr('data-field_key'),
+									tr = _media.div.closest('tr'),
 									repeater = tr.closest('.repeater');
 								
 								
 								if( tr.next('.row').exists() )
 								{
-									_media.div = tr.next('.row').find('.acf-image-uploader');
+									_media.div = tr.next('.row').find('td[data-field_key="' + key + '"] .acf-image-uploader');
 								}
 								else
 								{
@@ -235,7 +257,7 @@
 					 				repeater.find('.add-row-end').trigger('click'); 
 					 			 
 					 				// set acf_div to new row image 
-					 				_media.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
+					 				_media.div = repeater.find('> table > tbody > tr.row:last td[data-field_key="' + key + '"] .acf-image-uploader');
 								}
 							}
 							

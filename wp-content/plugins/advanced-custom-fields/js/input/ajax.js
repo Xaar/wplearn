@@ -20,8 +20,7 @@
 		post_format		:	0,
 		taxonomy		:	0,
 		lang			:	0,
-		nonce			:	0,
-		return			:	'json'
+		nonce			:	0
 	};
 	
 	
@@ -68,6 +67,7 @@
 	*/
 	
 	$(document).live('acf/update_field_groups', function(){
+		
 		
 		$.ajax({
 			url: ajaxurl,
@@ -220,21 +220,26 @@
 	// taxonomy / category
 	$('.categorychecklist input[type="checkbox"]').live('change', function(){
 		
+		// set timeout to fix issue with chrome which does not register the change has yet happened
+		setTimeout(function(){
+			
+			// vars
+			var values = [];
+			
+			
+			$('.categorychecklist input[type="checkbox"]:checked').each(function(){
+				values.push( $(this).val() );
+			});
+	
+			
+			acf.screen.post_category = values;
+			acf.screen.taxonomy = values;
+	
+	
+			$(document).trigger('acf/update_field_groups');
 		
-		// vars
-		var values = [];
+		}, 1);
 		
-		
-		$('.categorychecklist input[type="checkbox"]:checked').each(function(){
-			values.push( $(this).val() );
-		});
-
-		
-		acf.screen.post_category = values;
-		acf.screen.taxonomy = values;
-
-
-		$(document).trigger('acf/update_field_groups');
 		
 	});
 	

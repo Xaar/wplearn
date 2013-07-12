@@ -208,6 +208,10 @@ If you have any question about the Schedule Meetings feature please contact supp
 
 == Changelog ==
 
+= 3.1.8.4 =
+- (07 Jul 2013) - Fixed CAPTCHA PHP warning on some servers.
+- Added better date input validation.
+
 = 3.1.8.3 =
 - (26 Jun 2013) - Fixed form Error messages wrapped in required styling + error styling.
 - Fixed allow \n for new line in textarea defaults.

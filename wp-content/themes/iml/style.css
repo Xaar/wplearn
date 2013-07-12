@@ -2694,9 +2694,8 @@ h2.heading-leftcol {
 
 }	
 
-	#map {
+#map {
 	position: relative;
-	height: 370px;
 }
 
 .distributor {
@@ -2714,7 +2713,7 @@ h2.heading-leftcol {
 	filter: alpha(opacity=20);
 	opacity: 0.2;
 	text-align: left;
-	z-index:10000;
+	z-index:1000;
 	border-radius: 6px;
 	-webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
 	-moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);

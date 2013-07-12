@@ -86,7 +86,7 @@ echo insert_videos($videos);
   <div class="hw-endorsements-wrapper">
     <div class="hw-endorsements row">
       <div class = "product-quote col">
-        <?php the_field('quote'); ?>
+        <?php the_field('quote', $postid); ?>
         <p class="quote-credit"><?=get_post_meta($postid, ('quote_credit'), true); ?></p>
       </div>
 
@@ -129,8 +129,8 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
     <div class="panes">
       <div class="pane">
         <div class="tabs-text col">
-          <h2>More About Heartworks <?=the_title();?></h2>
-          <?php the_field('product_overview'); ?>
+          <h2>More About Heartworks <?=get_the_title($postid);?></h2>
+          <?php the_field('product_overview', $postid); ?>
           <div class="cta-green-inline">
             <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
           </div>

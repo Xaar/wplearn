@@ -333,11 +333,11 @@ class acf_field_select extends acf_field
 				if(strpos($choice, ' : ') !== false)
 				{
 					$choice = explode(' : ', $choice);
-					$new_choices[trim($choice[0])] = trim($choice[1]);
+					$new_choices[ trim($choice[0]) ] = trim($choice[1]);
 				}
 				else
 				{
-					$new_choices[trim($choice)] = trim($choice);
+					$new_choices[ trim($choice) ] = trim($choice);
 				}
 			}
 		}

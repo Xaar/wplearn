@@ -347,16 +347,9 @@ get_currentuserinfo();
                if( (${'ex_field'.$i} == '' || ${'ex_field'.$i} == $cal_date_array[$si_contact_opt['date_format']]) && $si_contact_opt['ex_field'.$i.'_req'] == 'true') {
                   $this->si_contact_error = 1;
                   $fsc_error_message["ex_field$i"]  = ($si_contact_opt['error_field'] != '') ? $si_contact_opt['error_field'] : __('This field is required.', 'si-contact-form');
-               }
-               // max_len validate
-               if( ${'ex_field'.$i} != '' && $si_contact_opt['ex_field'.$i.'_max_len'] != '' && strlen(${'ex_field'.$i}) > $si_contact_opt['ex_field'.$i.'_max_len']) {
-                  $this->si_contact_error = 1;
-                  $fsc_error_message["ex_field$i"]  = sprintf( __('Maximum of %d characters exceeded.', 'si-contact-form'), $si_contact_opt['ex_field'.$i.'_max_len'] );
-               }
-               // regex validate
-               if( ${'ex_field'.$i} != '' && $si_contact_opt['ex_field'.$i.'_regex'] != '' && !preg_match($si_contact_opt['ex_field'.$i.'_regex'],${'ex_field'.$i}) ) {
-                  $this->si_contact_error = 1;
-                  $fsc_error_message["ex_field$i"]  = ($si_contact_opt['ex_field'.$i.'_regex_error'] != '') ? $si_contact_opt['ex_field'.$i.'_regex_error'] : __('Invalid input.', 'si-contact-form');
+               } else if (! $this->validate_date( ${'ex_field'.$i} ) ) {
+	              $this->si_contact_error = 1;
+                  $fsc_error_message["ex_field$i"]  = sprintf(__('Please select a valid date in this format: %s', 'si-contact-form'),$si_contact_opt['date_format']);
                }
 
           }else if ($si_contact_opt['ex_field'.$i.'_type'] == 'hidden') {

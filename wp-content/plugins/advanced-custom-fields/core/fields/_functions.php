@@ -52,8 +52,9 @@ class acf_field_functions
 	
 	function load_value($value, $post_id, $field)
 	{
-		$cache = wp_cache_get( 'load_value/post_id=' . $post_id . '/name=' . $field['name'], 'acf' );
-		if( $cache )
+		$cache = wp_cache_get( 'load_value/post_id=' . $post_id . '/name=' . $field['name'], 'acf', false, $found = false );
+		
+		if( $found )
 		{
 			return $cache;
 		}
@@ -90,7 +91,7 @@ class acf_field_functions
 		}
 		else
 		{
-			$v = get_option( $post_id . '_' . $field['name'], null );
+			$v = get_option( $post_id . '_' . $field['name'], false );
 			
 			if( !is_null($value) )
 			{
@@ -164,13 +165,21 @@ class acf_field_functions
 	/*
 	*  update_value
 	*
-	*  @description: updates a value into the db
-	*  @since: 3.6
-	*  @created: 23/01/13
+	*  updates a value into the db
+	*
+	*  @type	action
+	*  @date	23/01/13
+	*
+	*  @param	{mixed}		$value		the value to be saved
+	*  @param	{int}		$post_id 	the post ID to save the value to
+	*  @param	{array}		$field		the field array
+	*  @param	{boolean}	$exact		allows the update_value filter to be skipped
+	*  @return	N/A
 	*/
 	
 	function update_value( $value, $post_id, $field )
 	{
+	
 		// strip slashes
 		// - not needed? http://support.advancedcustomfields.com/discussion/3168/backslashes-stripped-in-wysiwyg-filed
 		//if( get_magic_quotes_gpc() )
@@ -179,13 +188,13 @@ class acf_field_functions
 		//}
 		
 		
-		// apply filters
-		foreach( array('type', 'name', 'key') as $key )
+		// apply filters		
+		foreach( array('key', 'name', 'type') as $key )
 		{
 			// run filters
 			$value = apply_filters('acf/update_value/' . $key . '=' . $field[ $key ], $value, $post_id, $field); // new filter
 		}
-
+		
 		
 		// if $post_id is a string, then it is used in the everything fields and can be found in the options table
 		if( is_numeric($post_id) )
@@ -214,6 +223,7 @@ class acf_field_functions
 		
 		// update the cache
 		wp_cache_set( 'load_value/post_id=' . $post_id . '/name=' . $field['name'], $value, 'acf' );
+		
 	}
 	
 	
@@ -321,6 +331,11 @@ class acf_field_functions
 					$field = maybe_unserialize( $field );
 					$field = maybe_unserialize( $field ); // run again for WPML
 				}
+				
+				
+				// add field_group ID
+				$field['field_group'] = $row['post_id'];
+				
 			}
 		}
 		
