@@ -96,7 +96,7 @@ $(function() {
 
       <div class="contact-form-mobile row">
         <hr/>
-        <?=do_shortcode('[si-contact-form form=\'1\']');?>
+        <?=do_shortcode('[si-contact-form form=\'2\']');?>
       </div>  
         </div><!-- sales-team -->
 

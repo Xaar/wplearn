@@ -909,7 +909,7 @@ form {
     -moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	border-radius:4px;
-	min-width: 120px;
+	min-width: 90px;
 
 }
 
@@ -1756,7 +1756,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 .hero-product-listing-text {
 	position: relative;
 	display: block;
-	margin-top: 3%;
+	margin-top: 30px;
 	left: 3%;
 	margin: 0 auto;
 	position: relative !important;
@@ -1772,6 +1772,10 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 
 
+}
+
+.hero-product-listing-text h3 {
+	margin-top: 20px;
 }
 
 .hero-product-img {
@@ -2145,7 +2149,7 @@ div.clearfix {
 	overflow: hidden;
 	position: relative;
 	display: block;
-	margin: 20px auto;
+	margin: 0 auto 20px auto;
  	padding: 10px 40px;
  	background: none;
  	}
@@ -3220,10 +3224,19 @@ margin: 0 auto !important;
 }
 
 .sales-tabs-wrapper {
-	display: none;
+	/*display: none;*/
+}
+
+.gateway-promo-wrapper {
+	padding: 0;
 }
 
 .gateway-promo-bullets {
+	margin: 0 auto !important;
+	display: block;
+	background: none;
+	padding: 10px;
+	border: none;
 
 }
 
@@ -3231,10 +3244,16 @@ margin: 0 auto !important;
 	float: none;
 	width: 100%;
 	margin: 0;
+
 }
 
 .gateway-promo-bullets ul li {
-	width: 90%;
+	margin: 0 auto;
+	display: block;
+	border: none;
+	width: 70%;
+	float: none;
+	box-shadow: none;
 }
 
 
