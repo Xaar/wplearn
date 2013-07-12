@@ -33,7 +33,24 @@ get_sidebar('navigation');
 
   <div class="hero-product-content row">
     <div class="hero-product-listing-text col">
-      <h3><?=(get_post_meta($postid, ('product_type'), true)=='Simulator') ? 'Heartworks Simulator' : get_post_meta($post->ID, ('product_type'), true); ?></h3>
+      <h3>
+<?php switch (get_post_meta($postid, ('product_type'), true))
+{
+case "Simulator":
+  echo "Heartworks Simulator";
+  break;
+case "Pathologies":
+  echo "Heartworks Pathologies Modules";
+  break;
+case "eLearn":
+  echo "Heartworks eLearn online course";
+  break;
+  case "Gateway":
+  echo "Heartworks Gateway Subscription Service";
+  break;
+}
+?>
+</h3>
       <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
       <?php the_field('product_description', $postid); ?>
       <div class="cta-green">
@@ -51,8 +68,15 @@ get_sidebar('navigation');
 
   <script type="text/javascript" src="<?=get_template_directory_uri();?>/js/easyModal.js"></script>
 
+<?php
+// Check if patholgies, and loop through each module if so
+if(get_post_meta($postid, ('product_type'), true)=='Gateway') {
 
-<?php // Loop to place hidden videos
+?>
+        <?php get_sidebar('gateway'); ?>
+<?php
+} else {
+
 $custom_fields = get_post_custom($postid);
 $x =  $custom_fields['video'];
 $videos = maybe_unserialize($x[0]);
@@ -72,6 +96,10 @@ echo insert_videos($videos);
 
       </div><!-- move-wrapper -->
     </div> <!-- hw-endorsements row -->
+<?php
+}
+?>
+
   </div> <!-- hw-endorsements-wrapper -->
 
   <div class="products-tabs-wrapper">

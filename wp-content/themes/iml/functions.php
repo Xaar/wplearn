@@ -276,6 +276,7 @@ if ( function_exists('register_sidebar') ) {
    register_sidebar('news');
    register_sidebar('past-events');
    register_sidebar('facebook');
+   register_sidebar('gateway');
 }
 
 function change_default_title( $title ){
