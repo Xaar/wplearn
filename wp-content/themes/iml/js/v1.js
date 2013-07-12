@@ -1,6 +1,7 @@
 function simplemaps_continentmap(auto) {
     (function () {
         var demo = false;
+        var map_type = "continent";
         var mapinfo = simplemaps_continentmap_mapinfo;
         var main_settings = simplemaps_continentmap_mapdata.main_settings;
         var locations = simplemaps_continentmap_mapdata.locations;
@@ -8,6 +9,18 @@ function simplemaps_continentmap(auto) {
         var getxy = simplemaps_continentmap_getxy;
         if (auto && main_settings.auto_load == "no") {
             return;
+        }
+
+        function linePath(startX, startY, endX, endY) {
+            var start = {
+                x: startX,
+                y: startY
+            };
+            var end = {
+                x: endX,
+                y: endY
+            };
+            return "M" + start.x + " " + start.y + " L" + end.x + " " + end.y;
         }
         var isMobile = {
             Android: function () {
@@ -4074,7 +4087,7 @@ function simplemaps_continentmap(auto) {
         if (map_outer) {
             grabdiv.removeChild(map_outer);
             grabdiv.removeChild(map_inner);
-            var tt_to_del = document.getElementById("tt_14");
+            var tt_to_del = document.getElementById("tt_sm");
             if (tt_to_del) {
                 tt_to_del.parentNode.removeChild(tt_to_del);
             }
@@ -4090,18 +4103,27 @@ function simplemaps_continentmap(auto) {
         var vml = Raphael.type == "VML" ? true : false;
         var ie = document.all ? true : false;
         var width = main_settings.width == undefined ? 800 : main_settings.width;
+        if (main_settings.width == "responsive") {
+            width = grabdiv.offsetWidth;
+        }
+        if (width < 1) {
+            width = 800;
+        }
         var height = width / mapinfo.calibrate.ratio;
         var scale = width / mapinfo.calibrate.width;
         var r = Raphael(map_inner, width, height);
-        r.setViewBox(x_start, y_start, width_start, height_start);
-        var x_scale = mapinfo.calibrate.x_adjust * scale;
-        var y_scale = mapinfo.calibrate.y_adjust * scale;
-        var background = r.rect(-100 * scale, -100 * scale, 5000 * scale, 3000 * scale);
+        var x_scale = mapinfo.calibrate.x_adjust;
+        var y_scale = mapinfo.calibrate.y_adjust;
+        var transform = "s" + scale + "," + scale + ",0,0,t" + x_scale + "," + y_scale;
         var x_start = 0;
         var y_start = 0;
         var width_start = width;
         var height_start = height;
-        var arrow_path = "m503.756,743.8668c190.3386-96.6725 132.9387-417.0538-155.601-409.7001v-128.7841l-228.082,195.0064 228.082,205.8238v-131.6233c240.9427-5.5381 229.9032,202.8594 155.601,269.2773z";
+        r.setViewBox(x_start, y_start, width_start, height_start);
+        var background = r.rect(-1000 * scale, -1000 * scale, 5000 * scale, 3000 * scale);
+        var arrow_path = "m503.7,743.8c190.3-96.6 132.9-417.05-155.6-409.71v-128.7l-228.1,195.0 228.1,205.8v-131.6c240.9-5.5 229.9,202.8 155.6,269.3z";
+        var arrow_color = main_settings.arrow_color ? main_settings.arrow_color : "#3B729F";
+        var arrow_color_border = main_settings.arrow_color_border ? main_settings.arrow_color_border : "#88A4BC";
         var arrow_size = 0.05;
         var R = Raphael(map_outer, 35, 35);
         var back_arrow_box = R.rect(0, 0, 35, 35)
@@ -4112,10 +4134,10 @@ function simplemaps_continentmap(auto) {
             });
         var back_arrow_arrow = R.path(arrow_path)
             .attr({
-                stroke: "#88A4BC",
+                stroke: arrow_color_border,
                 'stroke-width': 2,
                 'stroke-opacity': 1,
-                fill: "#3B729F",
+                fill: arrow_color,
                 'fill-opacity': 1,
                 cursor: "pointer"
             })
@@ -4138,6 +4160,8 @@ function simplemaps_continentmap(auto) {
         var inactive = false;
         var state_array = [];
         var location_array = [];
+        var label_array = [];
+        var loclab_array = [];
         var mapdata_stuff = "";
         var lattr = [];
         var cattr = [];
@@ -4148,16 +4172,57 @@ function simplemaps_continentmap(auto) {
         var new_tab;
         var default_location_opacity;
         var ratio = 1;
+        var first_initial = false;
+        var state_bbox_array = [];
+        var hooks;
+        var label_opacity;
+        var border_size;
+        var popup_color;
+        var popup_opacity;
+        var popup_corners;
+        var popup_shadow;
+        var popup_nocss;
+        var popup_font;
+        var superzoom = false;
+        var state_clicked = false;
+        var popup_off = false;
+        var overloc = false;
+        var speed;
+        refresh_main_settings();
 
         function refresh_main_settings() {
             opacity = main_settings.background_transparent == "yes" ? 0 : 1;
-            label_color_hover = main_settings.label_color_hover ? main_settings.label_color_hover : main_settings.label_color;
-            label_size = main_settings.label_size ? main_settings.label_size : "22";
+            var lz;
+            if (map_type == "world") {
+                lz = 28;
+            } else if (map_type == "us") {
+                lz = 22;
+            } else if (map_type == "canada") {
+                lz = 26;
+            } else {
+                lz = 28;
+            }
+            label_size = main_settings.label_size ? main_settings.label_size : lz;
+            label_color = main_settings.label_color ? main_settings.label_color : "white";
+            label_opacity = main_settings.hide_labels == "yes" ? 0 : 1;
             background.attr({
                 fill: main_settings.background_color,
                 'fill-opacity': opacity,
                 stroke: "none"
             });
+            new_tab = main_settings.url_new_tab == "yes" ? true : false;
+            default_location_opacity = main_settings.location_opacity ? main_settings.location_opacity : 1;
+            hooks = main_settings.js_hooks == "yes" ? true : false;
+            border_size = main_settings.border_size ? main_settings.border_size : 1.5;
+            popup_color = main_settings.popup_color ? main_settings.popup_color : "white";
+            popup_opacity = main_settings.popup_opacity ? main_settings.popup_opacity : 0.9;
+            popup_shadow = main_settings.popup_shadow > -1 ? main_settings.popup_shadow : 1;
+            popup_corners = main_settings.popup_corners ? main_settings.popup_corners : 5;
+            popup_nocss = main_settings.popup_nocss == "yes" ? true : false;
+            popup_font = main_settings.popup_font ? main_settings.popup_font : "12px/1.5 Verdana, Arial, Helvetica, sans-serif";
+            if (main_settings.pop_ups == "off") {
+                popup_off = true;
+            }
             if (main_settings.pop_ups == "on_click" || main_settings == "detect" || is_touch()) {
                 on_click = true;
             } else {
@@ -4166,90 +4231,102 @@ function simplemaps_continentmap(auto) {
                 on_click = false;
             }
         }
-        refresh_main_settings();
+        if (!popup_nocss) {
+            set_tt_css();
+        }
+
+        function set_tt_css() {
+            function newStyle(str) {
+                var pa = document.getElementsByTagName("head")[0];
+                var el = document.createElement("style");
+                el.type = "text/css";
+                el.media = "screen";
+                if (el.styleSheet) {
+                    el.styleSheet.cssText = str;
+                } else {
+                    el.appendChild(document.createTextNode(str));
+                }
+                pa.appendChild(el);
+                return el;
+            }
+
+            function getsupportedprop(proparray) {
+                var root = document.documentElement;
+                for (var i = 0; i < proparray.length; i++) {
+                    if (proparray[i] in root.style) {
+                        var answer = proparray[i];
+                        answer = answer.replace("borderRadius", "border-radius");
+                        answer = answer.replace("MozBorderRadius", "-moz-border-radius");
+                        answer = answer.replace("WebkitBorderRadius", "-webkit-border-radius");
+                        answer = answer.replace("boxShadow", "box-shadow");
+                        answer = answer.replace("MozBoxShadow", "-moz-box-shadow");
+                        answer = answer.replace("WebkitBoxShadow", "-webkit-box-shadow");
+                        return answer;
+                    }
+                }
+            }
+            var roundborderprop = getsupportedprop(["borderRadius", "MozBorderRadius", "WebkitBorderRadius"]);
+            var rcss = roundborderprop ? roundborderprop + ": " + popup_corners + "px;" : "";
+            var shadowprop = getsupportedprop(["boxShadow", "MozBoxShadow", "WebkitBoxShadow"]);
+            var scss = shadowprop ? shadowprop + ": " + 3 * popup_shadow + "px " + 3 * popup_shadow + "px " + 4 * popup_shadow + "px rgba(0,0,0,.5);" : "";
+            if (popup_shadow < 0.01) {
+                scss = "";
+            }
+            var mcss = "#tt_sm{" + rcss + scss + "z-index: 1000000; background-color: " + popup_color + "; padding: 7px; opacity:" + popup_opacity + "; font: " + popup_font + "; color: black} #tt_name_sm{float: left; font-weight: bold} #tt_custom_sm{float: left; clear: both; margin: 0px; padding: 0px;}";
+            var css1 = "#xmark_sm{float: right; margin: 0px; cursor: pointer;}";
+            var css2 = "#xmark_sm{float: left; margin: 0px; margin-left: 5px; cursor: pointer;}";
+            if (!vml) {
+                var str = css1 + mcss;
+            } else {
+                var str = mcss + css2;
+            }
+            newStyle(str);
+        }
         var tooltip = (function () {
+            function findPos(obj) {
+                var curleft = curtop = 0;
+                if (obj.offsetParent) {
+                    do {
+                        curleft += obj.offsetLeft;
+                        curtop += obj.offsetTop;
+                    } while (obj = obj.offsetParent);
+                    return [curleft, curtop];
+                }
+            }
+            var find_pos = findPos(map_inner);
+            var x0 = find_pos[0];
+            var y0 = find_pos[1];
+            var x_mid = x0 + 0.5 * width;
+            var y_mid = y0 + 0.5 * height;
             var id = "tt";
             var top = 5;
             var left = 5;
             var maxw = 400;
             var speed = 1000;
             var timer = 20;
-            var endalpha = 90;
+            var endalpha = 0;
             var alpha = 0;
             var tt, t, c, b, h;
             return {
                 show: function (v, w) {
+                    if (popup_off) {
+                        return;
+                    }
                     if (tt == null) {
                         tt = document.createElement("div");
-                        tt.setAttribute("id", id + "_14");
-                        tt.style.zIndex = "1000000";
-                        tt.style.margin = "0";
-                        tt.style.padding = "0";
+                        tt.setAttribute("id", id + "_sm");
                         tt.style.position = "absolute";
                         tt.style.display = "block";
-                        tt.style.background = "url(" + directory + "map_images/left.gif) top left no-repeat";
-                        t = document.createElement("div");
-                        t.setAttribute("id", id + "top" + "_14");
-                        t.style.margin = "0";
-                        t.style.padding = "0";
-                        t.style.display = "block";
-                        t.style.height = "5px";
-                        t.style.marginLeft = "5px";
-                        t.style.background = "url(" + directory + "map_images/top.gif) top right no-repeat";
-                        t.style.overflow = "hidden";
-                        c = document.createElement("div");
-                        c.setAttribute("id", id + "cont" + "_14");
-                        c.style.margin = "0";
-                        c.style.padding = "0";
-                        c.style.display = "block";
-                        c.style.padding = "2px 12px 3px 7px";
-                        c.style.marginLeft = "5px";
-                        c.style.background = "#ebebeb";
-                        c.style.color = "#000";
-                        c.overflow = "hidden";
-                        c.style.font = "12px/1.5 Verdana, Arial, Helvetica, sans-serif";
-                        b = document.createElement("div");
-                        b.setAttribute("id", id + "bot" + "_14");
-                        b.style.margin = "0";
-                        b.style.padding = "0";
-                        b.style.display = "block";
-                        b.style.height = "5px";
-                        b.style.marginLeft = "5px";
-                        b.style.background = "url(" + directory + "map_images/bottom.gif) top right no-repeat";
-                        b.style.overflow = "hidden";
-                        tt.appendChild(t);
-                        tt.appendChild(c);
-                        tt.appendChild(b);
                         document.body.appendChild(tt);
-                        tt.style.opacity = 0;
-                        tt.style.filter = "alpha(opacity=0)";
                         if (on_click) {
                             map_inner.onclick = this.pos;
                         } else {
                             map_inner.onmousemove = this.pos;
+                            tt.onmousemove = this.pos;
                         }
                     }
                     tt.style.display = "block";
-                    tt.style.width = "";
-                    c.innerHTML = v;
-                    if (vml) {
-                        g = document.getElementById("xmark_14");
-                        if (g) {
-                            g.style['float'] = "left";
-                            g.style.marginLeft = "5px";
-                        }
-                        t.style.display = "none";
-                        b.style.display = "none";
-                        tt.style.width = tt.offsetWidth * 1.02;
-                        if (tt.style.width > maxw) {
-                            tt.style.width = maxw;
-                        }
-                        t.style.display = "block";
-                        b.style.display = "block";
-                    }
-                    if (c.offsetWidth > maxw) {
-                        tt.style.width = maxw + "px";
-                    }
+                    tt.innerHTML = v;
                     h = parseInt(tt.offsetHeight, 10) + top;
                     clearInterval(tt.timer);
                     tt.timer = setInterval(function () {
@@ -4257,12 +4334,39 @@ function simplemaps_continentmap(auto) {
                     }, timer);
                 },
                 pos: function (e) {
+                    if (popup_off) {
+                        return;
+                    }
                     var u = ie ? event.clientY + document.documentElement.scrollTop : e.pageY;
                     var l = ie ? event.clientX + document.documentElement.scrollLeft : e.pageX;
-                    tt.style.top = u - h + "px";
-                    tt.style.left = l + left + "px";
+                    var quad = 1;
+                    if (l > x_mid && u > y_mid) {
+                        quad = 4;
+                    } else if (l < x_mid && u > y_mid) {
+                        quad = 3;
+                    } else if (l > x_mid && u < y_mid) {
+                        quad = 2;
+                    } else if (l < x_mid && u < y_mid) {
+                        quad = 1;
+                    }
+                    if (quad == 1) {
+                        tt.style.top = u + 5 + "px";
+                        tt.style.left = l + left + 7 + "px";
+                    } else if (quad == 2) {
+                        tt.style.top = u + 7 + "px";
+                        tt.style.left = l - tt.offsetWidth - 5 + "px";
+                    } else if (quad == 3) {
+                        tt.style.top = u - h + 5 + "px";
+                        tt.style.left = l + left - 2 + "px";
+                    } else {
+                        tt.style.top = u - h + "px";
+                        tt.style.left = l - tt.offsetWidth - 4 + "px";
+                    }
                 },
                 fade: function (d) {
+                    if (popup_off) {
+                        return;
+                    }
                     var a = alpha;
                     if (a != endalpha && d == 1 || a != 0 && d == -1) {
                         var i = speed;
@@ -4272,7 +4376,7 @@ function simplemaps_continentmap(auto) {
                             i = a;
                         }
                         alpha = a + i * d;
-                        tt.style.opacity = alpha * 0.01;
+                        tt.style.opacity = alpha;
                         tt.style.filter = "alpha(opacity=" + alpha + ")";
                     } else {
                         clearInterval(tt.timer);
@@ -4364,28 +4468,28 @@ function simplemaps_continentmap(auto) {
             if (zoom_in && obj.reg_num == zoomed_reg) {
                 return false;
             }
+            if (zoom_in && zoomed_reg == 1000) {
+                return false;
+            }
             if (!obj.reg_num) {
                 return false;
             }
             return true;
         }
 
-        function over(obj_from_label) {
-            if (obj_from_label.id != undefined) {
-                var that = obj_from_label;
-            } else {
-                var that = this;
-            } if (tooltip_up) {
+        function over() {
+            if (this.inactive && zoom_in || inactive || tooltip_up) {
                 return;
             }
-            if (that.inactive && zoom_in || inactive) {
+            if (zoomed_reg == 1000 && this.id != state_clicked && this.reg_num != -1) {
                 return;
             }
-            var reg_num = that.reg_num;
-            if (is_region(that)) {
+            var reg_num = this.reg_num;
+            if (is_region(this)) {
                 var cur_reg = region_array[reg_num];
+                var reg_desc = regions_map[reg_num].description ? "<br />" + regions_map[reg_num].description : "";
                 if (!on_click) {
-                    tooltip.show("<b>" + regions_map[reg_num].name + "</b>");
+                    tooltip.show("<b>" + regions_map[reg_num].name + "</b>" + reg_desc);
                 }
                 if (regions_map[reg_num].color && regions_map[reg_num].hover_color && !zoom_in) {
                     cur_reg.attr({
@@ -4396,52 +4500,64 @@ function simplemaps_continentmap(auto) {
                         'fill-opacity': 0.5
                     });
                 }
-                that.stop();
+                this.stop();
             } else {
-                if (that.inactive) {
+                if (this.inactive) {
                     return;
                 }
-                that.stop()
+                if (hooks) {
+                    (window.simplemaps_continentmap_over || function () {})
+                        .call(this, this.id);
+                }
+                this.stop()
                     .animate({
-                        fill: cattr[that.id].hover_color
+                        fill: cattr[this.id].hover_color
                     }, 1);
                 if (!on_click) {
-                    tooltip.show(html[that.id]);
+                    tooltip.show(html[this.id]);
                 }
             }
         }
 
-        function out(obj_from_label) {
-            if (obj_from_label.id != undefined) {
-                var that = obj_from_label;
-            } else {
-                var that = this;
-            } if (tooltip_up) {
+        function out() {
+            if (this.inactive && zoom_in || inactive || tooltip_up) {
                 return;
             }
-            if (!inactive) {
-                var reg_num = that.reg_num;
-                if (is_region(that)) {
-                    var cur_reg = region_array[reg_num];
-                    var opac = zoomed_reg && zoom_in ? 0.2 : 1;
-                    if (regions_map[reg_num].color && regions_map[reg_num].hover_color && !zoom_in) {
-                        cur_reg.attr({
-                            fill: regions_map[reg_num].color
-                        });
-                    } else {
-                        cur_reg.attr({
-                            'fill-opacity': opac
-                        });
-                    }
-                    that.stop();
-                    tooltip.hide();
+            if (zoomed_reg == 1000 && this.id != state_clicked && this.reg_num != -1) {
+                return;
+            }
+            var reg_num = this.reg_num;
+            if (is_region(this)) {
+                var cur_reg = region_array[reg_num];
+                var opac = zoomed_reg && zoom_in ? 0.2 : 1;
+                if (regions_map[reg_num].color && regions_map[reg_num].hover_color && !zoom_in) {
+                    cur_reg.attr({
+                        fill: regions_map[reg_num].color
+                    });
                 } else {
-                    that.stop()
-                        .animate({
-                            fill: cattr[that.id].color
-                        }, 200);
-                    tooltip.hide();
+                    cur_reg.attr({
+                        'fill-opacity': opac
+                    });
                 }
+                this.stop();
+                tooltip.hide();
+            } else {
+                if (hooks) {
+                    (window.simplemaps_continentmap_out || function () {})
+                        .call(this, this.id);
+                }
+                if (!hooks) {
+                    this.stop()
+                        .animate({
+                            fill: cattr[this.id].color
+                        }, 200);
+                } else {
+                    this.stop()
+                        .attr({
+                            fill: cattr[this.id].color
+                        });
+                }
+                tooltip.hide();
             }
         }
 
@@ -4451,6 +4567,11 @@ function simplemaps_continentmap(auto) {
             }
             if (!on_click) {
                 tooltip.show(html[this.id]);
+            }
+            if (hooks && !overloc) {
+                (window.simplemaps_continentmap_locover || function () {})
+                    .call(this, this.id);
+                overloc = true;
             }
             this.animate({
                 fill: this.color,
@@ -4462,11 +4583,36 @@ function simplemaps_continentmap(auto) {
             if (this.inactive || tooltip_up) {
                 return;
             }
+            if (hooks && overloc && this.id) {
+                (window.simplemaps_continentmap_locout || function () {})
+                    .call(this, this.id);
+                overloc = false;
+            }
             this.animate({
                 fill: this.color,
                 'stroke-width': 1.5
             }, 1);
             tooltip.hide();
+        }
+
+        function over_loclab() {
+            if (this.inactive || tooltip_up) {
+                return;
+            }
+            if (!on_click) {
+                tooltip.show(html[this.id]);
+            }
+        }
+
+        function out_loclab() {
+            if (this.inactive || tooltip_up) {
+                return;
+            }
+            tooltip.hide();
+        }
+
+        function click_loclab() {
+            click.call(location_array[this.id]);
         }
 
         function back_click() {
@@ -4476,36 +4622,173 @@ function simplemaps_continentmap(auto) {
         }
 
         function over_lab() {
-            over(state_array[this.id]);
+            over.call(state_array[this.id]);
         }
 
         function out_lab() {
-            out(state_array[this.id]);
+            out.call(state_array[this.id]);
         }
 
         function click_lab() {
-            click(state_array[this.id]);
+            click.call(state_array[this.id]);
         }
 
-        function click(label_exists) {
-            if (label_exists != undefined) {
-                if (label_exists.id != undefined) {
-                    var that = label_exists;
+        function gotoinfo(bbox) {
+            var gotoX = bbox.x * scale;
+            var gotoY = bbox.y * scale;
+            var gotoW = bbox.width * scale;
+            var gotoH = bbox.height * scale;
+            var actualWH;
+            var paperWidth = width;
+            var paperHeight = height;
+            if (gotoW / gotoH > paperWidth / paperHeight) {
+                isWider = true;
+                ratio = gotoW / paperWidth;
+                actualWH = paperHeight * ratio;
+                gotoY -= (actualWH - gotoH) / 2;
+            } else {
+                isWider = false;
+                ratio = gotoH / paperHeight;
+                actualWH = paperWidth * ratio;
+                gotoX -= (actualWH - gotoW) / 2;
+            }
+            return {
+                X: gotoX,
+                Y: gotoY,
+                W: gotoW,
+                H: gotoH,
+                ratio: ratio
+            };
+        }
+
+        function location_correction() {
+            for (var i = 0; i < location_set.items.length; i++) {
+                var lct = location_set.items[i];
+                var new_side = lct.size * ratio;
+                if (lct.type == "circle") {
+                    lct.animate({
+                        r: new_side
+                    }, speed);
                 } else {
-                    var that = this;
+                    var new_x = lct.x + (lct.size - new_side) / 2;
+                    var new_y = lct.y + (lct.size - new_side) / 2;
+                    lct.attr({
+                        height: new_side,
+                        width: new_side,
+                        x: new_x,
+                        y: new_y
+                    });
                 }
-            } else {
-                that = this;
-            } if (is_region(that)) {
-                region_click(that);
-            } else if (on_click) {
-                click_click(that);
-            } else {
-                hover_click(that);
+            }
+        }
+
+        function location_revealer() {
+            for (var location in location_array) {
+                if (zoomed_reg == location_array[location].region) {
+                    location_array[location].show();
+                    if (lattr[location].label == "yes") {
+                        loclab_set[location_array[location].loclab_index].show();
+                    }
+                }
+            }
+        }
+
+        function zoom_around(go) {
+            location_set.hide();
+            loclab_set.hide();
+            locvisout_set.show();
+
+            function updateZoom() {
+                r.setViewBox(animateObj.x, animateObj.y, animateObj.w, animateObj.h, false);
             }
 
-            function hover_click(that) {
-                var link = that.url;
+            function whenDone() {
+                if (zoomed_reg != -1) {
+                    location_revealer();
+                }
+                inactive = false;
+                world.show();
+                if (zoomed_reg == 1000) {
+                    back_arrow.show();
+                } else if (initial_zoom > -1 && initial_zoom_solo) {
+                    world.hide();
+                    region_array[zoomed_reg].show();
+                } else if (initial_zoom > -1 && !initial_zoom_solo && zoomed_reg != -1) {
+                    back_arrow.show();
+                }
+                first_initial = false;
+            }
+            animateObj = {
+                x: x_start,
+                y: y_start,
+                w: width_start,
+                h: height_start,
+                r: go.ratio
+            };
+            if (first_initial || is_touch() || vml) {
+                TweenLite.to(animateObj, 0.001, {
+                    x: go.X,
+                    y: go.Y,
+                    w: go.W,
+                    h: go.H,
+                    onUpdate: updateZoom,
+                    onComplete: whenDone
+                });
+            } else {
+                TweenLite.to(animateObj, 0.5, {
+                    x: go.X,
+                    y: go.Y,
+                    w: go.W,
+                    h: go.H,
+                    onUpdate: updateZoom,
+                    onComplete: whenDone
+                });
+            } if (last_region == -1) {
+                back_arrow.show();
+            }
+            if (zoomed_reg == -1) {
+                back_arrow.hide();
+            }
+            x_start = go.X;
+            y_start = go.Y;
+            width_start = go.W;
+            height_start = go.H;
+            zoom_in = zoomed_reg == -1 ? false : true;
+            last_region = zoomed_reg;
+        }
+
+        function click(api) {
+            speed = first_initial ? 0 : 300;
+            if (zoomed_reg == 1000 && this.id != state_clicked && this.reg_num != -1 && is_state(this)) {
+                return;
+            }
+            if (this.reg_num == -1 || is_region(this)) {
+                region_click.call(this, api);
+            } else if (this.zoomable && zoomed_reg != 1000) {
+                zoomable_click.call(this);
+            } else if (on_click) {
+                click_click.call(this);
+                if (hooks) {
+                    (window.simplemaps_continentmap_click || function () {})
+                        .call(this, this.id);
+                }
+            } else {
+                hover_click.call(this);
+                if (hooks) {
+                    (window.simplemaps_continentmap_click || function () {})
+                        .call(this, this.id);
+                }
+            }
+
+            function zoomable_click() {
+                simplemaps_continentmap_state_zoom(this.id);
+            }
+
+            function hover_click() {
+                if (this.inactive) {
+                    return;
+                }
+                var link = this.url;
                 if (link != "") {
                     if (!new_tab) {
                         window.location.href = link;
@@ -4521,150 +4804,78 @@ function simplemaps_continentmap(auto) {
                 }
             }
 
-            function click_click(that) {
-                var is_location = that.size == undefined ? false : true;
+            function click_click() {
+                if (this.inactive) {
+                    return;
+                }
+                var is_location = this.size == undefined ? false : true;
                 if (tooltip_up) {
                     reset();
                     if (!is_location) {
-                        that.animate({
-                            fill: cattr[that.id].hover_color
+                        this.animate({
+                            fill: cattr[this.id].hover_color
                         }, 1);
                     }
                 }
-                tooltip.show(html[that.id]);
+                tooltip.show(html[this.id]);
                 tooltip_up = true;
-                last_clicked = that;
-                document.getElementById("xpic_14")
+                last_clicked = this;
+                document.getElementById("xpic_sm")
                     .onclick = function () {
                         back_click();
                 };
                 return;
             }
 
-            function region_click(that) {
-                if (that.reg_num == -1) {} else if (regions_map[that.reg_num].url) {
-                    that.url = regions_map[that.reg_num].url;
-                    hover_click(that);
+            function region_click(api) {
+                if (this.reg_num == -1) {
+                    if (state_clicked) {
+                        out.call(state_array[state_clicked]);
+                    }
+                    if (hooks) {
+                        (window.simplemaps_continentmap_back || function () {})
+                            .call(this);
+                    }
+                } else if (regions_map[this.reg_num].url && api != "manual") {
+                    hover_click.call(regions_map[this.reg_num]);
                     return;
-                } else if (regions_map[that.reg_num].color && regions_map[that.reg_num].hover_color) {
-                    region_array[that.reg_num].attr({
-                        fill: regions_map[that.reg_num].color
+                } else if (regions_map[this.reg_num].color && regions_map[this.reg_num].hover_color) {
+                    region_array[this.reg_num].attr({
+                        fill: regions_map[this.reg_num].color
                     });
                 }
                 inactive = true;
                 tooltip.hide();
-                zoomed_reg = that.reg_num;
+                zoomed_reg = this.reg_num;
+                if (this.reg_num == -1 && initial_zoom > -1 && initial_zoom_solo) {
+                    zoomed_reg = initial_zoom;
+                    world.hide();
+                    region_array[zoomed_reg].show();
+                    back_arrow.hide();
+                }
                 if (zoomed_reg != -1) {
                     world.animate({
                         'fill-opacity': 0.2
-                    }, 300);
+                    }, speed);
                     region_array[zoomed_reg].animate({
                         'fill-opacity': 1
-                    }, 300);
+                    }, speed);
                 } else {
                     world.animate({
                         'fill-opacity': 1
-                    }, 300);
+                    }, speed);
                 }
                 reset();
                 tooltip_up = false;
-                var bbox = bbox_array[that.reg_num];
-                var gotoX = bbox.x * scale;
-                var gotoY = bbox.y * scale;
-                var gotoW = bbox.width * scale;
-                var gotoH = bbox.height * scale;
-                var actualWH;
-                var paperWidth = width;
-                var paperHeight = height;
-                if (gotoW / gotoH > paperWidth / paperHeight) {
-                    isWider = true;
-                    ratio = gotoW / paperWidth;
-                    actualWH = paperHeight * ratio;
-                    gotoY -= (actualWH - gotoH) / 2;
-                } else {
-                    isWider = false;
-                    ratio = gotoH / paperHeight;
-                    actualWH = paperWidth * ratio;
-                    gotoX -= (actualWH - gotoW) / 2;
-                }
-                for (var i = 0; i < location_set.items.length; i++) {
-                    var lct = location_set.items[i];
-                    var new_side = lct.size * ratio;
-                    if (lct.type == "circle") {
-                        lct.animate({
-                            r: new_side
-                        }, 200);
-                    } else {
-                        var new_x = lct.x + (lct.size - new_side) / 2;
-                        var new_y = lct.y + (lct.size - new_side) / 2;
-                        lct.animate({
-                            height: new_side,
-                            width: new_side,
-                            x: new_x,
-                            y: new_y
-                        }, 200);
-                    }
-                }
-
-                function updateZoom() {
-                    r.setViewBox(animateObj.x, animateObj.y, animateObj.w, animateObj.h, false);
-                }
-
-                function whenDone() {
-                    inactive = false;
-                    world.show();
-                    location_set.show();
-                    if (initial_zoom > -1 && initial_zoom_solo) {
-                        world.hide();
-                        region_array[zoomed_reg].show();
-                    } else if (initial_zoom > -1 && !initial_zoom_solo && zoomed_reg != -1) {
-                        back_arrow.show();
-                    }
-                }
-                if (is_touch() || vml) {
-                    animateObj = {
-                        x: gotoX,
-                        y: gotoY,
-                        w: gotoW,
-                        h: gotoH,
-                        r: ratio
-                    };
-                    updateZoom();
-                    whenDone();
-                } else {
-                    animateObj = {
-                        x: x_start,
-                        y: y_start,
-                        w: width_start,
-                        h: height_start,
-                        r: ratio
-                    };
-                    TweenLite.to(animateObj, 0.5, {
-                        x: gotoX,
-                        y: gotoY,
-                        w: gotoW,
-                        h: gotoH,
-                        onUpdate: updateZoom,
-                        onComplete: whenDone
-                    });
-                } if (zoomed_reg == -1) {
-                    back_arrow.hide();
-                }
-                if (last_region == -1) {
-                    back_arrow.show();
-                }
-                x_start = gotoX;
-                y_start = gotoY;
-                width_start = gotoW;
-                height_start = gotoH;
-                zoom_in = zoomed_reg == -1 ? false : true;
-                last_region = zoomed_reg;
+                var bbox = bbox_array[zoomed_reg];
+                var go = gotoinfo(bbox);
+                location_set.hide();
+                location_correction();
+                zoom_around(go);
             }
         }
 
         function set_atttributes() {
-            new_tab = main_settings.url_new_tab == "yes" ? true : false;
-            default_location_opacity = main_settings.location_opacity ? main_settings.location_opacity : 1;
             var default_state = {};
             default_state.color = main_settings.state_color;
             default_state.hover_color = main_settings.state_hover_color;
@@ -4673,9 +4884,10 @@ function simplemaps_continentmap(auto) {
             default_state.inactive = main_settings.all_states_inactive;
             default_state.hide = "no";
             default_state.hide_label = "no";
+            default_state.zoomable = main_settings.all_states_zoomable ? main_settings.all_states_zoomable : "no";
             for (var id in mapinfo.paths) {
                 cattr[id] = Object.create(default_state);
-                if (id == "GU" || id == "PR" || id == "VI" || id == "MP") {
+                if (map_type == "us" && (id == "GU" || id == "PR" || id == "VI" || id == "MP")) {
                     cattr[id].hide = "yes";
                 }
                 if (region_color_map[id]) {
@@ -4698,6 +4910,12 @@ function simplemaps_continentmap(auto) {
             default_location.inactive = main_settings.all_locations_inactive;
             default_location.type = main_settings.location_type;
             default_location.opacity = default_location_opacity;
+            default_location.x_adjust = 10;
+            default_location.y_adjust = 10;
+            default_location.font_size = 14;
+            default_location.font = "Verdana, Arial, Helvetica, sans-serif";
+            default_location.label_color = main_settings.background_color;
+            default_location.font_color = "black";
             if (default_location.type == undefined) {
                 default_location.type = "square";
             }
@@ -4713,7 +4931,10 @@ function simplemaps_continentmap(auto) {
 
         function create_content(state) {
             var content = state.description;
-            var xmark = "<img id=\"xpic_14\" src=\"" + directory + "map_images/x.png\" width=\"15\" height=\"15\" alt=\"Close\" border=\"0\" />";
+            var is1 = "data:image/png;base64,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";
+            var is2 = directory + "map_images/x.png";
+            var is = vml ? is2 : is1;
+            var xmark = "<img id=\"xpic_sm\" src=\"" + is + "\" width=\"15\" height=\"15\" alt=\"Close\" border=\"0\" />";
             var linkhere_end = new_tab ? "\" target=\"_blank\">(Link) </a>" : "\">(Link) </a>";
             var linkhere = " <a href=\" " + state.url + linkhere_end;
             if (!on_click) {
@@ -4723,23 +4944,55 @@ function simplemaps_continentmap(auto) {
             if (state.url == "") {
                 linkhere = "";
             }
-            var content_part = content == "" ? (content_part = "") : "<div id=\"customer_14\"; style=\"float: left; clear: both; margin: 0px; padding: 0px;\" />" + content + "</div>";
-            html[state.id] = "<div id=\"tt_title_14\" style=\"font-weight: bold; padding: 0px; margin-right:0px; margin-left: 0px; margin-top: 0px; margin-bottom:3px; \"><div id=\"tt_name_14\" style=\"float: left\">" + state.name + linkhere + "</div><div id=\"xmark_14\" style=\"float: right; margin: 0px; cursor: pointer;\">" + xmark + "</div></div>" + content_part + "<div id=\"ttfix_14\" style=\"clear:both;\"></div>";
+            var content_part = content == "" ? (content_part = "") : "<div id=\"tt_custom_sm\"; />" + content + "</div>";
+            html[state.id] = "<div id=\"tt_title_sm\"><div id=\"tt_name_sm\">" + state.name + linkhere + "</div><div id=\"xmark_sm\">" + xmark + "</div></div>" + content_part + "</div>";
         }
         if (demo) {
-            var demo = r.text(640, 550, "Simplemaps.com Trial")
-                .attr({
-                    'font-size': 25,
-                    'font-weight': "bold",
-                    cursor: "auto",
-                    'font-family': "arial,sans-serif",
-                    href: "http://simplemaps.com/us"
-                });
-            demo.scale(scale, scale, 0, 0);
+            var demo;
+            if (map_type == "world") {
+                demo = r.text(1875, 1150, "Simplemaps.com Trial")
+                    .attr({
+                        'font-size': 60,
+                        'font-weight': "bold",
+                        cursor: "pointer",
+                        'font-family': "arial,sans-serif",
+                        href: "http://simplemaps.com/world"
+                    });
+            } else if (map_type == "us") {
+                demo = r.text(610, 550, "Simplemaps.com Trial")
+                    .attr({
+                        'font-size': 25,
+                        'font-weight': "bold",
+                        cursor: "pointer",
+                        'font-family': "arial,sans-serif",
+                        href: "http://simplemaps.com/us"
+                    });
+            } else if (map_type == "canada") {
+                demo = r.text(500, 1200, "Simplemaps.com Trial")
+                    .attr({
+                        'font-size': 45,
+                        'font-weight': "bold",
+                        cursor: "pointer",
+                        'font-family': "arial,sans-serif",
+                        href: "http://simplemaps.com/canada"
+                    });
+            } else {
+                demo = r.text(1300, 1750, "Simplemaps.com Trial")
+                    .attr({
+                        'font-size': 60,
+                        'font-weight': "bold",
+                        cursor: "pointer",
+                        'font-family': "arial,sans-serif",
+                        href: "http://simplemaps.com/north-america"
+                    });
+            }
+            demo.transform(transform);
         }
         var world = r.set();
         var label_set = r.set();
         var location_set = r.set();
+        var locvisout_set = r.set();
+        var loclab_set = r.set();
         world.hide();
         location_set.hide();
         simplemaps_continentmap_refresh = function (firstrun) {
@@ -4747,120 +5000,205 @@ function simplemaps_continentmap(auto) {
             main_settings = simplemaps_continentmap_mapdata.main_settings;
             state_specific = simplemaps_continentmap_mapdata.state_specific;
             set_atttributes();
-            for (var state in mapinfo.paths) {
-                if (cattr[state].hide != "yes") {
-                    if (state_array[state] == undefined) {
-                        var st = r.path(mapinfo.paths[state].path);
-                        st.scale(scale, scale, x_scale, y_scale);
-                        state_array[state] = st;
-                        if (region_map[state]) {
-                            region_array[region_map[state]].push(st);
+            create_states();
+
+            function create_states() {
+                for (var state in mapinfo.paths) {
+                    if (cattr[state].hide != "yes") {
+                        if (state_array[state] == undefined) {
+                            var st = r.path(mapinfo.paths[state].path);
+                            st.transform(transform);
+                            state_array[state] = st;
+                            if (region_map[state]) {
+                                region_array[region_map[state]].push(st);
+                            }
+                            world.push(st);
+                        } else {
+                            st = state_array[state];
+                            refresh_main_settings();
+                        } if (firstrun) {
+                            st.hide();
                         }
-                        world.push(st);
-                    } else {
-                        st = state_array[state];
-                        refresh_main_settings();
-                    } if (firstrun) {
-                        st.hide();
-                    }
-                    st_attr = cattr[state];
-                    st.attr({
-                        stroke: main_settings.border_color,
-                        fill: st_attr.color,
-                        cursor: "pointer",
-                        'stroke-opacity': 1,
-                        'stroke-width': 1.5,
-                        'stroke-linejoin': "round"
-                    });
-                    st.reg_num = region_map[state];
-                    st.id = state;
-                    st.name = st_attr.name == undefined ? mapinfo.names[state] : st_attr.name;
-                    st.url = st_attr.url;
-                    st.description = st_attr.description;
-                    st.inactive = st_attr.inactive == "yes" ? true : false;
-                    create_content(st);
-                    if (main_settings.hide_labels != "yes") {
-                        var label_opacity = main_settings.hide_labels == "yes" ? 0 : 1;
+                        st_attr = cattr[state];
+                        st.attr({
+                            stroke: main_settings.border_color,
+                            fill: st_attr.color,
+                            cursor: "pointer",
+                            'stroke-opacity': 1,
+                            'stroke-width': border_size,
+                            'stroke-linejoin': "round"
+                        });
+                        st.reg_num = region_map[state];
+                        st.id = state;
+                        st.name = st_attr.name == undefined ? mapinfo.names[state] : st_attr.name;
+                        st.url = st_attr.url;
+                        st.description = st_attr.description;
+                        st.inactive = st_attr.inactive == "yes" ? true : false;
+                        st.zoomable = st_attr.zoomable == "yes" ? true : false;
+                        create_content(st);
                         if (cattr[state].hide_label != "yes" && mapinfo.labels != undefined) {
                             var label = r.text(mapinfo.labels[state].label_x, mapinfo.labels[state].label_y)
                                 .attr({
                                     text: state,
                                     fill: main_settings.label_color,
                                     'fill-opacity': label_opacity,
-                                    'font-size': 22,
+                                    'font-size': label_size,
                                     'font-weight': "bold",
                                     cursor: "pointer",
                                     'font-family': "arial,sans-serif"
                                 });
-                            label.scale(scale, scale, x_scale, y_scale);
+                            label.transform(transform);
                             label.id = state;
                             label.reg_num = region_map[state];
                             label_set.push(label);
                             label.toFront();
+                            label_array[state] = label;
                         }
                     }
                 }
             }
-            for (var location in location_array) {
-                location_array[location].remove();
+            for (var i = 0; i < location_array.length; i++) {
+                location_array[i].remove();
             }
-            for (var location in locations) {
-                var size = lattr[location].size;
-                var type = lattr[location].type;
-                if (type == "circle") {
-                    size *= 0.6;
-                }
-                var point = getxy(lattr[location].lat, lattr[location].lng, size, type);
-                if (locations[location].x != undefined) {
-                    point.x = locations[location].x, point.y = locations[location].y;
-                }
-                if (type == "circle") {
-                    var st = r.circle(point.x, point.y, size * ratio);
-                } else {
-                    var st = r.rect(point.x, point.y, size * ratio, size * ratio);
-                } if (firstrun) {
-                    st.hide();
-                }
-                st.size = size;
-                st.opacity = lattr[location].opacity;
-                st.id = location;
-                st.name = lattr[location].name;
-                st.color = lattr[location].color;
-                st.url = lattr[location].url, st.attr({
-                    fill: st.color,
-                    'stroke-width': 1.5,
-                    stroke: "#FFFFFF",
-                    cursor: "pointer",
-                    opacity: st.opacity
-                })
-                    .scale(scale, scale, x_scale, y_scale)
-                    .toFront();
-                st.x = point.x;
-                st.y = point.y;
-                st.inactive = lattr[location].inactive == "yes" ? true : false;
-                st.description = lattr[location].description;
-                location_set.push(st);
-                create_content(st);
-                location_array[location] = st;
+            for (var i = 0; i < label_array.length; i++) {
+                label_array[i].remove();
             }
-            location_set.hover(over_loc, out_loc);
-            location_set.click(click);
-            label_set.hover(over_lab, out_lab);
-            label_set.click(click_lab);
+            create_locations();
+
+            function create_locations() {
+                for (var location in locations) {
+                    if (lattr[location].hide != "yes") {
+                        if (location_array[location] != undefined) {
+                            location_array[location].remove();
+                        }
+                        var size = lattr[location].size;
+                        var type = lattr[location].type;
+                        if (type == "circle") {
+                            size *= 0.6;
+                        }
+                        var point = getxy(lattr[location].lat, lattr[location].lng, size, type);
+                        if (locations[location].x != undefined) {
+                            point.x = locations[location].x, point.y = locations[location].y;
+                        }
+                        if (type == "circle") {
+                            var st = r.circle(point.x, point.y, size * ratio);
+                        } else {
+                            var st = r.rect(point.x, point.y, size * ratio, size * ratio);
+                        }
+                        st.hide();
+                        st.size = size;
+                        st.opacity = lattr[location].opacity;
+                        st.id = location;
+                        st.name = lattr[location].name;
+                        st.color = lattr[location].color;
+                        st.url = lattr[location].url, st.attr({
+                            fill: st.color,
+                            'stroke-width': 1.5,
+                            stroke: "#FFFFFF",
+                            cursor: "pointer",
+                            opacity: st.opacity
+                        });
+                        st.transform(transform);
+                        st.toFront();
+                        st.x = point.x;
+                        st.y = point.y;
+                        st.region = lattr[location].region;
+                        st.font = lattr[location].font;
+                        st.label_color = lattr[location].label_color;
+                        st.font_size = lattr[location].font_size;
+                        st.font_color = lattr[location].font_color;
+                        st.inactive = lattr[location].inactive == "yes" ? true : false;
+                        st.description = lattr[location].description;
+                        location_set.push(st);
+                        if (lattr[location].region == undefined) {
+                            locvisout_set.push(st);
+                        }
+                        create_content(st);
+                        location_array[location] = st;
+                        if (lattr[location].label == "yes" && !vml) {
+                            st.xadj = lattr[location].x_adjust;
+                            st.yadj = lattr[location].y_adjust;
+                            var st_pos = st.getBBox();
+                            if (bbox_array[st.region].width / bbox_array[st.region].height > width / height) {
+                                var sf = bbox_array[st.region].width / width;
+                            } else {
+                                var sf = bbox_array[st.region].height / height;
+                            } if (st.type == "circle") {
+                                var lx = st.x;
+                            } else {
+                                var lx = st.x + 0.5 * st.size;
+                            } if (st.type == "circle") {
+                                var ly = st.y;
+                            } else {
+                                var ly = st.y + 0.5 * st.size;
+                            }
+                            var loclab = r.text(lx + st.xadj, ly + st.yadj, st.name)
+                                .attr({
+                                    'font-size': st.font_size,
+                                    'font-weight': "bold",
+                                    fill: st.font_color,
+                                    'text-anchor': "start",
+                                    cursor: "pointer",
+                                    'font-family': st.font
+                                })
+                                .transform(transform)
+                                .toFront();
+                            loclab.scale(sf, sf, lx, ly);
+                            loclab.id = st.id;
+                            var loclab_pos = loclab.getBBox();
+                            var intpt = loclab_pos.x2 < st_pos.x2 ? loclab_pos.x2 : loclab_pos.x;
+                            var thislinepath = linePath((st_pos.x + st_pos.x2) * 0.5, (st_pos.y + st_pos.y2) * 0.5, intpt, 0.5 * (loclab_pos.y + loclab_pos.y2));
+                            var connect = r.path(thislinepath)
+                                .attr({
+                                    stroke: "#000000",
+                                    cursor: "pointer"
+                                });
+                            if (st.org) {
+                                connect.attr({
+                                    opacity: 0
+                                });
+                                st.attr({
+                                    opacity: 0
+                                });
+                            }
+                            connect.id = st.id;
+                            var rn_pos = loclab_pos;
+                            var label_back = r.rect(rn_pos.x, rn_pos.y, rn_pos.width, rn_pos.height)
+                                .attr({
+                                    fill: st.label_color,
+                                    'fill-opacity': 1,
+                                    'stroke-opacity': 0,
+                                    cursor: "pointer"
+                                });
+                            var ts = r.set();
+                            ts.push(label_back);
+                            ts.push(connect);
+                            ts.push(loclab);
+                            loclab_array[location] = ts;
+                            st.loclab_index = loclab_set.length;
+                            loclab_set.push(ts);
+                            label_back.id = st.id;
+                            loclab.toFront();
+                            st.toFront();
+                        }
+                    }
+                }
+                locvisout_set.show();
+                loclab_set.hide();
+                if (!firstrun && zoomed_reg != -1) {
+                    location_revealer();
+                    location_correction();
+                }
+                location_set.hover(over_loc, out_loc);
+                location_set.click(click);
+                label_set.hover(over_lab, out_lab);
+                label_set.click(click_lab);
+                loclab_set.hover(over_loclab, out_loclab);
+                loclab_set.click(click_loclab);
+            }
         };
         simplemaps_continentmap_refresh(true);
-        simplemaps_continentmap_zoom = function (cont) {
-            if (cont > -1) {
-                click.call(region_array[cont][0], true);
-            } else {
-                click.call(back_arrow[0]);
-            }
-        };
-        location_set.hover(over_loc, out_loc);
-        label_set.hover(over_lab, out_lab);
-        label_set.click(click_lab);
         world.hover(over, out);
-        location_set.click(click);
         world.click(click);
         back_arrow.click(click);
         background.click(back_click);
@@ -4890,15 +5228,56 @@ function simplemaps_continentmap(auto) {
             }
         }
         if (initial_zoom > -1) {
-            click.call(region_array[initial_zoom][0], true);
+            first_initial = true;
+            click.call(region_array[initial_zoom][0]);
             back_arrow.hide();
         } else {
             world.show();
-            location_set.show();
+        }
+        simplemaps_continentmap_state_zoom = function (state) {
+            if (inactive) {
+                return;
+            }
+            var st = state_array[state];
+            state_clicked = st.id;
+            world.animate({
+                'fill-opacity': 0.2
+            }, 300);
+            st.animate({
+                'fill-opacity': 1
+            }, 300);
+            inactive = true;
+            tooltip.hide();
+            zoomed_reg = 1000;
+            if (!state_bbox_array[state]) {
+                bbox = st.getBBox();
+                delete bbox.x2;
+                delete bboxy2;
+                bbox.x = bbox.x / scale;
+                bbox.y = bbox.y / scale;
+                bbox.height = bbox.height / scale;
+                bbox.width = bbox.width / scale;
+                state_bbox_array[state] = bbox;
+            } else {
+                bbox = state_bbox_array[state];
+            }
+            var go = gotoinfo(bbox);
+            location_correction();
+            zoom_around(go);
+        };
+        simplemaps_continentmap_zoom = function (cont) {
+            if (cont > -1) {
+                click.call(region_array[cont][0], "manual");
+            } else {
+                click.call(back_arrow[0]);
+            }
+        };
+        if (vml) {
+            tooltip.show("");
+            tooltip.hide();
         }
     })();
 }
-
 if (window.addEventListener) {
     window.addEventListener("load", function () {
         simplemaps_continentmap(true);
