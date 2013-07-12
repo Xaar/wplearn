@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Fast Secure Contact Form package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Fast Secure Contact Form 3.1.8.3\n"
+"Project-Id-Version: Fast Secure Contact Form 3.1.8.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/si-contact-form\n"
-"POT-Creation-Date: 2013-06-27 03:55:52+00:00\n"
+"POT-Creation-Date: 2013-07-07 22:18:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid "Send Test"
 msgstr ""
 
-#. #-#-#-#-#  plugin.pot (Fast Secure Contact Form 3.1.8.3)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Fast Secure Contact Form 3.1.8.4)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: admin/si-contact-form-admin.php:101 admin/si-contact-form-admin.php:1862
 #: admin/si-contact-form-admin.php:2827 si-contact-form-display.php:842
@@ -128,7 +128,7 @@ msgstr ""
 #: admin/si-contact-form-admin.php:2714 admin/si-contact-form-admin.php:2717
 #: admin/si-contact-form-admin.php:2754 admin/si-contact-form-admin.php:2757
 #: admin/si-contact-form-admin.php:2791 admin/si-contact-form-admin.php:2794
-#: si-contact-form-process.php:816 si-contact-form-process.php:1157
+#: si-contact-form-process.php:809 si-contact-form-process.php:1150
 msgid "Form: %d"
 msgstr ""
 
@@ -1668,14 +1668,14 @@ msgid ""
 msgstr ""
 
 #: admin/si-contact-form-admin.php:1929 admin/si-contact-form-admin.php:2583
-#: si-contact-form-display.php:550 si-contact-form-process.php:617
-#: si-contact-form-process.php:625 si-contact-form-process.php:638
+#: si-contact-form-display.php:550 si-contact-form-process.php:610
+#: si-contact-form-process.php:618 si-contact-form-process.php:631
 msgid "First Name:"
 msgstr ""
 
 #: admin/si-contact-form-admin.php:1932 admin/si-contact-form-admin.php:2584
-#: si-contact-form-display.php:562 si-contact-form-process.php:619
-#: si-contact-form-process.php:633 si-contact-form-process.php:646
+#: si-contact-form-display.php:562 si-contact-form-process.php:612
+#: si-contact-form-process.php:626 si-contact-form-process.php:639
 msgid "Last Name:"
 msgstr ""
 
@@ -2317,12 +2317,12 @@ msgid "Name:"
 msgstr ""
 
 #: admin/si-contact-form-admin.php:2585 si-contact-form-display.php:620
-#: si-contact-form-process.php:642
+#: si-contact-form-process.php:635
 msgid "Middle Name:"
 msgstr ""
 
 #: admin/si-contact-form-admin.php:2586 si-contact-form-display.php:603
-#: si-contact-form-process.php:629
+#: si-contact-form-process.php:622
 msgid "Middle Initial:"
 msgstr ""
 
@@ -2345,7 +2345,7 @@ msgid "Subject:"
 msgstr ""
 
 #: admin/si-contact-form-admin.php:2591 si-contact-form-display.php:761
-#: si-contact-form-process.php:656 si-contact-form-process.php:804
+#: si-contact-form-process.php:649 si-contact-form-process.php:797
 msgid "Message:"
 msgstr ""
 
@@ -2365,7 +2365,7 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: admin/si-contact-form-admin.php:2596 si-contact-form-process.php:1252
+#: admin/si-contact-form-admin.php:2596 si-contact-form-process.php:1245
 msgid "Your message has been sent, thank you."
 msgstr ""
 
@@ -2432,17 +2432,17 @@ msgid "The two e-mail addresses did not match, please enter again."
 msgstr ""
 
 #: admin/si-contact-form-admin.php:2639 si-contact-form-process.php:349
-#: si-contact-form-process.php:376 si-contact-form-process.php:426
-#: si-contact-form-process.php:471 si-contact-form-process.php:488
-#: si-contact-form-process.php:510 si-contact-form.php:1132
+#: si-contact-form-process.php:369 si-contact-form-process.php:419
+#: si-contact-form-process.php:464 si-contact-form-process.php:481
+#: si-contact-form-process.php:503 si-contact-form.php:1132
 msgid "This field is required."
 msgstr ""
 
-#: admin/si-contact-form-admin.php:2640 si-contact-form-process.php:529
+#: admin/si-contact-form-admin.php:2640 si-contact-form-process.php:522
 msgid "Subject text is required."
 msgstr ""
 
-#: admin/si-contact-form-admin.php:2641 si-contact-form-process.php:534
+#: admin/si-contact-form-admin.php:2641 si-contact-form-process.php:527
 msgid "Message text is required."
 msgstr ""
 
@@ -2450,16 +2450,16 @@ msgstr ""
 msgid "Contact Form has Invalid Input"
 msgstr ""
 
-#: admin/si-contact-form-admin.php:2643 si-contact-form-process.php:560
+#: admin/si-contact-form-admin.php:2643 si-contact-form-process.php:553
 msgid "Please complete the CAPTCHA."
 msgstr ""
 
-#: admin/si-contact-form-admin.php:2644 si-contact-form-process.php:577
+#: admin/si-contact-form-admin.php:2644 si-contact-form-process.php:570
 msgid "That CAPTCHA was incorrect."
 msgstr ""
 
-#: admin/si-contact-form-admin.php:2645 si-contact-form-process.php:572
-#: si-contact-form-process.php:588
+#: admin/si-contact-form-admin.php:2645 si-contact-form-process.php:565
+#: si-contact-form-process.php:581
 msgid "Possible spam bot."
 msgstr ""
 
@@ -2734,12 +2734,12 @@ msgid "Error: A select field is not configured properly in settings."
 msgstr ""
 
 #: si-contact-form-ex-fields.php:250 si-contact-form-ex-fields.php:260
-#: si-contact-form-process.php:440
+#: si-contact-form-process.php:433
 msgid "Error: A select-multiple field is not configured properly in settings."
 msgstr ""
 
 #: si-contact-form-ex-fields.php:335 si-contact-form-ex-fields.php:345
-#: si-contact-form-process.php:401
+#: si-contact-form-process.php:394
 msgid "Error: A checkbox field is not configured properly in settings."
 msgstr ""
 
@@ -2863,106 +2863,106 @@ msgstr ""
 msgid "Requested subject not found."
 msgstr ""
 
-#: si-contact-form-process.php:354 si-contact-form-process.php:476
-#: si-contact-form-process.php:493 si-contact-form-process.php:515
-msgid "Maximum of %d characters exceeded."
+#: si-contact-form-process.php:352
+msgid "Please select a valid date in this format: %s"
 msgstr ""
 
-#: si-contact-form-process.php:359
-msgid "Invalid input."
-msgstr ""
-
-#: si-contact-form-process.php:419 si-contact-form-process.php:459
+#: si-contact-form-process.php:412 si-contact-form-process.php:452
 msgid "At least one item in this field is required."
 msgstr ""
 
-#: si-contact-form-process.php:464
+#: si-contact-form-process.php:457
 msgid ""
 "Error: A checkbox-multiple field is not configured properly in settings."
 msgstr ""
 
-#: si-contact-form-process.php:481
+#: si-contact-form-process.php:469 si-contact-form-process.php:486
+#: si-contact-form-process.php:508
+msgid "Maximum of %d characters exceeded."
+msgstr ""
+
+#: si-contact-form-process.php:474
 msgid "Invalid e-mail address."
 msgstr ""
 
-#: si-contact-form-process.php:498
+#: si-contact-form-process.php:491
 msgid "Invalid URL."
 msgstr ""
 
-#: si-contact-form-process.php:520
+#: si-contact-form-process.php:513
 msgid "Invalid regex."
 msgstr ""
 
-#: si-contact-form-process.php:556
+#: si-contact-form-process.php:549
 msgid "That CAPTCHA was incorrect. Try again."
 msgstr ""
 
-#: si-contact-form-process.php:606
+#: si-contact-form-process.php:599
 msgid "To"
 msgstr ""
 
-#: si-contact-form-process.php:608
+#: si-contact-form-process.php:601
 msgid "From"
 msgstr ""
 
-#: si-contact-form-process.php:683 si-contact-form-process.php:684
+#: si-contact-form-process.php:676 si-contact-form-process.php:677
 msgid "File is attached:"
 msgstr ""
 
-#: si-contact-form-process.php:756 si-contact-form-process.php:757
+#: si-contact-form-process.php:749 si-contact-form-process.php:750
 msgid "selected"
 msgstr ""
 
-#: si-contact-form-process.php:792
+#: si-contact-form-process.php:785
 msgid "Form Page"
 msgstr ""
 
-#: si-contact-form-process.php:858
+#: si-contact-form-process.php:851
 msgid "From a WordPress user"
 msgstr ""
 
-#: si-contact-form-process.php:859
+#: si-contact-form-process.php:852
 msgid "User email"
 msgstr ""
 
-#: si-contact-form-process.php:860
+#: si-contact-form-process.php:853
 msgid "User first name"
 msgstr ""
 
-#: si-contact-form-process.php:861
+#: si-contact-form-process.php:854
 msgid "User last name"
 msgstr ""
 
-#: si-contact-form-process.php:862
+#: si-contact-form-process.php:855
 msgid "User display name"
 msgstr ""
 
-#: si-contact-form-process.php:865 si-contact-form-process.php:925
-#: si-contact-form-process.php:929
+#: si-contact-form-process.php:858 si-contact-form-process.php:918
+#: si-contact-form-process.php:922
 msgid "Sent from (ip address)"
 msgstr ""
 
-#: si-contact-form-process.php:867 si-contact-form-process.php:868
+#: si-contact-form-process.php:860 si-contact-form-process.php:861
 msgid "Location"
 msgstr ""
 
-#: si-contact-form-process.php:870
+#: si-contact-form-process.php:863
 msgid "Date/Time"
 msgstr ""
 
-#: si-contact-form-process.php:871
+#: si-contact-form-process.php:864
 msgid "Coming from (referer)"
 msgstr ""
 
-#: si-contact-form-process.php:872
+#: si-contact-form-process.php:865
 msgid "Using (user agent)"
 msgstr ""
 
-#: si-contact-form-process.php:917
+#: si-contact-form-process.php:910
 msgid "Invalid Input - Spam?"
 msgstr ""
 
-#: si-contact-form-process.php:920
+#: si-contact-form-process.php:913
 msgid ""
 "Akismet determined your message is spam. This can be caused by the message "
 "content, your email address, or your IP address being on the Akismet spam "
@@ -2970,27 +2970,27 @@ msgid ""
 "menu."
 msgstr ""
 
-#: si-contact-form-process.php:924
+#: si-contact-form-process.php:917
 msgid "Akismet: Spam"
 msgstr ""
 
-#: si-contact-form-process.php:925
+#: si-contact-form-process.php:918
 msgid "Akismet Spam Check: probably spam"
 msgstr ""
 
-#: si-contact-form-process.php:926
+#: si-contact-form-process.php:919
 msgid "probably spam"
 msgstr ""
 
-#: si-contact-form-process.php:929
+#: si-contact-form-process.php:922
 msgid "Akismet Spam Check: passed"
 msgstr ""
 
-#: si-contact-form-process.php:930
+#: si-contact-form-process.php:923
 msgid "passed"
 msgstr ""
 
-#: si-contact-form-process.php:1257 si-contact-form-process.php:1258
+#: si-contact-form-process.php:1250 si-contact-form-process.php:1251
 msgid "Redirecting"
 msgstr ""
 

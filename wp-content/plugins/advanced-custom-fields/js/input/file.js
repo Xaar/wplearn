@@ -144,10 +144,31 @@
 				
 				
 				// customize model / view
-				acf.media.frame.on('open', function(){
+				acf.media.frame.on('content:activate', function(){
 					
-					var content = acf.media.frame.content.get(),
-						filters = content.toolbar._views.filters;
+					// vars
+					var toolbar = null,
+						filters = null;
+						
+					
+					// populate above vars making sure to allow for failure
+					try
+					{
+						toolbar = acf.media.frame.content.get().toolbar;
+						filters = toolbar.get('filters');
+					} 
+					catch(e)
+					{
+						// one of the objects was 'undefined'... perhaps the frame open is Upload Files
+						//console.log( e );
+					}
+					
+					
+					// validate
+					if( !filters )
+					{
+						return false;
+					}
 					
 					
 					// no need for 'uploaded' filter
@@ -185,13 +206,14 @@
 					    	// select / add another file field?
 					    	if( i > 1 )
 							{
-								var tr = _media.div.closest('tr'),
+								var key = _media.div.closest('td').attr('data-field_key'),
+									tr = _media.div.closest('tr'),
 									repeater = tr.closest('.repeater');
 								
 								
 								if( tr.next('.row').exists() )
 								{
-									_media.div = tr.next('.row').find('.acf-file-uploader');
+									_media.div = tr.next('.row').find('td[data-field_key="' + key + '"] .acf-file-uploader');
 								}
 								else
 								{
@@ -199,7 +221,7 @@
 					 				repeater.find('.add-row-end').trigger('click'); 
 					 			 
 					 				// set acf_div to new row file 
-					 				_media.div = repeater.find('> table > tbody > tr.row:last .acf-file-uploader');
+					 				_media.div = repeater.find('> table > tbody > tr.row:last td[data-field_key="' + key + '"] .acf-file-uploader');
 								}
 							}
 							

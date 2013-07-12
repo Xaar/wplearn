@@ -3,12 +3,12 @@
 Plugin Name: Fast Secure Contact Form
 Plugin URI: http://www.FastSecureContactForm.com/
 Description: Fast Secure Contact Form for WordPress. The contact form lets your visitors send you a quick E-mail message. Super customizable with a multi-form feature, optional extra fields, and an option to redirect visitors to any URL after the message is sent. Includes CAPTCHA and Akismet support to block all common spammer tactics. Spam is no longer a problem. <a href="plugins.php?page=si-contact-form/si-contact-form.php">Settings</a> | <a href="http://www.FastSecureContactForm.com/donate">Donate</a>
-Version: 3.1.8.3
+Version: 3.1.8.4
 Author: Mike Challis
 Author URI: http://www.642weather.com/weather/scripts.php
 */
 
-$ctf_version = '3.1.8.3';
+$ctf_version = '3.1.8.4';
 
 /*  Copyright (C) 2008-2013 Mike Challis  (http://www.fastsecurecontactform.com/contact)
 
@@ -2106,6 +2106,37 @@ function si_contact_convert_css($string) {
     }
     return 'style="'.esc_attr($string).'"';
 } // end function si_contact_convert_css
+
+function validate_date( $input ) {
+      global $si_contact_opt;
+    // Matches the date format and also validates month and number of days in a month.
+    // All leap year dates allowed.
+
+     $date_format = $si_contact_opt['date_format'];
+    // find the delimiter of the date_format setting: slash, dash or dot
+    if (strpos($date_format,'/')) {
+      $delim = '/'; $regexdelim = '\/';
+    } else if (strpos($date_format,'-')) {
+       $delim = '-'; $regexdelim = '-';
+    } else if (strpos($date_format,'.')) {
+      $delim = '.';  $regexdelim = '\.';
+    }
+
+    if ( $date_format == "mm${delim}dd${delim}yyyy" )
+        $regex = "/^(((0[13578]|(10|12))${regexdelim}(0[1-9]|[1-2][0-9]|3[0-1]))|(02${regexdelim}(0[1-9]|[1-2][0-9]))|((0[469]|11)${regexdelim}(0[1-9]|[1-2][0-9]|30)))${regexdelim}[0-9]{4}$/";
+
+	if ( $date_format == "dd${delim}mm${delim}yyyy" )
+        $regex = "/^(((0[1-9]|[1-2][0-9]|3[0-1])${regexdelim}(0[13578]|(10|12)))|((0[1-9]|[1-2][0-9])${regexdelim}02)|((0[1-9]|[1-2][0-9]|30)${regexdelim}(0[469]|11)))${regexdelim}[0-9]{4}$/";
+
+	if ( $date_format == "yyyy${delim}mm${delim}dd" )
+        $regex = "/^[0-9]{4}${regexdelim}(((0[13578]|(10|12))${regexdelim}(0[1-9]|[1-2][0-9]|3[0-1]))|(02${regexdelim}(0[1-9]|[1-2][0-9]))|((0[469]|11)${regexdelim}(0[1-9]|[1-2][0-9]|30)))$/";
+
+    if ( ! preg_match($regex, $input)  )
+	    return false;
+    else
+        return true;
+
+    } // end function validate_date()
 
 /**
  * Remotely fetch, cache, and display HTML ad for the Fast Secure Contact Form Newsletter plugin addon.

@@ -615,6 +615,9 @@ class Securimage_ctf {
 	 */
 	function drawLines()
 	{
+        $line_color = $this->getColorArray($this->line_color, '#3d3d3d');
+
+		$linecolor = imagecolorallocate($this->im, $line_color[0], $line_color[1], $line_color[2]);
 
 		for ($line = 0; $line < $this->num_lines; ++$line) {
 			$x = $this->image_width * (1 + $line) / ($this->num_lines + 1);
@@ -643,7 +646,7 @@ class Securimage_ctf {
 			for ($i = 0; $i < $n; ++$i) {
 				$x = $x0 + $i * $dx + $amp * $dy * sin($k * $i * $step + $phi);
 				$y = $y0 + $i * $dy - $amp * $dx * sin($k * $i * $step + $phi);
-				imagefilledrectangle($this->im, $x, $y, $x + $lwid, $y + $lwid, $this->line_color);
+				imagefilledrectangle($this->im, $x, $y, $x + $lwid, $y + $lwid, $linecolor);
 			}
 		}
 	}
@@ -699,14 +702,7 @@ class Securimage_ctf {
 			if ($this->use_multi_text == false && $this->text_angle_minimum == 0 && $this->text_angle_maximum == 0) { // no angled or multi-color characters
 				imagettftext($this->tmpimg, $font_size, 0, $x, $y, $font_color, $this->ttf_file, $this->code);
 			} else {
-                //mchallis pick a lines color that is one of the character colors
-                $multi_colors = $this->multi_text_color;
-
                 $this->multi_text_color = $this->convertMultiTextColor($this->multi_text_color);
-
-                //mchallis pick a lines color that is one of the character colors
-                $line_colors = array();
-
 				for($i = 0; $i < $strlen; ++$i) {
 					$angle = rand($this->text_angle_minimum, $this->text_angle_maximum);
 					$y = rand($y - 5, $y + 5);
@@ -715,13 +711,11 @@ class Securimage_ctf {
 
 						if($this->use_transparent_text == true) {
 							$font_color = imagecolorallocatealpha($this->tmpimg, $this->multi_text_color[$idx][0], $this->multi_text_color[$idx][1], $this->multi_text_color[$idx][2], $alpha);
-                            //mchallis pick a lines color that is one of the character colors
-                             $line_colors[] = $font_color;
 						} else {
 							$font_color = imagecolorallocate($this->tmpimg, $this->multi_text_color[$idx][0], $this->multi_text_color[$idx][1], $this->multi_text_color[$idx][2]);
 						}
 					}
-
+					 
 					$ch = $this->code{$i};
 					 
 					imagettftext($this->tmpimg, $font_size, $angle, $x, $y, $font_color, $this->ttf_file, $ch);
@@ -748,9 +742,6 @@ class Securimage_ctf {
 					 
 					$x += rand($min_x, $max_x);
 				} //for loop
-
-                //mchallis pick a lines color that is one of the character colors
-                 $this->line_color = $line_colors[mt_rand(0, 2)];
 			} // angled or multi-color
 		} //else ttf font
 		//$this->im = $this->tmpimg;
