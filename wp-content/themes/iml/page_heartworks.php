@@ -37,13 +37,13 @@ $(window).load(function() {
 
 <script type="text/javascript" src="<?=get_template_directory_uri();?>/js/easyModal.js"></script>
 
-<?=insert_videos(array('909', '898'));?>
+<?=insert_videos(array('909', '898', '1006', '895'));?>
 
 <div class="hw-endorsements-wrapper">
   <div class="hw-endorsements row">
     <h4>SEE ENDORSEMENTS OF HEARTWORKS PRODUCTS FROM LEADING PROFESSIONALS</h4>
     <!-- ENDORSEMENTS GALLERY ADD HERE -->
-<?=insert_thumbs(array('909', '898'));?>
+<?=insert_thumbs(array('909', '898', '1006', '895'));?>
   </div> <!-- promo-band -->
 </div> <!-- promo-band-wrapper -->
 
