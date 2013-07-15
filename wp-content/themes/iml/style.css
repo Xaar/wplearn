@@ -1098,7 +1098,7 @@ Homepage promo styles Latest News, events etc.
 
 }
 
-.newsPromoImg , .product-video-thumb , .endorsement-video-thumb img {
+.newsPromoImg , .product-video-thumb {
 	position: relative;
 	display: block;
 	width: 80%;
@@ -1113,6 +1113,22 @@ Homepage promo styles Latest News, events etc.
 	 padding: 0;
 	 line-height: 0 !important;
 
+
+}
+
+.endorsement-video-thumb img {
+	position: relative;
+	display: block;
+	height: auto;
+	max-width: 280px;
+	max-height: 158px;
+	border: 1px solid #fff;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
+	 margin: 0 auto;
+	 padding: 0;
+	 line-height: 0 !important;
 
 }
 
@@ -1624,6 +1640,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	float: left;
     margin: 10px 2.5%;
     width: 20%;
+    text-align: center;
     }
 
 .product-carousel {
@@ -1863,6 +1880,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	width: 100%;
 	
 	cursor: pointer;
+	position: relative;
 
 }
 
