@@ -1620,6 +1620,12 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	width: auto;
 }
 
+.endorsement-vid-wrapper {
+	float: left;
+    margin: 10px 2.5%;
+    width: 20%;
+    }
+
 .product-carousel {
 	overflow: hidden;
 	position: relative;

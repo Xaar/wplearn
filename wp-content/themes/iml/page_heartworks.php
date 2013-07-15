@@ -44,7 +44,7 @@ $(window).load(function() {
     <h4>SEE ENDORSEMENTS OF HEARTWORKS PRODUCTS FROM LEADING PROFESSIONALS</h4>
     <!-- ENDORSEMENTS GALLERY ADD HERE -->
     <div class="vid-thumb-wrapper">
-<?=insert_thumbs(array('909', '898', '1006', '895'));?>
+<?=insert_thumbs_endorsements(array('909', '898', '1006', '895'));?>
 </div> <!-- div thumb wrapper -->
   </div> <!-- promo-band -->
 </div> <!-- promo-band-wrapper -->

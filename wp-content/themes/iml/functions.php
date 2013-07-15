@@ -357,3 +357,31 @@ function insert_thumbs($ids) {
   return $return;
 }
 
+function insert_thumbs_endorsements($ids) {
+  foreach($ids as $id) {
+    $cp = get_post_custom($id);
+    $x = $cp['thumbnail'];
+    $desc = $cp['description'];
+    $thumb = wp_get_attachment_image_src( $x[0], 'thumbnail' );
+    $url = $thumb[0];
+    $return .= "        <div class=\"endorsement-vid-wrapper\">
+          <div class=\"flow-single endorsement-video-thumb\">
+          <div class=\"video-play-btn open-mov-modal-$id\">
+          </div>
+          <img src=\"$url\" class=\"open-mov-modal-$id\" />
+        </div>
+        <p>$desc[0]</p>
+        </div>
+        <script>
+          jQuery('#mov-modal-$id').easyModal({
+            overlay : 0.4,
+            overlayClose: false
+          });
+          jQuery('.open-mov-modal-$id').on(\"click\", function(e){
+            $('#mov-modal-$id').trigger('openModal');
+            e.preventDefault();
+          });
+        </script>\n";
+    }
+  return $return;
+}
