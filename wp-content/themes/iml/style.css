@@ -1098,7 +1098,7 @@ Homepage promo styles Latest News, events etc.
 
 }
 
-.newsPromoImg , .product-video-thumb {
+.newsPromoImg , .product-video-thumb , .endorsement-video-thumb img {
 	position: relative;
 	display: block;
 	width: 80%;
@@ -1116,7 +1116,7 @@ Homepage promo styles Latest News, events etc.
 
 }
 
-.newsPromoImg img , .product-video-thumb img {
+.newsPromoImg img ,  , .endorsement-video-thumb img {
 	position: relative;
 	width: 100%;
 	max-width: 280px;
@@ -1848,7 +1848,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 }
 
-.product-vid-wrapper p {
+.product-vid-wrapper p , .endorsement-vid-wrapper p {
 	color: #999;
 	text-align: center;
 	font-style: italic;
@@ -1859,7 +1859,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	margin: 0;
 }
 
-.product-video-thumb {
+.product-video-thumb , .endorsement-video-thumb {
 	width: 100%;
 	
 	cursor: pointer;
@@ -3009,7 +3009,7 @@ h2{
 	margin-top: 30px;
 }
 
-.product-vid-wrapper {
+.product-vid-wrapper , .endorsement-vid-wrapper {
 	float: none;
 	width: 100%;
 }
