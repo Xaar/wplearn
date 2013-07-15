@@ -1606,7 +1606,19 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 }
 
+.hw-endorsements {
+	margin: 0 auto;
+	position: relative;
+	display: block;
+	text-align: center;
+}
 
+.vid-thumb-wrapper {
+	margin: 0 auto;
+	display: inline-block;
+	position: relative;
+	width: auto;
+}
 
 .product-carousel {
 	overflow: hidden;

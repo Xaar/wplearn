@@ -6,7 +6,7 @@
 
   <div class="quick-links row">
     <div class="quick-link col">
-      <img src="<?php bloginfo('template_directory'); ?>/images/link-gateway.png">
+      <img src="<?php bloginfo('template_directory'); ?>/images/link-pathology.png">
       <h2><?php  $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Pathologies'));
         while ( $wp_query->have_posts() ) : $wp_query->the_post();
         ?>         <a href="<?=the_permalink();?>">Heartworks Pathology Modules</a></h2>
