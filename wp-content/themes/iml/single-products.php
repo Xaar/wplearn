@@ -18,7 +18,8 @@ $(window).load(function() {
     scroll: { items: 1, fx: "scroll", duration: "auto" },
     auto: false,
     prev: { button: ".previous", key: "left" },
-    next: { button: ".next", key: "right" }
+    next: { button: ".next", key: "right" },
+    swipe: { onTouch: true , onMouse: true}
   });
 });
 $(function() {
