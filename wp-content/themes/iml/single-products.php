@@ -4,6 +4,8 @@ define("THISPAGE", "products");
 
 get_header();
 ?>
+<link rel="stylesheet" href="<?=get_template_directory_uri();?>/js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="<?=get_template_directory_uri();?>/js/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 /* CarouFredSel: a circular, responsive jQuery carousel.
 Configuration created by the "Configuration Robot"
@@ -24,7 +26,14 @@ $(function() {
     $("ul.tabs").tabs("div.panes > div");
 });
 </script>
-
+<script>
+        $(document).ready(function() {
+            $('.fancybox').fancybox({
+                padding : 0,
+                openEffect  : 'elastic'
+            });
+        });
+    </script>
 <?php
 $postid=$post->ID;
 get_sidebar('navigation');
@@ -144,17 +153,19 @@ $gallery = maybe_unserialize($x[0]);
 $thumb = wp_get_attachment_image_src( $gallery[0], 'medium' );
 $theme = get_template_directory_uri();
 foreach($gallery as $id) {
-$x = wp_get_attachment_image_src( $id, 'large' );
-$url[] = $x[0];
+  $x = wp_get_attachment_image_src( $id, 'large' );
+  $url[] = $x[0];
+  $title = get_the_title($id);
 }
 
 foreach($url as $src) {
   $i++;
   $visible = ($i=='1') ? " " : "style='display:none' ";
 
-  echo "        <a href='$src' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a>";
 
-  if ($i=='1') echo " <a href='$src' id='slide-icon' class='slideshow-icon' rel='lightbox[test]'><img src='$theme/images/slideshow-icon.png'/></a>";
+  echo "        <a href='$src' rel='gallery' class='fancybox' title='$title' $visible><img src='$thumb[0]'/></a>";
+
+  if ($i=='1') echo " <a href='$src' id='slide-icon' class='fancybox' rel='gallery'><img src='$theme/images/slideshow-icon.png'/></a>";
 
 }
 
@@ -178,9 +189,9 @@ foreach($url as $src) {
   $i++;
   $visible = ($i=='1') ? " " : "style='display:none' ";
 
-  echo "        <a href='$src' rel='lightbox[test]' $visible><img src='$thumb[0]'/></a>";
+  echo "        <a href='$src' rel='gallery' class='fancybox' title='image title' $visible><img src='$thumb[0]'/></a>";
 
-  if ($i=='1') echo " <a href='$src' id='slide-icon' class='slideshow-icon' rel='lightbox[test]'><img src='$theme/images/slideshow-icon.png'/></a>";
+  if ($i=='1') echo " <a href='$src' id='slide-icon' class='fancybox' rel='gallery'><img src='$theme/images/slideshow-icon.png'/></a>";
 
 }
 ?>        </div><!-- tabs-gallery -->
