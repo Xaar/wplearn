@@ -2745,6 +2745,7 @@ h2.heading-leftcol {
 
 #map {
 	position: relative;
+	min-height: 300px;
 }
 
 .distributor {
@@ -2999,6 +3000,17 @@ Screen Height = 568px (CSS Pixels)
 	position: relative;
 }	
 
+.pane {
+	display: block;
+}
+
+.panes .pane {
+    display:block;
+}
+
+.product-tabs {
+	display: none;
+}
 
 
 h1 {
@@ -3307,6 +3319,10 @@ margin: 0 auto !important;
 
 .product-quote {
 	float: none;
+}
+
+.hw-endorsements {
+	margin: 0;
 }
 
 /*

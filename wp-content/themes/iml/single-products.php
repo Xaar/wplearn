@@ -22,10 +22,43 @@ $(window).load(function() {
     swipe: { onTouch: true , onMouse: true}
   });
 });
-$(function() {
+$(document).ready(function () {
     // setup ul.tabs to work as tabs for each div directly under div.panes
+      if($(window).width()>767) {
     $("ul.tabs").tabs("div.panes > div");
+  }
 });
+
+function desktop_tabs() {
+     if($(window).width()>767) {
+    $("ul.tabs").tabs("div.panes > div");
+  }
+
+}
+
+function mobile_tabs() {
+    
+
+}
+
+
+ function resizetabs(){
+      var tabwidth = $(this).width();
+      if(tabwidth<=767){
+        mobile_tabs();
+      }else{
+        desktop_tabs();
+      }
+    }
+
+    var tabs;
+
+    $(window).resize(function () {
+      clearTimeout(tabs);
+      tabs = setTimeout(resizetabs, 100);
+      var tabwidth = $(this).width();
+      
+    });
 </script>
 <script>
         $(document).ready(function() {

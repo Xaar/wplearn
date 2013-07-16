@@ -44,7 +44,9 @@ get_header(); ?>
 
 
 <?php else : ?>
+  <div class='search-fail'>
       <p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'IML' ); ?></p>
+    </div>
 <?php endif; ?>
     
 <?php endif; ?>
