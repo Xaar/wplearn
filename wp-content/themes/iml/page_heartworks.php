@@ -45,7 +45,7 @@ $(window).load(function() {
     <!-- ENDORSEMENTS GALLERY ADD HERE -->
     <div class="vid-thumb-wrapper">
 <?=insert_thumbs_endorsements(array('909', '898', '1006', '895'));?>
-</div> <!-- div thumb wrapper -->
+    </div> <!-- div thumb wrapper -->
   </div> <!-- promo-band -->
 </div> <!-- promo-band-wrapper -->
 

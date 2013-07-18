@@ -154,19 +154,19 @@ $thumb = wp_get_attachment_image_src( $gallery[0], 'medium' );
 $theme = get_template_directory_uri();
 foreach($gallery as $id) {
   $x = wp_get_attachment_image_src( $id, 'large' );
-  $url[] = $x[0];
   $title = get_the_title($id);
+  $info[] = array ( 'url' => "$x[0]", 'title' => "$title");
 }
 
-foreach($url as $src) {
+foreach($info as $item) {
   $i++;
   $visible = ($i=='1') ? " " : "style='display:none' ";
 
-
-  echo "        <a href='$src' rel='gallery' class='fancybox' title='$title' $visible><img src='$thumb[0]'/></a>";
-
-  if ($i=='1') echo " <a href='$src' id='slide-icon' class='fancybox' rel='gallery'><img src='$theme/images/slideshow-icon.png'/></a>";
-
+  if ($i=='1') { 
+    echo " <a href='$item[url]' class='fancybox' rel='gallery' title='$item[title]' $visible><img src='$thumb[0]'/><img id='slide-icon' src='$theme/images/slideshow-icon.png'/></a>";
+  }else{
+    echo "        <a href='$item[url]' rel='gallery' class='fancybox' title='$item[title]' $visible><img src='$thumb[0]'/></a>";
+  }
 }
 
 ?>        </div><!-- tabs-gallery -->
