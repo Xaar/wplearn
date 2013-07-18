@@ -678,7 +678,7 @@ p , a {
 
 .header_inner_wrapper , .mobile_header_inner_wrapper , .page-wrapper , .hero-content , .promo-band , .featured-product, .quick-links , .footer-wrapper , 
 .product-carousel, .gateway-promo-wrapper , .page-title , .hw-menu-collapsed, .hw-menu-expanded-wrapper, .hero-product-content ,
-.products-tabs-wrapper , .hw-endorsements {
+.products-tabs-wrapper , .hw-endorsements , .search-listing {
      width: 90%;
      min-width: 240px;
      max-width: 1280px;
@@ -2349,8 +2349,8 @@ text-align: center;
 .hero-news-content , .hero-event-content , .content-listing , .search-listing {
 	-webkit-border-radius: 8px;
 	 border-radius: 8px;
-	 -webkit-box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .2);
- 	box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .2);
+	 -webkit-box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .1);
+ 	box-shadow:  0px 0px 2px 2px rgba(0, 0, 0, .1);
  	background: #ffffff; /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -2421,14 +2421,28 @@ text-align: center;
 
 
 .search-listing {
-	margin: 15px 10%;
-	padding: 10px;
-	width: 80%;
+	margin: 30px auto;
+	padding: 0;
+	width: 90%;
+
 }
 
-.search-listing p {
-	margin-bottom: 0.5em;
+.search-listing-text p {
+	margin: 0;
+	padding: 0;
 }
+
+.search-listing-text {
+	margin: 10px 0 10px 40px;
+	float: left;
+	width: 60%;
+}
+
+.search-fail {
+	text-align: center;
+	margin: 10px 0 40px 0;
+}
+
 
 .hero-news-content img , .hero-event-content img {
 -webkit-border-radius: 8px 8px 0 0;
@@ -2439,7 +2453,7 @@ margin-bottom: 20px;
 
 }
 
-.content-listing img {
+.content-listing img , .search-listing img {
 float: left;
 -webkit-border-radius: 8px 0 0 8px;
 	 border-radius: 8px 0 0 8px;
@@ -2501,7 +2515,7 @@ max-width: 37%;
 }
 
 
-.news-listing-text a , .event-listing-text a ,  .news-listing-text-right a , .event-listing-text-right a , .hero-news-listing-text a , .hero-event-listing-text a {
+.news-listing-text a , .event-listing-text a ,  .news-listing-text-right a , .event-listing-text-right a , .hero-news-listing-text a , .hero-event-listing-text a , .search-listing-text a {
 	text-decoration: none;
 	color: #333;
 	font-weight: 600;
@@ -2510,7 +2524,7 @@ max-width: 37%;
 
 }
 
-.news-listing-text a:hover , .event-listing-text a:hover , .hero-news-listing-text a:hover , .news-listing-text-right a:hover , .event-listing-text-right a:hover {
+.news-listing-text a:hover , .event-listing-text a:hover , .hero-news-listing-text a:hover , .news-listing-text-right a:hover , .event-listing-text-right a:hover , .search-listing-text a:hover {
 
 	color: #c00;
 
@@ -2731,6 +2745,7 @@ h2.heading-leftcol {
 
 #map {
 	position: relative;
+	min-height: 300px;
 }
 
 .distributor {
@@ -2985,6 +3000,17 @@ Screen Height = 568px (CSS Pixels)
 	position: relative;
 }	
 
+.pane {
+	display: block;
+}
+
+.panes .pane {
+    display:block;
+}
+
+.product-tabs {
+	display: none;
+}
 
 
 h1 {
@@ -3293,6 +3319,10 @@ margin: 0 auto !important;
 
 .product-quote {
 	float: none;
+}
+
+.hw-endorsements {
+	margin: 0;
 }
 
 /*
