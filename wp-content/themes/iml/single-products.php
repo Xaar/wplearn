@@ -184,7 +184,7 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
 $custom_fields = get_post_custom($postid);
 $x =  $custom_fields['lightbox'];
 $gallery = maybe_unserialize($x[0]);
-$thumb = wp_get_attachment_image_src( $gallery[0], 'medium' );
+$thumb = wp_get_attachment_image_src( $gallery[0], 'large' );
 $theme = get_template_directory_uri();
 foreach($gallery as $id) {
   $x = wp_get_attachment_image_src( $id, 'large' );
