@@ -4,10 +4,6 @@ Template Name: About
 */
 ?>
 
-<?php
-define("THISPAGE", "about");
-?>
-
 <?php get_header(); ?>
 
 <div id="content" class="hero-content row clear-nav" role="main">
@@ -19,6 +15,7 @@ define("THISPAGE", "about");
 
 	<div class="about-leftcol-wrapper">
 		<h2 class="heading-leftcol">The IML Story</h2>
+    <div class="about_image"><?php the_post_thumbnail('sixteen-nine-large'); ?></div>
 		<h1 class="about-section-title">We design and develop advanced echocardiography imaging products for the medical industry</h1>
 		<p>Lorem ipsum dolor sit amet, in qui nominavi maluisset, et voluptatum definitionem mea. Ad integre persequeris sit, in eum feugait propriae accusamus, ad eos posse nostrud nostrum. Nisl recusabo erroribus has id. Sed justo malorum apeirian te, iudico volutpat at pro. Illum adipiscing at nec, vide repudiandae ea nam. Eam et vitae nonumes convenire. Ea vis aperiam scripserit.
   </p>
