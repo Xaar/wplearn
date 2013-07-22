@@ -141,6 +141,10 @@ function IML_scripts() {
 
   wp_enqueue_script( 'jquery-touchSwipe', get_template_directory_uri() . '/js/jquery.touchSwipe.min.js' , array(), '163', true );
 
+  wp_enqueue_script( 'raphaeljs', get_template_directory_uri() . '/js/raphael-min.js' , array(), '210', true );
+
+  wp_enqueue_script( 'jqueryvisible', get_template_directory_uri() . '/js/jquery.visible.min.js' , array(), '1', true );
+
 	$carouFredSel= get_bloginfo('template_directory') . "/js/jquery.carouFredSel-6.2.1.js";
 	wp_deregister_script( 'carouFredSel' );
 	wp_register_script( 'carouFredSel', $carouFredSel);

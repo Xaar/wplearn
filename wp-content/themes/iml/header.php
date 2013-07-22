@@ -1,9 +1,5 @@
 <?php
 /**
- * The Header for our theme.
- *
- * Displays all of the <head> section and everything up till <div id="main">
- *
  * @package IML
  */
 ?><!DOCTYPE html>
@@ -118,7 +114,7 @@
         desktop_view();
       }
       $('#map').empty();
-      smp_contm(true);
+     // smp_contm(true);
     }
 
     var doit;
