@@ -25,6 +25,7 @@ Template Name: map_new
   function set_places() {
     var places_setup = {
         0: {
+          uid: "Japan",
           name: "Japan",
           distributor: "Nihon Light Inc",
           address: "3-42-1 Hongo,<br>Bunkyo-ku,<br>Tokyo,<br>113-0033,<br>Japan",
@@ -35,6 +36,7 @@ Template Name: map_new
           ypos: 0.25
         },
         1: {
+          uid: "Indonesia",
           name: "Indonesia",
           distributor: "PT INTERGASTRA",
           address: "Jl. P. Jayakarta,<br>24/31-35,<br>Jakarta10730,<br>Indonesia",
@@ -44,7 +46,8 @@ Template Name: map_new
           xpos: 0.78,
           ypos: 0.57
         },
-        2: {   
+        2: { 
+          uid: "China", 
           name: "China",
           distributor: "V-MedEd",
           address: "Beijing,<br>China",
@@ -55,6 +58,7 @@ Template Name: map_new
           ypos: 0.3
         },
         3: {
+          uid: "Australia",
           name: "Australia",
           distributor: "Inition – Asia Pacific",
           address: "Factory 31,<br>91 Moreland Street,<br>Footscray,<br>VIC,3011,<br>Australia",
@@ -65,7 +69,8 @@ Template Name: map_new
           ypos: 0.8
          },
         4: {
-          name: "Middle_East",
+          uid: "Middle_East",
+          name: "Middle East",
           distributor: "EWG International",
           address: "P.O.Box 18475,Jebel Ali <br>Dubai UAE",
           email: "kassemtofailli@gmail.comkassemtofailli@gmail.com",
@@ -74,8 +79,9 @@ Template Name: map_new
           xpos: 0.55,
           ypos: 0.3
          }, 
-         5: {  
-          name: "Singapore_Malaysia",
+         5: { 
+          uid: "Singapore_Malaysia",
+          name: "Singapore and Malaysia",
           distributor: "United BMEC Pte Ltd",
           address: "No 2 Kim Chuan Drive,<br>06-01,CSI Distribution Centre,<br>Singapore,<br>537080",
           email: "chngken.bmec@uwhpl.com",
@@ -84,7 +90,8 @@ Template Name: map_new
           xpos: 0.72,
           ypos: 0.37
          }, 
-         6: {  
+         6: { 
+          uid: "India",
           name: "India",
           distributor: "Prakash Medicos",
           address: "WZ-428C Nangal Raya,<br>New Delhi,<br>110046",
@@ -95,6 +102,7 @@ Template Name: map_new
           ypos: 0.4
          }, 
         7: { 
+          uid: "Thailand",
           name: "Thailand",
           distributor: "Berli Jucker Public Company Limited",
           address: "Berli Jucker House, 99 <br>Soi Rubia, Sukhumvit 42 Road,<br>Phrakanong, Klongtoey,<br>Bangkok 10110,<br>Thailand",
@@ -105,7 +113,8 @@ Template Name: map_new
           ypos: 0.44
          }, 
         8: {
-          name: "South_Korea",
+          uid: "South_Korea",
+          name: "South Korea",
           distributor: "KyongDo Medical Simulation Corp",
           address: "ShinWol B/D #202,<br>347-2,ShinDaeBang-Dong,<br>Dongjak-Gu and Seoul,<br>Korea 156-847",
           email: "leekd9595@hanmail.net",
@@ -115,6 +124,7 @@ Template Name: map_new
           ypos: 0.3
          },
         9: {
+          uid: "Ireland",
           name: "Ireland",
           distributor: "Cardiac Services",
           address: "Dublin",
@@ -171,7 +181,7 @@ function map_init () {
 
         var place=0;
         var str=String(places); 
-        var repeat=str.length
+        var repeat=str.length;
         console.log(places);
         console.log(repeat);
 
@@ -184,18 +194,21 @@ function map_init () {
         var pl_ypos=mapheight*pl.ypos;
         var pl_size=pl.radius;
         var pl_name=pl.name;
-        var marker= $('#map_new').prepend("<div id='pl_"+pl_name+"' class='dot' style='position: absolute; left:"+pl_xpos+"px; top:"+pl_ypos+"px;display: inline; z-index: 1000; padding:10px; float:left; width:"+pl_size+"px;height:"+pl_size+"px;'></div>");
-        var pl_paper=Raphael(document.getElementById('pl_'+pl_name), pl_size, pl_size);
+        var pl_Id=pl.uid;
+        var marker= $('#map_new').prepend("<div id='pl_"+pl_Id+"' class='dot' style='position: absolute; left:"+pl_xpos+"px; top:"+pl_ypos+"px;display: inline; z-index: 1000; padding:10px; float:left; width:"+pl_size+"px;height:"+pl_size+"px;'></div>");
+        var pl_paper=Raphael(document.getElementById('pl_'+pl_Id), pl_size, pl_size);
 
        // paper.circle(320, 240, 60).animate({fill: "#223fa3", stroke: "#000", "stroke-width": 80, "stroke-opacity": 0.5}, 2000);
 
         var pl_circle = pl_paper.circle(pl_size/2, pl_size/2, pl_size/3)
                       .attr({fill: "#fff" , stroke:"#fff" , "fill-opacity": 0 , "stroke-width": 30 , "stroke-opacity":0, "cursor":"pointer"})
                       .animate({fill: ""+pl.color+"" , "fill-opacity": 1 , "stroke-width": 4 , "stroke-opacity":0.8 },1000,'backOut')
-                      .data("id", pl_name)
+                      .data("id", pl_Id)
                       .click(function (event) {
                             setInfo(this.data("id"));
+                            this.animate({fill: "#c00"} , 300);
                             event.stopPropagation();
+
                          })
                       .mouseover(function () {
                             this.animate({fill: "#c00"} , 300);
@@ -230,13 +243,14 @@ function map_init () {
       
       for (var place in places) {
         var pla=places[place];
-        planame=pla.name;        
+        planame=pla.name;   
+        plaId=pla.uid;     
         var distributor=pla.distributor;
         var address=pla.address;
         var email=pla.email;
         
 
-        if (planame==id) {
+        if (plaId==id) {
           info_place.html(planame);
           info_name.html(distributor);
           info_address.html(address);
@@ -259,6 +273,7 @@ function map_init () {
          $('.visible').fadeToggle("fast");
           $('.visible').addClass('hidden');
           $('.hidden').removeClass('visible');
+          resetDots();
          
         }
           
@@ -279,7 +294,7 @@ function map_init () {
       var pl=places[place];
       var pl_xpos=mapwidth*pl.xpos;
       var pl_ypos=mapheight*pl.ypos;
-      var pl_name=pl.name;
+      var pl_name=pl.uid;
       $('#pl_'+pl_name).css({'left' : pl_xpos+'px' , 'top' : pl_ypos+'px' });  
 
       
@@ -298,9 +313,31 @@ $(window).resize(function () {
       
     });
 
+
+/* Function to reset all hovers and active states */
+
+function resetDots () {
+  var places = set_places();
+
+    for (var place in places) {
+      var dotId=places[place];
+      var dotName=dotId.uid;
+      var dot = $('#pl_'+dotName+' circle');
+
+      console.log('cleared'+dotId);
+      dot.attr({"fill": "green"});
+
+    }
+
+
+}
+
+
 /*for the dropdown menu*/
 
 function selectLoc (locId) {
+  resetDots();
+
   var places = set_places();
 
    for (var place in places) {
@@ -311,13 +348,14 @@ function selectLoc (locId) {
         var panel=$('#distributor_info');
 
         var pla=places[place];
-        planame=pla.name;        
+        planame=pla.name; 
+        placeId=pla.uid;       
         var distributor=pla.distributor;
         var address=pla.address;
         var email=pla.email;
         
 
-        if (planame==locId) {
+        if (placeId==locId) {
           info_place.html(planame);
           info_name.html(distributor);
           info_address.html(address);
@@ -328,11 +366,11 @@ function selectLoc (locId) {
         }
          //$("#pl_"+locId).circle.node.animate({fill: "#c00"} , 300);
 
-         var target = $('#pl_'+locId+' circle.node');
+         var target = $('#pl_'+locId+' circle');
 
-        console.log(svgElem);
-        target.animate({fill: "#c00"} , 300);
-       // var div = svgElem.parentNode;
+        console.log(target);
+        target.attr({"fill": "#c00"});
+       
 
       }
 
@@ -343,10 +381,17 @@ function selectLoc (locId) {
 
   </script>
 
-  <select name="aa" onchange="selectLoc(this.value)"> 
+  <select name="distributors" onchange="selectLoc(this.value)"> 
 <option value="">Please select</option>
 <option value="Australia">Australia</option>
+<option value="India">India</option>
+<option value="Indonesia">Indonesia</option>
+<option value="Ireland">Ireland</option>
 <option value="Japan">Japan</option>
+<option value="Middle_East">Middle East</option>
+<option value="Singapore_Malaysia">Singapore and Malaysian</option>
+<option value="South_Korea">South Korea</option>
+<option value="Thailand">Thailand</option>
 </select>
   <div id="map_new">
     <div id="distributor_info" class="hidden">
