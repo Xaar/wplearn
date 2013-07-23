@@ -279,6 +279,7 @@ function map_init () {
           $('.visible').addClass('hidden');
           $('.hidden').removeClass('visible');
           resetDots();
+          resetSelect();
 
          
         }
@@ -340,6 +341,11 @@ function resetDots () {
       dot.attr({"fill": "green"});
 
     }
+  
+
+}
+
+function resetSelect () {
     $('#distributor-select').val('select');
 
 }
