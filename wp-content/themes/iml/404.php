@@ -7,12 +7,11 @@
 
 get_header(); ?>
 
-<div id="primary" class="content-area">
-  <div id="content" class="site-content" role="main">
-    <div class='search-listing'>
-      <h5>Oops, the page you are looking for cannot be found!</h5>
+  <div id="content" class="hero-content row clear-nav" role="main">
+    <div class="page-title row">
+      <h1>Sorry, something went wrong</h1>
+      <p>The requested page could not be found, please try again or <a href="<?php bloginfo('url'); ?>">click here to return the the homepage</a></p>
     </div>
   </div><!-- #content -->
-</div><!-- #primary -->
-
+  <?php get_sidebar('quicklinks'); ?>
 <?php get_footer(); ?>

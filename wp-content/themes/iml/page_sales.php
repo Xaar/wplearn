@@ -4,21 +4,13 @@ Template Name: Sales
 */
 ?>
 
-<?php
-define("THISPAGE", "sales");
-?>
-
 <?php get_header(); ?>
-
 
 <script type="text/javascript">
 $(function() {
-    // setup ul.tabs to work as tabs for each div directly under div.panes
     $("ul.tabs").tabs("div.panes > div");
 });
 </script>
-
-<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>-->
 
 <div id="content" class="hero-content row clear-nav" role="main">
 
@@ -34,7 +26,7 @@ $(function() {
           <li><a href="#">Sales Enquiries</a></li>
           <li><a href="#">Support Enquiries</a></li>
         </ul>
-      </div><!-- product-tabs -->
+      </div><!-- sales-tabs -->
 
       <div class="panes">
         <!-- MAP -->

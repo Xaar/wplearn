@@ -1027,6 +1027,7 @@ input[name="s"]:focus {
 	
 	display: inline-block;
 	margin:  auto;
+	cursor: pointer;
 
 }
 
@@ -2853,6 +2854,7 @@ h2.heading-leftcol {
     padding: 0;
     height: auto;
     background: none;
+    display: none;
   }
 
     #map_new img {
@@ -2883,11 +2885,28 @@ h2.heading-leftcol {
 
   }
 
+    #distributor_info a , #distributor_info p {
+    	margin: 0;
+    }
+
   .visible {
     z-index: 999;
   }
 
+#distributor-close {
+	width:20px;
+	height:20px;
+	background: url('images/map-close.png') no-repeat 0 0;
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 
+}
+
+#distributor-close:hover {
+	background-position: -20px 0;
+}
 
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/

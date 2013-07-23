@@ -2,8 +2,6 @@
 /*
 Template Name: Heartworks
 */
-define("THISPAGE", "heartworks");
-
 get_header();
 ?>
 <script type="text/javascript">

@@ -145,6 +145,8 @@ function IML_scripts() {
 
   wp_enqueue_script( 'jqueryvisible', get_template_directory_uri() . '/js/jquery.visible.min.js' , array(), '1', true );
 
+  wp_enqueue_script( 'jquerysmoothscroll', get_template_directory_uri() . '/js/jquery.smooth-scroll.min.js' , array(), '1411', true );
+
 	$carouFredSel= get_bloginfo('template_directory') . "/js/jquery.carouFredSel-6.2.1.js";
 	wp_deregister_script( 'carouFredSel' );
 	wp_register_script( 'carouFredSel', $carouFredSel);

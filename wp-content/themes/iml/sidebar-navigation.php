@@ -28,9 +28,8 @@ $title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Training
         <h2>About Heartworks</h2>
         <ul>
         <!-- Leave as static for now - client to confirm -->
-          <li><a class="hw-menu-link">About us<div class="hw-menu-arrow"></div></a></li>
-          <li><a class="hw-menu-link">The team<div class="hw-menu-arrow"></div></a></li>
-          <li><a class="hw-menu-link">Another link<div class="hw-menu-arrow"></div></a></li>
+          <li><a href="<?php bloginfo('url'); ?>/about-heartworks"> class="hw-menu-link">About us<div class="hw-menu-arrow"></div></a></li>
+          <li><a href="<?php bloginfo('url'); ?>/about-heartworks"> class="hw-menu-link">The team<div class="hw-menu-arrow"></div></a></li>
         </ul>
       </div>
       <div class="hw-menu-list">
@@ -78,7 +77,7 @@ endwhile;
         <h2>Professional Products</h2>
         <ul>
           <li><a class="hw-menu-link">Watchman Device<div class="hw-menu-arrow"></div></a></li>
-          <li><a class="hw-menu-link">Media store<div class="hw-menu-arrow"></div></a></li>
+         
         </ul>
       </div>
     </div> <!-- Expanded menu lists -->

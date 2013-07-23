@@ -66,7 +66,20 @@ function mobile_tabs() {
                 padding : 0,
                 openEffect  : 'elastic'
             });
-        });
+
+            $('#more-info-link').on('click', function() {
+
+    $.smoothScroll({
+      scrollTarget: '#more-info',
+      offset: -60,
+    });
+    return false;
+  });
+
+});
+
+
+
     </script>
 <?php
 $postid=$post->ID;
@@ -96,11 +109,11 @@ case "eLearn":
 </h3>
       <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>
       <?php the_field('product_description', $postid); ?>
-      <div class="cta-green">
-                  <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">New test &raquo; </a>
+                <div id="more-info-link" class="cta-green">
+                  <a>Learn more &raquo; </a>
                  </div>
                 <div class="cta-green">
-                  <a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">Learn more &raquo; </a>
+                  <a href="<?php bloginfo('url'); ?>/sales-support">Contact us &raquo; </a>
                  </div>
     </div><!-- hero-product-listing-text -->
     <div class="hero-product-img">
@@ -145,7 +158,7 @@ echo insert_videos($videos);
 
   </div> <!-- hw-endorsements-wrapper -->
 
-  <div class="products-tabs-wrapper">
+  <div class="products-tabs-wrapper" id="more-info">
     <div class="product-tabs">
       <ul class="tabs">
         <li><a href="#">Product Overview</a></li>
@@ -165,7 +178,7 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
       </ul>
 
       <div class="cta-green-tabs right">
-        <a href= "">How to Buy &raquo; </a>
+        <a href="<?php bloginfo('url'); ?>/products/gateway-subscription-service">How to Buy &raquo; </a>
       </div>
     </div><!-- product-tabs -->
 
@@ -187,7 +200,7 @@ $gallery = maybe_unserialize($x[0]);
 $thumb = wp_get_attachment_image_src( $gallery[0], 'large' );
 $theme = get_template_directory_uri();
 foreach($gallery as $id) {
-  $x = wp_get_attachment_image_src( $id, 'large' );
+  $x = wp_get_attachment_image_src( $id, 'full' );
   $title = get_the_title($id);
   $info[] = array ( 'url' => "$x[0]", 'title' => "$title");
 }
@@ -223,9 +236,11 @@ foreach($url as $src) {
   $i++;
   $visible = ($i=='1') ? " " : "style='display:none' ";
 
-  echo "        <a href='$src' rel='gallery' class='fancybox' title='image title' $visible><img src='$thumb[0]'/></a>";
-
-  if ($i=='1') echo " <a href='$src' id='slide-icon' class='fancybox' rel='gallery'><img src='$theme/images/slideshow-icon.png'/></a>";
+  if ($i=='1') { 
+    echo " <a href='$item[url]' class='fancybox' rel='gallery' title='$item[title]' $visible><img src='$thumb[0]'/><img id='slide-icon' src='$theme/images/slideshow-icon.png'/></a>";
+  }else{
+    echo "        <a href='$item[url]' rel='gallery' class='fancybox' title='$item[title]' $visible><img src='$thumb[0]'/></a>";
+  }
 
 }
 ?>        </div><!-- tabs-gallery -->

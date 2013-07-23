@@ -4,10 +4,6 @@ Template Name: IML Home
 */
 ?>
 
-<?php
-define("THISPAGE", "home");
-?>
-
 <?php get_header(); ?>
 
 
@@ -59,10 +55,10 @@ endwhile; endif; ?>
 								 <h2><?php the_title(); ?></h2>
 								 <?php the_content(); ?>
 								 <div class="cta-green">
-								 	<a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">New test &raquo; </a> 
+								 	<a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">Learn more &raquo; </a> 
 								 </div>
 								<div class="cta-green">
-								 	<a href= "<?php echo get_permalink( $featuredprod[0]->ID ); ?>">Learn more &raquo; </a> 
+								 	<a href="<?php bloginfo('url'); ?>/sales-support">Contact us &raquo; </a>
 								 </div>
 								</div>
 							

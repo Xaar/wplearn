@@ -6,22 +6,10 @@ Template Name: map_new
 
 <?php get_header(); ?>
 
-<div id="content" class="hero-content row clear-nav" role="main">
-  	<div class="page-title row">
-
-		<h1>Map Test</h1>
-		
-	</div>
-
-	<div class="about-leftcol-wrapper" id="mapwidth">
-		<h2 class="heading-leftcol">Find a Heartworks Distributor</h2>
-		<p>Click on the map to find a distributor in your region.
-  </p>
-
-
-  
-
   <script type="text/javascript">
+
+
+
   function set_places() {
     var places_setup = {
         0: {
@@ -139,7 +127,10 @@ Template Name: map_new
 }
 
 function map_init () {
+    //rest the dropdown list
+    $('#distributor-select').val('select');
     var mapwidth = $('#mapwidth').width();
+    
     var mapheight=mapwidth*0.6;
     $('#map_new').css('height' , mapheight);
     var places = set_places();
@@ -182,8 +173,7 @@ function map_init () {
         var place=0;
         var str=String(places); 
         var repeat=str.length;
-        console.log(places);
-        console.log(repeat);
+        
 
         function createPlace() {
 
@@ -205,9 +195,21 @@ function map_init () {
                       .animate({fill: ""+pl.color+"" , "fill-opacity": 1 , "stroke-width": 4 , "stroke-opacity":0.8 },1000,'backOut')
                       .data("id", pl_Id)
                       .click(function (event) {
+                            resetDots();
                             setInfo(this.data("id"));
-                            this.animate({fill: "#c00"} , 300);
+                            this.attr({fill: "#c00"});
+                            this.unhover();
                             event.stopPropagation();
+
+
+                         })
+                      .touchstart(function (event) {
+                            resetDots();
+                            setInfo(this.data("id"));
+                            this.attr({fill: "#c00"});
+                            this.unhover();
+                            event.stopPropagation();
+
 
                          })
                       .mouseover(function () {
@@ -222,17 +224,15 @@ function map_init () {
                place++; 
                intervalTimeOut();
              } else {
-              console.log('else');
+              
              }
                      
     }
 
     function intervalTimeOut () {
-           
-         console.log(place);      
+
         window.setTimeout(createPlace, 200)
-       
-    
+ 
   }
 
   intervalTimeOut();
@@ -248,16 +248,21 @@ function map_init () {
         var distributor=pla.distributor;
         var address=pla.address;
         var email=pla.email;
+
         
 
         if (plaId==id) {
           info_place.html(planame);
           info_name.html(distributor);
           info_address.html(address);
-          info_email.html(email);
+          info_email.attr("href", "mailto:"+email);
           $('.hidden').fadeToggle("fast");
           $('.hidden').addClass('visible');
           $('.visible').removeClass('hidden');
+          var dropdown = $("#distributor-select");
+          dropdown.val(this.plaId);
+         
+
         }
 
       }
@@ -266,7 +271,7 @@ function map_init () {
     }
 
  
-     $('.click_close').click(function (e) {
+     $('.click-close').click(function (e) {
      
       if (e.target == this) {
          
@@ -274,6 +279,7 @@ function map_init () {
           $('.visible').addClass('hidden');
           $('.hidden').removeClass('visible');
           resetDots();
+
          
         }
           
@@ -303,8 +309,15 @@ function map_init () {
 
   }
 
+
+
   $(document).ready(function () {
-    map_init();
+
+     $('#map_new').fadeIn('slow', function() {
+      map_init();
+      });
+
+
   });
 
 
@@ -324,11 +337,10 @@ function resetDots () {
       var dotName=dotId.uid;
       var dot = $('#pl_'+dotName+' circle');
 
-      console.log('cleared'+dotId);
       dot.attr({"fill": "green"});
 
     }
-
+    $('#distributor-select').val('select');
 
 }
 
@@ -359,7 +371,7 @@ function selectLoc (locId) {
           info_place.html(planame);
           info_name.html(distributor);
           info_address.html(address);
-          info_email.html(email);
+          info_email.attr("href", "mailto:"+email);
           $('.hidden').fadeToggle("fast");
           $('.hidden').addClass('visible');
           $('.visible').removeClass('hidden');
@@ -368,7 +380,6 @@ function selectLoc (locId) {
 
          var target = $('#pl_'+locId+' circle');
 
-        console.log(target);
         target.attr({"fill": "#c00"});
        
 
@@ -377,37 +388,119 @@ function selectLoc (locId) {
 
 
 }
-
+  $(function() {
+    $("ul.tabs").tabs("div.panes > div");
+});
 
   </script>
 
-  <select name="distributors" onchange="selectLoc(this.value)"> 
-<option value="">Please select</option>
+  <div id="content" class="hero-content row clear-nav" role="main">
+
+  <div class="page-title row">
+    <h1>Sales and Support</h1>
+  </div>
+
+  <div class="sales-leftcol-wrapper" id="mapwidth">
+    <div class="sales-tabs-wrapper">
+      <div class="sales-tabs">
+        <ul class="tabs">
+          <li><a href="#">Distributors</a></li>
+          <li><a href="#">Sales Enquiries</a></li>
+          <li><a href="#">Support Enquiries</a></li>
+        </ul>
+      </div><!-- sales-tabs -->
+
+      <div class="panes">
+        <!-- MAP -->
+        <div class="pane pane-sales">
+          
+            <h2>Find a Heartworks distributor</h2>
+          <p>Click on the map to find a Heartworks distributor in your region</p>
+
+  <select name="distributors" onchange="selectLoc(this.value)" id="distributor-select"> 
+<option value="select">Please select</option>
 <option value="Australia">Australia</option>
+<option value="China">China</option>
 <option value="India">India</option>
 <option value="Indonesia">Indonesia</option>
 <option value="Ireland">Ireland</option>
 <option value="Japan">Japan</option>
 <option value="Middle_East">Middle East</option>
-<option value="Singapore_Malaysia">Singapore and Malaysian</option>
+<option value="Singapore_Malaysia">Singapore and Malaysia</option>
 <option value="South_Korea">South Korea</option>
 <option value="Thailand">Thailand</option>
 </select>
   <div id="map_new">
     <div id="distributor_info" class="hidden">
+      <div id="distributor-close" class="click-close"></div>
       <h2>Region Name</h2>
       <h3>Distributor Name</h3>
       <p class="addy">Address line one</p>
-      <a href="">email Address</a>
+      <a>Email Distributor &raquo;</a>
     </div>
-    <img class="click_close" src="<?php bloginfo('template_directory'); ?>/images/iml_map.png">
+    <img class="click-close" src="<?php bloginfo('template_directory'); ?>/images/iml_map.png">
     
- </div>
-   
+ </div>   
+          
+          
+        </div><!-- pane -->
 
- 
+        <!-- FAQ's -->
+        <div class="pane pane-sales">
+         <h2>Submit a Sales Enquiries</h2>
 
-</div>
+<?=do_shortcode('[si-contact-form form=\'1\']');?>
+
+         
+        </div><!-- pane -->
+      
+        <!-- Enquiries -->
+        <div class="pane pane-sales">
+          
+             <h2>Submit a Support Enquiry</h2>
+<?=do_shortcode('[si-contact-form form=\'1\']');?>
+        
+        </div><!-- pane -->
+      </div> <!-- close panes -->
+    </div><!-- products-tabs-wrapper -->
+    <div class="sales-team">
+
+          <h2>Contact our Sales Team Directly</h2>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+        <div class="row">
+        <div class="contact-sales">
+          <h2>Craig Henshaw</h2>
+          <h3>Global Sales Manager</h3>
+          <p>Tel: +44 (0) 203 447 9360<br/>
+              Mob: +44 (0) 790 801 0253<br/>
+              <a href="mailto:craig.henshaw@inventivemedical.com">Email Craig</a></p>
+        </div>
+        <div class="contact-sales">
+          <h2>Thomas Brown</h2>
+          <h3>Vice President North American Sales (Eastern Region) </h3>
+          <p>Tel: +44 (0) 203 447 9360<br/>
+              Mob: +44 (0) 790 801 0253<br/>
+              <a href="mailto:craig.henshaw@inventivemedical.com">Email Thomas</a></p>
+        </div>
+        <div class="contact-sales">
+          <h2>Michelle Press</h2>
+          <h3>UK & Europe Sales Manager</h3>
+          <p>Tel: +44 (0) 203 447 9360<br/>
+              Mob: +44 (0) 790 801 0253<br/>
+              <a href="mailto:craig.henshaw@inventivemedical.com">Email Michelle</a></p>
+        </div>
+      </div><!-- row -->
+
+      <div class="contact-form-mobile row">
+        <hr/>
+        <?=do_shortcode('[si-contact-form form=\'2\']');?>
+      </div>  
+        </div><!-- sales-team -->
+
+
+  </div> <!-- leftcol -->
+
+
 <div class="sidebar-wrapper">
 <?php
   get_sidebar('upcoming-events');
