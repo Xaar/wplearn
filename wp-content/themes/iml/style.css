@@ -993,6 +993,7 @@ input[name="s"]:focus {
 
 .featured-prod-img {
 	float: right;
+	margin-bottom: 20px;
 }
 
 .featured-prod-img img {
@@ -1224,21 +1225,30 @@ Homepage promo styles Latest News, events etc.
 :::::::: F O O T E R :: S T Y L E S::::
 */
 
+.site-footer-white {
+	background-color: #fff;
+	width: 100%;
+	box-shadow: 0px 3px 3px 0px rgba(177, 177, 177, 0.75);
+	-moz-box-shadow: 0px 3px 3px 0px rgba(177, 177, 177, 0.75);
+	-webkit-box-shadow: 0px 3px 3px 0px rgba(177, 177, 177, 0.75);
+}
+
 .footer-wrapper {
-	padding: 20px 0;
+	padding: 20px 0 0 0;
 	margin-bottom: 30px;
 	border-top: 1px solid #ccc;
-
+	text-align: center;
 }
 
-ul.footer-links {
-	margin: auto;
+.footer-links {
+	margin: 0 auto;
 	position: relative;
-	display: block;
+	display: inline-block;
+	text-align: center;
 }
 
 
-ul.footer-links li {
+.footer-links li {
 	font-size: 80%;
 	list-style: none;
 	float: left;
@@ -1247,11 +1257,34 @@ ul.footer-links li {
 	border-right: 1px solid #fff;
 }
 
+.footer-links li a {
+	text-decoration: none;
+}
+
 ul.footer-links li:first-child {border-left: none;}
 
 ul.footer-links li:last-child {border-right: none;}
 
+#footer-address {
+	margin-top:20px;
+	font-style: italic;
+	font-weight: 400;
+}
 
+.footer-wrapper {
+	margin-bottom:0; 
+}
+
+#footer-address {
+	text-align: center;
+	letter-spacing: 0.5px;
+}
+
+#footer-address a { 
+	margin-right: 10px;
+	text-decoration: none;
+	font-weight: 600;
+}
 
 /*-----------------*/
 
@@ -2909,6 +2942,32 @@ h2.heading-leftcol {
 }
 
 
+
+.legals-page {
+	text-align: left;
+}
+
+#wireworks-credit {
+	float: right;
+}
+
+#wireworks-credit a {
+	text-decoration: none;
+	font-weight: 400;
+	font-style: italic;
+	color: #999;
+}
+
+#wireworks-credit a:hover {
+	color: #c00;
+}
+
+#wireworks-credit a img {
+	border:none;
+	padding-left: 10px;
+}
+
+
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
 
@@ -3029,7 +3088,7 @@ h2.heading-leftcol {
 	border: none;
 	text-decoration: none;
 	width: 100%;
-	height: 80px;
+	height: 55px;
 	position: absolute;
 	z-index: 2001;
 	top: 0;
@@ -3432,6 +3491,16 @@ margin: 0 auto !important;
 	float: none;
 	width: 100%;
 	margin-left: 20px;
+}
+
+#footer-address a {
+	display: block;
+	width: 100%;
+	font-size: 18px;
+}
+
+#wireworks-credit {
+	display: none;
 }
         /*
         Add your semantic classnames in alongside their corresponding spans here. e.g.

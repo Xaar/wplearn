@@ -43,7 +43,7 @@ Eius gubergren ei sit. Ea his adipisci volutpat percipitur, ne oblique recusabo 
 the_content();
 
 endwhile; endif; ?>
-	
+	<div class="clearfix"></div>
 </div>
 
 	<div class="sidebar-wrapper">
@@ -55,11 +55,7 @@ endwhile; endif; ?>
 
 ?>
 </div> <!-- sidebar wrapper -->
+</div>
 
-
-
-  <div><!-- #content -->
-
-
-
+<?php get_sidebar('quicklinks'); ?>
 <?php get_footer(); ?>

@@ -87,5 +87,5 @@ if($type=='news') {
 ?>
 </div>
 </div> <!-- page-wrapper -->
-
+<?php get_sidebar('quicklinks'); ?>
 <?php get_footer(); ?>

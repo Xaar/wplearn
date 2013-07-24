@@ -34,10 +34,11 @@
     <div class="quick-link col">
       <img src="<?php bloginfo('template_directory'); ?>/images/link-sales.png">
       <h2><a href="">Sales &amp; Support</a></h2>
-      <p>Find a Heartworks distributor in your region or contact a member of the IML team directly. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.</p>
+      <p>Find a Heartworks distributor in your region or contact a member of the IML team directly.</p>
       <div class="cta-grey">
       <a href="<?php bloginfo('url'); ?>/sales-support">Learn more &raquo;</a>
     </div>
+  </div>
   </div> <!-- .quick-links row -->
 </div><!--  .quick-links-wrapper -->
 

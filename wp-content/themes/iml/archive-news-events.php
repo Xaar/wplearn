@@ -56,5 +56,5 @@ jQuery(document).ready(function($){
 //wp_reset_postdata();
 ?>
 </div> <!-- page-wrapper -->
-
+<?php get_sidebar('quicklinks'); ?>
 <?php get_footer(); ?>

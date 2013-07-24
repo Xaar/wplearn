@@ -129,7 +129,7 @@ Template Name: map_new
 function map_init () {
     //rest the dropdown list
     $('#distributor-select').val('select');
-    var mapwidth = $('#mapwidth').width();
+    var mapwidth = $('#map_new').width();
     
     var mapheight=mapwidth*0.6;
     $('#map_new').css('height' , mapheight);
@@ -293,7 +293,7 @@ function map_init () {
 
 
    function map_resize() {
-    var mapwidth = $('#mapwidth').width();
+    var mapwidth = $('#map_new').width();
     var mapheight=mapwidth*0.6;
     $('#map_new').css('height' , mapheight);
     var places = set_places();
@@ -406,7 +406,7 @@ function selectLoc (locId) {
     <h1>Sales and Support</h1>
   </div>
 
-  <div class="sales-leftcol-wrapper" id="mapwidth">
+  <div class="sales-leftcol-wrapper">
     <div class="sales-tabs-wrapper">
       <div class="sales-tabs">
         <ul class="tabs">
@@ -513,5 +513,6 @@ function selectLoc (locId) {
   get_sidebar('news');
 ?>
   </div> <!-- sidebar wrapper -->
-
+</div>
+<?php get_sidebar('quicklinks'); ?>
 <?php get_footer(); ?>

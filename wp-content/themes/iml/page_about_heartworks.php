@@ -28,10 +28,10 @@ Template Name: About_Heartworks
 the_content();
 
 endwhile; endif; ?>
-	
+  <div class="clearfix"></div>
 </div>
 
-	<div class="sidebar-wrapper">
+  <div class="sidebar-wrapper">
 <?php
 
   get_sidebar('upcoming-events');
@@ -40,11 +40,8 @@ endwhile; endif; ?>
 
 ?>
 </div> <!-- sidebar wrapper -->
+</div>
 
-
-
-  <div><!-- #content -->
-
-
-
+<?php get_sidebar('quicklinks'); ?>
 <?php get_footer(); ?>
+
