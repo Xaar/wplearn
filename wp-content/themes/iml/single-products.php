@@ -232,7 +232,7 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
         <div class="tabs-gallery">
 <?php
 $i=0;
-foreach($url as $src) {
+foreach($info as $item) {
   $i++;
   $visible = ($i=='1') ? " " : "style='display:none' ";
 
