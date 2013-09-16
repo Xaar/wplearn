@@ -90,21 +90,27 @@ get_sidebar('navigation');
   <div class="hero-product-content row">
     <div class="hero-product-listing-text col">
       <h3>
-<?php switch (get_post_meta($postid, ('product_type'), true))
-{
-case "Simulator":
-  echo "Heartworks Simulator";
-  break;
-case "Pathologies":
-  echo "Heartworks Pathologies Modules";
-  break;
-case "eLearn":
-  echo "Heartworks eLearn online course";
-  break;
+<?php 
+/* old heading
+switch (get_post_meta($postid, ('product_type'), true)) {
+  case "Simulator":
+    echo "Heartworks Simulator";
+    break;
+  case "Pathologies":
+    echo "Heartworks Pathologies Modules";
+    break;
+  case "eLearn":
+    echo "Heartworks eLearn online course";
+    break;
   case "Gateway":
-  echo "Heartworks Gateway Subscription Service";
-  break;
+    echo "Heartworks Gateway Subscription Service";
+    break;
+  case "Anatomy":
+    echo "Anatomy Module";
+    break;
 }
+*/
+  echo get_post_meta($postid, ('hero_title'), true);
 ?>
 </h3>
       <h2><?=get_post_meta($postid, ('subtitle'), true); ?></h2>

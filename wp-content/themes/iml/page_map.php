@@ -472,7 +472,7 @@ function selectLoc (locId) {
     <div class="sales-team">
 
           <h2>Contact our Sales Team Directly</h2>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+          <p>Inventive Medical are now present in most countries via their distribution partners above. If we do not currently have a distributor in your region then please contact us via the Sales and Support staff below.</p>
         <div class="row">
         <div class="contact-sales">
           <h2>Craig Henshaw</h2>

@@ -1,112 +1,53 @@
 <?php
-/**
- * The template for displaying Archive pages.
- *
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
- * @package IML
- */
+/*
+Template Name: Heartworks
+*/
+get_header();
+?>
+<script type="text/javascript">
+/* CarouFredSel: a circular, responsive jQuery carousel.
+Configuration created by the "Configuration Robot"
+at caroufredsel.dev7studios.com
+*/
+$(window).load(function() {
+  $(".carousel-ul").carouFredSel({
+    circular: true, infinite: true, width: "100%", height: 200, 
+    items: { visible: "variable", width: 180, height: 200 }, 
+    scroll: { items: 1, fx: "scroll", duration: "auto" },
+    auto: false,
+    prev: { button: ".previous", key: "left" },
+    next: { button: ".next", key: "right" },
+    swipe: { onTouch: true , onMouse: true}
+  });
+});
+</script>
 
-get_header(); ?>
+<?php get_sidebar('navigation');?>
 
-	<section id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+<div id="content" class="hero-content row" role="main">
+<?php the_post(); ?>	
+<?php the_content(); ?>
+<?php echo get_new_royalslider(2); ?>
+</div><!-- hero-content -->
 
-		<?php if ( have_posts() ) : ?>
+<?php get_sidebar('products'); ?>
 
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
-						if ( is_category() ) :
-							printf( __( 'Category Archives: %s', 'IML' ), '<span>' . single_cat_title( '', false ) . '</span>' );
+<?php get_sidebar('gateway'); ?>
 
-						elseif ( is_tag() ) :
-							printf( __( 'Tag Archives: %s', 'IML' ), '<span>' . single_tag_title( '', false ) . '</span>' );
+<script type="text/javascript" src="<?=get_template_directory_uri();?>/js/easyModal.js"></script>
 
-						elseif ( is_author() ) :
-							/* Queue the first post, that way we know
-							 * what author we're dealing with (if that is the case).
-							*/
-							the_post();
-							printf( __( 'Author Archives: %s', 'IML' ), '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( "ID" ) ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' );
-							/* Since we called the_post() above, we need to
-							 * rewind the loop back to the beginning that way
-							 * we can run the loop properly, in full.
-							 */
-							rewind_posts();
+<?=insert_videos(array('909', '898', '1006', '895'));?>
 
-						elseif ( is_day() ) :
-							printf( __( 'Daily Archives: %s', 'IML' ), '<span>' . get_the_date() . '</span>' );
+<div class="hw-endorsements-wrapper">
+  <div class="hw-endorsements row">
+    <h4>SEE ENDORSEMENTS OF HEARTWORKS PRODUCTS FROM LEADING PROFESSIONALS</h4>
+    <!-- ENDORSEMENTS GALLERY ADD HERE -->
+    <div class="vid-thumb-wrapper">
+<?=insert_thumbs_endorsements(array('909', '898', '1006', '895'));?>
+    </div> <!-- div thumb wrapper -->
+  </div> <!-- promo-band -->
+</div> <!-- promo-band-wrapper -->
 
-						elseif ( is_month() ) :
-							printf( __( 'Monthly Archives: %s', 'IML' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
+<?php get_sidebar('quicklinks'); ?> 
 
-						elseif ( is_year() ) :
-							printf( __( 'Yearly Archives: %s', 'IML' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
-
-						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'IML' );
-
-						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'IML');
-
-						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'IML' );
-
-						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'IML' );
-
-						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'IML' );
-
-						else :
-							_e( 'Archives', 'IML' );
-
-						endif;
-					?>
-				</h1>
-				<?php
-					if ( is_category() ) :
-						// show an optional category description
-						$category_description = category_description();
-						if ( ! empty( $category_description ) ) :
-							echo apply_filters( 'category_archive_meta', '<div class="taxonomy-description">' . $category_description . '</div>' );
-						endif;
-
-					elseif ( is_tag() ) :
-						// show an optional tag description
-						$tag_description = tag_description();
-						if ( ! empty( $tag_description ) ) :
-							echo apply_filters( 'tag_archive_meta', '<div class="taxonomy-description">' . $tag_description . '</div>' );
-						endif;
-
-					endif;
-				?>
-			</header><!-- .page-header -->
-
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-
-				<?php
-					/* Include the Post-Format-specific template for the content.
-					 * If you want to overload this in a child theme then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'content', get_post_format() );
-				?>
-
-			<?php endwhile; ?>
-
-			<?php IML_content_nav( 'nav-below' ); ?>
-
-		<?php else : ?>
-
-			<?php get_template_part( 'no-results', 'archive' ); ?>
-
-		<?php endif; ?>
-
-		</div><!-- #content -->
-	</section><!-- #primary -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

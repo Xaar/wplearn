@@ -23,15 +23,14 @@ $title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Training
   <div class="clearfix"></div>
   <div class="hw-menu-content-wrapper row">
     <div class="hw-menu-lists">
-      <div class="hw-menu-list">
+<!--      <div class="hw-menu-list">
         <div id="about-icon" class="hw-menu-category-icon"></div>
         <h2>About Heartworks</h2>
         <ul>
-        <!-- Leave as static for now - client to confirm -->
-          <li><a href="<?php bloginfo('url'); ?>/about-heartworks" class="hw-menu-link">About us<div class="hw-menu-arrow"></div></a></li>
-          <li><a href="<?php bloginfo('url'); ?>/about-heartworks" class="hw-menu-link">The team<div class="hw-menu-arrow"></div></a></li>
+          <li><a href="<?php //bloginfo('url'); ?>/about-heartworks" class="hw-menu-link">About us<div class="hw-menu-arrow"></div></a></li>
+          <li><a href="<?php //bloginfo('url'); ?>/about-heartworks" class="hw-menu-link">The team<div class="hw-menu-arrow"></div></a></li>
         </ul>
-      </div>
+      </div> -->
       <div class="hw-menu-list">
         <div id="elearn-icon" class="hw-menu-category-icon"></div>
         <h2>Education</h2>
@@ -48,10 +47,16 @@ endwhile;
       </div>
       <div class="hw-menu-list">
         <div id="simulator-icon" class="hw-menu-category-icon"></div>
-        <h2>Echo Simulators</h2>
+        <h2>Simulator Systems</h2>
         <ul>
         <!-- write wp query for products > simulators -->
 <?php
+$wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Anatomy', 'orderby' => 'menu_order', 'order' => 'ASC'));
+while ( $wp_query->have_posts() ) : $wp_query->the_post();
+?>          <li><a href="<?=the_permalink();?>" class="hw-menu-link"><?=the_title();?><div class="hw-menu-arrow"></div></a></li>
+<?php
+endwhile;
+
 $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Simulator', 'orderby' => 'menu_order', 'order' => 'ASC'));
 while ( $wp_query->have_posts() ) : $wp_query->the_post();
 ?>          <li><a href="<?=the_permalink();?>" class="hw-menu-link"><?=the_title();?><div class="hw-menu-arrow"></div></a></li>
@@ -74,7 +79,7 @@ endwhile;
       </div>
       <div class="hw-menu-list">
         <div id="professional-icon" class="hw-menu-category-icon"></div>
-        <h2>Professional Products</h2>
+        <h2>Industry Partnership</h2>
         <ul>
           <li><a class="hw-menu-link">Watchman Device<div class="hw-menu-arrow"></div></a></li>
          
