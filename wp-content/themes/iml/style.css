@@ -1525,7 +1525,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', end
 
 .hw-menu-list {
 	position: relative;
-	width: 24%;
+	width: 32%;
 	clip: both;
 	margin: 0;
 	padding:0;
@@ -3595,10 +3595,10 @@ h2{
 .span_3  , .cta-gateway , .sidebar-wrapper {
             width:23.5%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link , .tabs-text , .product-quote  {
+.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote  {
             width:32.0%;
         }
-.span_5   {
+.span_5  , .tabs-text {
             width:40.5%;
         }
 .span_6 , .gateway-promo-bullets ul {
@@ -3666,10 +3666,10 @@ h2{
 .span_3 , .cta-gateway   {
             width:24.0625%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote , .tabs-text, .sidebar-wrapper {
+.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote , .sidebar-wrapper {
             width:32.5%;
         }
- .span_5    {
+ .span_5  , .tabs-text {
             width:40.9375%;
         }
 .span_6  , .gateway-promo-bullets ul  {	
