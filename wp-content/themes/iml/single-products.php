@@ -184,7 +184,7 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
       </ul>
 
       <div class="cta-green-tabs right">
-        <a href="<?=get_permalink(get_post_meta($postid, ('how_to_buy'), true)); ?>">How to Buy &raquo; </a>
+        <a href="<?=get_post_meta($postid, ('how_to_buy'), true); ?>">How to Buy &raquo; </a>
       </div>
     </div><!-- product-tabs -->
 
