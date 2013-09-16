@@ -81,8 +81,13 @@ endwhile;
         <div id="professional-icon" class="hw-menu-category-icon"></div>
         <h2>Industry Partnership</h2>
         <ul>
-          <li><a class="hw-menu-link">Watchman Device<div class="hw-menu-arrow"></div></a></li>
-         
+          <?php
+          $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Industry', 'orderby' => 'menu_order', 'order' => 'ASC'));
+          while ( $wp_query->have_posts() ) : $wp_query->the_post();
+          ?>          <li><a href="<?=the_permalink();?>" class="hw-menu-link"><?=the_title();?><div class="hw-menu-arrow"></div></a></li>
+          <?php
+          endwhile;
+          ?>          
         </ul>
       </div>
     </div> <!-- Expanded menu lists -->

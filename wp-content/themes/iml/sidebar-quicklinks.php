@@ -10,7 +10,7 @@
       <h2><?php  $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Pathologies'));
         while ( $wp_query->have_posts() ) : $wp_query->the_post();
         ?>         <a href="<?=the_permalink();?>">Heartworks Pathology Modules</a></h2>
-      <p>Heartworks has recently created the first release of our Pathological Models. Focusing primarily on ventricular function, they are intended to address differing pathology found in day to day and emergency clinical environment cases. </p>
+      <p>HeartWorks now contains various examples of pathological cases which are being added to as regular updates to the system, these models can be seen via the ‘learn more’ button below</p>
       <div class="cta-grey">
         <a href="<?=the_permalink();?>">Learn more &raquo;</a>
       </div>
@@ -23,7 +23,7 @@
       <h2><?php  $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Gateway'));
         while ( $wp_query->have_posts() ) : $wp_query->the_post();
         ?>         <a href="<?=the_permalink();?>">Heartworks Gateway</a></h2>
-      <p>Gateway is our 12-month, or multi-year, fixed price subscription service, designed to ensure that Heartworks customers receive the latest software developments and enhancements that keep your Heartworks system current.</p>
+      <p>Gateway is our 12-month, or multi-year, fixed price subscription service, designed to ensure that Heartworks customers receive the latest software developments, including pathology modules, software updates and software support that keep your Heartworks system current.</p>
       <div class="cta-grey">
         <a href="<?=the_permalink();?>">Learn more &raquo;</a>
          </div>
