@@ -21,7 +21,7 @@ if ( !class_exists( 'NewRoyalSliderGalleryShortcode' ) ):
         		if(NewRoyalSliderMain::$override_all_default_galleries) {
         			$rsid = NewRoyalSliderMain::$override_all_default_galleries;
         		} else {
-        			return;
+        			return $output;
         		}
         	} else {
         		$rsid = $attr['royalslider'];

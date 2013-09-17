@@ -1,16 +1,19 @@
-/* v1.0.3 */
+/* v1.0.5 WordPress version */
 /* Core RS CSS file. 95% of time you shouldn't change anything here. */
 .royalSlider {
 	width: 600px;
 	height: 400px;
 	position: relative;
 	direction: ltr;
-	overflow: visible;
 }
 .royalSlider > * {
 	float: left;
 }
-.royalSlider img {  margin: 0; padding: 0; border: 0; box-shadow: none; border-radius: 0; max-width: none; }
+
+.rsWebkit3d .rsSlide {
+	-webkit-transform: translateZ(0);
+}
+
 
 .rsWebkit3d .rsSlide,
 .rsWebkit3d .rsContainer,
@@ -19,14 +22,18 @@
 .rsWebkit3d img,
 .rsWebkit3d .rsOverflow,
 .rsWebkit3d .rsBtnCenterer,
-.rsWebkit3d .rsAbsoluteEl {
+.rsWebkit3d .rsAbsoluteEl,
+.rsWebkit3d .rsABlock,
+.rsWebkit3d .rsLink,
+.rsWebkit3d .rsContent,
+.rsWebkit3d .rsBtnCenterer {
 	-webkit-backface-visibility: hidden;
-	-webkit-transform: translateZ(0); 
 }
 .rsFade.rsWebkit3d .rsSlide,
+.rsFade.rsWebkit3d .rsContent,
 .rsFade.rsWebkit3d img,
 .rsFade.rsWebkit3d .rsContainer {
-	-webkit-transform: none;
+    -webkit-transform: none;
 }
 .rsOverflow {
 	width: 100%;
@@ -36,7 +43,6 @@
 	float: left;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
-
 .rsVisibleNearbyWrap {
 	width: 100%;
 	height: 100%;
@@ -93,8 +99,9 @@
 	width: 100%;
 	float: left;
 	text-align: center;
-	z-index: 22;
+	z-index: 90;
 }
+
 
 /* Fullscreen options, very important ^^ */
 .royalSlider.rsFullscreen {
@@ -132,13 +139,20 @@
 
 .royalSlider.rsAutoHeight,
 .rsAutoHeight .rsSlide {
-	height: auto;
+	height: auto !important;
 }
+
 
 .rsContent {
 	width: 100%;
 	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.rsAutoHeight .rsContent {
 	position: relative;
+	height: auto;
 }
 
 .rsPreloader {
@@ -226,11 +240,11 @@
 	top: 0;
 	position: absolute;
 	z-index: 15;
-	-webkit-backface-visibility: hidden;
+	
 }
-.rsABImage {
-	width: 100%;
-	height: auto;
+
+img.rsImg {
+	max-width: none;
 }
 
 .grab-cursor {
@@ -262,6 +276,8 @@ a.rsLink {
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+
 .abBlackBox {
 	color: #FFF;
 	background: #000;

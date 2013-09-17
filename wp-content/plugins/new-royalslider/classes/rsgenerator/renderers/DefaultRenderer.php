@@ -28,7 +28,7 @@ class NewRoyalSliderDefaultRenderer {
         return print_r($this->attachment_id, true);
     }
     public function getImageData($isThumb = false) {
-        return NewRoyalSliderGenerator::get_image_gata($this, $isThumb);
+        return NewRoyalSliderGenerator::get_image_data($this, $isThumb);
     }
     public function large_image_url() {
         if(!$this->full_img_url) {

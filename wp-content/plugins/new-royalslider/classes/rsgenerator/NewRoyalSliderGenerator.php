@@ -30,8 +30,10 @@ class NewRoyalSliderGenerator {
 				$slides = json_decode($slides, ARRAY_A);
 			
 
-
-			require_once( NEW_ROYALSLIDER_PLUGIN_PATH . 'lib/Mustache/Autoloader.php' );
+			if ( !class_exists( 'Mustache_Autoloader' ) ) {
+				require_once( NEW_ROYALSLIDER_PLUGIN_PATH . 'lib/Mustache/Autoloader.php' );
+			}
+			
 			require_once( 'renderers/DefaultRenderer.php' );
 			require_once( 'renderers/PostGalleryRenderer.php' );
 			require_once( 'renderers/CustomSourceRenderer.php' );
@@ -134,6 +136,8 @@ class NewRoyalSliderGenerator {
 
 		    if( $gen_opts['thumb_width'] != 96 || $gen_opts['thumb_height'] != 72 ) {
 		    	$out .= "\n<style type=\"text/css\">\n";
+		    	$out .= '.' . $css_id . ' .rsThumbsHor { height:' . $gen_opts['thumb_height'] . 'px; }' . "\n"; 
+
 				$out .= '.' . $css_id . ' .rsThumbsVer { width:' . $gen_opts['thumb_width'] . 'px; } 
 		.'. $css_id .' .rsThumb { width: ' . $gen_opts['thumb_width'] . 'px; height: ' . $gen_opts['thumb_height'] . 'px; }';
 				$out .= "\n</style>\n";
@@ -149,7 +153,7 @@ class NewRoyalSliderGenerator {
 		    $slides = apply_filters( 'new_rs_slides_filter', $slides, $options, $type );
 
 		    
-		    if(is_array($slides)) {
+		    if(is_array($slides) && count($slides) > 0) {
 		    	$out .= '<div id="'.$css_id.'" class="royalSlider '.$css_id.$skin.$template.'" style="width:'. $gen_opts['width'].'; height:'. $gen_opts['height'] .';">';  
 			    foreach($slides as $key => $slide) { 
 
@@ -170,7 +174,12 @@ class NewRoyalSliderGenerator {
 			    }
 			    $out .=  '</div>';
 		    } else {
-		    	$out .= NewRoyalSliderMain::frontend_error( __('Slides are missing: ','new_royalslider') . print_r($slides, true) );
+		    	if($type !== 'posts') {
+		    		$out .= NewRoyalSliderMain::frontend_error( __('Slides are missing :: ','new_royalslider') . print_r($slides, true) );
+		    	} else {
+		    		$out .= NewRoyalSliderMain::frontend_error( __('No posts found matching your criteria.','new_royalslider') );
+		    	}
+		    	
 		    }
 		    
 		   
@@ -199,7 +208,7 @@ class NewRoyalSliderGenerator {
 		return $arr['out'];
 		
 	}
-	public function strip_shortcode_tag( $m ) {
+	public static function strip_shortcode_tag( $m ) {
 		// allow [[foo]] syntax for escaping a tag
 		if ( $m[1] == '[' && $m[6] == ']' ) {
 			return substr($m[0], 1, -1);
@@ -282,7 +291,7 @@ class NewRoyalSliderGenerator {
 
 	}
 
-	static function get_image_gata($self, $isThumb = false) {
+	static function get_image_data($self, $isThumb = false) {
      
 		$sizes = array(
 			'full' => 'full',

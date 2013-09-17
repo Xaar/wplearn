@@ -28,7 +28,18 @@
 	    
 	   
 	};
+	$.widget("ui.rsdialog", $.ui.dialog, {
+  	_title: function( title ) {
+		if ( !this.options.title ) {
+			title.html("&#160;");
+		}
+		title.html( this.options.title );
+	}
+});
+
 })(jQuery);
+
+
 
 // Textarea and select clone() bug workaround | Spencer Tipping
 // Licensed under the terms of the MIT source code license
@@ -215,7 +226,7 @@ String.prototype.capitalize = function() {
         $('.rs-embed-to-site').click(function(e) {
             e.preventDefault();
 
-            var dialog = $('#embed-info').dialog({
+            var dialog = $('#embed-info').rsdialog({
                 modal: true,
                 title: "",
                 zIndex: 15,
@@ -227,7 +238,7 @@ String.prototype.capitalize = function() {
                 },
                 open: function() { 
                     $(".ui-widget-overlay").unbind('click.rst').bind('click.rst', function () {
-                         dialog.dialog( "close" );
+                         dialog.rsdialog( "close" );
                     });
                 }
             });
@@ -530,7 +541,7 @@ String.prototype.capitalize = function() {
 				},
 				open: function() { 
 					$(".ui-widget-overlay").unbind('click.rst').bind('click.rst', function () {
-			    		 tabs.dialog( "close" );
+			    		 tabs.rsdialog( "close" );
 					});
 					$('.ui-dialog-titlebar-close')[0].tabIndex = -1;
 				}

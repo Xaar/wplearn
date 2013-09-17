@@ -18,6 +18,7 @@ class NewRoyalSliderCustomSourceRenderer {
     public function title() {
         return $this->slide_data['title'];
     }
+    
     public function large_image_url() {
         if(isset($this->slide_data['large_image'])) {
             return $this->slide_data['large_image'];

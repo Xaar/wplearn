@@ -24,7 +24,7 @@
 .rsUni .rsSlide,
 .rsUni .rsVideoFrameHolder,
 .rsUni .rsThumbs {
-	background: #eaeaea;
+	background: #222;
 	color: #FFF;
 }
 
@@ -130,7 +130,7 @@
 
 .rsUni .rsThumbsHor {
 	width: 100%;
-	height: auto;
+	height: 72px;
 }
 .rsUni .rsThumbsVer {
 	width: 96px;

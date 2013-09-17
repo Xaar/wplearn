@@ -40,7 +40,7 @@
                     originalClose(evt, ui);
                     // And place the content back where it belongs
                     var o = $('#' + id);
-                    o.dialog('destroy');
+                    o.rsdialog('destroy');
                     o.attr(attrs);
                     o.removeAttr('id');
                     o.removeAttr('style');
@@ -51,7 +51,7 @@
                 dialogClass: (c ? c : '') + ' ui-extractor'
             });
             // Ready to rock.
-            e.dialog(options);
+            e.rsdialog(options);
         });
         return this;
     };

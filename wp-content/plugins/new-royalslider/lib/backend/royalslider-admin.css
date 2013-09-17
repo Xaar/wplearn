@@ -3,6 +3,24 @@
 html {
        overflow-y: scroll;
 }
+
+.ui-widget-overlay {
+	z-index: 10;
+}
+.ui-dialog {
+	z-index: 11;
+}
+.ui-widget-overlay { 
+	position: fixed;
+}
+.ui-dialog-titlebar .ui-button {
+	background: none;
+	border: 0;
+}
+.ui-dialog-titlebar .ui-button .ui-icon {
+	left: 0;
+	top: 0;
+}
 #new-royalslider-edit-page .sortable-slides-container {
 	margin-right: 330px;
 }

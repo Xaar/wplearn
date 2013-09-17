@@ -112,7 +112,7 @@ class NewRoyalSliderMain {
 		if( !is_admin() ) {
 			
 			add_action( 'wp_enqueue_scripts', array(&$this, 'find_and_register_scripts'));	
-			add_action( 'wp_print_styles', array( &$this, 'frontend_styles' ) );
+			//add_action( 'wp_print_styles', array( &$this, 'frontend_styles' ) );
 			//add_action( 'init', array( &$this, 'update_jquery' ) );
 			add_action( 'wp_footer', array( &$this, 'frontend_script' ) );
 			add_action( 'wp_print_footer_scripts', array( &$this, 'custom_footer_scripts' ) );
@@ -156,10 +156,7 @@ class NewRoyalSliderMain {
 						} else if ($value == 'gallery') {
 							$attr = shortcode_parse_atts($matches[3][$key] );
 
-							if(self::$override_all_default_galleries) {
-								$this->push_script( self::$override_all_default_galleries );
-								continue;
-							} else if(!isset($attr['royalslider'])) {
+							if(!isset($attr['royalslider'])) {
 								continue;
 							}
 							$this->push_script($attr['royalslider']);
@@ -178,6 +175,7 @@ class NewRoyalSliderMain {
 			$this->load_all = true;
 		}
 
+		$this->frontend_styles();
 		//echo 'loading scripts...'.$this->load_all.print_r($this->sliders_to_enqueue,true);
 
 	}
@@ -441,7 +439,7 @@ class NewRoyalSliderMain {
 	* @return str|array
 	*/
 
-	function aq_resize( $url, $width, $height = null, $crop = null, $single = true ) {
+	public static function aq_resize( $url, $width, $height = null, $crop = null, $single = true ) {
 		
 		//validate inputs
 		if(!$url OR !$width ) return false;

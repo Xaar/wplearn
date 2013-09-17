@@ -14,7 +14,7 @@
 			lastSize = {width: 500, height: 337 };
 		$('#edit-slide-markup').click(function(e) {
 			e.preventDefault();
-			self.templateEditor.dialog({
+			self.templateEditor.rsdialog({
 				modal: true,
 				title: newRsVars.slide_html_markup_editor,
 				zIndex: 15,
@@ -27,7 +27,7 @@
 				},
 				open: function() { 
 					$(".ui-widget-overlay").unbind('click.rst').bind('click.rst', function () {
-			    		 self.templateEditor.dialog( "close" );
+			    		 self.templateEditor.rsdialog( "close" );
 					});
 					$('.ui-dialog-titlebar-close')[0].tabIndex = -1;
 					
@@ -93,7 +93,7 @@
 					$('#preview-slider').text(newRsVars.preview_slider);
 
 					self.previewContainer.empty();
-					var tabsContainer = self.previewContainer.dialog({
+					var tabsContainer = self.previewContainer.rsdialog({
 						modal: true,
 						title: newRsVars.preview_title,
 						zIndex: 15,
@@ -106,7 +106,7 @@
 						},
 						open: function() { 
 							$(".ui-widget-overlay").unbind('click.rst').bind('click.rst', function () {
-					    		 tabsContainer.dialog( "close" );
+					    		 tabsContainer.rsdialog( "close" );
 							});
 						}
 					});
@@ -120,12 +120,12 @@
 
 						var dimensions = self.admin.getDimensions();
 						if(dimensions.width.indexOf('%') !== -1) {
-							tabsContainer.dialog( "option", "width", '50%');
+							tabsContainer.rsdialog( "option", "width", '50%');
 						} else {
-							tabsContainer.dialog( "option", "width", 'auto');
+							tabsContainer.rsdialog( "option", "width", 'auto');
 						}
 						self.slider.css(dimensions);
-						//tabsContainer.dialog('option', 'position', 'center');
+						//tabsContainer.rsdialog('option', 'position', 'center');
 
 						setTimeout(function() {
 							var sliderOpts = formData.sopts;
@@ -142,7 +142,7 @@
 								$('#wpadminbar').css('visibility', 'visible');
 							});
 							setTimeout(function() {
-								tabsContainer.dialog('option', 'position', 'center');
+								tabsContainer.rsdialog('option', 'position', 'center');
 								setTimeout(function() {
 									$('.ui-dialog').css('visibility', 'visible');
 								}, 16);
@@ -150,8 +150,8 @@
 							
 						}, 1);
 					} else {
-						tabsContainer.dialog( "option", "width", '400px');
-						tabsContainer.dialog('option', 'position', 'center');
+						tabsContainer.rsdialog( "option", "width", '400px');
+						tabsContainer.rsdialog('option', 'position', 'center');
 						$('.ui-dialog').css('visibility', 'visible');
 						self.previewContainer.html(newRsVars.unexpected_output + '<br/>------------<br/>' + data.responseText);
 					}

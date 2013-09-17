@@ -494,7 +494,7 @@
 
 			setTimeout(function() {
 
-				self.admin.currTabsDialog.dialog('option', 'position', 'center');
+				self.admin.currTabsDialog.rsdialog('option', 'position', 'center');
 				var dWindow = self.admin.currTabsDialog.closest('.ui-dialog');
 				if( parseInt( dWindow.css('top'), 10) < 40 )  {
 					dWindow.css('top', '40px');

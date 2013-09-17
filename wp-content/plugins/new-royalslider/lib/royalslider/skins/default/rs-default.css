@@ -139,7 +139,7 @@
 
 .rsDefault .rsThumbsHor {
 	width: 100%;
-	height: auto;
+	height: 72px;
 }
 .rsDefault .rsThumbsVer {
 	width: 96px;
@@ -405,8 +405,6 @@
 	position:absolute;
 	left:50%;
 	top:50%;
-	width: 20px;
-	height: 20px;
 }
 .rsDefault .rsCloseVideoBtn {
 	right: 0;

@@ -70,7 +70,7 @@ if ( !class_exists( 'NewRoyalSliderOptions' ) ):
 		            array(
 		                'name' => 'autoScaleSliderWidth',
 		                'label' => __( 'Base width', 'new_royalslider' ),
-		                'desc' => __( 'Based on "Base width" and "Base height", slider will autocalculate sizing ratio. E.g. if you set them both to 500 slider will be square.', 'new_royalslider' ),
+		                'desc' => __( 'Based on "Base width" and "Base height", slider will autocalculate sizing ratio. E.g. if you set them both to 500 slider will be square. Only number should be entered, e.g.: 300', 'new_royalslider' ),
 		                'type' => 'number',
 		                'default' => '800',
 		                'size' => 'short',
@@ -79,7 +79,7 @@ if ( !class_exists( 'NewRoyalSliderOptions' ) ):
 		            array(
 		                'name' => 'autoScaleSliderHeight',
 		                'label' => __( 'Base height', 'new_royalslider' ),
-		                'desc' => __( 'Based on "Base width" and "Base height", slider will autocalculate sizing ratio. E.g. if you set them both to 500 slider will be square.', 'new_royalslider' ),
+		                'desc' => __( 'Based on "Base width" and "Base height", slider will autocalculate sizing ratio. E.g. if you set them both to 500 slider will be square. Only number should be entered, e.g.: 300', 'new_royalslider' ),
 		                'type' => 'number',
 		                'default' => '400',
 		                'size' => 'short',
@@ -99,7 +99,7 @@ if ( !class_exists( 'NewRoyalSliderOptions' ) ):
 		            array(
 		                'name' => 'slidesSpacing',
 		                'label' => __( 'Slides spacing', 'new_royalslider' ),
-		                'desc' => __( "Spacing between slides (number)", 'new_royalslider' ),
+		                'desc' => __( "Spacing between slides in pixels (number)", 'new_royalslider' ),
 		                'type' => 'number',
 		                'data-type' => 'num',
 		                'default' => '8'
@@ -116,7 +116,7 @@ if ( !class_exists( 'NewRoyalSliderOptions' ) ):
 		                'data-type' => 'str',
 		                'default' => 'fit-if-smaller',
 		                'options' => array(
-		                    'fit-if-smaller' => __('Fit in area if smaller', 'new_royalslider'),
+		                    'fit-if-smaller' => __('Fit if image is smaller than area', 'new_royalslider'),
 		                    'fill' => __('Fill the area', 'new_royalslider'),
 		                    'fit' => __('Fit into area', 'new_royalslider'),
 		                    'none' => __('No scaling', 'new_royalslider')

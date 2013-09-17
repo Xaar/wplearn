@@ -53,6 +53,9 @@ class NewRoyalSliderPostGalleryRenderer {
         $attach = $this->getImageData(true);
         return $attach[2];
     }
+    public function alt() {
+        return get_post_meta($this->attachment_id, '_wp_attachment_image_alt', true);
+    }
     public function thumbnail() {
         return NewRoyalSliderGenerator::get_thumbnail($this);
     }
@@ -60,7 +63,7 @@ class NewRoyalSliderPostGalleryRenderer {
         return NewRoyalSliderGenerator::get_image_tag($this);
     }
     public function getImageData($isThumb = false) {
-        return NewRoyalSliderGenerator::get_image_gata($this, $isThumb);
+        return NewRoyalSliderGenerator::get_image_data($this, $isThumb);
     }
     public function description() {
         if(isset($this->attachment->post_excerpt))
