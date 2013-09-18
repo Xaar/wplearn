@@ -4,7 +4,7 @@ Author URI: http://www.642weather.com/weather/scripts.php
 Donate link: http://www.FastSecureContactForm.com/donate
 Tags: Akismet, captcha, contact, contact form, form, mail, email, spam, multilingual, wpmu
 Requires at least: 3.4.2
-Tested up to: 3.5.2
+Tested up to: 3.6.1
 Stable tag: trunk
 
 A super customizable contact form that lets your visitors send you email. Blocks all automated spammers. No templates to mess with.
@@ -15,6 +15,16 @@ This plugin allows a webmaster to easily create and add contact forms to WordPre
 
 Features: easy form edit, multiple forms, confirmation emails, no templates to mess with, and an option to redirect visitors to any URL after the message is sent. Includes CAPTCHA and Akismet support to block spammers. Spam is no longer a problem. You can add extra fields of any type: text, textarea, checkbox, checkbox-multiple, radio, select, select-multiple, attachment, date, time, hidden, password, and fieldset.
 
+= Fast Secure Contact Form Version 4.0 Beta 2 =
+
+Version 4.0 Beta 2 was released August, 31 2013. Please help test it!
+
+* [Download and test the 4.0 Beta](http://www.fastsecurecontactform.com/beta)
+* [Donate to the project](http://www.fastsecurecontactform.com/donate)
+* [Contribute your ideas in the support forum](http://wordpress.org/support/plugin/si-contact-form)
+
+= Support and Downloads =
+
 * [FastSecureContactForm.com](http://www.fastsecurecontactform.com/)
 * [Download WordPress Plugin Version](http://downloads.wordpress.org/plugin/si-contact-form.zip)
 * [Download PHP Script Version](http://www.fastsecurecontactform.com/download-php-script)
@@ -22,12 +32,6 @@ Features: easy form edit, multiple forms, confirmation emails, no templates to m
 = Help Keep This Plugin Free =
 
 If you find this plugin useful to you, please consider [__making a small donation__](http://www.fastsecurecontactform.com/donate) to help contribute to my time invested and to further development. Thanks for your kind support! - [__Mike Challis__](http://profiles.wordpress.org/users/MikeChallis/)
-
-= Good news! A major update is being worked on =
- 
-The Fast Secure Contact Form 4.0 project began in late August 2012 and is making great progress. Read about the changes here:
-[Fast Secure Contact Form 4.0 project reports](http://wordpress.org/support/topic/fast-secure-contact-form-40-project-reports). 
-How you can help with the new 4.0 verion: [Donate to the project](http://www.fastsecurecontactform.com/donate), and/or contribute your ideas in the [Working on a 4.0 Version](http://wordpress.org/support/topic/working-on-a-40-version) post.
 
 Features:
 --------
@@ -207,6 +211,28 @@ You can learn more about vCita at [www.vcita.com](http://www.vcita.com?invite=FS
 If you have any question about the Schedule Meetings feature please contact support@vcita.com
 
 == Changelog ==
+
+= 3.1.9.1 =
+- (31 Aug 2013) - Fix bug: Custom Label CSS was ignored for checkbox, checkbox-multiple, and radio fields.
+- Fix bug: CSS setting 'labels on left' messed up checkbox, checkbox-multiple, and radio fields.
+- Fix bug: CSS setting 'labels on left' messed up HTML before/after form field position.
+- Added announcement of Fast Secure Contact Form Version 4.0 Beta 2 was released August, 31 2013. Please help test it!
+- [Download and test the 4.0 Beta](http://www.fastsecurecontactform.com/beta)
+
+= 3.1.9 =
+- (15 Aug 2013) - Added announcement of Fast Secure Contact Form Version 4.0 Beta 1 was released August, 15 2013. Please help test it!
+- [Download and test the 4.0 Beta](http://www.fastsecurecontactform.com/beta)
+
+= 3.1.8.6 =
+- (13 Aug 2013) - fixed label style for checkbox, checkbox-multiple, and radio field types.
+- removed divs for HTML before/after field settings.
+- minor bug fixes.
+
+= 3.1.8.5 =
+- (18 Jul 2013) - added new settings: "Submit button input attributes" and "Form action attributes". These can be used for Google Analytics tracking code.
+- added captcha font randomization.
+- fixed date does not have to be required.
+- fixed date error message translation.
 
 = 3.1.8.4 =
 - (07 Jul 2013) - Fixed CAPTCHA PHP warning on some servers.

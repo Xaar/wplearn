@@ -338,8 +338,9 @@ get_currentuserinfo();
 '.$si_contact_opt['welcome'];
 
 // the form is being displayed now
- $this->ctf_notes_style = $this->si_contact_convert_css($si_contact_opt['notes_style']);
+ //$this->ctf_notes_style = $this->si_contact_convert_css($si_contact_opt['notes_style']);
  $this->ctf_form_style = $this->si_contact_convert_css($si_contact_opt['form_style']);
+ $this->ctf_option_label_style = $this->si_contact_convert_css($si_contact_opt['option_label_style']);
  $this->ctf_border_style = $this->si_contact_convert_css($si_contact_opt['border_style']);
  $this->ctf_select_style = $this->si_contact_convert_css($si_contact_opt['select_style']);
  $this->ctf_title_style = $this->si_contact_convert_css($si_contact_opt['title_style']);
@@ -364,12 +365,17 @@ if ($si_contact_opt['vcita_enabled'] == 'true') {
 <div style='float:left;' class='fsc_data_container'>
 ";
 }
+
+$form_attributes = '';
+if($si_contact_opt['form_attributes'] != '')
+            $form_attributes = $si_contact_opt['form_attributes'].' ';
+
 if($have_attach) // there are attachment fields on this form
     $have_attach = 'enctype="multipart/form-data" '; // for <form post
 
 if ($si_contact_opt['border_enable'] == 'true') {
   $string .= '
-    <form '.$have_attach.'action="'.esc_url( $form_action_url ).'#FSContact'.$form_id_num.'" id="si_contact_form'.$form_id_num.'" method="post">
+    <form '.$have_attach.'action="'.esc_url( $form_action_url ).'#FSContact'.$form_id_num.'" id="si_contact_form'.$form_id_num.'" '.$form_attributes.'method="post">
     <fieldset '.$this->ctf_border_style.'>
 
 ';
@@ -378,7 +384,7 @@ if ($si_contact_opt['border_enable'] == 'true') {
 } else {
 
  $string .= '
-<form '.$have_attach.'action="'.esc_url( $form_action_url ).'#FSContact'.$form_id_num.'" id="si_contact_form'.$form_id_num.'" method="post">
+<form '.$have_attach.'action="'.esc_url( $form_action_url ).'#FSContact'.$form_id_num.'" id="si_contact_form'.$form_id_num.'" '.$form_attributes.'method="post">
 ';
 }
 
@@ -810,6 +816,8 @@ $string .= '
   <input type="submit" id="fsc-submit-'.$form_id_num.'" '.$this->ctf_submit_style.' value="';
      $string .= esc_attr(($si_contact_opt['title_submit'] != '') ? $si_contact_opt['title_submit'] :  __('Submit', 'si-contact-form'));
      $string .= '" ';
+  if($si_contact_opt['submit_attributes'] != '')
+            $string .= $si_contact_opt['submit_attributes'].' ';
    if($si_contact_opt['enable_areyousure'] == 'true') {
      $string .= ' onclick="return confirm(\'';
      $string .= esc_js(($si_contact_opt['title_areyousure'] != '') ? $si_contact_opt['title_areyousure'] : __('Are you sure?', 'si-contact-form'));

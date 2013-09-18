@@ -3,12 +3,12 @@
 Plugin Name: Fast Secure Contact Form
 Plugin URI: http://www.FastSecureContactForm.com/
 Description: Fast Secure Contact Form for WordPress. The contact form lets your visitors send you a quick E-mail message. Super customizable with a multi-form feature, optional extra fields, and an option to redirect visitors to any URL after the message is sent. Includes CAPTCHA and Akismet support to block all common spammer tactics. Spam is no longer a problem. <a href="plugins.php?page=si-contact-form/si-contact-form.php">Settings</a> | <a href="http://www.FastSecureContactForm.com/donate">Donate</a>
-Version: 3.1.8.4
+Version: 3.1.9.1
 Author: Mike Challis
 Author URI: http://www.642weather.com/weather/scripts.php
 */
 
-$ctf_version = '3.1.8.4';
+$ctf_version = '3.1.9.1';
 
 /*  Copyright (C) 2008-2013 Mike Challis  (http://www.fastsecurecontactform.com/contact)
 
@@ -672,7 +672,7 @@ function vcita_si_contact_add_script(){
 var vicita_fscf_style = "<!-- begin Fast Secure Contact Form - vCita scheduler page header -->" +
 "<style type='text/css'>" + 
 ".vcita-widget-right { float: left !important; } " +
-".vcita-widget-bottom { float: none !important; clear:both;}" + 
+".vcita-widget-bottom { float: none !important; clear:both;}" +
 "</style>" + 
 "<!-- end Fast Secure Contact Form - vCita scheduler page header -->";
 jQuery(document).ready(function($) {
@@ -1248,7 +1248,7 @@ function captchaCheckRequires() {
 }
 
 // check the honeypot trap for spam bots
-// this is very basic, just checks if an empty field was filled in
+// this is very basic, just checks if a hidden empty field was filled in
 function si_contact_check_honeypot($form_id) {
     global $si_contact_opt;
 
@@ -1679,8 +1679,9 @@ function si_contact_get_options($form_num) {
          'form_style' => 'width:375px;',
          'border_style' => 'border:1px solid black; padding:10px;',
          'required_style' => 'text-align:left;',
-         'notes_style' => 'text-align:left;',
+         //'notes_style' => 'text-align:left;',
          'title_style' => 'text-align:left; padding-top:5px;',
+         'option_label_style' => 'display:inline;',
          'field_style' => 'text-align:left; margin:0;',
          'field_div_style' => 'text-align:left;',
          'error_style' => 'text-align:left; color:red;',
@@ -1699,6 +1700,8 @@ function si_contact_get_options($form_num) {
          'text_rows' => '10',
          'aria_required' => 'false',
          'auto_fill_enable' => 'true',
+         'form_attributes' => '',
+         'submit_attributes' => '',
          'title_border' => __('Contact Form:', 'si-contact-form'),
          'title_dept' => '',
          'title_select' => '',
@@ -1924,8 +1927,8 @@ function si_contact_get_options($form_num) {
 function si_contact_copy_styles($this_form_arr,$destination_form_arr) {
 
      $style_copy_arr = array(
-     'border_enable','form_style','border_style','required_style','notes_style',
-     'title_style','field_style','field_div_style','error_style','select_style',
+     'border_enable','form_style','border_style','required_style',
+     'title_style','option_label_style','field_style','field_div_style','error_style','select_style',
      'captcha_div_style_sm','captcha_div_style_m','captcha_input_style','submit_div_style','button_style', 'reset_style',
      'powered_by_style','redirect_style','field_size','captcha_field_size','text_cols','text_rows');
      foreach($style_copy_arr as $style_copy) {
@@ -2089,11 +2092,7 @@ function si_contact_form_mail_sender($phpmailer) {
 }
 
 function ctf_notes($notes) {
-           return   '
-        <div '.$this->ctf_notes_style.'>
-         '.$notes.'
-        </div>
-        ';
+    return "\n    <div style=\"clear:both;\"></div>\n$notes\n";
 }
 
 function si_contact_convert_css($string) {

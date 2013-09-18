@@ -226,9 +226,10 @@ class WC_Product_Variation extends WC_Product {
 	/**
      * Get variation price HTML. Prices are not inherited from parents.
      *
+	 * @param string $price (default: '')
      * @return string containing the formatted price
      */
-	public function get_price_html() {
+	public function get_price_html( $price = '' ) {
 
 		if ( $this->price !== '' ) {
 			if ( $this->price == $this->sale_price && $this->sale_price < $this->regular_price ) {
@@ -271,8 +272,8 @@ class WC_Product_Variation extends WC_Product {
 			$image = get_the_post_thumbnail( $this->variation_id, $size, $attr );
 		} elseif ( has_post_thumbnail( $this->id ) ) {
 			$image = get_the_post_thumbnail( $this->id, $size, $attr );
-		} elseif ( $parent_id = wp_get_post_parent_id( $this->id ) && has_post_thumbnail( $parent_id ) ) {
-			$image = get_the_post_thumbnail( $parent_id, $size , $attr);
+		} elseif ( ( $parent_id = wp_get_post_parent_id( $this->id ) ) && has_post_thumbnail( $parent_id ) ) {
+			$image = get_the_post_thumbnail( $parent_id, $size, $attr);
 		} else {
 			$image = woocommerce_placeholder_img( $size );
 		}
@@ -440,7 +441,7 @@ class WC_Product_Variation extends WC_Product {
 	public function get_file_download_path( $download_id ) {
 
 		$file_path = '';
-		$file_paths = apply_filters( 'woocommerce_file_download_paths', get_post_meta( $this->variation_id, '_file_paths', true ), $this->variation_id, null, null );
+		$file_paths = (array) apply_filters( 'woocommerce_file_download_paths', get_post_meta( $this->variation_id, '_file_paths', true ), $this->variation_id, null, null );
 
 		if ( ! $download_id && count( $file_paths ) == 1 ) {
 			// backwards compatibility for old-style download URLs and template files

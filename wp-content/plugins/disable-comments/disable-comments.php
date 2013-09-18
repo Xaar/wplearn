@@ -3,7 +3,7 @@
 Plugin Name: Disable Comments
 Plugin URI: http://wordpress.org/extend/plugins/disable-comments/
 Description: Allows administrators to globally disable comments on their site. Comments can be disabled according to post type.
-Version: 0.9.2
+Version: 1.0.1
 Author: Samir Shah
 Author URI: http://rayofsolaris.net/
 License: GPL2
@@ -106,7 +106,8 @@ class Disable_Comments {
 			}
 			else {
 				add_action( 'admin_menu', array( $this, 'settings_menu' ) );
-				register_deactivation_hook( __FILE__, array( $this, 'single_site_deactivate' ) );
+				if( is_multisite() )	// We're on a multisite setup, but the plugin isn't network activated.
+					register_deactivation_hook( __FILE__, array( $this, 'single_site_deactivate' ) );
 			}
 
 			add_action( 'admin_print_footer_scripts', array( $this, 'discussion_notice' ) );
@@ -125,6 +126,17 @@ class Disable_Comments {
 				add_filter( 'pre_option_default_pingback_flag', '__return_zero' );
 			}
 		}
+		// Filters for front end only
+		else {
+			if( $this->options['remove_everywhere'] ) {
+				// Kill the comments template. This will deal with themes that don't check comment stati properly!
+				add_filter( 'comments_template', array( $this, 'dummy_comments_template' ), 20 );
+			}
+		}
+	}
+
+	function dummy_comments_template() {
+		return dirname( __FILE__ ) . '/comments-template.php';
 	}
 	
 	function filter_wp_headers( $headers ) {
@@ -149,14 +161,20 @@ class Disable_Comments {
 			// Remove comments links from admin bar
 			remove_action( 'admin_bar_menu', 'wp_admin_bar_comments_menu', 50 );	// WP<3.3
 			remove_action( 'admin_bar_menu', 'wp_admin_bar_comments_menu', 60 );	// WP 3.3
-			if( $this->networkactive )
+			if( is_multisite() )
 				add_action( 'admin_bar_menu', array( $this, 'remove_network_comment_links' ), 500 );
 		}
 	}
 	
 	function remove_network_comment_links( $wp_admin_bar ) {
-		foreach( (array) $wp_admin_bar->user->blogs as $blog )
-			$wp_admin_bar->remove_menu( 'blog-' . $blog->userblog_id . '-c' );
+		if( $this->networkactive ) {
+			foreach( (array) $wp_admin_bar->user->blogs as $blog )
+				$wp_admin_bar->remove_menu( 'blog-' . $blog->userblog_id . '-c' );
+		}
+		else {
+			// We have no way to know whether the plugin is active on other sites, so only remove this one
+			$wp_admin_bar->remove_menu( 'blog-' . get_current_blog_id() . '-c' );
+		}
 	}
 	
 	function edit_form_inputs() {
@@ -192,7 +210,12 @@ jQuery(document).ready(function($){
 			echo '<div class="updated fade"><p>' . sprintf( __( 'The <em>Disable Comments</em> plugin is active, but isn\'t configured to do anything yet. Visit the <a href="%s">configuration page</a> to choose which post types to disable comments on.', 'disable-comments'), $url ) . '</p></div>';
 	}
 	
-	function filter_admin_menu(){
+	function filter_admin_menu(){		
+		global $pagenow;
+
+		if ( $pagenow == 'comment.php' || $pagenow == 'edit-comments.php' || $pagenow == 'options-discussion.php' )
+			wp_die( __( 'Comments are closed.' ), '', array( 'response' => 403 ) );
+
 		remove_menu_page( 'edit-comments.php' );
 		remove_submenu_page( 'options-general.php', 'options-discussion.php' );
 	}

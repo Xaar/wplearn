@@ -223,6 +223,7 @@ class Securimage_ctf {
 	var $background_directory = null; //'./backgrounds';
 
     var $ttf_font_directory = null; //'./ttffonts';
+    var $gd_font_directory = null; //'./gdfonts';
 
 
 	/**
@@ -387,6 +388,7 @@ class Securimage_ctf {
 
 	$this->code_length   = 4;
 	$this->charset       = 'ABCDEFGHKLMNPRSTUVWYZabcdefghklmnprstuvwyz23456789';
+    //$this->charset = 'ABCDEFHKLMNPRSTUVWYZ234578';
 
 	$this->gd_font_file  = $this->working_directory . '/gdfonts/bubblebath.gdf';
 	$this->use_gd_font   = false;
@@ -394,6 +396,9 @@ class Securimage_ctf {
 	$this->text_x_start  = 15;
 
 	$this->ttf_file      = $this->working_directory . '/ttffonts/ahg-bold.ttf';
+    $this->background_directory = $this->working_directory . '/backgrounds';
+    $this->ttf_font_directory  = $this->working_directory . '/ttffonts';
+    $this->gd_font_directory  = $this->working_directory . '/gdfonts';
 
 	$this->perturbation       = 0.7;
 	$this->iscale             = 5;
@@ -402,7 +407,7 @@ class Securimage_ctf {
 
 	$this->image_bg_color   = '#ffffff';
     $this->text_color       = '#ff0000';
-    $this->multi_text_color = array('#0020CC','#0030EE','#0040CC','#0050EE','#0060CC');
+    $this->multi_text_color = array('#6666FF','#660000','#3333CC','#993300','#0060CC','#339900','#6633CC','#330000','#006666','#CC3366');
 	$this->use_multi_text   = true;
 
 	$this->use_transparent_text         = true;
@@ -586,19 +591,19 @@ class Securimage_ctf {
 	 *
 	 * @return mixed  false if none found, string $path if found
 	 */
-	function getFontFromDirectory()
+	function getFontFromDirectory($path,$type = 'ttf')
 	{
 		$fonts = array();
 
-		if ($dh = opendir($this->ttf_font_directory)) {
+		if ($dh = opendir($path)) {
 			while (($file = readdir($dh)) !== false) {
-				if (preg_match('/(ttf)$/i', $file)) $fonts[] = $file;
+				if (preg_match("/($type)$/i", $file)) $fonts[] = $file;
 			}
 
 			closedir($dh);
 
 			if (sizeof($fonts) > 0) {
-				return rtrim($this->ttf_font_directory, '/') . '/' . $fonts[rand(0, sizeof($fonts)-1)];
+				return rtrim($path, '/') . '/' . $fonts[rand(0, sizeof($fonts)-1)];
 			}
 		}
 
@@ -665,6 +670,7 @@ class Securimage_ctf {
 
         $gd_info = gd_info();
 		if ($this->use_gd_font == true || !function_exists('imagettftext') || $gd_info['FreeType Support'] == false ) {
+            $this->gd_font_file = $this->getFontFromDirectory($this->gd_font_directory,'gdf');
 			if (!is_int($this->gd_font_file)) { //is a file name
 				$font = @imageloadfont($this->gd_font_file);
 				if ($font == false) {
@@ -678,6 +684,7 @@ class Securimage_ctf {
 			$color = imagecolorallocate($this->im, hexdec(substr($text_color, 1, 2)), hexdec(substr($text_color, 3, 2)), hexdec(substr($text_color, 5, 2)));
 			imagestring($this->im, $font, $this->text_x_start, ($this->image_height / 2) - ($this->gd_font_size / 2), $this->code, $color);
 		} else { //ttf font
+            $this->ttf_file = $this->getFontFromDirectory($this->ttf_font_directory,'ttf');
             $text_color = $this->getColorArray($this->text_color, '#3d3d3d');
 			$font_size = $height2 * .35;
 			$bb = imagettfbbox($font_size, 0, $this->ttf_file, $this->code);
@@ -840,7 +847,7 @@ class Securimage_ctf {
 //		for($i = 1, $cslen = strlen($this->charset); $i <= $len; ++$i) {
 //			$code .= $this->charset{rand(0, $cslen - 1)};
 //		}
-        $chars_num = '234578'; // do not change this or the code will break!!
+        $chars_num = '2345789'; // do not change this or the code will break!!
         // one random position always has to be a number so that a 4 letter swear word could never appear
         $rand_pos = mt_rand( 0, $len - 1 );
         $code = '';

@@ -5,7 +5,7 @@ cookie_opt_in.show_after = function (is_new) {
   is_new = is_new || false;
   cookie_opt_in._current_bmt = jQuery('body').css('margin-top');
   if (is_new) {
-    var h = 62;
+    var h = cookie_opt_in._set_bmt||62;
     jQuery('body').css('margin-top', h);
     jQuery('#cookie_opt_in_top_bar_container').show();
   }

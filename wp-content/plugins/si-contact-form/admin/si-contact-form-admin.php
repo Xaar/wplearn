@@ -248,8 +248,9 @@ if ( strpos(strtolower($_SERVER['SCRIPT_NAME']),strtolower(basename(__FILE__))) 
          'form_style' =>            ( trim($_POST['si_contact_form_style']) != '' ) ? strip_tags(trim($_POST['si_contact_form_style'])) : $si_contact_option_defaults['form_style'],
          'border_style' =>          ( trim($_POST['si_contact_border_style']) != '' ) ? strip_tags(trim($_POST['si_contact_border_style'])) : $si_contact_option_defaults['border_style'],
          'required_style' =>        ( trim($_POST['si_contact_required_style']) != '' ) ? strip_tags(trim($_POST['si_contact_required_style'])) : $si_contact_option_defaults['required_style'],
-         'notes_style' =>           ( trim($_POST['si_contact_notes_style']) != '' ) ? strip_tags(trim($_POST['si_contact_notes_style'])) : $si_contact_option_defaults['notes_style'],
+         //'notes_style' =>           ( trim($_POST['si_contact_notes_style']) != '' ) ? strip_tags(trim($_POST['si_contact_notes_style'])) : $si_contact_option_defaults['notes_style'],
          'title_style' =>           ( trim($_POST['si_contact_title_style']) != '' ) ? strip_tags(trim($_POST['si_contact_title_style'])) : $si_contact_option_defaults['title_style'],
+         'option_label_style' =>           ( trim($_POST['si_contact_option_label_style']) != '' ) ? strip_tags(trim($_POST['si_contact_option_label_style'])) : $si_contact_option_defaults['option_label_style'],
          'select_style' =>          ( trim($_POST['si_contact_select_style']) != '' ) ? strip_tags(trim($_POST['si_contact_select_style'])) : $si_contact_option_defaults['select_style'],
          'field_style' =>           ( trim($_POST['si_contact_field_style']) != '' ) ? strip_tags(trim($_POST['si_contact_field_style'])) : $si_contact_option_defaults['field_style'],
          'field_div_style' =>       ( trim($_POST['si_contact_field_div_style']) != '' ) ? strip_tags(trim($_POST['si_contact_field_div_style'])) : $si_contact_option_defaults['field_div_style'],
@@ -268,6 +269,8 @@ if ( strpos(strtolower($_SERVER['SCRIPT_NAME']),strtolower(basename(__FILE__))) 
          'text_rows' =>           absint(trim($_POST['si_contact_text_rows'])),
          'aria_required' =>       (isset( $_POST['si_contact_aria_required'] ) ) ? 'true' : 'false',
          'auto_fill_enable' =>    (isset( $_POST['si_contact_auto_fill_enable'] ) ) ? 'true' : 'false',
+         'form_attributes' =>     strip_tags(trim($_POST['si_contact_form_attributes'])),
+         'submit_attributes' =>   strip_tags(trim($_POST['si_contact_submit_attributes'])),
          'title_border' =>        strip_tags(trim($_POST['si_contact_title_border'])),
          'title_dept' =>          strip_tags(trim($_POST['si_contact_title_dept'])),
          'title_select' =>        strip_tags(trim($_POST['si_contact_title_select'])),
@@ -288,7 +291,6 @@ if ( strpos(strtolower($_SERVER['SCRIPT_NAME']),strtolower(basename(__FILE__))) 
          'text_message_sent' =>   trim($_POST['si_contact_text_message_sent']), // can have HTML
          'tooltip_required' =>    strip_tags($_POST['si_contact_tooltip_required']), // can be a space
          'tooltip_captcha' =>     strip_tags(trim($_POST['si_contact_tooltip_captcha'])),
-         'tooltip_audio' =>       strip_tags(trim($_POST['si_contact_tooltip_audio'])),
          'tooltip_refresh' =>     strip_tags(trim($_POST['si_contact_tooltip_refresh'])),
          'tooltip_filetypes' =>   strip_tags(trim($_POST['si_contact_tooltip_filetypes'])),
          'tooltip_filesize' =>    strip_tags(trim($_POST['si_contact_tooltip_filesize'])),
@@ -362,8 +364,9 @@ if ( strpos(strtolower($_SERVER['SCRIPT_NAME']),strtolower(basename(__FILE__))) 
          'form_style' => 'width:550px;',
          'border_style' => 'border:1px solid black; padding:10px;',
          'required_style' => 'text-align:left;',
-         'notes_style' => 'padding-left:146px; text-align:left; clear:left;',
+         //'notes_style' => 'padding-left:146px; text-align:left; clear:left;',
          'title_style' => 'width:138px; text-align:right; float:left; clear:left; padding-top:8px; padding-right:10px;',
+         'option_label_style' => 'display:inline;',
          'field_style' => 'text-align:left; float:left; padding:2px; margin:0;',
          'field_div_style' => 'text-align:left; float:left; padding-top:10px;',
          'error_style' => 'text-align:left; color:red;',
@@ -521,16 +524,6 @@ if ( !isset($_GET['show_form']) && !isset($_POST['fsc_action']) ) {
       echo __('PHP safe_mode can cause problems like sending mail failures and file permission errors.', 'si-contact-form').' ';
       echo __('Contact your web host to have it turned off.', 'si-contact-form')."</div>\n";
     }
-
-    // if register_globals is turned on and session_start(); is in wp-config.php file, the sessions will all be set NULL by WordPress
-/*    $register_globals_is_on = ((boolean)@ini_get('register_globals') === false) ? 0 : 1;
-    if($register_globals_is_on){
-      echo '<div id="message" class="error">'. __('Warning: Your web host has the PHP setting register_globals turned on.', 'si-contact-form').'<br />';
-      echo __('PHP register_globals is a security risk and should be turned off.', 'si-contact-form').'<br />';
-      echo __('This plugin requires register_globals off or it will not function correctly.', 'si-contact-form').'<br />';
-      echo __('WordPress does not need register_globals turned on.', 'si-contact-form').'<br />';
-      echo __('Contact your web host to have it turned off.', 'si-contact-form')."</div>\n";
-    }*/
 
     // Check for older than PHP5
    if (phpversion() < 5) {
@@ -711,25 +704,26 @@ if (isset($api->version)) {
      echo '<a href="'.admin_url( 'plugins.php' ).'">'.sprintf(__('A newer version of Fast Secure Contact Form is available: %s', 'si-contact-form'),$api->version).'</a>';
      echo "</div>\n";
   }else{
-     $fsc_update = ' '. __('(latest version)', 'si-contact-form');
+     $fsc_update = ' ';
   }
 }
 ?>
-
-<p>Good news! A major update is being worked on. The Fast Secure Contact Form 4.0 project began in late August 2012 and is making great progress. Read about the changes here:<br />
-<a href="http://wordpress.org/support/topic/fast-secure-contact-form-40-project-reports" target="_blank">Fast Secure Contact Form 4.0 project reports</a></p>
-<p><strong>How you can help with the new 4.0 verion:</strong> <a href="http://www.fastsecurecontactform.com/donate" target="_blank">Donate to the project</a>, and/or contribute your ideas in the <a href="http://wordpress.org/support/topic/working-on-a-40-version" target="_blank">Working on a 4.0 Version</a> post.
-</p>
+<div id="message" class="updated">
+<h3>Fast Secure Contact Form Version 4.0 Beta 2 was released August, 31 2013. Please help test it!<br />
+- <a href="http://www.fastsecurecontactform.com/beta" target="_blank">Download and test the 4.0 Beta 2</a><br />
+- <a href="http://www.fastsecurecontactform.com/donate" target="_blank">Donate to the project</a>
+</h3>
+</div>
 
 <p>
 <?php echo __('Version:', 'si-contact-form'). ' '.$ctf_version.$fsc_update; ?> |
 <a href="http://wordpress.org/extend/plugins/si-contact-form/changelog/" target="_blank"><?php _e('Changelog', 'si-contact-form'); ?></a> |
 <a href="http://www.fastsecurecontactform.com/faq-wordpress-version" target="_blank"><?php _e('FAQ', 'si-contact-form'); ?></a> |
-<a href="http://wordpress.org/support/view/plugin-reviews/si-contact-form" target="_blank"><?php _e('Rate This', 'si-contact-form'); ?></a> |
 <a href="http://www.fastsecurecontactform.com/support" target="_blank"><?php _e('Support', 'si-contact-form'); ?></a> |
+<a href="http://wordpress.org/support/view/plugin-reviews/si-contact-form" target="_blank"><?php _e('Rate This', 'si-contact-form'); ?></a> |
 <a href="http://www.fastsecurecontactform.com/donate" target="_blank"><?php _e('Donate', 'si-contact-form'); ?></a> |
-<a href="http://www.642weather.com/weather/scripts.php" target="_blank"><?php _e('Free PHP Scripts', 'si-contact-form'); ?></a> |
 <a href="http://www.fastsecurecontactform.com/contact" target="_blank"><?php _e('Contact', 'si-contact-form'); ?> Mike Challis</a>
+
 </p>
 
 <?php
@@ -825,16 +819,6 @@ _e('If you find this plugin useful to you, please consider making a small donati
 <br />
 <?php _e('Shortcode for this form:', 'si-contact-form'); echo " [si-contact-form form='$form_id']"; ?>
 </p>
-
-<?php
-if( function_exists('get_sfc_like_button') || function_exists('get_sfc_share_button') ) {
-  echo '<div id="message" class="error">';
-  echo __('SFC Like and SFC Share plugins cause problems with Fast Secure Contact Form, please disable or uninstall SFC Like and SFC Share plugins.', 'si-contact-form');
-  echo ' <a href="http://www.fastsecurecontactform.com/error-message-sfc-like">'. __('help', 'si-contact-form') . '</a>
-  </div>'."\n";
-}
-?>
-
 
 <h3><?php _e('Options', 'si-contact-form'); ?></h3>
 
@@ -1020,30 +1004,18 @@ if ( $si_contact_opt['email_from'] != '' ) {
 
    if ($from_fail)  {
        echo '<div id="message" class="error">';
-       echo __('ERROR: Misconfigured "E-mail From" address.', 'si-contact-form');
+       echo __('ERROR: Misconfigured "Return-path address".', 'si-contact-form');
        echo "</div>\n";
-       echo '<div class="fsc-error">'. __('ERROR: Misconfigured "E-mail From" address.', 'si-contact-form').'</div>'."\n";
-   } else {
-       $uri = parse_url(get_option('home'));
-       $blogdomain = preg_replace("/^www\./i",'',$uri['host']);
-       list($email_from_user,$email_from_domain) = explode('@',$si_contact_opt['email_from']);
-       if ( $blogdomain != $email_from_domain) {
-       echo '<div id="message" class="updated">';
-       echo sprintf(__('Warning: "E-mail From" is not set to an address from the same domain name as your web site (%s). This can sometimes cause mail not to send, or send but be delivered to a Spam folder. Be sure to test that your form is sending email and that you are receiving it, if not, fix this setting.', 'si-contact-form'), $blogdomain);
-       echo "</div>\n";
-       echo '<div class="fsc-notice">';
-       echo sprintf(__('Warning: "E-mail From" is not set to an address from the same domain name as your web site (%s). This can sometimes cause mail not to send, or send but be delivered to a Spam folder. Be sure to test that your form is sending email and that you are receiving it, if not, fix this setting.', 'si-contact-form'), $blogdomain);
-       echo "</div>\n";
-       }
+       echo '<div class="fsc-error">'. __('ERROR: Misconfigured "Return-path address".', 'si-contact-form').'</div>'."\n";
    }
 }
 ?>
-        <label for="si_contact_email_from"><?php _e('Custom E-mail From (optional)', 'si-contact-form'); ?>:</label>
+        <label for="si_contact_email_from"><?php _e('Return-path address (recommended)', 'si-contact-form'); ?>:</label> <br /><?php _e( 'Set this to a real email address on the SAME domain as your web site.', 'si-contact-form' ); ?><br />
         <input name="si_contact_email_from" id="si_contact_email_from" type="text" value="<?php echo esc_attr($si_contact_opt['email_from']);  ?>" size="50" />
         <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_email_from_tip');"><?php _e('help', 'si-contact-form'); ?></a>
         <div style="text-align:left; display:none" id="si_contact_email_from_tip">
-        <?php _e('E-mail address the messages are sent from. Some web hosts do not allow PHP to send email unless the envelope sender email address is on the same web domain as your web site. And they require it to be a real address on that domain, or mail will NOT SEND! (They do this to help prevent spam.) If your contact form does not send any email, then set this to a real email address on the SAME domain as your web site, then test the form.', 'si-contact-form'); ?>
-        <?php _e('If your form still does not send any email, also check the setting below: "Enable when web host requires "Mail From" strictly tied to domain email account". In some cases, this will resolve the problem. This setting is also recommended for gmail users to prevent email from going to spam folder.', 'si-contact-form'); ?>
+        <?php _e('Server email address the messages are sent from. Some web hosts do not allow PHP to send email unless the Return-path email address is set. It must be set to a real email address on your site domain, or mail will NOT SEND! (They do this to help prevent spam.) If your form does not send any email, enter your site email address, then test the form again.', 'si-contact-form' ); ?>
+        <?php _e('This setting is required by Dreamhost, GoDaddy, many others, and is also recommended for gmail users to prevent email from going to spam folder.', 'si-contact-form' ); ?>
         <br />
         <?php _e('Enter just an email: user1@example.com', 'si-contact-form'); ?><br />
         <?php _e('Or enter name and email: webmaster,user1@example.com ', 'si-contact-form'); ?>
@@ -1053,7 +1025,7 @@ if ( $si_contact_opt['email_from'] != '' ) {
         <?php
        if( $si_contact_opt['email_from_enforced'] == 'true' && $si_contact_opt['email_from'] == '') {
          echo '<div class="fsc-error">';
-         echo __('Warning: Enabling this setting requires the "E-mail From" setting above to also be set.', 'si-contact-form');
+         echo __('Warning: Enabling this setting requires the "Return-path address (recommended)" setting above to also be set.', 'si-contact-form');
          echo "</div>\n";
        }
        ?>
@@ -1061,11 +1033,11 @@ if ( $si_contact_opt['email_from'] != '' ) {
         <label for="si_contact_email_from_enforced"><?php _e('Enable when web host requires "Mail From" strictly tied to domain email account.', 'si-contact-form'); ?></label>
         <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_email_from_enforced_tip');"><?php _e('help', 'si-contact-form'); ?></a>
         <div style="text-align:left; display:none" id="si_contact_email_from_enforced_tip">
-        <?php _e('If your form does not send any email, then set the "E-mail From" setting above to an address on the same web domain as your web site. If email still does not send, also check this setting. (ie: some users report this is required by yahoo small business web hosting)', 'si-contact-form') ?>
+        <?php _e('If your form does not send any email, then set the "Return-path address" setting above to an address on the same web domain as your web site. If email still does not send, try checking this setting.', 'si-contact-form' ) ?>
         </div>
         <br />
 
-        <label for="si_contact_email_reply_to"><?php _e('Custom Reply To (optional)', 'si-contact-form'); ?>:</label>
+        <label for="si_contact_email_reply_to"><?php _e('Custom Reply To (optional, rarely needed)', 'si-contact-form'); ?>:</label>
         <input name="si_contact_email_reply_to" id="si_contact_email_reply_to" type="text" value="<?php echo esc_attr($si_contact_opt['email_reply_to']);  ?>" size="50" />
         <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_email_reply_to_tip');"><?php _e('help', 'si-contact-form'); ?></a>
         <div style="text-align:left; display:none" id="si_contact_email_reply_to_tip">
@@ -1440,17 +1412,6 @@ foreach ($akismet_send_anyway_array as $k => $v) {
         </div>
         <br />
 
-
-        <input name="si_contact_captcha_perm" id="si_contact_captcha_perm" type="checkbox" <?php if( $si_contact_opt['captcha_perm'] == 'true' ) echo 'checked="checked"'; ?> />
-        <label for="si_contact_captcha_perm"><?php _e('Hide CAPTCHA for', 'si-contact-form'); ?>
-        <strong><?php _e('registered', 'si-contact-form'); ?></strong> <?php __('users who can', 'si-contact-form'); ?>:</label>
-        <?php $this->si_contact_captcha_perm_dropdown('si_contact_captcha_perm_level', $si_contact_opt['captcha_perm_level']);  ?>
-        <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_captcha_perm_tip');"><?php _e('help', 'si-contact-form'); ?></a>
-        <div style="text-align:left; display:none" id="si_contact_captcha_perm_tip">
-        <?php _e('Registered users will not have to use the CAPTCHA feature. Do not enable this setting if you do not trust your registered users as some could be spammers.', 'si-contact-form') ?>
-        </div>
-        <br />
-
         <input name="si_contact_captcha_small" id="si_contact_captcha_small" type="checkbox" <?php if ( $si_contact_opt['captcha_small'] == 'true' ) echo ' checked="checked" '; ?> />
         <label for="si_contact_captcha_small"><?php _e('Enable smaller size CAPTCHA image.', 'si-contact-form'); ?></label>
         <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_captcha_small_tip');"><?php _e('help', 'si-contact-form'); ?></a>
@@ -1474,7 +1435,7 @@ foreach ($akismet_send_anyway_array as $k => $v) {
         <label for="si_contact_honeypot_enable"><?php _e('Enable honeypot spambot trap.', 'si-contact-form'); ?></label>
         <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_honeypot_enable_tip');"><?php _e('help', 'si-contact-form'); ?></a>
         <div style="text-align:left; display:none" id="si_contact_honeypot_enable_tip">
-        <?php _e('Enables empty field honyepot traps for spam bots. For best results, do not enable unless you have a spam problem.', 'si-contact-form') ?>
+        <?php _e('Enables hidden empty field honyepot trap for spam bots. For best results, do not enable unless you have a spam problem.', 'si-contact-form') ?>
         </div>
 
 
@@ -1858,6 +1819,24 @@ foreach ($time_format_array as $k => $v) {
         </div>
 <br />
 
+        <label for="si_contact_submit_attributes"><?php _e('Submit button input attributes', 'si-contact-form'); ?>:</label><input name="si_contact_submit_attributes" id="si_contact_submit_attributes" type="text" value="<?php echo esc_attr($si_contact_opt['submit_attributes']);  ?>" size="60" />
+        <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_submit_attributes_tip');"><?php _e('help', 'si-contact-form'); ?></a>
+        <div style="text-align:left; display:none" id="si_contact_submit_attributes_tip">
+        <?php _e('Use to add submit button input attributes.', 'si-contact-form'); ?>
+        <?php _e('Useful for tracking a form submission with Google Analytics. example:', 'si-contact-form');
+        echo ' onSubmit="pageTracker._trackEvent(\'Contact Form\',\'Submit\');"'; ?>
+        </div>
+<br />
+
+        <label for="si_contact_form_attributes"><?php _e('Form action attributes', 'si-contact-form'); ?>:</label><input name="si_contact_form_attributes" id="si_contact_form_attributes" type="text" value="<?php echo esc_attr($si_contact_opt['form_attributes']);  ?>" size="60" />
+        <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_form_attributes_tip');"><?php _e('help', 'si-contact-form'); ?></a>
+        <div style="text-align:left; display:none" id="si_contact_form_attributes_tip">
+        <?php _e('Use to add form action attributes.', 'si-contact-form'); ?>
+        <?php _e('Useful for tracking a form submission with Google Analytics. example:', 'si-contact-form');
+        echo ' onsubmit="_gaq.push([\'_trackEvent\', \'Contact\', \'SubmitForm\', \'Contacts\']);"'; ?>
+        </div>
+<br />
+
         <input name="si_contact_enable_credit_link" id="si_contact_enable_credit_link" type="checkbox" <?php if ( $si_contact_opt['enable_credit_link'] == 'true' ) echo ' checked="checked" '; ?> />
         <label for="si_contact_enable_credit_link"><?php _e('Enable plugin credit link:', 'si-contact-form') ?></label> <?php echo __('Powered by', 'si-contact-form'). ' <a href="http://wordpress.org/extend/plugins/si-contact-form/" target="_new">'.__('Fast Secure Contact Form', 'si-contact-form'); ?></a>
 
@@ -1914,7 +1893,7 @@ foreach ($time_format_array as $k => $v) {
 			<input name="si_contact_vcita_dismiss" type="hidden" value="<?php echo esc_attr($si_contact_gb['vcita_dismiss']); ?>" />
 			<input name="si_contact_ctf_version" type="hidden" value="<?php echo esc_attr($si_contact_gb['ctf_version']); ?>" />
 			<input name="si_contact_vcita_email" type="hidden" value="<?php echo esc_attr($si_contact_opt['vcita_email']); ?>" />
-			
+
 			<?php if ( empty($si_contact_opt['vcita_uid'])) : ?>
 			    
 			    <label class="vcita-label" for="si_contact_vcita_email_new"><?php _e('Email Address:', 'si-contact-form') ?></label>
@@ -2422,17 +2401,17 @@ foreach ($silent_send_array as $k => $v) {
         </div>
 <br />
 
-        <label for="si_contact_notes_style"><?php _e('CSS style for extra field HTML', 'si-contact-form'); ?>:</label><input name="si_contact_notes_style" id="si_contact_notes_style" type="text" value="<?php echo esc_attr($si_contact_opt['notes_style']);  ?>" size="60" />
-        <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_notes_style_tip');"><?php _e('help', 'si-contact-form'); ?></a>
-        <div style="text-align:left; display:none" id="si_contact_notes_style_tip">
-        <?php _e('Use to adjust the style in the HTML before and after DIVs for extra fields.', 'si-contact-form'); ?>
-        </div>
-<br />
-
         <label for="si_contact_title_style"><?php _e('CSS style for form input field labels', 'si-contact-form'); ?>:</label><input name="si_contact_title_style" id="si_contact_title_style" type="text" value="<?php echo esc_attr($si_contact_opt['title_style']);  ?>" size="60" />
         <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_title_style_tip');"><?php _e('help', 'si-contact-form'); ?></a>
         <div style="text-align:left; display:none" id="si_contact_title_style_tip">
         <?php _e('Use to adjust the style for the form field labels.', 'si-contact-form'); ?>
+        </div>
+<br />
+
+        <label for="si_contact_option_label_style"><?php _e('CSS style for options labels', 'si-contact-form'); ?>:</label><input name="si_contact_option_label_style" id="si_contact_label_style" type="text" value="<?php echo esc_attr($si_contact_opt['option_label_style']);  ?>" size="60" />
+        <a style="cursor:pointer;" title="<?php _e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_option_label_style_tip');"><?php _e('help', 'si-contact-form'); ?></a>
+        <div style="text-align:left; display:none" id="si_contact_option_label_style_tip">
+        <?php _e('Use to adjust the style for the checkbox and radio option labels.', 'si-contact-form'); ?>
         </div>
 <br />
 
@@ -2612,7 +2591,6 @@ foreach ($silent_send_array as $k => $v) {
 <br />
 
         <label for="si_contact_tooltip_captcha"><?php _e('CAPTCHA Image', 'si-contact-form'); ?></label><input name="si_contact_tooltip_captcha" id="si_contact_tooltip_captcha" type="text" value="<?php echo esc_attr($si_contact_opt['tooltip_captcha']);  ?>" size="50" /><br />
-        <label for="si_contact_tooltip_audio"><?php _e('CAPTCHA Audio', 'si-contact-form'); ?></label><input name="si_contact_tooltip_audio" id="si_contact_tooltip_audio" type="text" value="<?php echo esc_attr($si_contact_opt['tooltip_audio']);  ?>" size="50" /><br />
         <label for="si_contact_tooltip_refresh"><?php _e('Refresh Image', 'si-contact-form'); ?></label><input name="si_contact_tooltip_refresh" id="si_contact_tooltip_refresh" type="text" value="<?php echo esc_attr($si_contact_opt['tooltip_refresh']);  ?>" size="50" /><br />
         <label for="si_contact_tooltip_filetypes"><?php _e('Acceptable file types:', 'si-contact-form'); ?></label><input name="si_contact_tooltip_filetypes" id="si_contact_tooltip_filetypes" type="text" value="<?php echo esc_attr($si_contact_opt['tooltip_filetypes']);  ?>" size="50" /><br />
         <label for="si_contact_tooltip_filesize"><?php _e('Maximum file size:', 'si-contact-form'); ?></label><input name="si_contact_tooltip_filesize" id="si_contact_tooltip_filesize" type="text" value="<?php echo esc_attr($si_contact_opt['tooltip_filesize']);  ?>" size="50" />

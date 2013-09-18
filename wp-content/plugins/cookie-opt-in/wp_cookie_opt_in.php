@@ -3,7 +3,7 @@
 Plugin Name: Cookie-Opt-In
 Plugin URI: http://wordpress.clearsite.nl
 Description: In the EU you must have explicit permission to place cookies other than functionally required and you must provide information on every cookie you place.
-Version: 1.4.4
+Version: 1.5.6
 Author: Clearsite Webdesigners | Remon Pel
 Author URI: http://clearsite.nl/author/rmpel
 */
@@ -15,6 +15,9 @@ add_action('wp_head', array('CookieOptIn', 'wp_head'));
 add_action('admin_menu', array('CookieOptIn', 'admin_menu'));
 #add_action('login_head', array('CookieOptIn', 'login_head'));
 add_action('admin_head', array('CookieOptIn', 'admin_head'));
+
+if (class_exists('wp_piwik')) include dirname(__FILE__) .'/inc.wp_piwik.php';
+if (class_exists('GA_Filter')) include dirname(__FILE__) .'/inc.yoast_ga.php';
 
 // this hooks must absolutely be last, otherwise removing an action won't work.
 add_action('init', array('CookieOptIn', 'just_in_time_init'), 100000000000);
@@ -40,8 +43,9 @@ class CookieOptIn {
    * Is the website WPML-Enabled?
    * @return boolean true for WPML is active
    */
-  public function is_ml() {
-    if (self::wpml()) return true;
+  public static function is_ml() {
+    $self = new self();
+    if ($self->wpml()) return true;
   }
 
   /**
@@ -54,14 +58,17 @@ class CookieOptIn {
    * @param  string $what What language(s) to get
    * @return string|array the language(s) requested
    */
-  public function language($what) {
+  public static function language($what) {
     switch ($what) {
       case 'default':
         list($wordpress_language, $dialect) = explode('-', get_bloginfo('language'));
         return $wordpress_language;
       break;
       case 'admin':
-        if (self::is_ml()) return self::wpml()->get_current_language();
+        if (self::is_ml()) {
+          $self = new self();
+          return $self->wpml()->get_current_language();
+        }
         return self::language('default');
       break;
       case 'front':
@@ -70,7 +77,8 @@ class CookieOptIn {
       break;
       case 'list':
         if (self::is_ml()) {
-          $languages = self::wpml()->get_active_languages();
+          $self = new self();
+          $languages = $self->wpml()->get_active_languages();
         }
         else {
           $l = self::language('default');
@@ -92,11 +100,11 @@ class CookieOptIn {
   }
 
   public static function init() {
-    self::maybe_upgrade();
+    #self::maybe_upgrade();
 
     load_plugin_textdomain('cookie_opt_in', false, dirname( plugin_basename( __FILE__ ) ) .'/lang/' );
     // wp init
-    wp_enqueue_script('cookie-opt-in', plugins_url('js/cookie-opt-in.js', __FILE__), array('jquery'), $ver = 1, $in_footer = true);
+    wp_enqueue_script('cookie-opt-in', plugins_url('js/cookie-opt-in.js', __FILE__), array('jquery'), $ver = 1, $in_footer = false);
     $return = apply_filters('do_not_load_cookie_opt_in_visual_effects', false);
     if (!$return) {
       wp_enqueue_script('cookie-opt-in-if', plugins_url('js/cookie-opt-in-if.js', __FILE__), array('jquery', 'cookie-opt-in'), $ver = 1, $in_footer = true);
@@ -120,18 +128,19 @@ class CookieOptIn {
     add_submenu_page('cookie-opt-in', __('Cookie-Opt-In Actions Overview', 'cookie_opt_in'), __('Actions overview', 'cookie_opt_in'), 'manage_options', 'cookie-opt-in-actions', array('CookieOptIn', 'admin_actions'));
   }
 
-  function admin_info() {
+  public static function admin_info() {
     $settings = self::settings();
     require (dirname(__FILE__) .'/templates/admin_info.php');
   }
 
-  function admin_info_dev() {
+  public static function admin_info_dev() {
     $settings = self::settings();
     require (dirname(__FILE__) .'/templates/admin_developers.php');
   }
 
-  function admin_actions() {
-    if ($_GET['refresh_action_cache']) {
+  public static function admin_actions() {
+    $refresh_done = false;
+    if (@$_GET['refresh_action_cache']) {
       delete_option('wp_cookie_opt_in_action_table');
       $refresh_done = time();
     }
@@ -164,8 +173,7 @@ class CookieOptIn {
     require (dirname(__FILE__) .'/templates/admin_actions.php');
   }
 
-  function admin_page() {
-    error_reporting(E_ALL);
+  static function admin_page() {
     $cookie_opt_in_system = self::settings('cookie_opt_in_system');
     $cookie_opt_in_language = self::settings('cookie_opt_in_language');
     require (dirname(__FILE__) .'/templates/admin_page.php');
@@ -207,7 +215,18 @@ class CookieOptIn {
     $settings['cookie_types'] = array();
     foreach (array('site_has_functional_cookies', 'site_has_advertisement_cookies', 'site_has_tracking_cookies', 'site_has_social_cookies') as $i) {
       if ($settings[$i]) {
-        $settings['default_cookie'] .= substr($i,9,1) . $settings[str_replace('site_has_', 'default_value_', $i)];
+        $settings['default_cookie'] .= substr($i,9,1);
+        switch ($settings['if_no_cookie']) {
+          case 'allow':
+            $settings['default_cookie'] .= "1";
+          break;
+          case 'defer':
+            $settings['default_cookie'] .= $settings[str_replace('site_has_', 'default_value_', $i)];
+          break;
+          case 'deny':
+            $settings['default_cookie'] .= "0";
+          break;
+        }
         $settings['cookie_types'][] = $i;
       }
       if (!self::visitor_accepts($shorttag = substr($i,9,-8))) {
@@ -220,10 +239,8 @@ class CookieOptIn {
     unset($settings['un_action_unchangeable']);
 
     if ($settings['preference_cookie_expires'] == 'never') {
-      // $settings['preference_cookie_expires'] = strtotime('31 december 2149');
-      // if (!$settings['preference_cookie_expires']) $settings['preference_cookie_expires'] = strtotime('31 december 2037');
-      // No longer use 2149, it may be responsible for not working on 32-bit OS. Maybe... Can't be sure, we're 64 bit for ages.
-      $settings['preference_cookie_expires'] = strtotime('31 december 2037');
+      $settings['preference_cookie_expires'] = strtotime('31 december 2149');
+      if (!$settings['preference_cookie_expires']) $settings['preference_cookie_expires'] = strtotime('31 december 2037');
     }
     elseif ($settings['preference_cookie_expires'] == 'session_end') {
       $settings['preference_cookie_expires'] = false;
@@ -248,7 +265,6 @@ class CookieOptIn {
     $settings['baseurl'] = plugins_url('', __FILE__);
 
     $settings = apply_filters('cookie_opt_in_settings', $settings);
-
     print '<script type="text/javascript">var cookie_opt_in_settings = '. json_encode($settings) .';</script>';
   }
 
@@ -398,7 +414,7 @@ class CookieOptIn {
 
   public static function just_in_time_init() {
     global $wp_filter;
-    if (COIA_STORE_FILTER)
+    if (defined('COIA_STORE_FILTER') && COIA_STORE_FILTER === true)
     if (!is_admin() && !get_option('wp_cookie_opt_in_action_table', null)) update_option('wp_cookie_opt_in_action_table', $wp_filter);
     // attempt removal of known plugins
     $settings = self::settings();
@@ -508,3 +524,4 @@ function coia_body_class($body_classes) {
   if (defined('WPLANG')) $body_classes[] = 'lang-'. WPLANG;
   return $body_classes;
 }
+

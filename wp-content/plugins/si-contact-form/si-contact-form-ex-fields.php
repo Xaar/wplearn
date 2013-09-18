@@ -384,7 +384,7 @@ $string .=   "
      if(!$exf_opts_inline && $ex_cnt > 1)
                $string .= '<br />
 ';
-     $string .= '                <span style="white-space:nowrap;"><input type="checkbox" style="width:13px;" id="si_contact_ex_field'.$form_id_num.'_'.$i.'_'.$ex_cnt.'" name="si_contact_ex_field'.$i.'_'.$ex_cnt.'" value="selected"  ';
+     $string .= '                <input type="checkbox" style="width:13px;" id="si_contact_ex_field'.$form_id_num.'_'.$i.'_'.$ex_cnt.'" name="si_contact_ex_field'.$i.'_'.$ex_cnt.'" value="selected"  ';
 
     if (!isset($_POST['si_contact_form_id']) && !$ex_get && $ex_cnt == $si_contact_opt['ex_field'.$i.'_default']) {
       $string .= ' checked="checked"';
@@ -395,7 +395,9 @@ $string .=   "
 
                 if($si_contact_opt['ex_field'.$i.'_attributes'] != '')
                   $string .= ' '.$si_contact_opt['ex_field'.$i.'_attributes'];
-                $string .= ' /> <label style="display:inline;" for="si_contact_ex_field'.$form_id_num.'_'.$i.'_'.$ex_cnt.'">' . esc_html($k) .'</label></span>';
+                $string .= ' /> <label ';
+         $string .= ($si_contact_opt['ex_field'.$i.'_label_css'] != '') ? $this->si_contact_convert_css($si_contact_opt['ex_field'.$i.'_label_css']) : $this->ctf_option_label_style;
+         $string .= ' for="si_contact_ex_field'.$form_id_num.'_'.$i.'_'.$ex_cnt.'">' . esc_html($k) .'</label>';
      $ex_cnt++;
   }
 
@@ -413,8 +415,8 @@ $string .=   "
         <div ';
          $string .= ($si_contact_opt['ex_field'.$i.'_label_css'] != '') ? $this->si_contact_convert_css($si_contact_opt['ex_field'.$i.'_label_css']) : $this->ctf_title_style;
          $string .= '>
-        </div>
-        <div '.$this->ctf_field_div_style.'>'.$this->ctf_echo_if_error($this->si_contact_error_var("ex_field$i",$display_only) ).'
+         </div>
+         <div '.$this->ctf_field_div_style.'>'.$this->ctf_echo_if_error($this->si_contact_error_var("ex_field$i",$display_only) ).'
                 <input type="checkbox" style="width:13px;" id="si_contact_ex_field'.$form_id_num.'_'.$i.'" name="si_contact_ex_field'.$i.'" value="selected" ';
     if (${'ex_field'.$i} != '') {
       if (${'ex_field'.$i} == 'selected') {
@@ -429,7 +431,9 @@ $string .=   "
 
                 if($si_contact_opt['ex_field'.$i.'_attributes'] != '')
                   $string .= ' '.$si_contact_opt['ex_field'.$i.'_attributes'];
-                $string .= ' /> <label style="display:inline;" for="si_contact_ex_field'.$form_id_num.'_'.$i.'">' . esc_html($si_contact_opt['ex_field'.$i.'_label']) . $ex_req_field_ind.'</label>
+                $string .= ' /> <label ';
+         $string .= ($si_contact_opt['ex_field'.$i.'_label_css'] != '') ? $this->si_contact_convert_css($si_contact_opt['ex_field'.$i.'_label_css']) : $this->ctf_option_label_style;
+         $string .= ' for="si_contact_ex_field'.$form_id_num.'_'.$i.'">' . esc_html($si_contact_opt['ex_field'.$i.'_label']) . $ex_req_field_ind.'</label>
         </div>
 ';
 
@@ -498,10 +502,12 @@ foreach ($exf_opts_array as $k) {
       if(!$exf_opts_inline && $ex_cnt > 1)
                $string .= '<br />
  ';
- $string .= '           <span style="white-space:nowrap;"><input type="radio" style="width:13px;" id="si_contact_ex_field'.$form_id_num.'_'.$i.'_'.$ex_cnt.'" name="si_contact_ex_field'.$i.'" value="'.esc_attr($k).'"'.$selected;
+ $string .= '           <input type="radio" style="width:13px;" id="si_contact_ex_field'.$form_id_num.'_'.$i.'_'.$ex_cnt.'" name="si_contact_ex_field'.$i.'" value="'.esc_attr($k).'"'.$selected;
                 if($si_contact_opt['ex_field'.$i.'_attributes'] != '') 
                   $string .= ' '.$si_contact_opt['ex_field'.$i.'_attributes'];
-  $string .= ' /> <label style="display:inline;" for="si_contact_ex_field'.$form_id_num.'_'.$i.'_'.$ex_cnt.'">' . esc_html($k) .'</label></span>';
+  $string .= ' /> <label ';
+         $string .= ($si_contact_opt['ex_field'.$i.'_label_css'] != '') ? $this->si_contact_convert_css($si_contact_opt['ex_field'.$i.'_label_css']) : $this->ctf_option_label_style;
+         $string .= ' for="si_contact_ex_field'.$form_id_num.'_'.$i.'_'.$ex_cnt.'">' . esc_html($k) .'</label>';
  $selected = '';
  $ex_cnt++;
 }

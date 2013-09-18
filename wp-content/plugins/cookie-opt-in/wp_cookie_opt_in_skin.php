@@ -3,7 +3,7 @@
 Plugin Name: Cookie-Opt-In - Example skin
 Plugin URI: http://wordpress.clearsite.nl
 Description: Example skin for the Cookie_opt_in plugin
-Version: 1.4.4
+Version: 1.5.6
 Author: Clearsite Webdesigners | Remon Pel
 Author URI: http://clearsite.nl/author/rmpel
 */

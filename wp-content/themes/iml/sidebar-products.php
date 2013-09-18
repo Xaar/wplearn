@@ -4,7 +4,8 @@
   <ul class="carousel-ul">
 <?php
 // The Query
-$the_query_prod_carousel = new WP_Query( 'post_type=products&posts_per_page=10' );
+//$the_query_prod_carousel = new WP_Query( 'post_type=products&posts_per_page=10' );
+$the_query_prod_carousel = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '!=', 'meta_value' => 'Industry', 'posts_per_page' => '10'));
 // The Loop
 while ( $the_query_prod_carousel->have_posts() ) : $the_query_prod_carousel->the_post();
         $image_id = get_post_meta($post->ID, ('product_thumbnail'), true);

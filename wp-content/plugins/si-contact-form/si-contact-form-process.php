@@ -342,14 +342,13 @@ get_currentuserinfo();
 'yyyy-mm-dd' => __('yyyy-mm-dd', 'si-contact-form'),
 'yyyy.mm.dd' => __('yyyy.mm.dd', 'si-contact-form'),
 );
-               // required validate
+               // required validate date
                ${'ex_field'.$i} = ( !isset($_POST["si_contact_ex_field$i"]) ) ? '' : $this->ctf_clean_input($_POST["si_contact_ex_field$i"]);
-               if( (${'ex_field'.$i} == '' || ${'ex_field'.$i} == $cal_date_array[$si_contact_opt['date_format']]) && $si_contact_opt['ex_field'.$i.'_req'] == 'true') {
-                  $this->si_contact_error = 1;
-                  $fsc_error_message["ex_field$i"]  = ($si_contact_opt['error_field'] != '') ? $si_contact_opt['error_field'] : __('This field is required.', 'si-contact-form');
-               } else if (! $this->validate_date( ${'ex_field'.$i} ) ) {
+               if( $si_contact_opt['ex_field'.$i.'_req'] != 'true' && ( ${'ex_field'.$i} == $cal_date_array[$si_contact_opt['date_format']] || empty(${'ex_field'.$i}) ) ) { // not required, no date picked
+                   // this field wasn't set to required, no date picked, or empty, so ignore it
+               } else if ( !$this->validate_date( ${'ex_field'.$i} ) ) {
 	              $this->si_contact_error = 1;
-                  $fsc_error_message["ex_field$i"]  = sprintf(__('Please select a valid date in this format: %s', 'si-contact-form'),$si_contact_opt['date_format']);
+                  $fsc_error_message["ex_field$i"]  = sprintf(__('Please select a valid date in this format: %s', 'si-contact-form'), $cal_date_array[$si_contact_opt['date_format']]);
                }
 
           }else if ($si_contact_opt['ex_field'.$i.'_type'] == 'hidden') {
@@ -949,11 +948,13 @@ get_currentuserinfo();
    if (!$email_off) {
     $ctf_email_on_this_domain = $si_contact_opt['email_from']; // optional
     // prepare the email header
-    $this->si_contact_from_name  = ($name == '') ? 'WordPress' : $name;
+    // if name field was disabled, the from name will be XXXX because we don't know the users name.
+    $this->si_contact_from_name  = ($name == '') ? 'XXXX' : $name;
+    // if email field was disabled, the from email will be admin email because we don't know the users email.
     $this->si_contact_from_email = ($email == '') ? get_option('admin_email') : $email;
 
     if ($ctf_email_on_this_domain != '' ) {
-         if(!preg_match("/,/", $ctf_email_on_this_domain)) {
+         if(!preg_match("/,/", $ctf_email_on_this_domain)) { // setting to force the from email to specified in settings
            // just an email: user1@example.com
            $this->si_contact_mail_sender = $ctf_email_on_this_domain;
            if($email == '' || $si_contact_opt['email_from_enforced'] == 'true')
@@ -970,6 +971,10 @@ get_currentuserinfo();
              $this->si_contact_from_email = $value;
          }
     }
+    // hook for modifying the from_name and from_email
+    $this->si_contact_from_name  = apply_filters('si_contact_from_name', $this->si_contact_from_name, $form_id_num);
+    $this->si_contact_from_email = apply_filters('si_contact_from_email', $this->si_contact_from_email, $form_id_num);
+
     $header_php =  "From: $this->si_contact_from_name <$this->si_contact_from_email>\n"; // header for php mail only
     $header = '';  // for php mail and wp_mail
     // process $mail_to user1@example.com,[cc]user2@example.com,[cc]user3@example.com,[bcc]user4@example.com,[bcc]user5@example.com
@@ -994,19 +999,19 @@ get_currentuserinfo();
     }
     if ($ctf_email_address_cc != '') {
             $ctf_email_address_cc = rtrim($ctf_email_address_cc, ',');
-            $header .= "Cc: $ctf_email_address_cc\n"; // for php mail and wp_mail
+            $header .= "Cc: $ctf_email_address_cc\n";
     }
     if ($ctf_email_address_bcc != '') {
             $ctf_email_address_bcc = rtrim($ctf_email_address_bcc, ',');
-            $header .= "Bcc: $ctf_email_address_bcc\n"; // for php mail and wp_mail
+            $header .= "Bcc: $ctf_email_address_bcc\n";
     }
 
     if ($si_contact_opt['email_reply_to'] != '') { // custom reply_to
-         $header .= "Reply-To: ".$si_contact_opt['email_reply_to']."\n"; // for php mail and wp_mail
+         $header .= "Reply-To: ".$si_contact_opt['email_reply_to']."\n";
     }else if($email != '') {   // trying this: keep users reply to even when email_from_enforced
-         $header .= "Reply-To: $email\n"; // for php mail and wp_mail
-    }else {
-         $header .= "Reply-To: $this->si_contact_from_email\n"; // for php mail and wp_mail
+         $header .= "Reply-To: $email\n";
+    } else {
+         $header .= "Reply-To: $this->si_contact_from_email\n";
     }
     if ($ctf_email_on_this_domain != '') {
       $header .= "X-Sender: $this->si_contact_mail_sender\n";  // for php mail
@@ -1150,6 +1155,7 @@ get_currentuserinfo();
       $posted_form_name = ( $si_contact_opt['form_name'] != '' ) ? $si_contact_opt['form_name'] : sprintf(__('Form: %d', 'si-contact-form'),$form_id_num);
       // hook for other plugins to use (just after message posted)
       $fsctf_posted_data = (object) array('title' => $posted_form_name, 'posted_data' => $posted_data_export, 'uploaded_files' => (array) $this->uploaded_files );
+      // action hook for mail was sent
       do_action_ref_array( 'fsctf_mail_sent', array( &$fsctf_posted_data ) );
    }  // end if export_enable
 

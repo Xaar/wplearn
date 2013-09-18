@@ -195,6 +195,7 @@
             $_section = $cookie_type;
             $section = ucwords("{$cookie_type} cookies");
             if (!isset($cookie_opt_in_system['un_action_unchangeable'][$_section]) || !is_array($cookie_opt_in_system['un_action_unchangeable'][$_section])) $cookie_opt_in_system['un_action_unchangeable'][$_section] = array();
+            if (!isset($cookie_opt_in_system['un_action'][$_section]) || !is_array($cookie_opt_in_system['un_action'][$_section])) $cookie_opt_in_system['un_action'][$_section] = array();
         ?>
         <tr class="closer">
           <td class="left">&nbsp;</td>

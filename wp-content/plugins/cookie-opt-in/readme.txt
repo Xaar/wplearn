@@ -3,8 +3,8 @@ Contributors: clearsite
 Donate link: http://clearsite.nl/wordpress-development/
 Tags: european union, cookie, legal, consent, wpml, multi-language
 Requires at least: 3.2.1
-Tested up to: 3.4.1
-Stable tag: 1.4.4
+Tested up to: 3.6.0
+Stable tag: 1.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,13 +36,14 @@ If the "offending" scripts are added by action, you can configure the plugin to 
 If an action-removal is not possible you must adapt your plugins and themes.
 
 Technical instructions are available in the plugin after installation.
+Also help is available*, for contact details, see the plugin admin pages.
 
-This plugin is - at the moment - no longer under active development. Fixes reported will be applied as well as compatibility-patches for new WordPress versions.
+(*) Pricing for help, if applicable, available upon request.
 
 == Installation ==
 
 The plugin installation is pretty straightforward.
-1. Upload the extracted folder to the `/wp-content/plugins/` directory
+1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. See the admin pages for more info.
 
@@ -59,51 +60,31 @@ A skin to this plugin is - in effect - a separate WordPress plugin. The Example 
 Examine the plugin file 'wp_cookie_opt_in_skin.php'. Here you see reference to a JS and a CSS file. Also examine these two files.
 There are 4 PSD files inside the CSS folder to generate new images
 
-= I keep getting presented with the "permission" tab on every page even after accepting "Allow Cookies". Am I doing something wrong? =
-
-Maybe, maybe not
-
-The choices of the visitor are stored in a cookie (yes, that's allowed by law :) ). If the browser is set to reject cookies or delete them on shutdown, you WILL have to accept cookies every time.
-There could also be something else going wrong.
-We noticed that 32-bit servers cannot produce a serial-time-number for dated beyond December 31st 2037 (more or less), while we would prefer December 31st 2149 which is closer to 'Forever' :P. Overkill? Maybe so. Try and set the cookie-lifetime (TTL) to a short value, say 6 months, and see if the problem goes away.
-
-= Are you sure you got the interpretation of the law correctly? =
-
-No. We are not a legal company. We have had a long session of investigation into this and have called a handful legal companies to eventually present a clean and simple interpretation.
-Sure, we could be wrong, but we seriously doubt it.
-
-= You state this is European law, but is that true? Isn't this the Dutch law and doesn't European law supersede that? =
-
-I have had this question and in more detail, the question stated that:
-
-Dutch law obligated website-owners to ask for permission, while
-European law just said to inform visitors.
-
-If this were true, then all the fuss on this topic the last 2 years was for nothing, so it probably is not true.
-
-The question also stated that European law supersedes Dutch law and therefore we only need to inform.
-
-Well, sometimes European law superseeds Dutch law and sometimes it's the other way round. We are NOT legal people. We can't be 100% sure, but we ARE 99% sure that permission on cookies is needed. Not complying to the law could result in a hefty fine. We would not want to take that risk, but, if you feel that you only need to inform your visitors? Great! This plugin can do that for you, of pick any other method of displaying a message. You probably won't even need a plugin for that.
-
-
 == Screenshots ==
 
-1. Example skin - notification bar
-2. Example skin - cookie selection panel
-3. Example skin - preferences button
-4. First visit shows this form. The content of the form is dependant on the configuration, the styling is done by CSS.
-5. The INFO that is set in settings is visable, in this case, by clicking the ? . A read-more link is only shown when an URL is filled in.
-6. When the visitor has made a choice, (s)he can change it by clicking the cookie (also highly customisable).
+4. Example skin - notification bar
+5. Example skin - cookie selection panel
+6. Example skin - preferences button
+1. First visit shows this form. The content of the form is dependant on the configuration, the styling is done by CSS.
+2. The INFO that is set in settings is visable, in this case, by clicking the ? . A read-more link is only shown when an URL is filled in.
+3. When the visitor has made a choice, (s)he can change it by clicking the cookie (also highly customisable).
 
 == Changelog ==
 
-= 1.4.4 =
-* Fixed: order of screenshots on WordPress.org.
-* Updated: FAQ
-* Changed: No longer try to set a cookie on December 31st 2149, use December 31st 2037 instead. Hopefully this fixes some issues on 32-bit operating systems.
+= 1.5.6 =
+* Internal changes: now update WordPress by way of trunk instead of just the tags.
+
+= 1.5.5 =
+* Fixed: For those running PHP in "show all the damn errors" mode, fixed all issues I could find.
+
+= 1.5.4 =
+* Added: User suggested changes for displaying correctly in responsive designs
+
+= 1.5.1 =
+* Fixed: Default cookie was not correct in javascript with 'If no cookie' settings set to 'Allow'
 
 = 1.4.3 =
-* Fixed: one style rule was lost, so we placed a backup one for now
+* Fixed: one style rule was lost, so I placed a backup one for now
 
 = 1.4.2 =
 * Updated: Added PSD files for making a new skin easier

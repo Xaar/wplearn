@@ -25,7 +25,7 @@ Includes an HTML5, JavaScript-powered map of the world with hoverable continents
 1. Upload `interactive-maps` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Click on Interactive Maps in your WordPress Settings
-4.  Download the the <a href="http://simplemaps.com/free/html5continentmapv2.1.zip">World Continent Map</a>.
+4.  Download the the <a href="http://simplemaps.com/free/html5continentmapv2.4.zip">World Continent Map</a>.
 5.  Unzip the map and open the folder.
 6.  Customize the map on your computer by editing the mapdata.js file and refreshing the test.html file.
 7.  Upload the mapdata.js and continentmap.js files using the upload buttons.

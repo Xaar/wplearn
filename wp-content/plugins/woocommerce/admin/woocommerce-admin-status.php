@@ -91,7 +91,7 @@ function woocommerce_status_report() {
             </tr>
             <tr>
                 <td><?php _e( 'WP Version','woocommerce' ); ?>:</td>
-                <td><?php if ( is_multisite() ) echo 'WPMU'; else echo 'WP'; ?> <?php echo bloginfo('version'); ?></td>
+                <td><?php if ( is_multisite() ) echo 'WPMU'; else echo 'WP'; ?> <?php bloginfo('version'); ?></td>
             </tr>
             <tr>
                 <td><?php _e( 'Web Server Info','woocommerce' ); ?>:</td>
@@ -142,6 +142,17 @@ function woocommerce_status_report() {
                 		echo '<mark class="error">' . __( 'Log directory (<code>woocommerce/logs/</code>) is not writable. Logging will not be possible.', 'woocommerce' ) . '</mark>';
                 ?></td>
             </tr>
+			<tr>
+				<td><?php _e( 'Default Timezone','woocommerce' ); ?>:</td>
+				<td><?php
+					$default_timezone = date_default_timezone_get();
+					if ( 'UTC' !== $default_timezone ) {
+						echo '<mark class="error">' . sprintf( __( 'Default timezone is %s - it should be UTC', 'woocommerce' ), $default_timezone ) . '</mark>';
+					} else {
+						echo '<mark class="yes">' . sprintf( __( 'Default timezone is %s', 'woocommerce' ), $default_timezone ) . '</mark>';
+					} ?>
+				</td>
+			</tr>
             <?php
 				$posting = array();
 
@@ -238,7 +249,7 @@ function woocommerce_status_report() {
 							if ( strstr( $dirname, 'woocommerce' ) ) {
 
 								if ( false === ( $version_data = get_transient( $plugin . '_version_data' ) ) ) {
-									$changelog = wp_remote_get( 'http://www.woothemes.com/changelogs/extensions/' . $dirname . '/changelog.txt' );
+									$changelog = wp_remote_get( 'http://dzv365zjfbd8v.cloudfront.net/changelogs/' . $dirname . '/changelog.txt' );
 									$cl_lines  = explode( "\n", wp_remote_retrieve_body( $changelog ) );
 									if ( ! empty( $cl_lines ) ) {
 										foreach ( $cl_lines as $line_num => $cl_line ) {
@@ -409,6 +420,34 @@ function woocommerce_status_report() {
                 	foreach ( $terms as $term )
                 		$display_terms[] = $term->name . ' (' . $term->slug . ')';
                 	echo implode( ', ', array_map( 'esc_html', $display_terms ) );
+                ?></td>
+            </tr>
+		</tbody>
+
+        	<thead>
+			<tr>
+				<th colspan="2"><?php _e( 'Theme', 'woocommerce' ); ?></th>
+			</tr>
+		</thead>
+
+		<tbody>
+            <tr>
+                <td><?php _e( 'Theme Name', 'woocommerce' ); ?>:</td>
+                <td><?php
+					$active_theme = wp_get_theme();
+					echo $active_theme->Name;
+                ?></td>
+            </tr>
+            <tr>
+                <td><?php _e( 'Theme Version', 'woocommerce' ); ?>:</td>
+                <td><?php
+					echo $active_theme->Version;
+                ?></td>
+            </tr>
+            <tr>
+                <td><?php _e( 'Author URL', 'woocommerce' ); ?>:</td>
+                <td><?php
+					echo $active_theme->{'Author URI'};
                 ?></td>
             </tr>
 		</tbody>
