@@ -10,7 +10,7 @@ define("THISPAGE", "ajax");
 
 <?php
 $page = (get_query_var('page')) ? get_query_var('page') : 1;
-$filter = ucfirst($_GET['filter']);
+$filter = $_GET['filter'];
 //$page = ($filter!='All') ? 1 : $page;
 $pagex = $page;
 $ppp = 6;
