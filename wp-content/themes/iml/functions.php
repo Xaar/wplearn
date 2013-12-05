@@ -193,21 +193,6 @@ if ( function_exists( 'add_image_size' ) ) {
 
 // Add custom post types
 function create_post_type() {
-	register_post_type( 'news-events',
-		array(
-			'labels' => array(
-				'name' => __( 'News & Events' ),
-				'singular_name' => __( 'news_event' )
-			),
-			'public' => true,
-			'taxonomies' => array('post_tag','category'),
-			'has_archive' => true,
-			'rewrite' => array('slug' => 'news-events', 'with_front' => FALSE),
-			'capability_type' => 'post',
-			'hierarchical' => false,
-			'supports' => array('title', 'thumbnail')
-		)
-	);
 	register_post_type( 'news',
 		array(
 			'labels' => array(
@@ -245,7 +230,7 @@ function create_post_type() {
                                 'singular_name' => __( 'product' )
                         ),
                         'public' => true,
-                        'taxonomies' => array('post_tag'),
+			'taxonomies' => array('post_tag','category'),
                         'has_archive' => true,
                         'rewrite' => array('slug' => 'products', 'with_front' => FALSE),
                         'capability_type' => 'post',
