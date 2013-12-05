@@ -42,6 +42,5 @@ endwhile; endif; ?>
 </div> <!-- sidebar wrapper -->
 </div>
 
-<?php get_sidebar('quicklinks'); ?>
 <?php get_footer(); ?>
 
