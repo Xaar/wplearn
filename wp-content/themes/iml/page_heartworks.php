@@ -25,12 +25,25 @@ $(window).load(function() {
 <?php get_sidebar('navigation');?>
 
 <div id="content" class="hero-content row" role="main">
-<?php the_post(); ?>	
-<?php the_content(); ?>
-<?php echo get_new_royalslider(2); ?>
-</div><!-- hero-content -->
+  <ul class="heartworks-products">
+  <?php
+// The Query
+//$the_query_prod_carousel = new WP_Query( 'post_type=products&posts_per_page=10' );
+$the_query_prod_carousel = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '!=', 'meta_value' => 'Industry', 'posts_per_page' => '10'));
+// The Loop
+while ( $the_query_prod_carousel->have_posts() ) : $the_query_prod_carousel->the_post();
+        $image_id = get_post_meta($post->ID, ('product_thumbnail'), true);
+        $url = wp_get_attachment_url($image_id);
+?>
+    <li><a href="<?php the_permalink();?>"/><img src="<?php echo $url ?>" /><?php the_title(); ?></a></li>
+<?php
+endwhile;
 
-<?php get_sidebar('products'); ?>
+// Reset Post Data
+wp_reset_postdata();
+?>
+</ul>
+</div><!-- hero-content -->
 
 <?php get_sidebar('gateway'); ?>
 

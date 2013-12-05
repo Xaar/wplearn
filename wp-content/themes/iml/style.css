@@ -1368,7 +1368,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 	text-decoration: none;
 	color: #333;
 	font-weight: 600;
-	font-size: 16px;
+	font-size: 18px;
 	padding-top: 21px;
 
 	}
@@ -1732,7 +1732,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	text-indent: 0;
 }
 
-.carousel-ul li img {
+.carousel-ul li img  {
 
 	width: 166px;
 	height: 150px;
@@ -1742,7 +1742,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 }
 
-.carousel-ul li a {
+.carousel-ul li a  {
 
 	text-decoration: none;
 	display: block;
@@ -1753,7 +1753,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 
 }
 
-.carousel-ul li a:hover {
+.carousel-ul li a:hover , .heartworks-products li a:hover {
 	color: #c00;
 	font-weight: bold;
 }
@@ -1810,6 +1810,43 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	border: 1px solid #eee;
         z-index: 600;
         margin-bottom: 1px;
+
+}
+
+.heartworks-products {
+	margin: 40px 0;
+}
+
+.heartworks-products li img {
+
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+
+}
+
+.heartworks-products li {
+	width: 33%;
+	height: 350px;
+	display: block;
+	float: left;
+	text-align: center;
+	font-size: 15px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	z-index: 400;
+	text-indent: 0;
+
+}
+
+.heartworks-products li a {
+	text-decoration: none;
+	display: block;
+	margin: 0;
+	padding: 0;
+	font-size: 15px;
+	color: #666;
 
 }
 

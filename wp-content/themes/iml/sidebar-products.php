@@ -9,7 +9,7 @@ $the_query_prod_carousel = new WP_Query( array ( 'post_type' => 'products', 'met
 // The Loop
 while ( $the_query_prod_carousel->have_posts() ) : $the_query_prod_carousel->the_post();
         $image_id = get_post_meta($post->ID, ('product_thumbnail'), true);
-        $url = wp_get_attachment_thumb_url($image_id);
+        $url = wp_get_attachment_url($image_id);
 ?>
     <li><a href="<?php the_permalink();?>"/><img src="<?php echo $url ?>" width="180" height="200" /><?php the_title(); ?></a></li>
 <?php
