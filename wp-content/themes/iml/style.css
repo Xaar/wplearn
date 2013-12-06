@@ -939,10 +939,37 @@ input[name="s"]:focus {
 }
 
 
-.featured-product {
+.home-heart {
+	height: 670px;
+}
+
+#home-video-container {
+	position: absolute;
+	top: 5%;
+	right: 5%;
+	width: 390px;
+	height: 410px;
+	padding: 50px 100px;
+}
+
+#home-mission {
+
+	float: left;
+	text-align: center;
+	margin-top: 200px;
+	display: inline-block;
 
 }
 
+#home-mission p {
+	font-size: 17px;
+	}
+#home-mission h1 {
+	font-weight: normal;
+	font-size: 30px;
+	text-align: center;
+	color: #c00;
+}
 .cta-green a , .cta-green-tabs a , .cta-green-inline a , button#catapultCookie {
 	-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
@@ -1228,6 +1255,7 @@ Homepage promo styles Latest News, events etc.
 .site-footer-white {
 	background-color: #fff;
 	width: 100%;
+	border-top: 1px solid #ccc;
 	box-shadow: 0px 3px 3px 0px rgba(177, 177, 177, 0.75);
 	-moz-box-shadow: 0px 3px 3px 0px rgba(177, 177, 177, 0.75);
 	-webkit-box-shadow: 0px 3px 3px 0px rgba(177, 177, 177, 0.75);
@@ -1236,7 +1264,6 @@ Homepage promo styles Latest News, events etc.
 .footer-wrapper {
 	padding: 20px 0 0 0;
 	margin-bottom: 30px;
-	border-top: 1px solid #ccc;
 	text-align: center;
 }
 
@@ -3400,7 +3427,7 @@ display: none;
 
   
 
-.heroTxtContent {
+.heroTxtContent , #home-mission {
         	margin: 0 auto !important;
         	position: relative !important;
         	padding: 0 !important;
@@ -3508,6 +3535,14 @@ margin: 0 auto !important;
 	margin: 0;
 }
 
+#home-video-container {
+	position: relative;
+	}
+
+.home-heart {
+	height: 800px;
+}	
+
 /*
 ::::::::::::::: About IML Mobile ::::::::::::::::
 */
@@ -3572,7 +3607,7 @@ margin: 0 auto !important;
 .span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , 
 .hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper , .tabs-text ,
 .news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper , .hw-menu-lists ,
-.team-member , .hero-product-listing-text , .hero-product-img , .gateway-promo-bullets ul , .product-quote
+.team-member , .hero-product-listing-text , .hero-product-img , .gateway-promo-bullets ul , .product-quote , #home-mission
 		{
             width:88.6666666667% !important;
         }
@@ -3632,13 +3667,13 @@ h2{
 .span_3  , .cta-gateway , .sidebar-wrapper {
             width:23.5%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote  {
+.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote , #home-mission  {
             width:32.0%;
         }
 .span_5  , .tabs-text {
             width:40.5%;
         }
-.span_6 , .gateway-promo-bullets ul {
+.span_6 , .gateway-promo-bullets ul  {
             width:49.0%;
         }
 .span_7 , .tabs-gallery {
@@ -3709,7 +3744,7 @@ h2{
  .span_5  , .tabs-text {
             width:40.9375%;
         }
-.span_6  , .gateway-promo-bullets ul  {	
+.span_6  , .gateway-promo-bullets ul , #home-mission {	
 
             width:49.375%;
         }

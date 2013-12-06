@@ -30,14 +30,15 @@
 		</div><!-- .site-info -->
 
 
-	
-</div><!-- #footerwrapper -->
-</div><!-- site footer white -->
-<div id="footer-address">
+	<div id="footer-address">
 					<p><a href="Tel: +44 (0) 203 447 9360">Tel: +44 (0) 203 447 9360</a>
 					Inventive Medical Ltd, 5th Floor East, 250 Euston Road, London, NW1 2PG, Registered in the UK No: 6468381</p>
 
 				</div>
+</div><!-- #footerwrapper -->
+
+</div><!-- site footer white -->
+
 </footer><!-- #colophon -->
 <?php wp_footer(); ?>
 
