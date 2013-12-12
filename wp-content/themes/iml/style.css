@@ -60,6 +60,10 @@ background: -ms-linear-gradient(top,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* I
 background: linear-gradient(to bottom,  #f5f5f5 0%,#ffffff 50%,#e5e5e5 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-8 */
 }
+
+body.home {
+	background: #fff !important;
+}
 article,
 aside,
 details,
@@ -3541,6 +3545,7 @@ margin: 0 auto !important;
 
 .home-heart {
 	height: 800px;
+
 }	
 
 /*

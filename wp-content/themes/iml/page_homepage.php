@@ -23,10 +23,10 @@ Template Name: IML Home
 	</div>		
 	<div id="home-video-container">
 
-	<video id="example_video_1" class="video-js" data-setup='{ "controls": false, "autoplay": true, "preload": "auto", "width": 480, "height": 480, "loop": true }' 
-      poster="<?php bloginfo('template_directory'); ?>/video/heartworks-heart-home.png"
+	<video id="heart-animation" class="video-js" data-setup='{ "controls": false, "autoplay": true, "preload": "auto", "width": 480, "height": 480, "loop": true }' 
+      poster="<?php bloginfo('template_directory'); ?>/video/heartworks-heart-white.png"
       data-setup="{}">
-    <source src="<?php bloginfo('template_directory'); ?>/video/home-heart-large.mp4" type='video/mp4' />
+    <source src="<?php bloginfo('template_directory'); ?>/video/Home-Heart-white.mp4" type='video/mp4' />
    <!--  <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
     <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' /> -->
   </video>
