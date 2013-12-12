@@ -31,7 +31,20 @@ $title = (get_the_title()=='Heartworks') ? "Heartworks Echocardiography Training
         <ul>
         <!-- write wp query for products > simulators -->
 <?php
-$wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '!=', 'meta_value' => 'eLearn', 'meta_compare' => '!=', 'meta_value' => 'Industry', 'orderby' => 'menu_order', 'order' => 'ASC'));
+$wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Simulator', 'orderby' => 'menu_order', 'order' => 'ASC'));
+while ( $wp_query->have_posts() ) : $wp_query->the_post();
+?>          <li><a href="<?=the_permalink();?>" class="hw-menu-link"><?=the_title();?><div class="hw-menu-arrow"></div></a></li>
+<?php
+endwhile;
+
+$wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Pathologies', 'orderby' => 'menu_order', 'order' => 'ASC'));
+
+while ( $wp_query->have_posts() ) : $wp_query->the_post();
+?>          <li><a href="<?=the_permalink();?>" class="hw-menu-link"><?=the_title();?><div class="hw-menu-arrow"></div></a></li>
+<?php
+endwhile;
+
+$wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Gateway', 'orderby' => 'menu_order', 'order' => 'ASC'));
 while ( $wp_query->have_posts() ) : $wp_query->the_post();
 ?>          <li><a href="<?=the_permalink();?>" class="hw-menu-link"><?=the_title();?><div class="hw-menu-arrow"></div></a></li>
 <?php
