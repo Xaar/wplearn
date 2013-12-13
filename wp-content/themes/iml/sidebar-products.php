@@ -1,3 +1,20 @@
+<script type="text/javascript">
+/* CarouFredSel: a circular, responsive jQuery carousel.
+Configuration created by the "Configuration Robot"
+at caroufredsel.dev7studios.com
+*/
+$(window).load(function() {
+  $(".carousel-ul").carouFredSel({
+    circular: false, infinite: false, width: "100%", height: 200,
+    items: { visible: "variable", width: 180, height: 200 },
+    scroll: { items: 1, fx: "scroll", duration: "auto" },
+    auto: false,
+    prev: { button: ".previous", key: "left" },
+    next: { button: ".next", key: "right" },
+    swipe: { onTouch: true , onMouse: true}
+  });
+});
+</script>
 <div id="products" class="product-carousel row">
   <div class="previous"></div>
   <div class="next"></div>

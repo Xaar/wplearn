@@ -1814,6 +1814,9 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	background-position: 6px 6px;
 }
 
+.disabled {
+	display: none !important
+}
 .next:hover , .previous:hover {
 	background-color:rgba(205,205,205,0.3);
 }
@@ -1911,7 +1914,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 }
 
 .hero-product-listing-text h3 {
-	margin-top: 20px;
+	margin-top: 40px;
 }
 
 .hero-product-img {
@@ -2059,8 +2062,13 @@ ul.tabs {
     border: 1px solid #fff;
     width: 30%;
     min-width: 50px;
-    max-width: 150px;
+    max-width: 200px;
 }
+
+.sales-tabs ul.tabs li  { 
+	
+	width: 32% !important;
+	}
 
 .product-tabs ul.tabs li a , .sales-tabs ul.tabs li a {
 
@@ -2287,7 +2295,7 @@ div.clearfix {
 	overflow: hidden;
 	position: relative;
 	display: block;
-	margin: 0 auto 20px auto;
+	margin: 0 auto 50px auto;
  	padding: 10px 40px;
  	background: none;
  	}
@@ -2854,7 +2862,7 @@ h2.heading-leftcol {
 }
 
 .sales-tabs ul {
-	width: 457px;
+	width: 70%;
 	margin: 0 auto;
 	text-align: center;
 	display: inline-block;
@@ -2955,7 +2963,6 @@ h2.heading-leftcol {
     padding: 0;
     height: auto;
     background: none;
-    display: none;
   }
 
     #map_new img {

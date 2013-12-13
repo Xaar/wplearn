@@ -7,21 +7,7 @@ get_header();
 <link rel="stylesheet" href="<?=get_template_directory_uri();?>/js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="<?=get_template_directory_uri();?>/js/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-/* CarouFredSel: a circular, responsive jQuery carousel.
-Configuration created by the "Configuration Robot"
-at caroufredsel.dev7studios.com
-*/
-$(window).load(function() {
-  $(".carousel-ul").carouFredSel({
-    circular: true, infinite: true, width: "100%", height: 200,
-    items: { visible: "variable", width: 180, height: 200 },
-    scroll: { items: 1, fx: "scroll", duration: "auto" },
-    auto: false,
-    prev: { button: ".previous", key: "left" },
-    next: { button: ".next", key: "right" },
-    swipe: { onTouch: true , onMouse: true}
-  });
-});
+
 $(document).ready(function () {
     // setup ul.tabs to work as tabs for each div directly under div.panes
       if($(window).width()>767) {
@@ -183,9 +169,9 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
         <li><a href="#">Enquiries</a></li>
       </ul>
 
-      <div class="cta-green-tabs right">
+      <!-- <div class="cta-green-tabs right">
         <a href="<?=get_post_meta($postid, ('how_to_buy'), true); ?>">How to Buy &raquo; </a>
-      </div>
+      </div> -->
     </div><!-- product-tabs -->
 
     <div class="panes">
@@ -281,6 +267,5 @@ foreach($questions as $var => $val) {
 
 <?php get_sidebar('products'); ?>
 
-<?php get_sidebar('quicklinks'); ?>
 
 <?php get_footer(); ?>

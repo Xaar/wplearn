@@ -11,7 +11,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,300,300italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-
+<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/video-js/video.js"></script>
 
 
 <!--[if lt IE 9]>

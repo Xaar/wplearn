@@ -713,6 +713,7 @@ body.vjs-full-window {
   padding: 0;
   position: relative;
   width: 100%;
+  background-color: #fff;
 }
 .vjs-poster img {
   display: block;
@@ -720,6 +721,7 @@ body.vjs-full-window {
   max-height: 100%;
   padding: 0;
   width: 100%;
+  background-color: #fff;
 }
 /* Hide the poster when native controls are used otherwise it covers them */
 .video-js.vjs-using-native-controls .vjs-poster {
@@ -763,6 +765,10 @@ body.vjs-full-window {
   display: block !important;
   opacity: 1;
   visibility: visible;
+}
+
+video , object {
+  background-color: #fff !important;
 }
 /* -----------------------------------------------------------------------------
 The original source of this file lives at

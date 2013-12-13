@@ -7,7 +7,6 @@ Template Name: IML Home
 <?php get_header(); ?>
   <!-- Chang URLs to wherever Video.js files will be hosted -->
   <link href="<?php bloginfo('template_directory'); ?>/js/video-js/video-js.css" rel="stylesheet" type="text/css">
-  <!-- video.js must be in the <head> for older IEs to work. -->
 
   <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
   <script>

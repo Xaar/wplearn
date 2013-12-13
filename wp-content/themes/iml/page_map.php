@@ -8,7 +8,7 @@ Template Name: map_new
 
   <script type="text/javascript">
 
-
+ $(document).ready( function() {
 
   function set_places() {
     var places_setup = {
@@ -162,8 +162,8 @@ Template Name: map_new
 function map_init () {
     //rest the dropdown list
     $('#distributor-select').val('select');
-    var mapwidth = $('#map_new').width();
-    
+    var mapwidth = $('.sales-tabs-wrapper').width();
+    console.log(mapwidth);
     var mapheight=mapwidth*0.6;
     $('#map_new').css('height' , mapheight);
     var places = set_places();
@@ -204,13 +204,11 @@ function map_init () {
                          });*/
 
         var place=0;
-        var str=String(places); 
-        var repeat=str.length;
-        
+     
 
         function createPlace() {
 
-          if (place<(repeat-1)) {
+          if (place<13) {
 
         var pl=places[place];
         var pl_xpos=mapwidth*pl.xpos;
@@ -345,14 +343,17 @@ function map_init () {
 
 
 
-  $(document).ready(function () {
+  var mapDrawn = false;
 
-     $('#map_new').fadeIn('slow', function() {
+  $('.mapTab').click(function () {
+    if(mapDrawn == false) {
       map_init();
-      });
-
+      console.log('fired');
+      mapDrawn = true;
+    }
 
   });
+
 
 
 $(window).resize(function () {
@@ -431,21 +432,32 @@ function selectLoc (locId) {
     $("ul.tabs").tabs("div.panes > div");
 });
 
+  $( "select" ).change(function () {
+    
+    selectLoc(this.value)
+
+  });
+
+  });
+
+
+
+
   </script>
 
   <div id="content" class="hero-content row clear-nav" role="main">
 
   <div class="page-title row">
-    <h1>Sales and Support</h1>
+    <h1>Contact us</h1>
   </div>
 
   <div class="sales-leftcol-wrapper">
     <div class="sales-tabs-wrapper">
       <div class="sales-tabs">
         <ul class="tabs">
-          <li><a href="#">Distributors</a></li>
-          <li><a href="#">Sales Enquiries</a></li>
-          <li><a href="#">Support Enquiries</a></li>
+          <li><a href="#">The Team</a></li>
+          <li><a href="#">Sales and Support</a></li>
+          <li><a class="mapTab" href="#">Distribution</a></li>
         </ul>
       </div><!-- sales-tabs -->
 
@@ -469,24 +481,40 @@ function selectLoc (locId) {
           <h3>Vice President North American Sales (Eastern Region) </h3>
           <p>Tel: +44 (0) 203 447 9360<br/>
               Mob: +44 (0) 790 801 0253<br/>
-              <a href="mailto:craig.henshaw@inventivemedical.com">Email Thomas</a></p>
+              <a href="mailto:thomas.brown@inventivemedical.com">Email Thomas</a></p>
         </div>
         <div class="contact-sales">
-          <h2>Michelle Press</h2>
-          <h3>UK & Europe Sales Manager</h3>
+          <h2>Jake Rahman</h2>
+          <h3>Sales Manager - Europe</h3>
           <p>Tel: +44 (0) 203 447 9360<br/>
-              Mob: +44 (0) 790 801 0253<br/>
-              <a href="mailto:craig.henshaw@inventivemedical.com">Email Michelle</a></p>
+              Mob: +44 (0) 7956 338 317<br/>
+              <a href="mailto:jake.rahman@inventivemedical.com">Email Michelle</a></p>
         </div>
       </div><!-- row -->
 
       
         </div><!-- sales-team -->
           
-            <h2>Find a Heartworks distributor</h2>
+
+          
+        </div><!-- pane -->
+
+        <!-- FAQ's -->
+        <div class="pane pane-sales">
+         <h2>Submit a Sales Enquiries</h2>
+
+<?=do_shortcode('[si-contact-form form=\'1\']');?>
+
+         
+        </div><!-- pane -->
+      
+        <!-- Enquiries -->
+        <div class="pane pane-sales">
+          
+                     <h2>Find a Heartworks distributor</h2>
           <p>Click on the map to find a Heartworks distributor in your region</p>
 
-  <select name="distributors" onchange="selectLoc(this.value)" id="distributor-select"> 
+  <select name="distributors" id="distributor-select"> 
 <option value="select">Please select</option>
 <option value="Australia">Australia</option>
 <option value="China">China</option>
@@ -514,23 +542,6 @@ function selectLoc (locId) {
     
  </div>   
           
-          
-        </div><!-- pane -->
-
-        <!-- FAQ's -->
-        <div class="pane pane-sales">
-         <h2>Submit a Sales Enquiries</h2>
-
-<?=do_shortcode('[si-contact-form form=\'1\']');?>
-
-         
-        </div><!-- pane -->
-      
-        <!-- Enquiries -->
-        <div class="pane pane-sales">
-          
-             <h2>Submit a Support Enquiry</h2>
-<?=do_shortcode('[si-contact-form form=\'1\']');?>
         
         </div><!-- pane -->
       </div> <!-- close panes -->
@@ -548,5 +559,4 @@ function selectLoc (locId) {
 ?>
   </div> <!-- sidebar wrapper -->
 </div>
-<?php get_sidebar('quicklinks'); ?>
 <?php get_footer(); ?>
