@@ -14,14 +14,15 @@ class CPAC_Storage_Model_Media extends CPAC_Storage_Model {
 		$this->type 	= 'media';
 		$this->page 	= 'upload';
 
-		$this->set_custom_columns();
+		$this->set_columns_filepath();
 
 		// Populate columns variable.
 		// This is used for manage_value. By storing these columns we greatly improve performance.
 		add_action( 'admin_init', array( $this, 'set_columns' ) );
 
 		// headings
-		add_filter( "manage_{$this->page}_columns",  array( $this, 'add_headings' ) );
+        // Increased the priority to overrule 3th party plugins such as Media Tags
+		add_filter( "manage_{$this->page}_columns",  array( $this, 'add_headings' ), 15 );
 
 		// values
 		add_action( 'manage_media_custom_column', array( $this, 'manage_value' ), 10, 2 );
@@ -36,13 +37,18 @@ class CPAC_Storage_Model_Media extends CPAC_Storage_Model {
 	 */
 	public function get_default_columns() {
 
+		if ( ! function_exists('_get_list_table') ) return array();
+
 		// You can use this filter to add thirdparty columns by hooking into this.
 		// See classes/third_party.php for an example.
 		do_action( "cac/columns/default/storage_key={$this->key}" );
 
 		// get columns
-		$table 		= _get_list_table( 'WP_Media_List_Table', array( 'screen' => 'upload' ) );
-		$columns 	= $table->get_columns();
+		$table   = _get_list_table ( 'WP_Media_List_Table', array( 'screen' => 'upload' ) );
+        $columns = $table->get_columns();
+
+		if ( $this->is_settings_page() )
+			$columns = array_merge( get_column_headers( 'upload' ), $columns );
 
 		return $columns;
 	}
@@ -78,7 +84,10 @@ class CPAC_Storage_Model_Media extends CPAC_Storage_Model {
 		}
 
 		// add hook
-		echo apply_filters( "cac/column/value/type={$this->key}", $value, $column );
+		$value = apply_filters( "cac/column/value", $value, $media_id, $column, $this->key );
+		$value = apply_filters( "cac/column/value/{$this->type}", $value, $media_id, $column, $this->key );
+
+		echo $value;
 	}
 
 }

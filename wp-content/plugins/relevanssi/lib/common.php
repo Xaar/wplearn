@@ -229,6 +229,9 @@ function relevanssi_populate_array($matches) {
 		$relevanssi_post_array[$post->ID] = $post;
 		$relevanssi_post_types[$post->ID] = $post->post_type;
 	}
+
+	if (function_exists('wp_suspend_cache_addition')) 
+		wp_suspend_cache_addition(false);
 }
 
 function relevanssi_get_term_taxonomy($id) {
@@ -284,8 +287,9 @@ function relevanssi_recognize_phrases($q) {
 		$phrase_matches = array();
 		foreach ($phrases as $phrase) {
 			$phrase = esc_sql($phrase);
+			"on" == get_option("relevanssi_index_excerpt") ? $excerpt = " OR post_excerpt LIKE '%$phrase%'" : $excerpt = "";
 			$query = "SELECT ID FROM $wpdb->posts 
-				WHERE (post_content LIKE '%$phrase%' OR post_title LIKE '%$phrase%')
+				WHERE (post_content LIKE '%$phrase%' OR post_title LIKE '%$phrase%' $excerpt)
 				AND post_status IN ('publish', 'draft', 'private', 'pending', 'future', 'inherit')";
 			
 			$docs = $wpdb->get_results($query);
@@ -536,7 +540,6 @@ function relevanssi_tokenize($str, $remove_stops = true, $min_word_length = -1) 
 		
 		$t = strtok("\n\t ");
 	}
-
 	return $tokens;
 }
 
@@ -602,4 +605,47 @@ function relevanssi_get_term_tax_id($field, $id, $taxonomy) {
 					WHERE term_id = $id AND taxonomy = '$taxonomy'");
 }
 
+/**
+ * Takes in a search query, returns it with synonyms added.
+ */
+function relevanssi_add_synonyms($q) {
+	if (empty($q)) return $q;
+	
+	$synonym_data = get_option('relevanssi_synonyms');
+	if ($synonym_data) {
+		$synonyms = array();
+		if (function_exists('mb_strtolower')) {
+			$synonym_data = mb_strtolower($synonym_data);
+		}
+		else {
+			$synonym_data = strtolower($synonym_data);
+		}
+		$pairs = explode(";", $synonym_data);
+		foreach ($pairs as $pair) {
+			$parts = explode("=", $pair);
+			$key = strval(trim($parts[0]));
+			$value = trim($parts[1]);
+			$synonyms[$key][$value] = true;
+		}
+		if (count($synonyms) > 0) {
+			$new_terms = array();
+			$terms = array_keys(relevanssi_tokenize($q, false)); // remove stopwords is false here
+			if (!in_array($q, $terms)) $terms[] = $q;
+			
+			foreach ($terms as $term) {
+				if (in_array(strval($term), array_keys($synonyms))) {		// strval, otherwise numbers cause problems
+					if (isset($synonyms[strval($term)])) {		// necessary, otherwise terms like "02" can cause problems
+						$new_terms = array_merge($new_terms, array_keys($synonyms[strval($term)]));
+					}
+				}
+			}
+			if (count($new_terms) > 0) {
+				foreach ($new_terms as $new_term) {
+					$q .= " $new_term";
+				}
+			}
+		}
+	}
+	return $q;
+}
 ?>

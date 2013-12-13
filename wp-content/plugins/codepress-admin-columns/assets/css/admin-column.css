@@ -430,6 +430,10 @@ tr.column_image_size.hidden {
 	padding: 5px 8px !important;
 	font-weight: normal;
 }
+.column-form tr td.label p.description em {
+	display: block;
+	color: #999;
+}
 .rtl .column-form tr td.label p.description {
 	right: 0;
 	left: auto;
@@ -596,14 +600,16 @@ tr.column_image_size.hidden {
 	padding: 8px;
 }
 #form-actions .submit-update {
+	display: block;
 	width: 100%;
 	height: 28px;
 	line-height: 28px;
+	text-align: center;
 }
 
 /* =Sidebar: Pro
 --------------------------------*/
-#pro-version {
+#pro-version .cta {
 	background: transparent url(../images/get_the_addon.png) no-repeat 0 0;
 }
 #pro-version .padding-box {

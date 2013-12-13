@@ -2,7 +2,7 @@
 /*
 
 Plugin Name: 		Codepress Admin Columns
-Version: 			2.0.2
+Version: 			2.1.0
 Description: 		Customize columns on the administration screens for post(types), pages, media, comments, links and users with an easy to use drag-and-drop interface.
 Author: 			Codepress
 Author URI: 		http://www.codepresshq.com
@@ -11,7 +11,7 @@ Text Domain: 		cpac
 Domain Path: 		/languages
 License:			GPLv2
 
-Copyright 2011-2013  Codepress  info@codepress.nl
+Copyright 2011-2014  Codepress  info@codepress.nl
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 2 as published by
@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-define( 'CPAC_VERSION', 	 	'2.0.2' ); // current plugin version
+define( 'CPAC_VERSION', 	 	'2.1.0' ); // current plugin version
 define( 'CPAC_UPGRADE_VERSION', '2.0.0' ); // this is the latest version which requires an upgrade
 define( 'CPAC_URL', 			plugin_dir_url( __FILE__ ) );
 define( 'CPAC_DIR', 			plugin_dir_path( __FILE__ ) );
@@ -44,9 +44,7 @@ if ( ! is_admin() )
  * @since 1.3.0
  */
 require_once CPAC_DIR . 'classes/utility.php';
-require_once CPAC_DIR . 'classes/deprecated.php';
 require_once CPAC_DIR . 'classes/third_party.php';
-require_once CPAC_DIR . 'classes/api.php';
 
 /**
  * The Codepress Admin Columns Class
@@ -64,6 +62,7 @@ class CPAC {
 	 * @since 1.0.0
 	 */
 	function __construct() {
+
 		add_action( 'wp_loaded', array( $this, 'init') );
 	}
 
@@ -87,10 +86,8 @@ class CPAC {
 		// add settings link
 		add_filter( 'plugin_action_links',  array( $this, 'add_settings_link'), 1, 2);
 
-		// add capabilty to administrator to manage admin columns
-		// note to devs: you can use this to grant other roles this privilidge as well.
-		$role = get_role( 'administrator' );
-   		$role->add_cap( 'manage_admin_columns' );
+		// add capabilty to roles to manage admin columns
+		$this->set_capabilities();
 
 		// set storage models
 		$this->set_storage_models();
@@ -103,6 +100,20 @@ class CPAC {
 	}
 
 	/**
+	 * Add user capabilities
+	 *
+	 * note to devs: you can use this to grant other roles this privilidge as well.
+	 *
+	 * @since 2.0.4
+	 */
+	public function set_capabilities() {
+
+		// add capabilty to administrator to manage admin columns
+		if ( $role = get_role( 'administrator' ) )
+   			$role->add_cap( 'manage_admin_columns' );
+	}
+
+	/**
 	 * Get storage models
 	 *
 	 * @since 2.0.0
@@ -110,7 +121,7 @@ class CPAC {
 	 */
 	private function set_storage_models() {
 
-		$storage_models = array();
+		$this->storage_models = array();
 
 		// include parent and childs
 		require_once CPAC_DIR . 'classes/column.php';
@@ -124,31 +135,29 @@ class CPAC {
 		// add Posts
 		foreach ( $this->get_post_types() as $post_type ) {
 			$storage_model = new CPAC_Storage_Model_Post( $post_type );
-			$storage_models[ $storage_model->key ] = $storage_model;
+			$this->storage_models[ $storage_model->key ] = $storage_model;
 		}
 
 		// add User
 		$storage_model = new CPAC_Storage_Model_User();
-		$storage_models[ $storage_model->key ] = $storage_model;
+		$this->storage_models[ $storage_model->key ] = $storage_model;
 
 		// add Media
 		$storage_model = new CPAC_Storage_Model_Media();
-		$storage_models[ $storage_model->key ] = $storage_model;
+		$this->storage_models[ $storage_model->key ] = $storage_model;
 
 		// add Comment
 		$storage_model = new CPAC_Storage_Model_Comment();
-		$storage_models[ $storage_model->key ] = $storage_model;
+		$this->storage_models[ $storage_model->key ] = $storage_model;
 
 		// add Link
 		if ( apply_filters( 'pre_option_link_manager_enabled', false ) ) { // as of 3.5 link manager is removed
 			$storage_model = new CPAC_Storage_Model_Link();
-			$storage_models[ $storage_model->key ] = $storage_model;
+			$this->storage_models[ $storage_model->key ] = $storage_model;
 		}
 
 		// Hook to add more models
-		do_action( 'cac/storage_models', $storage_models );
-
-		$this->storage_models = $storage_models;
+		do_action( 'cac/storage_models', $this->storage_models );
 	}
 
 	/**
@@ -156,14 +165,14 @@ class CPAC {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @return array object Storage Model
+	 * @return array|false object Storage Model
 	 */
 	public function get_storage_model( $key ) {
 
-		if ( ! isset( $this->storage_models[ $key ] ) )
-			return false;
+		if ( isset( $this->storage_models[ $key ] ) )
+			return $this->storage_models[ $key ];
 
-		return $this->storage_models[ $key ];
+		return false;
 	}
 
 	/**
@@ -253,21 +262,18 @@ class CPAC {
 	 * @return string
 	 */
 	function admin_class( $classes ) {
-
 		global $current_screen;
 
 		// we dont need the 'edit-' part
 		$screen = str_replace( 'edit-', '', $current_screen->id );
 
 		// media library exception
-		if ( $current_screen->base == 'upload' && $current_screen->id == 'upload' ) {
+		if ( $current_screen->base == 'upload' && $current_screen->id == 'upload' )
 			$screen = 'media';
-		}
 
 		// link exception
-		if ( $current_screen->base == 'link-manager' && $current_screen->id == 'link-manager' ) {
+		if ( $current_screen->base == 'link-manager' && $current_screen->id == 'link-manager' )
 			$screen = 'links';
-		}
 
 		// loop the available types
 		foreach ( $this->storage_models as $storage_model ) {
@@ -287,39 +293,40 @@ class CPAC {
 	 * @since 1.4.0
 	 */
 	function admin_scripts() {
-
 		global $pagenow, $current_screen;
 
 		// CSS column widths
-		$css_column_width 	= '';
+		$css_column_width = '';
 
 		// JS
-		$edit_link 	= '';
+		$edit_link = '';
 
-		foreach ( $this->storage_models as $storage_model ) {
+		if ( $this->storage_models ) {
+			foreach ( $this->storage_models as $storage_model ) {
 
-			if ( $storage_model->page . '.php' !== $pagenow )
-				continue;
+				if ( $storage_model->page . '.php' !== $pagenow )
+					continue;
 
-			// CSS: columns width
-			if ( $columns = $storage_model->get_stored_columns() ) {
-				foreach ( $columns as $name => $options ) {
+				// CSS: columns width
+				if ( $columns = $storage_model->get_stored_columns() ) {
+					foreach ( $columns as $name => $options ) {
 
-					if ( ! empty( $options['width'] ) && is_numeric( $options['width'] ) && $options['width'] > 0 ) {
-						$css_column_width .= ".cp-{$storage_model->key} .wrap table th.column-{$name} { width: {$options['width']}% !important; }";
+						if ( ! empty( $options['width'] ) && is_numeric( $options['width'] ) && $options['width'] > 0 ) {
+							$css_column_width .= ".cp-{$storage_model->key} .wrap table th.column-{$name} { width: {$options['width']}% !important; }";
+						}
 					}
 				}
-			}
 
-			// JS: edit button
-			if (
-				// All types except Posts
-				empty( $current_screen->post_type ) ||
-				// Posts
-				( ! empty( $current_screen->post_type ) && $storage_model->key == $current_screen->post_type )
-				)
-				{
-				$edit_link = $storage_model->get_edit_link();
+				// JS: edit button
+				if (
+					// All types except Posts
+					empty( $current_screen->post_type ) ||
+					// Posts
+					( ! empty( $current_screen->post_type ) && $storage_model->key == $current_screen->post_type )
+					)
+					{
+					$edit_link = $storage_model->get_edit_link();
+				}
 			}
 		}
 
@@ -361,4 +368,5 @@ class CPAC {
  * @since 1.0.0
  */
 $cpac = new CPAC();
+
 

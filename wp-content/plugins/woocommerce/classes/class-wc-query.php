@@ -37,7 +37,8 @@ class WC_Query {
 	public function __construct() {
 		add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
 		add_filter( 'the_posts', array( $this, 'the_posts' ), 11, 2 );
-		add_filter( 'wp', array( $this, 'remove_product_query' ) );
+		add_action( 'wp', array( $this, 'remove_product_query' ) );
+		add_action( 'wp', array( $this, 'remove_ordering_args' ) );
 	}
 
 	/**
@@ -132,11 +133,11 @@ class WC_Query {
 		global $wp_the_query;
 
 		// If this is not a WC Query, do not modify the query
-		if ( empty( $wp_the_query->query_vars['wc_query'] ) )
+		if ( empty( $wp_the_query->query_vars['wc_query'] ) || empty( $wp_the_query->query_vars['s'] ) )
 		    return $where;
 
 		$where = preg_replace(
-		    "/post_title\s+LIKE\s*(\'[^\']+\')/",
+		    "/post_title\s+LIKE\s*(\'\%[^\%]+\%\')/",
 		    "post_title LIKE $1) OR (post_excerpt LIKE $1", $where );
 
 		return $where;
@@ -264,7 +265,6 @@ class WC_Query {
 		do_action( 'woocommerce_product_query', $q, $this );
 	}
 
-
 	/**
 	 * Remove the query
 	 *
@@ -276,6 +276,17 @@ class WC_Query {
 	}
 
 	/**
+	 * Remove the query
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function remove_ordering_args() {
+		remove_filter( 'posts_clauses', array( $this, 'order_by_popularity_post_clauses' ) );
+		remove_filter( 'posts_clauses', array( $this, 'order_by_rating_post_clauses' ) );
+	}
+
+	/**
 	 * Remove the posts_where filter
 	 *
 	 * @access public
@@ -284,7 +295,6 @@ class WC_Query {
 	public function remove_posts_where() {
 		remove_filter( 'posts_where', array( $this, 'search_post_excerpt' ) );
 	}
-
 
 	/**
 	 * Get an unpaginated list all product ID's (both filtered and unfiltered). Makes use of transients.
@@ -370,11 +380,15 @@ class WC_Query {
 
 		$args = array();
 
+		// default - menu_order
+		$args['orderby']  = 'menu_order title';
+		$args['order']    = $order == 'DESC' ? 'DESC' : 'ASC';
+		$args['meta_key'] = '';
+
 		switch ( $orderby ) {
 			case 'date' :
 				$args['orderby']  = 'date';
 				$args['order']    = $order == 'ASC' ? 'ASC' : 'DESC';
-				$args['meta_key'] = '';
 			break;
 			case 'price' :
 				$args['orderby']  = 'meta_value_num';
@@ -382,31 +396,39 @@ class WC_Query {
 				$args['meta_key'] = '_price';
 			break;
 			case 'popularity' :
-				$args['orderby']  = 'meta_value_num';
-				$args['order']    = $order == 'ASC' ? 'ASC' : 'DESC';
 				$args['meta_key'] = 'total_sales';
+
+				// Sorting handled later though a hook
+				add_filter( 'posts_clauses', array( $this, 'order_by_popularity_post_clauses' ) );
 			break;
 			case 'rating' :
-				$args['orderby']  = 'menu_order title';
-				$args['order']    = $order == 'DESC' ? 'DESC' : 'ASC';
-				$args['meta_key'] = '';
-
+				// Sorting handled later though a hook
 				add_filter( 'posts_clauses', array( $this, 'order_by_rating_post_clauses' ) );
 			break;
 			case 'title' :
 				$args['orderby']  = 'title';
 				$args['order']    = $order == 'DESC' ? 'DESC' : 'ASC';
-				$args['meta_key'] = '';
-			break;
-			// default - menu_order
-			default :
-				$args['orderby']  = 'menu_order title';
-				$args['order']    = $order == 'DESC' ? 'DESC' : 'ASC';
-				$args['meta_key'] = '';
 			break;
 		}
 
 		return apply_filters( 'woocommerce_get_catalog_ordering_args', $args );
+	}
+
+	/**
+	 * WP Core doens't let us change the sort direction for invidual orderby params - http://core.trac.wordpress.org/ticket/17065
+	 *
+	 * This lets us sort by meta value desc, and have a second orderby param.
+	 *
+	 * @access public
+	 * @param array $args
+	 * @return array
+	 */
+	public function order_by_popularity_post_clauses( $args ) {
+		global $wpdb;
+
+		$args['orderby'] = "$wpdb->postmeta.meta_value+0 DESC, $wpdb->posts.post_date DESC";
+
+		return $args;
 	}
 
 	/**
@@ -417,7 +439,6 @@ class WC_Query {
 	 * @return array
 	 */
 	public function order_by_rating_post_clauses( $args ) {
-
 		global $wpdb;
 
 		$args['fields'] .= ", AVG( $wpdb->commentmeta.meta_value ) as average_rating ";
@@ -429,7 +450,7 @@ class WC_Query {
 			LEFT JOIN $wpdb->commentmeta ON($wpdb->comments.comment_ID = $wpdb->commentmeta.comment_id)
 		";
 
-		$args['orderby'] = "average_rating DESC";
+		$args['orderby'] = "average_rating DESC, $wpdb->posts.post_date DESC";
 
 		$args['groupby'] = "$wpdb->posts.ID";
 

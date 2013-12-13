@@ -74,7 +74,7 @@ class WC_Gateway_Paypal extends WC_Payment_Gateway {
      * @return bool
      */
     function is_valid_for_use() {
-        if ( ! in_array( get_woocommerce_currency(), apply_filters( 'woocommerce_paypal_supported_currencies', array( 'AUD', 'BRL', 'CAD', 'MXN', 'NZD', 'HKD', 'SGD', 'USD', 'EUR', 'JPY', 'TRY', 'NOK', 'CZK', 'DKK', 'HUF', 'ILS', 'MYR', 'PHP', 'PLN', 'SEK', 'CHF', 'TWD', 'THB', 'GBP', 'RMB' ) ) ) ) return false;
+        if ( ! in_array( get_woocommerce_currency(), apply_filters( 'woocommerce_paypal_supported_currencies', array( 'AUD', 'BRL', 'CAD', 'MXN', 'NZD', 'HKD', 'SGD', 'USD', 'EUR', 'JPY', 'TRY', 'NOK', 'CZK', 'DKK', 'HUF', 'ILS', 'MYR', 'PHP', 'PLN', 'SEK', 'CHF', 'TWD', 'THB', 'GBP', 'RMB', 'RUB' ) ) ) ) return false;
 
         return true;
     }
@@ -262,6 +262,7 @@ class WC_Gateway_Paypal extends WC_Payment_Gateway {
 				'return' 				=> add_query_arg( 'utm_nooverride', '1', $this->get_return_url( $order ) ),
 				'cancel_return'			=> $order->get_cancel_order_url(),
 				'page_style'			=> $this->page_style,
+				'BUTTONSOURCE'          => 'WooThemes_Cart',
 
 				// Order key + ID
 				'invoice'				=> $this->invoice_prefix . ltrim( $order->get_order_number(), '#' ),
@@ -525,6 +526,7 @@ class WC_Gateway_Paypal extends WC_Payment_Gateway {
         	'sslverify' 	=> false,
         	'timeout' 		=> 60,
         	'httpversion'   => '1.1',
+        	'headers'       => array( 'host' => 'www.paypal.com' ),
         	'user-agent'	=> 'WooCommerce/' . $woocommerce->version
         );
 

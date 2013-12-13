@@ -3,11 +3,11 @@
  * Plugin Name: WooCommerce
  * Plugin URI: http://www.woothemes.com/woocommerce/
  * Description: An e-commerce toolkit that helps you sell anything. Beautifully.
- * Version: 2.0.14
+ * Version: 2.0.20
  * Author: WooThemes
  * Author URI: http://woothemes.com
  * Requires at least: 3.5
- * Tested up to: 3.5
+ * Tested up to: 3.7
  *
  * Text Domain: woocommerce
  * Domain Path: /i18n/languages/
@@ -37,7 +37,7 @@ class Woocommerce {
 	/**
 	 * @var string
 	 */
-	public $version = '2.0.14';
+	public $version = '2.0.20';
 
 	/**
 	 * @var string
@@ -510,7 +510,7 @@ class Woocommerce {
 			add_action( 'wp_footer', array( $this, 'output_inline_js' ), 25 );
 
 			// HTTPS urls with SSL on
-			$filters = array( 'post_thumbnail_html', 'widget_text', 'wp_get_attachment_url', 'wp_get_attachment_image_attributes', 'wp_get_attachment_url', 'option_stylesheet_url', 'option_template_url', 'script_loader_src', 'style_loader_src', 'template_directory_uri', 'stylesheet_directory_uri', 'site_url' );
+			$filters = array( 'post_thumbnail_html', 'wp_get_attachment_url', 'wp_get_attachment_image_attributes', 'wp_get_attachment_url', 'option_stylesheet_url', 'option_template_url', 'script_loader_src', 'style_loader_src', 'template_directory_uri', 'stylesheet_directory_uri', 'site_url' );
 
 			foreach ( $filters as $filter )
 				add_filter( $filter, array( $this, 'force_ssl' ) );
@@ -924,8 +924,9 @@ class Woocommerce {
 	        ) )
 	    );
 
-	    $attribute_taxonomies = $this->get_attribute_taxonomies();
-		if ( $attribute_taxonomies ) {
+	    global $wc_product_attributes;
+
+		if ( $attribute_taxonomies = $this->get_attribute_taxonomies() ) {
 			foreach ($attribute_taxonomies as $tax) {
 
 		    	$name = $this->attribute_taxonomy_name( $tax->attribute_name );
@@ -933,6 +934,8 @@ class Woocommerce {
 		    	if ($name) {
 
 		    		$label = ( isset( $tax->attribute_label ) && $tax->attribute_label ) ? $tax->attribute_label : $tax->attribute_name;
+
+		    		$wc_product_attributes[ $name ] = $tax;
 
 					$show_in_nav_menus = apply_filters( 'woocommerce_attribute_show_in_nav_menus', false, $name );
 
@@ -1193,9 +1196,8 @@ class Woocommerce {
 			wp_enqueue_script( 'wc-single-product' );
 
 		// Global frontend scripts
-		wp_enqueue_script( 'woocommerce', $frontend_script_path . 'woocommerce' . $suffix . '.js', array( 'jquery', 'jquery-blockui' ), $this->version, true );
+		wp_enqueue_script( 'woocommerce', $frontend_script_path . 'woocommerce' . $suffix . '.js', array( 'jquery', 'jquery-blockui', 'jquery-placeholder' ), $this->version, true );
 		wp_enqueue_script( 'wc-cart-fragments', $frontend_script_path . 'cart-fragments' . $suffix . '.js', array( 'jquery', 'jquery-cookie' ), $this->version, true );
-		wp_enqueue_script( 'jquery-placeholder' );
 
 		// Variables for JS scripts
 		$woocommerce_params = array(
@@ -1606,7 +1608,6 @@ class Woocommerce {
 		return apply_filters( 'woocommerce_attribute_taxonomies', $attribute_taxonomies );
 	}
 
-
 	/**
 	 * Get a product attributes name.
 	 *
@@ -1618,7 +1619,6 @@ class Woocommerce {
 		return 'pa_' . woocommerce_sanitize_taxonomy_name( $name );
 	}
 
-
 	/**
 	 * Get a product attributes label.
 	 *
@@ -1629,7 +1629,7 @@ class Woocommerce {
 	public function attribute_label( $name ) {
 		global $wpdb;
 
-		if ( strstr( $name, 'pa_' ) ) {
+		if ( taxonomy_is_product_attribute( $name ) ) {
 			$name = woocommerce_sanitize_taxonomy_name( str_replace( 'pa_', '', $name ) );
 
 			$label = $wpdb->get_var( $wpdb->prepare( "SELECT attribute_label FROM {$wpdb->prefix}woocommerce_attribute_taxonomies WHERE attribute_name = %s;", $name ) );
@@ -1642,7 +1642,6 @@ class Woocommerce {
 
 		return apply_filters( 'woocommerce_attribute_label', $label, $name );
 	}
-
 
 	/**
 	 * Get a product attributes orderby setting.
@@ -1660,8 +1659,6 @@ class Woocommerce {
 
 		return apply_filters( 'woocommerce_attribute_orderby', $orderby, $name );
 	}
-
-
 
 	/**
 	 * Get an array of product attribute taxonomies.

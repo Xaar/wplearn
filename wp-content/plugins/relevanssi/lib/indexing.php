@@ -109,6 +109,9 @@ function relevanssi_build_index($extend = false) {
 		. __((($size == 0) || (count($content) < $size)) ? "Indexing complete!" : "More to index...", "relevanssi")
 		. '</p></div>';
 	update_option('relevanssi_indexed', 'done');
+
+	if (function_exists('wp_suspend_cache_addition')) 
+		wp_suspend_cache_addition(false);	// Thanks to Julien Mession
 }
 
 // BEGIN modified by renaissancehack
@@ -299,7 +302,7 @@ function relevanssi_index_doc($indexpost, $remove_first = false, $custom_fields 
 
 	$index_titles = true;
 	if (apply_filters('relevanssi_index_titles', $index_titles)) {
-		$titles = relevanssi_tokenize($post->post_title);
+		$titles = relevanssi_tokenize(apply_filters('the_title', $post->post_title));
 
 		if (count($titles) > 0) {
 			foreach ($titles as $title => $count) {
@@ -314,7 +317,7 @@ function relevanssi_index_doc($indexpost, $remove_first = false, $custom_fields 
 		remove_shortcode('noindex');
 		add_shortcode('noindex', 'relevanssi_noindex_shortcode_indexing');
 
-		$contents = $post->post_content;
+		$contents = apply_filters('relevanssi_post_content', $post->post_content, $post);
 		
 		// Allow user to add extra content for Relevanssi to index
 		// Thanks to Alexander Gieg
@@ -330,10 +333,9 @@ function relevanssi_index_doc($indexpost, $remove_first = false, $custom_fields 
 					$My_WP_Table_Reloaded = new WP_Table_Reloaded_Controller_Frontend();
 				}
 				// TablePress support
-				if (defined('TABLEPRESS_ABSPATH')) {
-					include_once(TABLEPRESS_ABSPATH . 'controllers/controller-frontend.php');
-					$My_WP_Table_Reloaded = new TablePress_Frontend_Controller();
-					$My_WP_Table_Reloaded->init_shortcodes();
+				if ( defined( 'TABLEPRESS_ABSPATH' ) ) {
+					$My_TablePress_Controller = TablePress::load_controller( 'frontend' );
+					$My_TablePress_Controller->init_shortcodes();
 				}
 
 				$disable_shortcodes = get_option('relevanssi_disable_shortcodes');
@@ -341,14 +343,18 @@ function relevanssi_index_doc($indexpost, $remove_first = false, $custom_fields 
 				foreach ($shortcodes as $shortcode) {
 					remove_shortcode(trim($shortcode));
 				}
-				remove_shortcode('contact-form');		// Jetpack Contact Form causes an error message
-				remove_shortcode('starrater');			// GD Star Rating rater shortcode causes problems
+				remove_shortcode('contact-form');			// Jetpack Contact Form causes an error message
+				remove_shortcode('starrater');				// GD Star Rating rater shortcode causes problems
+				remove_shortcode('responsive-flipbook');	// Responsive Flipbook causes problems
 				
 				$post_before_shortcode = $post;
 				$contents = do_shortcode($contents);
 				$post = $post_before_shortcode;
 				
-				if (defined('TABLEPRESS_ABSPATH') || defined('WP_TABLE_RELOADED_ABSPATH')) {
+				if (defined('TABLEPRESS_ABSPATH')) {
+					unset($My_TablePress_Controller);
+				}
+				if (defined('WP_TABLE_RELOADED_ABSPATH')) {
 					unset($My_WP_Table_Reloaded);
 				}
 			}
@@ -371,6 +377,7 @@ function relevanssi_index_doc($indexpost, $remove_first = false, $custom_fields 
 
 		$contents = preg_replace('/<[a-zA-Z\/][^>]*>/', ' ', $contents);
 		$contents = strip_tags($contents);
+		$contents = apply_filters('relevanssi_post_content_before_tokenize', $contents, $post);
 		$contents = relevanssi_tokenize($contents, true, $min_word_length);
 	
 		if (count($contents) > 0) {
@@ -408,6 +415,8 @@ function relevanssi_index_doc($indexpost, $remove_first = false, $custom_fields 
 
 		array_push($values, $value);
 	}
+	
+	$values = apply_filters('relevanssi_indexing_values', $values, $post);
 	
 	if (!empty($values)) {
 		$values = implode(', ', $values);

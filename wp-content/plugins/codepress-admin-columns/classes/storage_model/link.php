@@ -14,7 +14,7 @@ class CPAC_Storage_Model_Link extends CPAC_Storage_Model {
 		$this->type 	= 'link';
 		$this->page 	= 'link-manager';
 
-		$this->set_custom_columns();
+		$this->set_columns_filepath();
 
 		// Populate columns variable.
 		// This is used for manage_value. By storing these columns we greatly improve performance.
@@ -35,6 +35,9 @@ class CPAC_Storage_Model_Link extends CPAC_Storage_Model {
 	 * @return array
 	 */
 	public function get_default_columns() {
+
+		if ( ! function_exists('_get_list_table') ) return array();
+
 		// You can use this filter to add thirdparty columns by hooking into this.
 		// See classes/third_party.php for an example.
 		do_action( "cac/columns/default/storage_key={$this->key}" );
@@ -73,7 +76,10 @@ class CPAC_Storage_Model_Link extends CPAC_Storage_Model {
 		}
 
 		// add hook
-		echo apply_filters( "cac/column/value/type={$this->key}", $value, $column );
+		$value = apply_filters( "cac/column/value", $value, $link_id, $column, $this->key );
+		$value = apply_filters( "cac/column/value/{$this->type}", $value, $link_id, $column, $this->key );
+
+		echo $value;
 	}
 
 }

@@ -3,8 +3,8 @@ Contributors: codepress, tschutter, davidmosterd
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZDZRSYLQ4Z76J
 Tags: plugins, wordpress, admin, column, columns, custom columns, custom fields, image, dashboard, sortable, filters, posts, media, users, pages, posttypes, manage columns, wp-admin
 Requires at least: 3.5
-Tested up to: 3.6
-Stable tag: 2.0.2
+Tested up to: 3.7.1
+Stable tag: 2.1.0
 
 Customise columns on the administration screens for post(types), pages, media, comments, links and users with an easy to use drag-and-drop interface.
 
@@ -105,13 +105,13 @@ With the custom field column you can display any custom field values. It can sho
 
 = Sortable Custom Columns for all Screens =
 
-All of the new columns will have support for sorting with the <a href="http://www.codepress.nl/plugins/codepress-admin-columns/sortorder-addon/">sorting addon</a>.
+All of the new columns will have support for sorting with the <a href="http://www.codepresshq.com/wordpress-plugins/admin-columns/pro-add-on/">Pro add-on</a>.
 
 By default WordPress let's you only sort by Title, Date, Comments and Author. This will make you be able to <strong>sort by ALL columns of ANY type</strong>. (columns that are added by other plugins are not supported)
 
 = Third party plugin support =
 
-It will work nice with other plugins and support their additional custom columns. A few examples of plugins that are supported: WordPress SEO by Yoast (Robots Meta), Post Admin Shortcuts (Pin), WP Show IDs (ID) and User Access Manager (Access), Co-Authors Plus and Advanced Custom Fields.
+It will work nice with other plugins and support their additional custom columns. A few examples of plugins that are supported: WordPress SEO by Yoast (Robots Meta), Post Admin Shortcuts (Pin), WP Show IDs (ID) and User Access Manager (Access), WooCommerce, Co-Authors Plus and Advanced Custom Fields.
 
 = Translations =
 
@@ -122,10 +122,11 @@ If you like to contrinute a language, please use <a href="https://www.transifex.
 * German (de_DE) - Thanks to Uli
 * Polish (pl_PL) - Thanks to Bartosz
 * French (fr_FR) - Thanks to Alexandre Girard
+* Arabic (ar) and RTL support - thanks to Hassan
 
 = Upcoming releases =
 
-* We will post the upcoming features on <a href="http://www.codepresshq.com/wordpress-plugins/admin-columns/">our website</a>.
+* We will post the <a href="https://github.com/codepress/codepress-admin-columns/issues?labels=enhancement&milestone=none&page=1&sort=updated&state=open">upcoming features on GitHub</a>.
 
 **Feedback**
 
@@ -143,10 +144,14 @@ You can leave any <a href='http://www.codepresshq.com/support/'>requests or feed
 
 == Frequently Asked Questions ==
 
+= Is there documentation for Admin Columns? =
+
+Yes, you will find all the documentation you need on <a href="http://www.codepresshq.com/documentation/codepress-admin-columns/">http://www.codepresshq.com/documentation/codepress-admin-columns/</a>.
+
 = I have an idea for a great way to improve this plugin =
 
 Great! I'd love to hear from you.
-Leave your feedback at http://www.codepress.nl/plugins/codepress-admin-columns/feedback.
+Leave your feedback at http://www.codepresshq.com/support.
 
 = How can I change the thumbnail size of images? =
 
@@ -169,22 +174,22 @@ Filter explained:
 
 * **$value** is the original value which would otherwise be displayed
 * **$id** will return the ID of the object.
-* **$cac** will return the Admin Columns Storage object.
+* **$column** will return the Admin Columns Column object.
 *
-* **$cac->options->field** is the name of your custom field
-* **$cac->storage_model->key** will return either the posttype or if it is any other type it will return wp-comments, wp-links, wp-users, wp-media.
+* **$column->options->field** is the name of your custom field
+* **$column->storage_model->key** will return either the posttype or if it is any other type it will return wp-comments, wp-links, wp-users, wp-media.
 
 For example if you have a custom posttype 'demo' with a custom_field that is called 'city' and the result would be an integer '33'. You can change that integer '33' to Amsterdam.
 
 `
 <?php
-function my_custom_field_value( $value, $id, $cac ) {
+function my_custom_field_value( $value, $id, $column ) {
 
 	$post_type  	= 'demo';
 	$custom_field 	= 'city';
 
 	// make sure we have the correct posttype and custom field
-	if ( $post_type == $cac->storage_model->key && $cac->options->field == $custom_field ) {
+	if ( $post_type == $column->storage_model->key && $custom_field == $column->options->field ) {
 
 		if ( '33' == $value )
 			$value = 'Amsterdam';
@@ -194,9 +199,13 @@ function my_custom_field_value( $value, $id, $cac ) {
 	}
 	return $value;
 }
-add_filter( 'cac/column/meta/value', 'my_custom_field_value', 10, 5 );
+add_filter( 'cac/column/meta/value', 'my_custom_field_value', 10, 3 );
 ?>
 `
+
+= What filters and hooks can I use? =
+
+Here you will find an overview of filters and examples: http://www.codepresshq.com/documentation/codepress-admin-columns/
 
 == Screenshots ==
 
@@ -211,6 +220,18 @@ add_filter( 'cac/column/meta/value', 'my_custom_field_value', 10, 5 );
 
 == Changelog ==
 
+= 2.1.0 =
+* [Updated] Improved overall performance for script loading and lowered memory usage
+
+= 2.0.3 =
+* [Updated] Danish translation - thanks to iosoftgame
+* [Updated] Spanish translation - thanks to redywebs
+* [Added] Chinese translation - thanks to 倡萌
+* [Fixed] Solved bug with before and after field
+* [Added] Fieldtype "Counter" to Custom Fields
+* [Added] Column type ID when you hover over the column type label
+* [Added] Support for raw values
+* [Updated] Changed filter for cac/column/value. See: http://www.codepresshq.com/documentation.
 
 = 2.0.2 =
 * [Fixed] Performance issue
