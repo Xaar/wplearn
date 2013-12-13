@@ -387,7 +387,7 @@ class Securimage_ctf {
 	$this->image_type    = 'png'; // png, jpg or gif
 
 	$this->code_length   = 4;
-	$this->charset       = 'ABCDEFGHKLMNPRSTUVWYZabcdefghklmnprstuvwyz23456789';
+	$this->charset       = 'ABCDEFGHKLMNPRSTUVWYZabcdeghmnpsuvwyz23456789';
     //$this->charset = 'ABCDEFHKLMNPRSTUVWYZ234578';
 
 	$this->gd_font_file  = $this->working_directory . '/gdfonts/bubblebath.gdf';
@@ -400,7 +400,7 @@ class Securimage_ctf {
     $this->ttf_font_directory  = $this->working_directory . '/ttffonts';
     $this->gd_font_directory  = $this->working_directory . '/gdfonts';
 
-	$this->perturbation       = 0.7;
+	$this->perturbation       = 0.4;
 	$this->iscale             = 5;
 	$this->text_angle_minimum = 0;
 	$this->text_angle_maximum = 0;
@@ -413,7 +413,7 @@ class Securimage_ctf {
 	$this->use_transparent_text         = true;
 	$this->text_transparency_percentage = 30;
 
-	$this->num_lines            = 6;
+	$this->num_lines            = 4;
 	$this->line_color           = '#3d3d3d';
 	$this->draw_lines_over_text = true;
 
@@ -686,7 +686,7 @@ class Securimage_ctf {
 		} else { //ttf font
             $this->ttf_file = $this->getFontFromDirectory($this->ttf_font_directory,'ttf');
             $text_color = $this->getColorArray($this->text_color, '#3d3d3d');
-			$font_size = $height2 * .35;
+			$font_size = $height2 * .6; // was .35 but fonts wre too small
 			$bb = imagettfbbox($font_size, 0, $this->ttf_file, $this->code);
                         // repeat this line to fix random missing text on some Debian servers
 			$bb = imagettfbbox($font_size, 0, $this->ttf_file, $this->code);
@@ -712,7 +712,8 @@ class Securimage_ctf {
                 $this->multi_text_color = $this->convertMultiTextColor($this->multi_text_color);
 				for($i = 0; $i < $strlen; ++$i) {
 					$angle = rand($this->text_angle_minimum, $this->text_angle_maximum);
-					$y = rand($y - 5, $y + 5);
+					$y = rand($y - 2, $y + 2); // up/down align was 5 , but diff was too steep
+                    $x = $x - 5;  // left placement
 					if ($this->use_multi_text == true) {
 						$idx = rand(0, sizeof($this->multi_text_color) - 1);
 
@@ -1135,4 +1136,5 @@ class Securimage_Color_ctf {
 		$this->b = $blue;
 	}
 }
-?>
+
+// end of file

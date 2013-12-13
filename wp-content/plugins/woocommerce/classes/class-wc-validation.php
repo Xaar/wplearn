@@ -54,6 +54,11 @@ class WC_Validation {
 				 	return true;
 				 else
 				 	return false;
+			case "CH" :
+				 if ( preg_match( "/^([0-9]{4})$/i", $postcode ) )
+				 	return true;
+				 else
+				 	return false;	 
 		}
 
 		return true;
@@ -78,22 +83,22 @@ class WC_Validation {
 		$alpha5 = "[abdefghjlnpqrstuwxyz]";                             // Character 5
 
 		// Expression for postcodes: AN NAA, ANN NAA, AAN NAA, and AANN NAA
-		$pcexp[0] = '^('.$alpha1.'{1}'.$alpha2.'{0,1}[0-9]{1,2})([0-9]{1}'.$alpha5.'{2})$';
+		$pcexp[0] = '/^('.$alpha1.'{1}'.$alpha2.'{0,1}[0-9]{1,2})([0-9]{1}'.$alpha5.'{2})$/';
 
 		// Expression for postcodes: ANA NAA
-		$pcexp[1] =  '^('.$alpha1.'{1}[0-9]{1}'.$alpha3.'{1})([0-9]{1}'.$alpha5.'{2})$';
+		$pcexp[1] =  '/^('.$alpha1.'{1}[0-9]{1}'.$alpha3.'{1})([0-9]{1}'.$alpha5.'{2})$/';
 
 		// Expression for postcodes: AANA NAA
-		$pcexp[2] =  '^('.$alpha1.'{1}'.$alpha2.'[0-9]{1}'.$alpha4.')([0-9]{1}'.$alpha5.'{2})$';
+		$pcexp[2] =  '/^('.$alpha1.'{1}'.$alpha2.'[0-9]{1}'.$alpha4.')([0-9]{1}'.$alpha5.'{2})$/';
 
 		// Exception for the special postcode GIR 0AA
-		$pcexp[3] =  '^(gir)(0aa)$';
+		$pcexp[3] =  '/^(gir)(0aa)$/';
 
 		// Standard BFPO numbers
-		$pcexp[4] = '^(bfpo)([0-9]{1,4})$';
+		$pcexp[4] = '/^(bfpo)([0-9]{1,4})$/';
 
 		// c/o BFPO numbers
-		$pcexp[5] = '^(bfpo)(c\/o[0-9]{1,3})$';
+		$pcexp[5] = '/^(bfpo)(c\/o[0-9]{1,3})$/';
 
 		// Load up the string to check, converting into lowercase and removing spaces
 		$postcode = strtolower($toCheck);
@@ -105,7 +110,7 @@ class WC_Validation {
 		// Check the string against the six types of postcodes
 		foreach ($pcexp as $regexp) {
 
-			if (ereg($regexp,$postcode, $matches)) {
+			if ( preg_match( $regexp, $postcode, $matches ) ) {
 
 				// Load new postcode back into the form element
 				$toCheck = strtoupper ($matches[1] . ' ' . $matches [2]);

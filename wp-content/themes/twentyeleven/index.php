@@ -1,6 +1,6 @@
 <?php
 /**
- * The main template file.
+ * Main template file
  *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
@@ -13,7 +13,6 @@
  */
 
 get_header(); ?>
-<?MS_dynamic_sidebar(); ?>
 
 		<div id="primary">
 			<div id="content" role="main">
@@ -49,4 +48,5 @@ get_header(); ?>
 			</div><!-- #content -->
 		</div><!-- #primary -->
 
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

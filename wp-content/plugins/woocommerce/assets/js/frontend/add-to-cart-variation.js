@@ -37,12 +37,12 @@
         this.find('.variations select').unbind( 'change focusin' );
 
         // Bind events
-        return this
+        $form = this
 
 				// On clicking the reset variation button
 				.on( 'click', '.reset_variations', function( event ) {
 
-					$(this).closest('form.variations_form').find('.variations select').val('').change();
+					$(this).closest('.variations_form').find('.variations select').val('').change();
 
 					var $sku 		= $(this).closest('.product').find('.sku');
 					var $weight 	= $(this).closest('.product').find('.product_weight');
@@ -63,7 +63,7 @@
 				// Upon changing an option
 				.on( 'change', '.variations select', function( event ) {
 
-					$variation_form = $(this).closest('form.variations_form');
+					$variation_form = $(this).closest('.variations_form');
 					$variation_form.find('input[name=variation_id]').val('').change();
 
 					$variation_form
@@ -79,9 +79,9 @@
 				} )
 
 				// Upon gaining focus
-				.on( 'focusin', '.variations select', function( event ) {
+				.on( 'focusin touchstart', '.variations select', function( event ) {
 
-					$variation_form = $(this).closest('form.variations_form');
+					$variation_form = $(this).closest('.variations_form');
 
 					$variation_form
 						.trigger( 'woocommerce_variation_select_focusin' )
@@ -137,7 +137,7 @@
 
 			        if ( all_set ) {
 
-			        	var variation = matching_variations.pop();
+			        	var variation = matching_variations.shift();
 
 			        	if ( variation ) {
 
@@ -221,7 +221,7 @@
 				// Disable option fields that are unavaiable for current set of attributes
 				.on( 'update_variation_values', function( event, variations ) {
 
-			    	$variation_form = $(this).closest('form.variations_form');
+			    	$variation_form = $(this).closest('.variations_form');
 
 			        // Loop through selects and disable/enable options based on selections
 			        $variation_form.find('.variations select').each(function( index, el ) {
@@ -404,9 +404,14 @@
 			        $single_variation_wrap.slideDown('200').trigger( 'show_variation', [ variation ] );
 
 				});
+		
+		$form.trigger('wc_variation_form');
+		return $form;
     };
 
-    $('form.variations_form').wc_variation_form();
-    $('form.variations_form .variations select').change();
+    $(function() {
+    	$('.variations_form').wc_variation_form();
+   		$('.variations_form .variations select').change();
+    });
 
 })( jQuery, window, document );

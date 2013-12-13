@@ -3,8 +3,8 @@ Contributors: catapult, husobj
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M2FLCU6Z4A2LA
 Tags: cookies, eu, cookie law, implied consent, uk cookie consent
 Requires at least: 3.5.0
-Tested up to: 3.5.1
-Stable tag: 1.4.2
+Tested up to: 3.8
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,42 +48,56 @@ You will find more details of the regulations on the [Information Commissioner's
 
 == Changelog ==
 
+= 1.7.1 =
+* Ready for WP 3.8
+
+= 1.7 =
+* Updates to settings page
+
+= 1.6 =
+* Moved JS to footer (thanks to Andreas Larsen for the suggestion)
+
+= 1.5 =
+* Switched the logic so that the bar is initially hidden on the page and only displays if user has not previously dismissed it.
+* Gives a slightly better performance.
+* Thanks to chrisHe for the suggestion.
+
 = 1.4.2. =
-Policy page created on register_activation_hook now
+* Policy page created on register_activation_hook now
 
 = 1.4.1 =
-Tweak to ensure jQuery is a dependency
+* Tweak to ensure jQuery is a dependency
 
 = 1.4 =
-This plug-in now uses JavaScript to test whether the user has dismissed the front-end notification in order to solve issues with caching plug-ins.
-Added configuration options for colour and position of bar.
-Set notification button and link to first element in tab list.
-Thanks to husobj for contributions and suggestions including localisation and enqueueing scripts and stylesheets
+* This plug-in now uses JavaScript to test whether the user has dismissed the front-end notification in order to solve issues with caching plug-ins.
+* Added configuration options for colour and position of bar.
+* Set notification button and link to first element in tab list.
+* Thanks to husobj for contributions and suggestions including localisation and enqueueing scripts and stylesheets
 
 = 1.3 =
-Reinstated user-defined permalink field
+* Reinstated user-defined permalink field
 
 = 1.25 =
-Minor admin update
+* Minor admin update
 
 = 1.24 =
-Fixed text alignment issue with Thesis framework (thanks to cavnit for pointing this one out)
+* Fixed text alignment issue with Thesis framework (thanks to cavnit for pointing this one out)
 
 = 1.23 =
-Minor admin update
+* Minor admin update
 
 = 1.22 =
-Minor admin update
+* Minor admin update
 
 = 1.21 =
-Added resources to Settings page
+* Added resources to Settings page
 
 = 1.2 =
-Change title of Cookies page to Cookie Policy and removed option to change title
-Added trailing slash to Cookie Policy url (thanks to mikeotgaar for spotting this)
+* Change title of Cookies page to Cookie Policy and removed option to change title
+* Added trailing slash to Cookie Policy url (thanks to mikeotgaar for spotting this)
 
 = 1.1 =
-Added default text to messages
+* Added default text to messages
 
 == Upgrade Notice ==
 

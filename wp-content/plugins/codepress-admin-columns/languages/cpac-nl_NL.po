@@ -1,61 +1,62 @@
+#
+# Translators:
+# codepress <info@codepress.nl>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: Codepress Admin Columns v2.0.0\n"
+"Project-Id-Version: Admin Columns\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-13 19:08+0100\n"
-"PO-Revision-Date: 2013-08-13 19:08+0100\n"
+"POT-Creation-Date: 2013-08-26 16:51+0100\n"
+"PO-Revision-Date: 2013-11-14 15:55+0100\n"
 "Last-Translator: Codepress <info@codepress.nl>\n"
-"Language-Team: Codepress <info@codepress.nl>\n"
-"Language: nl_NL\n"
+"Language-Team: Dutch (Netherlands) (http://www.transifex.com/projects/p/"
+"admin-columns/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
-"X-Poedit-Basepath: .\n"
-"X-Textdomain-Support: yes\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-# @ default
 #: ../codepress-admin-columns.php:227 ../classes/settings.php:535
 msgid "Settings"
 msgstr "Instellingen"
 
 #: ../codepress-admin-columns.php:350
 msgid "Edit columns"
-msgstr ""
+msgstr "Wijzig kolommen"
 
 #: ../classes/column.php:479
 msgid "Thumbnail"
-msgstr ""
+msgstr "Thumbnail"
 
 #: ../classes/column.php:480
 msgid "Medium"
-msgstr ""
+msgstr "Gemiddeld"
 
 #: ../classes/column.php:481
 msgid "Large"
-msgstr ""
+msgstr "Groot"
 
 #: ../classes/column.php:482
 msgid "Full"
-msgstr ""
+msgstr "Volledig"
 
 #: ../classes/column.php:774
 msgid "Date Format"
-msgstr ""
+msgstr "Datumnotatie"
 
 #: ../classes/column.php:775
 msgid "This will determine how the date will be displayed."
-msgstr ""
+msgstr "Dit bepaald hoe de datum wordt weergegeven."
 
 #: ../classes/column.php:781
 msgid "Example:"
-msgstr ""
+msgstr "Voorbeeld:"
 
 #: ../classes/column.php:783
 #, php-format
@@ -63,105 +64,92 @@ msgid ""
 "Leave empty for WordPress date format, change your <a href=\"%s\">default "
 "date format here</a>."
 msgstr ""
+"Laat leeg voor WordPress datumformaat, verander je  <a href=\"%s\">standaard "
+"datumformaat </a>."
 
 #: ../classes/column.php:784
 msgid "Documentation on date and time formatting."
-msgstr ""
+msgstr "Documentatie over datum en tijd opmaak."
 
-# @ default
-# @ codepress-admin-columns
 #: ../classes/column.php:801
-#, fuzzy
 msgid "Excerpt length"
-msgstr "Samenvatting"
+msgstr "Samenvatting lengte"
 
 #: ../classes/column.php:802
 msgid "Number of words"
-msgstr ""
+msgstr "Aantal woorden"
 
 #: ../classes/column.php:824
 msgid "Preview size"
-msgstr ""
+msgstr "Voorbeeldformaat"
 
-# @ codepress-admin-columns
 #: ../classes/column.php:841 ../classes/column.php:897
 msgid "Custom"
-msgstr ""
+msgstr "Aangepast"
 
-# @ codepress-admin-columns
 #: ../classes/column.php:844
-#, fuzzy
 msgid "width"
-msgstr "Breedte"
+msgstr "breedte"
 
-# @ codepress-admin-columns
 #: ../classes/column.php:847
-#, fuzzy
 msgid "height"
-msgstr "Hoogte"
+msgstr "hoogte"
 
-# @ default
 #: ../classes/column.php:898 ../classes/settings.php:224
 #: ../classes/column/custom-field.php:72
 msgid "Default"
-msgstr ""
+msgstr "Standaard"
 
-# @ default
 #: ../classes/column.php:923 ../classes/column.php:984
 #: ../classes/column/user/actions.php:65
 msgid "Remove"
-msgstr "Verwijder"
+msgstr "Verwijderen"
 
 #: ../classes/column.php:942
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: ../classes/column.php:942
 msgid "Choose a column type."
-msgstr ""
+msgstr "Kies een kolom type."
 
 #: ../classes/column.php:952
 msgid "Label"
-msgstr ""
+msgstr "Label"
 
 #: ../classes/column.php:952
 msgid "This is the name which will appear as the column header."
-msgstr ""
+msgstr "Deze naam zal verschijnen als kolom kop."
 
-# @ codepress-admin-columns
 #: ../classes/column.php:959 ../classes/column/media/width.php:12
 msgid "Width"
 msgstr "Breedte"
 
-# @ codepress-admin-columns
 #: ../classes/column.php:961 ../classes/column.php:962
-#, fuzzy
 msgid "default"
-msgstr "Herstel instellingen"
+msgstr "standaard"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:68
 msgid "Admin Columns Settings"
-msgstr ""
+msgstr "Admin Columns Instellingen"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:68 ../classes/settings.php:534
 #: ../classes/upgrade.php:89
 msgid "Admin Columns"
-msgstr ""
+msgstr "Admin Columns"
 
 #: ../classes/settings.php:129
 #, php-format
 msgid "%s column is already present and can not be duplicated."
-msgstr ""
+msgstr "%s kolom is al in gebruik en kan niet worden gedupliceerd."
 
 #: ../classes/settings.php:184
 msgid "Default settings succesfully restored."
-msgstr ""
+msgstr "Standaard instellingen succesvol hersteld."
 
 #: ../classes/settings.php:202 ../classes/settings.php:457
 msgid "Overview"
-msgstr ""
+msgstr "Overzicht"
 
 #: ../classes/settings.php:205
 msgid ""
@@ -172,65 +160,64 @@ msgstr ""
 
 #: ../classes/settings.php:208
 msgid "Basics"
-msgstr ""
+msgstr "Basisinfo"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:210
-#, fuzzy
 msgid "Change order"
-msgstr "Pagina Volgorde"
+msgstr "Verander volgorde"
 
 #: ../classes/settings.php:211
 msgid ""
 "By dragging the columns you can change the order which they will appear in."
-msgstr ""
+msgstr "Door de kolommen te verslepen kan je de volgorde aanpassen."
 
 #: ../classes/settings.php:212
 msgid "Change label"
-msgstr ""
+msgstr "Wijzig label"
 
 #: ../classes/settings.php:213
 msgid ""
 "By clicking on the triangle you will see the column options. Here you can "
 "change each label of the columns heading."
 msgstr ""
+"Klik op het kleine driehoekje om de kolom opties te tonen. Hier kan je de "
+"kolom label aanpassen."
 
 #: ../classes/settings.php:214
 msgid "Change column width"
-msgstr ""
+msgstr "Verander kolom breedte"
 
 #: ../classes/settings.php:215
 msgid ""
 "By clicking on the triangle you will see the column options. By using the "
-"draggable slider yo can set the width of the columns in percentages."
+"draggable slider you can set the width of the columns in percentages."
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:219 ../classes/column/custom-field.php:16
 #: ../classes/column/custom-field.php:324
 msgid "Custom Field"
-msgstr ""
+msgstr "Custom veld"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:221
-#, fuzzy
 msgid "'Custom Field' column"
-msgstr "Voeg custom field kolom toe"
+msgstr "'Custom veld' kolom"
 
 #: ../classes/settings.php:222
 msgid ""
 "The custom field colum uses the custom fields from posts and users. There "
 "are 10 types which you can set."
 msgstr ""
+"De 'custom veld' kolom gebruikt custom velden voor berichten en gebruikers. "
+"Er zijn 10 typen welke je kan gebruiken."
 
 #: ../classes/settings.php:224
 msgid ""
 "Value: Can be either a string or array. Arrays will be flattened and values "
 "are seperated by a ',' comma."
 msgstr ""
+"Waarde: Kan een string of array zijn. Arrays worden plat gemaakt en de "
+"waarden gescheiden door een ',' komma."
 
-# @ default
-# @ codepress-admin-columns
 #: ../classes/settings.php:225 ../classes/column/custom-field.php:73
 #: ../classes/column/link/image.php:12
 msgid "Image"
@@ -241,9 +228,9 @@ msgid ""
 "Value: should contain an image URL or Attachment IDs ( seperated by a ',' "
 "comma )."
 msgstr ""
+"Waarde: moet een afbeeldings URL of Media ID zijn ( gescheiden door een ',' "
+"komma )."
 
-# @ default
-# @ codepress-admin-columns
 #: ../classes/settings.php:226 ../classes/column/custom-field.php:75
 #: ../classes/column/comment/excerpt.php:13
 #: ../classes/column/post/excerpt.php:13
@@ -252,9 +239,8 @@ msgstr "Samenvatting"
 
 #: ../classes/settings.php:226
 msgid "Value: This will show the first 20 words of the Post content."
-msgstr ""
+msgstr "Waarde: Deze toont de eerste 20 woorden van een bericht."
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:227 ../classes/column/custom-field.php:76
 msgid "Multiple Values"
 msgstr "Meerdere waarden"
@@ -264,7 +250,6 @@ msgid ""
 "Value: should be an array. This will flatten any ( multi dimensional ) array."
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:228 ../classes/column/custom-field.php:77
 msgid "Numeric"
 msgstr "Numerieke"
@@ -275,7 +260,6 @@ msgid ""
 "for sorting, so you can sort your posts on numeric (custom field) values."
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:229 ../classes/column/custom-field.php:78
 #: ../classes/column/comment/date.php:12
 msgid "Date"
@@ -289,71 +273,67 @@ msgid ""
 "href='%s'>general settings</a> page."
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:230
-#, fuzzy
 msgid "Post Titles"
-msgstr "Post Titel (Post ID's)"
+msgstr "Post titels"
 
 #: ../classes/settings.php:230
 msgid "Value: can be one or more Post ID's (seperated by ',')."
-msgstr ""
+msgstr "Waarde: één of meer Post ID's ( gescheiden door een komma )"
 
 #: ../classes/settings.php:231
 msgid "Usernames"
-msgstr ""
+msgstr "Gebruikersnamen"
 
 #: ../classes/settings.php:231
 msgid "Value: can be one or more User ID's (seperated by ',')."
-msgstr ""
+msgstr "Waarde: één of meer User ID's ( gescheiden door een komma )"
 
 #: ../classes/settings.php:232
 msgid "Checkmark"
-msgstr ""
+msgstr "Checkmark"
 
 #: ../classes/settings.php:232
 msgid "Value: should be a 1 (one) or 0 (zero)."
-msgstr ""
+msgstr "Waarde: moet 1 of 0 zijn."
 
 #: ../classes/settings.php:233 ../classes/column/custom-field.php:82
 msgid "Color"
-msgstr ""
+msgstr "Kleur"
 
 #: ../classes/settings.php:233
 msgid "Value: hex value color, such as #808080."
-msgstr ""
+msgstr "Waarde: hex waarde kleur, vb: #808080"
 
 #: ../classes/settings.php:377
 msgid "Welcome to Admin Columns"
-msgstr ""
+msgstr "Welkom bij Admin Columns"
 
 #: ../classes/settings.php:380
 msgid "Thank you for updating to the latest version!"
-msgstr ""
+msgstr "Bedankt voor het updaten naar de laatste versie!"
 
 #: ../classes/settings.php:381
 msgid ""
 "Admin Columns is more polished and enjoyable than ever before. We hope you "
 "like it."
-msgstr ""
+msgstr "Admin Columns ziet er nog beter uit dan ooit. Veel plezier ermee."
 
 #: ../classes/settings.php:386
 msgid "What’s New"
-msgstr ""
+msgstr "What is nieuw"
 
 #: ../classes/settings.php:387
 msgid "Changelog"
-msgstr ""
+msgstr "Changelog"
 
 #: ../classes/settings.php:389
 msgid "Download Addons"
-msgstr ""
+msgstr "Download Addons"
 
-# @ default
 #: ../classes/settings.php:395
-#, fuzzy
 msgid "Addons"
-msgstr "Adres"
+msgstr "Addons"
 
 #: ../classes/settings.php:397
 msgid ""
@@ -361,6 +341,9 @@ msgid ""
 "Although these plugins will not be hosted on the wordpress.org repository, "
 "each Add-on will continue to receive updates in the usual way."
 msgstr ""
+"Addons worden vanaf nu geactiveer door ze te downloaden en te installeren "
+"als individuele plugins. Deze plugins zullen niet worden gehost op wordpress."
+"org, maar ze blijven wel automatische updates ontvangen zoals gewoonlijk."
 
 #: ../classes/settings.php:400
 msgid ""
@@ -373,7 +356,7 @@ msgstr ""
 
 #: ../classes/settings.php:403
 msgid "Download your Addons"
-msgstr ""
+msgstr "Download je Addons"
 
 #: ../classes/settings.php:409
 msgid "This website does not use add-ons"
@@ -385,13 +368,11 @@ msgstr ""
 
 #: ../classes/settings.php:416
 msgid "Important"
-msgstr ""
+msgstr "Belangrijk"
 
-# @ default
 #: ../classes/settings.php:418
-#, fuzzy
 msgid "Database Changes"
-msgstr "Wijzigingen opslaan"
+msgstr "Database Aanpassingen"
 
 #: ../classes/settings.php:419
 msgid ""
@@ -401,15 +382,15 @@ msgstr ""
 
 #: ../classes/settings.php:422
 msgid "Make sure you backup your database and then click"
-msgstr ""
+msgstr "Backup je database and klik dan"
 
 #: ../classes/settings.php:422 ../classes/upgrade.php:97
 msgid "Upgrade Database"
-msgstr ""
+msgstr "Werk Database bij"
 
 #: ../classes/settings.php:425
 msgid "Potential Issues"
-msgstr ""
+msgstr "Potentiele problemen"
 
 #: ../classes/settings.php:426
 msgid ""
@@ -420,11 +401,11 @@ msgstr ""
 
 #: ../classes/settings.php:426
 msgid "Migrating from v1 to v2"
-msgstr ""
+msgstr "Migratie van v1 naar v2"
 
 #: ../classes/settings.php:426
 msgid "guide to view the full list of changes."
-msgstr ""
+msgstr "overzicht van alle aanpassingen."
 
 #: ../classes/settings.php:426
 #, php-format
@@ -435,7 +416,7 @@ msgstr ""
 
 #: ../classes/settings.php:429
 msgid "Important!"
-msgstr ""
+msgstr "Belangrijk!"
 
 #: ../classes/settings.php:429
 msgid ""
@@ -445,21 +426,19 @@ msgstr ""
 
 #: ../classes/settings.php:429
 msgid "version 1"
-msgstr ""
+msgstr "versie 1"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:429
-#, fuzzy
 msgid "of this plugin."
-msgstr "Leuke plugin?"
+msgstr "van deze plugin."
 
 #: ../classes/settings.php:435
 msgid "Changelog for"
-msgstr ""
+msgstr "Changelog voor"
 
 #: ../classes/settings.php:450
 msgid "Learn more"
-msgstr ""
+msgstr "Leer meer"
 
 #: ../classes/settings.php:459
 msgid ""
@@ -471,20 +450,20 @@ msgstr ""
 msgid ""
 "This page will assist you in downloading and installing each available Addon."
 msgstr ""
+"De pagina help je met het downloaden en installeren van elke beschikbare "
+"Addon."
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:461
-#, fuzzy
 msgid "Available Addons"
-msgstr "Activeer Google Maps"
+msgstr "Beschikbare Addons"
 
 #: ../classes/settings.php:466
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #: ../classes/settings.php:467 ../classes/settings.php:475
 msgid "Download"
-msgstr ""
+msgstr "Download"
 
 #: ../classes/settings.php:473
 msgid "Pro Add-on (includes Sortorder add-on)"
@@ -492,37 +471,39 @@ msgstr ""
 
 #: ../classes/settings.php:483
 msgid "Installation"
-msgstr ""
+msgstr "Installatie"
 
 #: ../classes/settings.php:485
 msgid "For each Add-on available, please perform the following:"
-msgstr ""
+msgstr "Voor elke addo-on, doe het volgende:"
 
 #: ../classes/settings.php:487
 msgid "Download the Addon plugin (.zip file) to your desktop"
-msgstr ""
+msgstr "Download de Addon plugin (.zip bestand) naar je desktop"
 
 #: ../classes/settings.php:488
 msgid "Navigate to"
-msgstr ""
+msgstr "Navigeer naar"
 
 #: ../classes/settings.php:488
 msgid "Plugins > Add New > Upload"
-msgstr ""
+msgstr "Plugins > Voeg toe > Upload"
 
 #: ../classes/settings.php:489
 msgid "Use the uploader to browse, select and install your Add-on (.zip file)"
-msgstr ""
+msgstr "Gebruik de uploader om de Add-on te installeren (.zip bestand)"
 
 #: ../classes/settings.php:490
 msgid ""
 "Once the plugin has been uploaded and installed, click the 'Activate Plugin' "
 "link"
 msgstr ""
+"Waanner de plugin is geupload and geinstalleerd, klik de 'Activeer Plugin' "
+"link"
 
 #: ../classes/settings.php:491
 msgid "The Add-on is now installed and activated!"
-msgstr ""
+msgstr "De Add-on is nu geinstalleerd en actief!"
 
 #: ../classes/settings.php:492
 #, php-format
@@ -532,76 +513,64 @@ msgstr ""
 
 #: ../classes/settings.php:502
 msgid "Start using Admin Columns"
-msgstr ""
+msgstr "Start met Admin Columns"
 
-# @ default
 #: ../classes/settings.php:580
-#, fuzzy
 msgid "Store settings"
-msgstr "Instellingen"
+msgstr "Opslaan"
 
 #: ../classes/settings.php:585
 msgid "Update"
-msgstr ""
+msgstr "Bijwerken"
 
 #: ../classes/settings.php:585
 msgid "Publish"
-msgstr ""
+msgstr "Publiceren"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:589
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Warning! The %s columns data will be deleted. This cannot be undone. \\'OK"
 "\\' to delete, \\'Cancel\\' to stop"
 msgstr ""
-"Waarschuwing! ALLE bewaarde instellingen worden verwijderd. Dit kan niet "
-"worden ongedaan. \\'OK\\' om te verwijderen, \\'Annuleren\\' om te stoppen"
 
-# @ default
 #: ../classes/settings.php:590 ../classes/column/comment/actions.php:86
 #: ../classes/column/post/actions.php:53
 msgid "Restore"
-msgstr ""
+msgstr "Herstellen"
 
 #: ../classes/settings.php:590
 msgid "columns"
-msgstr ""
+msgstr "kolommen"
 
 #: ../classes/settings.php:600
 msgid "Get the Pro Add-on"
-msgstr ""
+msgstr "Neem de Pro Add-on"
 
 #: ../classes/settings.php:604
 msgid "Add Sorting"
-msgstr ""
+msgstr "Voeg sorting toe"
 
 #: ../classes/settings.php:605
 msgid "Add Filtering"
-msgstr ""
+msgstr "Voeg filtering toe"
 
 #: ../classes/settings.php:606
 msgid "Add Import/Export"
-msgstr ""
+msgstr "Voeg import/export toe"
 
 #: ../classes/settings.php:609
 #, php-format
 msgid "Check the <a href=\"%s\">Pro Add-on</a> for more details!"
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:617
-#, fuzzy
 msgid "Support"
 msgstr "Hulp nodig?"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:620
-#, fuzzy
 msgid "Check the <strong>Help</strong> section in the top-right screen."
 msgstr ""
-"Je vindt een korte samenvatting in de <strong>Help</strong> sectie in de "
-"rechter bovenkant van het scherm."
 
 #: ../classes/settings.php:622
 #, php-format
@@ -610,31 +579,25 @@ msgid ""
 "href='%s'>visit the Admin Columns website</a>"
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:642
-#, fuzzy
 msgid "Drag and drop to reorder"
-msgstr "sleep om de volgorde te veranderen"
+msgstr "Sleep om te herordenen"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:645
-#, fuzzy
 msgid "Add Column"
-msgstr "Voeg custom field kolom toe"
+msgstr "Voeg Kolom toe"
 
-# @ default
 #: ../classes/settings.php:696
-#, fuzzy
 msgid "General Settings"
-msgstr "Instellingen"
+msgstr "Algemene Instellingen"
 
 #: ../classes/settings.php:697
 msgid "Customize your Admin Columns settings."
-msgstr ""
+msgstr "Pas uw Admin Column instellingen aan."
 
 #: ../classes/settings.php:710
 msgid "Show hidden custom fields. Default is <code>off</code>."
-msgstr ""
+msgstr "Toon verborgen custom fields. Standaard waarde is <code>uit</code>."
 
 #: ../classes/settings.php:716
 msgid ""
@@ -643,27 +606,22 @@ msgstr ""
 
 #: ../classes/settings.php:723
 msgid "Save"
-msgstr ""
+msgstr "Opslaan"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:763
-#, fuzzy
 msgid "Restore Settings"
-msgstr "Herstel standaard instellingen"
+msgstr "Herstel Instellingen"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:764
 msgid "This will delete all column settings and restore the default settings."
 msgstr ""
 "Hiermee worden alle kolommen instellingen verwijderd en de "
 "standaardinstellingen hersteld."
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:770
 msgid "Restore default settings"
 msgstr "Herstel standaard instellingen"
 
-# @ codepress-admin-columns
 #: ../classes/settings.php:770
 msgid ""
 "Warning! ALL saved admin columns data will be deleted. This cannot be "
@@ -674,76 +632,73 @@ msgstr ""
 
 #: ../classes/storage_model.php:167
 msgid "settings succesfully restored."
-msgstr ""
+msgstr "instellingen succesvol hersteld."
 
 #: ../classes/storage_model.php:181
 msgid "No columns settings available."
-msgstr ""
+msgstr "Geen kolom instellingen beschikbaar."
 
 #: ../classes/storage_model.php:204
 #, php-format
 msgid "You are trying to store the same settings for %s."
-msgstr ""
+msgstr "U probeerd dezelfde instellingen op te slaan voor %s."
 
 #: ../classes/storage_model.php:208
 #, php-format
 msgid "Settings for %s updated succesfully."
-msgstr ""
+msgstr "Instellingen voor %s succesvol bijgewerkt."
 
-# @ default
 #: ../classes/storage_model.php:577 ../classes/column/post/actions.php:64
 msgid "View"
-msgstr ""
+msgstr "Bekijk"
 
 #: ../classes/upgrade.php:45
 msgid "Upgrade"
-msgstr ""
+msgstr "Upgrade"
 
 #: ../classes/upgrade.php:90
 msgid "requires a database upgrade"
-msgstr ""
+msgstr "verreist een database upgrade"
 
 #: ../classes/upgrade.php:93
 msgid "why?"
-msgstr ""
+msgstr "waarom?"
 
 #: ../classes/upgrade.php:94
 msgid "Please"
-msgstr ""
+msgstr "Alstublieft"
 
 #: ../classes/upgrade.php:95
 msgid "backup your database"
-msgstr ""
+msgstr "backup van uw database"
 
 #: ../classes/upgrade.php:96
 msgid "then click"
-msgstr ""
+msgstr "daarna klik"
 
 #: ../classes/upgrade.php:304
 msgid "Migrating Column Settings"
-msgstr ""
+msgstr "Migreer Kolom Instellingen"
 
 #: ../classes/upgrade.php:340
 msgid "No Upgrade Required"
-msgstr ""
+msgstr "Geen upgrade verreist"
 
 #: ../classes/upgrade.php:341
 msgid "Return to welcome screen."
-msgstr ""
+msgstr "Ga terug naar het welkomst scherm."
 
 #: ../classes/upgrade.php:359
 msgid "Upgrade Complete!"
-msgstr ""
+msgstr "Upgrade voltooid!"
 
-# @ codepress-admin-columns
 #: ../classes/upgrade.php:359
-#, fuzzy
 msgid "Return to settings."
 msgstr "Herstel standaard instellingen"
 
 #: ../classes/upgrade.php:360
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 #: ../classes/upgrade.php:361
 msgid ""
@@ -751,190 +706,144 @@ msgid ""
 "on the support forum."
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/column/custom-field.php:74 ../classes/storage_model/media.php:13
-#, fuzzy
 msgid "Media Library"
-msgstr "Media bibliotheek Icoon"
+msgstr "Mediabibliotheek"
 
-# @ codepress-admin-columns
 #: ../classes/column/custom-field.php:79
 msgid "Post Title (Post ID's)"
 msgstr "Post Titel (Post ID's)"
 
 #: ../classes/column/custom-field.php:80
 msgid "Username (User ID's)"
-msgstr ""
+msgstr "Gebruikersnaam ( Gebruiker ID's )"
 
-# @ codepress-admin-columns
 #: ../classes/column/custom-field.php:81
 msgid "Checkmark (true/false)"
-msgstr ""
+msgstr "Vinkje (true/false)"
 
 #: ../classes/column/custom-field.php:324
 msgid "Select your custom field."
-msgstr ""
+msgstr "Selecteer uw custom field."
 
 #: ../classes/column/custom-field.php:334
 msgid "No custom fields available."
-msgstr ""
+msgstr "Geen custom fields beschikbaar."
 
-# @ codepress-admin-columns
 #: ../classes/column/custom-field.php:341
 msgid "Field Type"
-msgstr ""
+msgstr "Veld type"
 
 #: ../classes/column/custom-field.php:341
 msgid "This will determine how the value will be displayed."
-msgstr ""
+msgstr "Dit bepaald hoe de waarde wordt weer gegeven,"
 
-# @ codepress-admin-columns
 #: ../classes/column/custom-field.php:384
 msgid "Before"
-msgstr ""
+msgstr "Voor"
 
 #: ../classes/column/custom-field.php:384
 msgid "This text will appear before the custom field value."
-msgstr ""
+msgstr "Deze tekst wordt getoond voor de custom field waarde."
 
-# @ codepress-admin-columns
 #: ../classes/column/custom-field.php:390
 msgid "After"
-msgstr ""
+msgstr "Na"
 
 #: ../classes/column/custom-field.php:390
 msgid "This text will appear after the custom field value."
-msgstr ""
+msgstr "Deze tekst wordt getoond na de custom field waarde."
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/actions.php:14
 #: ../classes/column/link/actions.php:14
 #: ../classes/column/media/actions.php:14
 #: ../classes/column/post/actions.php:14 ../classes/column/user/actions.php:14
 msgid "Actions"
-msgstr ""
+msgstr "Acties"
 
-# @ default
 #: ../classes/column/comment/actions.php:73
 #: ../classes/column/comment/actions.php:78
 msgid "Unapprove"
-msgstr ""
+msgstr "Afgekeurd"
 
-# @ default
 #: ../classes/column/comment/actions.php:75
 #: ../classes/column/comment/actions.php:77
 msgid "Approve"
-msgstr ""
+msgstr "Goedgekeurd"
 
-# @ default
-#: ../classes/column/comment/actions.php:82
-msgctxt "verb"
-msgid "Spam"
-msgstr ""
-
-# @ default
-#: ../classes/column/comment/actions.php:84
-msgctxt "comment"
-msgid "Not Spam"
-msgstr ""
-
-# @ default
 #: ../classes/column/comment/actions.php:90
 #: ../classes/column/post/actions.php:57
 msgid "Delete Permanently"
-msgstr ""
+msgstr "Permanent verwijderen"
 
-# @ default
-#: ../classes/column/comment/actions.php:92
-msgctxt "verb"
-msgid "Trash"
-msgstr ""
-
-# @ default
 #: ../classes/column/comment/actions.php:96
 #: ../classes/column/link/actions.php:45 ../classes/column/post/actions.php:48
 #: ../classes/column/user/actions.php:57
 msgid "Edit"
-msgstr ""
+msgstr "Bewerken"
 
-# @ default
 #: ../classes/column/comment/actions.php:97
 #: ../classes/column/post/actions.php:49
 msgid "Quick&nbsp;Edit"
-msgstr ""
+msgstr "Snel&nbsp;Bewerken"
 
-# @ default
 #: ../classes/column/comment/actions.php:98
 msgid "Reply"
-msgstr ""
+msgstr "Beantwoorden"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/agent.php:12
 msgid "Agent"
-msgstr ""
+msgstr "Agent"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/approved.php:12
 #: ../classes/column/post/comment-count.php:31
 msgid "Approved"
 msgstr "Goedgekeurd"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/author-avatar.php:12
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/author-email.php:12
 msgid "Author email"
 msgstr "Auteurs email"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/author-ip.php:12
 msgid "Author IP"
 msgstr "Auteur IP"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/author-url.php:12
 msgid "Author url"
 msgstr "Auteurs url"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/author.php:12
-#, fuzzy
 msgid "Author"
-msgstr "Auteur IP"
+msgstr "Auteur"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/date-gmt.php:12
 msgid "Date GMT"
 msgstr "Datum GMT"
 
-# @ default
 #: ../classes/column/comment/date-gmt.php:25
 #: ../classes/column/comment/date.php:25
 #, php-format
 msgid "Submitted on <a href=\"%1$s\">%2$s at %3$s</a>"
 msgstr "Verstuurd op <a href=\"%1$s\">%2$s op %3$s</a>"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/ID.php:12 ../classes/column/link/ID.php:12
 #: ../classes/column/media/ID.php:12 ../classes/column/post/ID.php:12
 msgid "ID"
 msgstr "ID"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/reply-to.php:12
 msgid "In Reply To"
 msgstr "Antwoord op"
 
-# @ codepress-admin-columns
 #: ../classes/column/comment/word-count.php:12
 #: ../classes/column/post/word-count.php:12
 msgid "Word count"
 msgstr "Aantal woorden"
 
-# @ default
 #: ../classes/column/link/actions.php:46
 #, php-format
 msgid ""
@@ -942,304 +851,251 @@ msgid ""
 "  'Cancel' to stop, 'OK' to delete."
 msgstr ""
 
-# @ default
 #: ../classes/column/link/actions.php:46 ../classes/column/user/actions.php:63
 msgid "Delete"
-msgstr ""
+msgstr "Verwijder"
 
-# @ codepress-admin-columns
 #: ../classes/column/link/description.php:12
 #: ../classes/column/media/description.php:12
 #: ../classes/column/user/description.php:14
 msgid "Description"
 msgstr "Beschrijving"
 
-# @ codepress-admin-columns
 #: ../classes/column/link/length.php:12
 msgid "Length"
 msgstr "Lengte"
 
-# @ codepress-admin-columns
 #: ../classes/column/link/notes.php:13
 msgid "Notes"
 msgstr "Beschrijving"
 
-# @ codepress-admin-columns
 #: ../classes/column/link/owner.php:12
-#, fuzzy
 msgid "Owner"
-msgstr "Volgorde"
+msgstr "Eigenaar"
 
-# @ codepress-admin-columns
 #: ../classes/column/link/rss.php:12
 msgid "Rss"
-msgstr ""
+msgstr "Rss"
 
-# @ codepress-admin-columns
 #: ../classes/column/link/target.php:12
 msgid "Target"
-msgstr ""
+msgstr "Doel"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/alternate-text.php:12
 msgid "Alt"
-msgstr ""
+msgstr "Alt"
 
 #: ../classes/column/media/available-sizes.php:14
 msgid "Available Sizes"
-msgstr ""
+msgstr "Beschikbare Afmetingen"
 
 #: ../classes/column/media/available-sizes.php:37
 msgid "full size"
-msgstr ""
+msgstr "Volledige grootte"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/caption.php:12
 #: ../classes/column/media/exif-data.php:36
-#, fuzzy
 msgid "Caption"
-msgstr "Locatie"
+msgstr "Onderschrift"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/dimensions.php:12
 msgid "Dimensions"
 msgstr "Afmetingen"
 
 #: ../classes/column/media/exif-data.php:12
 msgid "EXIF data"
-msgstr ""
+msgstr "EXIF data"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:33
 msgid "Aperture"
-msgstr ""
+msgstr "Aperture"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:34
 msgid "Credit"
-msgstr ""
+msgstr "Credit"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:35
 msgid "Camera"
-msgstr ""
+msgstr "Camera"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:37
 msgid "Timestamp"
-msgstr ""
+msgstr "Timestamp"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:38
 msgid "Copyright EXIF"
-msgstr ""
+msgstr "Copyright EXIF"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:39
 msgid "Focal Length"
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:40
 msgid "ISO"
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:41
 msgid "Shutter Speed"
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/column/media/exif-data.php:42
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/file-name.php:12
-#, fuzzy
 msgid "File name"
-msgstr "Voornaam"
+msgstr "Bestandsnaam"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/file-size.php:12
 msgid "File size"
-msgstr ""
+msgstr "Bestandsgrootte"
 
 #: ../classes/column/media/full-path.php:12
 msgid "Full path"
-msgstr ""
+msgstr "Volledige pad"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/height.php:12
 msgid "Height"
 msgstr "Hoogte"
 
-# @ codepress-admin-columns
 #: ../classes/column/media/mime-type.php:12
 msgid "Mime type"
-msgstr ""
+msgstr "Mimi type"
 
-# @ default
 #: ../classes/column/post/actions.php:48
 msgid "Edit this item"
-msgstr ""
+msgstr "Bewerk dit item"
 
-# @ default
 #: ../classes/column/post/actions.php:49
 msgid "Edit this item inline"
-msgstr ""
+msgstr "Bijwerken van dit item"
 
-# @ default
 #: ../classes/column/post/actions.php:53
 msgid "Restore this item from the Trash"
 msgstr ""
 
-# @ default
 #: ../classes/column/post/actions.php:55
 msgid "Move this item to the Trash"
 msgstr ""
 
-# @ codepress-admin-columns
-# @ default
 #: ../classes/column/post/actions.php:55
 #: ../classes/column/post/comment-count.php:34
 #: ../classes/column/post/status.php:35
 msgid "Trash"
-msgstr ""
+msgstr "Prullenbak"
 
-# @ default
 #: ../classes/column/post/actions.php:57
 msgid "Delete this item permanently"
-msgstr ""
+msgstr "Verwijder permanent"
 
-# @ default
 #: ../classes/column/post/actions.php:62
 #, php-format
 msgid "Preview &#8220;%s&#8221;"
 msgstr ""
 
-# @ default
 #: ../classes/column/post/actions.php:62
 msgid "Preview"
-msgstr ""
+msgstr "Voorbeeld"
 
-# @ default
 #: ../classes/column/post/actions.php:64
 #, php-format
 msgid "View &#8220;%s&#8221;"
-msgstr ""
+msgstr "Bekijk &#8220;%s&#8221;"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/attachment-count.php:12
 msgid "No. of Attachments"
 msgstr "Aantal attachments"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/attachment.php:12
 msgid "Attachment"
 msgstr "Bijlage"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/author-name.php:12
 msgid "Display Author As"
-msgstr ""
+msgstr "Toon auteur als"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/author-name.php:33
 msgid "Display Name"
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/column/post/author-name.php:34
 msgid "First Name"
-msgstr ""
+msgstr "Voornaam"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/author-name.php:35
 msgid "Last Name"
-msgstr ""
+msgstr "Achternaam"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/author-name.php:36
 #: ../classes/column/user/nickname.php:14
 msgid "Nickname"
-msgstr ""
+msgstr "Nickname"
 
 #: ../classes/column/post/author-name.php:37
 msgid "User Login"
-msgstr ""
+msgstr "Gebruikers login"
 
 #: ../classes/column/post/author-name.php:38
 msgid "User Email"
-msgstr ""
+msgstr "Gebruiker Email"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/author-name.php:39 ../classes/column/user/ID.php:14
 msgid "User ID"
-msgstr ""
+msgstr "Gebruiker ID"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/author-name.php:40
-#, fuzzy
 msgid "First and Last Name"
-msgstr "Voornaam"
+msgstr "Voor- en achternaam"
 
 #: ../classes/column/post/author-name.php:106
 msgid "This is the format of the author name."
-msgstr ""
+msgstr "Dit is het formaat van de auteursnaam"
 
 #: ../classes/column/post/before-moretag.php:14
 msgid "Before More Tag"
-msgstr ""
+msgstr "Voor de meer-tag"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/comment-count.php:14
 msgid "Comment count"
-msgstr ""
+msgstr "Aantal reacties"
 
 #: ../classes/column/post/comment-count.php:30
 msgid "Total"
-msgstr ""
+msgstr "Totaal"
 
 #: ../classes/column/post/comment-count.php:32
 msgid "Pending"
-msgstr ""
+msgstr "Pending"
 
 #: ../classes/column/post/comment-count.php:33
 msgid "Spam"
-msgstr ""
+msgstr "Spam"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/comment-count.php:78
 #: ../classes/column/post/comment-status.php:14
 msgid "Comment status"
-msgstr ""
+msgstr "Comment status"
 
 #: ../classes/column/post/comment-count.php:78
 msgid "Select which comment status you like to display."
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/column/post/featured-image.php:14
 msgid "Featured Image"
 msgstr "Uitgelichte afbeelding"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/formats.php:14
 msgid "Post Format"
-msgstr ""
+msgstr "Post formaat"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/modified.php:14
 msgid "Last modified"
-msgstr ""
+msgstr "Laatst gewijzigd"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/order.php:14
 msgid "Page Order"
 msgstr "Pagina Volgorde"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/page-template.php:12
 msgid "Page Template"
 msgstr "Pagina Template"
@@ -1248,208 +1104,87 @@ msgstr "Pagina Template"
 msgid "Parent"
 msgstr ""
 
-# @ codepress-admin-columns
 #: ../classes/column/post/ping-status.php:14
 msgid "Ping status"
-msgstr ""
+msgstr "Ping status"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/roles.php:14
 msgid "Roles"
-msgstr ""
+msgstr "Rollen"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/slug.php:12
 msgid "Slug"
-msgstr ""
+msgstr "Slug"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/status.php:14
 msgid "Status"
 msgstr "Status"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/status.php:30
 msgid "Published"
-msgstr ""
+msgstr "Gepubliceerd"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/status.php:31
 msgid "Draft"
-msgstr ""
+msgstr "Concept"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/status.php:32
 msgid "Scheduled"
-msgstr ""
+msgstr "Gepland"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/status.php:33
 msgid "Private"
-msgstr ""
+msgstr "Priv&#233;"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/status.php:34
 msgid "Pending Review"
-msgstr ""
+msgstr "Wachtend op review"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/sticky.php:14
 msgid "Sticky"
 msgstr "Sticky"
 
-# @ codepress-admin-columns
 #: ../classes/column/post/taxonomy.php:12
 #: ../classes/column/post/taxonomy.php:68
 msgid "Taxonomy"
+msgstr "Taxonomy"
+
+#: ../classes/column/user/comment-count.php:14
+msgid "Comment Count"
 msgstr ""
 
-# @ codepress-admin-columns
-#: ../classes/column/user/comment-count.php:14
-#, fuzzy
-msgid "Comment Count"
-msgstr "Reacties"
-
-# @ codepress-admin-columns
 #: ../classes/column/user/first-name.php:14
 msgid "First name"
 msgstr "Voornaam"
 
-# @ codepress-admin-columns
 #: ../classes/column/user/last-name.php:14
 msgid "Last name"
 msgstr "Achternaam"
 
-# @ codepress-admin-columns
 #: ../classes/column/user/post-count.php:14
-#, fuzzy
 msgid "Post Count"
-msgstr "Aantal woorden"
+msgstr "Aantal posts"
 
 #: ../classes/column/user/post-count.php:92
 msgid "Post Type"
-msgstr ""
+msgstr "Post Type"
 
-# @ codepress-admin-columns
 #: ../classes/column/user/registered.php:14
 msgid "Registered"
 msgstr "Registratie"
 
-# @ codepress-admin-columns
 #: ../classes/column/user/url.php:14
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
-# @ codepress-admin-columns
 #: ../classes/storage_model/comment.php:13
 msgid "Comments"
 msgstr "Reacties"
 
 #: ../classes/storage_model/link.php:13
 msgid "Links"
-msgstr ""
+msgstr "Links"
 
 #: ../classes/storage_model/user.php:13
 msgid "Users"
-msgstr ""
-
-# @ codepress-admin-columns
-#, fuzzy
-#~ msgid "Custom field settings"
-#~ msgstr "Herstel standaard instellingen"
-
-# @ codepress-admin-columns
-#, fuzzy
-#~ msgid "Add-ons"
-#~ msgstr "Activeer Google Maps"
-
-# @ codepress-admin-columns
-#, fuzzy
-#~ msgid "the Custom Fields columns"
-#~ msgstr "Voeg custom field kolom toe"
-
-# @ codepress-admin-columns
-#, fuzzy
-#~ msgid "Custom Fields Addon"
-#~ msgstr "Voeg custom field kolom toe"
-
-# @ codepress-admin-columns
-#, fuzzy
-#~ msgid "find more addons"
-#~ msgstr "meer informatie"
-
-# @ codepress-admin-columns
-#~ msgid "This field can not be removed"
-#~ msgstr "Dit veld kan niet worden verwijderd"
-
-# @ default
-#~ msgid "Standard"
-#~ msgstr "Standaard"
-
-# @ codepress-admin-columns
-#~ msgid "original"
-#~ msgstr "origineel"
-
-# @ codepress-admin-columns
-#~ msgid "Icon"
-#~ msgstr "icoon"
-
-# @ codepress-admin-columns
-#~ msgid "Order"
-#~ msgstr "Volgorde"
-
-# @ codepress-admin-columns
-#~ msgid "Field"
-#~ msgstr "Veld"
-
-# @ codepress-admin-columns
-#~ msgid "Upload paths"
-#~ msgstr "Bestands-URLs"
-
-# @ codepress-admin-columns
-#~ msgid "Author Name"
-#~ msgstr "Auteur"
-
-# @ codepress-admin-columns
-#~ msgid "This will make all of the new columns support sorting"
-#~ msgstr "Dit maakt dat sorteren ondersteund wordt door alle nieuwe kolommen"
-
-# @ codepress-admin-columns
-#~ msgid ""
-#~ "By default WordPress let's you sort by title, date, comments and author. "
-#~ "This will make you be able to <strong>sort by any column of any type!</"
-#~ "strong>"
-#~ msgstr ""
-#~ "Standaard laat WordPress je sorteren bij titel, datum, reakties en "
-#~ "auteur. De addon zorgt ervoor dat je kunt sorteren bij <strong>alle "
-#~ "kolommen van alle typen!</strong>"
-
-# @ codepress-admin-columns
-#~ msgid ""
-#~ "Perfect for sorting your articles, media files, comments, links and users"
-#~ msgstr ""
-#~ "Perfect voor het sorteren van je artikelen, media bestanden, reakties, "
-#~ "links en gebruikers"
-
-# @ codepress-admin-columns
-#, fuzzy
-#~ msgid "Inactive"
-#~ msgstr "Actief"
-
-# @ codepress-admin-columns
-#~ msgid "Active"
-#~ msgstr "Actief"
-
-# @ codepress-admin-columns
-#~ msgid "Fill in your activation code"
-#~ msgstr "Vul je activatiecode in"
-
-# @ codepress-admin-columns
-#, fuzzy
-#~ msgid "Activate"
-#~ msgstr "Actief"
-
-# @ codepress-admin-columns
-#, fuzzy
-#~ msgid "Deactivate"
-#~ msgstr "Actief"
+msgstr "Gebruikers"

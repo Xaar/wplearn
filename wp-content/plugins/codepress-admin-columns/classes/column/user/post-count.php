@@ -47,17 +47,24 @@ class CPAC_Column_User_Post_Count extends CPAC_Column {
 	 * @see CPAC_Column::get_value()
 	 * @since 2.0.0
 	 */
-	public function get_value( $user_id ) {
-
-		global $wpdb;
+	function get_value( $user_id ) {
 
 		$value = '0';
 
-		$count = $this->get_count( $user_id );
+		$count = $this->get_raw_value( $user_id );
 		if ( $count > 0 )
 			$value = "<a href='edit.php?post_type={$this->options->post_type}&author={$user_id}'>{$count}</a>";
 
 		return $value;
+	}
+
+	/**
+	 * @see CPAC_Column::get_raw_value()
+	 * @since 2.0.3
+	 */
+	function get_raw_value( $user_id ) {
+
+		return $this->get_count( $user_id );
 	}
 
 	/**
@@ -84,7 +91,7 @@ class CPAC_Column_User_Post_Count extends CPAC_Column {
 		$post_types = array();
 		foreach ( $ptypes as $type ) {
 			$obj = get_post_type_object( $type );
-			$post_types[ $type ] = $obj->labels->singular_name;
+			$post_types[ $type ] = $obj->labels->name;
 		}
 
 		?>

@@ -4,7 +4,7 @@ Plugin Name: UK Cookie Consent
 Plugin URI: http://catapultdesign.co.uk/plugin/uk-cookie-consent/
 Description: Simple plug-in to help compliance with the UK interpretation of the EU regulations regarding usage of website cookies. A user to your site is presented with a clear yet unobtrusive notification that the site is using cookies and may then acknowledge and dismiss the notification or click to find out more. The plug-in does not disable cookies on your site or prevent the user from continuing to browse the site - it comes with standard wording on what cookies are and advice on how to disable them in the browser. The plug-in follows the notion of "implied consent" as described by the UK's Information Commissioner and makes the assumption that most users who choose not to accept cookies will do so for all websites.
 Author: Catapult
-Version: 1.4.2
+Version: 1.7.1
 Author URI: http://catapultdesign.co.uk/
 */
 
@@ -19,36 +19,99 @@ function catapult_cookie_plugin_menu() {
 
 function catapult_cookie_options_page() { ?>
 	<div class="wrap">
+		<?php screen_icon(); ?>
 		<h2><?php _e( 'UK Cookie Consent', 'uk-cookie-consent' ); ?></h2>
 		<div id="poststuff" class="metabox-holder has-right-sidebar">
-			<div class="meta-box-sortabless">
-				<div class="postbox">
-					<h3 class="hndle"><?php _e( 'Your settings', 'uk-cookie-consent' ); ?></h3>
-					<div class="inside">
-						<form action="options.php" method="post">				
-							<?php settings_fields('catapult_cookie_options'); ?>
-							<?php do_settings_sections('catapult_cookie'); ?>
-							<input name="cat_submit" type="submit" id="submit" class="button-primary" style="margin-top:30px;" value="<?php esc_attr_e( __( 'Save Changes', 'uk-cookie-consent' ) ); ?>" />
-							<?php $options = get_option('catapult_cookie_options');
-							$value = htmlentities ( $options['catapult_cookie_link_settings'], ENT_QUOTES );
-							if ( !$value ) {
-								$value = 'cookie-policy';
-							} ?>
-							<p><?php echo sprintf( __( 'Your Cookies Policy page is <a href="%s">here</a>. You may wish to create a menu item or other link on your site to this page.', 'uk-cookie-consent' ), home_url( $value ) ); ?></p>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="meta-box-sortabless ui-sortable" style="position:relative;">
-					<div class="postbox">
-						<h3 class="hndle"><?php _e( 'Resources', 'uk-cookie-consent' ); ?></h3>
+			<div id="side-info-column" class="inner-sidebar">
+				<div id="side-sortables" class="meta-box-sortables ui-sortable">
+					<div class="postbox like-postbox">
+						<div class="handlediv" title="Click to toggle"><br></div>
+						<h3 class="hndle"><span>Did this plugin help you?</span></h3>
+						<div class="inside">
+							<div class="like-widget">
+							<p>If this plugin helped you out in your project, please show your support:</p>
+							<ul>
+								<li><a target="_blank" href="http://wordpress.org/plugins/uk-cookie-consent/">Rate it</a></li>
+								<li><a target="_blank" href="http://twitter.com/share?url=&amp;text=Check out the UK Cookie Consent plugin for WordPress from @_catapult_ - it's sweet: http://bit.ly/190GGXN">Tweet it</a></li>
+							</ul>
+							</div>
+						</div>
+					</div><!-- .postbox -->
+
+					<div class="postbox like-postbox">
+						<div class="handlediv" title="Click to toggle"><br></div>
+						<h3 class="hndle"><span>Other plugins you might like</span></h3>
+						<div class="inside">
+							<div class="like-widget">
+							<p>If you liked this plugin, you may care to try the following:</p>
+							<ul>
+								<li><a target="_blank" href="http://wordpress.org/plugins/wp-slide-out-tab/">Slide out tab</a>
+								<p>Display a sliding tab for marketing, promotional or other content.</p>							
+								</li>
+							</ul>
+							</div>
+						</div>
+					</div><!-- .postbox -->
+					
+					<div class="postbox rss-postbox">
+						<div class="handlediv" title="Click to toggle"><br></div>
+						<h3 class="hndle"><span>Cookie resources</span></h3>
 						<div class="inside">
 							<p><a href="http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx"><?php _e( 'Information Commissioner\'s Office Guidance on Cookies', 'uk-cookie-consent' ); ?></a></p>
 							<p><a href="http://www.aboutcookies.org/default.aspx">AboutCookies.org</a></p>
 							<p><a href="http://catapultdesign.co.uk/uk-cookie-consent/"><?php _e( 'Our interpretation of the guidance', 'uk-cookie-consent' ); ?></a></p>
 						</div>
 					</div>
+					
+					<div class="postbox rss-postbox">
+						<div class="handlediv" title="Click to toggle"><br></div>
+						<h3 class="hndle"><span>Support</span></h3>
+						<div class="inside">
+							<div class="rss-widget">
+								<?php
+									wp_widget_rss_output(array(
+										'url' => 'http://wordpress.org/support/rss/plugin/uk-cookie-consent',
+										'title' => 'Latest from the support forum',
+										'items' => 3,
+										'show_summary' => 1,
+										'show_author' => 0,
+									'show_date' => 1,
+									));
+								?>
+								<ul>
+								</ul>
+							</div>
+							<p><a href="http://wordpress.org/support/plugin/wp-slide-out-tab" title="Forum">Check out the forum</a></p>
+						</div>
+					</div><!-- .postbox -->
+													
 				</div>
+			</div><!-- #side-info-column -->
+			
+			<div id="post-body">
+				<div id="post-body-content">
+						<div class="meta-box-sortables">
+						<div class="postbox">
+							<h3 class="hndle"><?php _e( 'Your settings', 'uk-cookie-consent' ); ?></h3>
+							<div class="inside">
+								<form action="options.php" method="post">				
+									<?php settings_fields('catapult_cookie_options'); ?>
+									<?php do_settings_sections('catapult_cookie'); ?>
+									<input name="cat_submit" type="submit" id="submit" class="button-primary" style="margin-top:30px;" value="<?php esc_attr_e( __( 'Save Changes', 'uk-cookie-consent' ) ); ?>" />
+									<?php $options = get_option('catapult_cookie_options');
+									$value = htmlentities ( $options['catapult_cookie_link_settings'], ENT_QUOTES );
+									if ( !$value ) {
+										$value = 'cookie-policy';
+									} ?>
+									<p><?php echo sprintf( __( 'Your Cookies Policy page is <a href="%s">here</a>. You may wish to create a menu item or other link on your site to this page.', 'uk-cookie-consent' ), home_url( $value ) ); ?></p>
+								</form>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
 		</div><!-- poststuff -->
 	</div>
 <?php }
@@ -189,6 +252,7 @@ function catapult_cookie_options_validate($input) {
 function catapult_color_picker() {
 	wp_enqueue_style( 'wp-color-picker' );
 	wp_enqueue_script( 'uk-cookie-consent-colour-picker', plugins_url ( 'js/colour-picker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
+//	wp_enqueue_script( 'dashboard' );
 }
 add_action( 'admin_enqueue_scripts', 'catapult_color_picker' );
 
@@ -233,6 +297,7 @@ function catapult_add_cookie_css() {
 	echo '
 		<style type="text/css" media="screen">
 			#catapult-cookie-bar {
+				display: none;
 				direction: ltr;
 				color: ' . $text_colour . ';
 				min-height: 30px;
@@ -248,7 +313,18 @@ function catapult_add_cookie_css() {
 			#catapult-cookie-bar a {
 				color: ' . $link_colour . ';
 			}
-			
+			button#catapultCookie {
+				margin:0 20px;
+				line-height:20px;
+				background:' . $button_colour . ';
+				border:none;
+				color: ' . $link_colour . ';
+				padding:4px 12px;
+				border-radius: 3px;
+				cursor: pointer;
+				font-size: 13px;
+				font-weight: bold;
+			}
 		</style>';
 }
 add_action ( 'wp_head', 'catapult_add_cookie_css' );
@@ -256,14 +332,14 @@ add_action ( 'wp_head', 'catapult_add_cookie_css' );
 function catapult_add_cookie_js() { ?>
 	<script type="text/javascript">
 		jQuery(document).ready(function(){
-			if(catapultReadCookie("catAccCookies")){//If the cookie has been set
-				jQuery("#catapult-cookie-bar").hide();
+			if(!catapultReadCookie("catAccCookies")){//If the cookie has not been set
+				jQuery("#catapult-cookie-bar").show();
 				jQuery("html").css("margin-top","0");
 			}
 		});
 	</script>
 <?php }
-add_action ( 'wp_head', 'catapult_add_cookie_js' );
+add_action ( 'wp_footer', 'catapult_add_cookie_js' );
 
 //Add the notification bar
 function catapult_add_cookie_bar() {

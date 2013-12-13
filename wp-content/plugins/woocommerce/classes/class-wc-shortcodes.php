@@ -517,7 +517,7 @@ class WC_Shortcodes {
 	 * @return string
 	 */
 	public function product_add_to_cart( $atts ) {
-	  	global $wpdb, $woocommerce;
+	  	global $wpdb, $post, $woocommerce;
 
 	  	if ( empty( $atts ) ) return;
 
@@ -546,7 +546,8 @@ class WC_Shortcodes {
 
 			</p><?php
 
-			wp_reset_postdata();
+			// Restore Product global in case this is shown inside a product post
+			$woocommerce->setup_product_data( $post );
 
 			return ob_get_clean();
 
@@ -651,7 +652,7 @@ class WC_Shortcodes {
 			'post_status' 	=> 'publish',
 			'post_type' 	=> 'product',
 			'meta_query' 	=> $meta_query,
-			'post__in'		=> $product_ids_on_sale
+			'post__in'		=> array_merge( array( 0 ), $product_ids_on_sale )
 		);
 
 	  	ob_start();

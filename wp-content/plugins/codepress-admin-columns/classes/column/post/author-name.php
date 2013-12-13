@@ -8,9 +8,10 @@ class CPAC_Column_Post_Author_Name extends CPAC_Column {
 
 	function __construct( $storage_model ) {
 
-		$this->properties['type']	 		= 'column-author_name';
-		$this->properties['label']	 		= __( 'Display Author As', 'cpac' );
-		$this->properties['is_cloneable']	= true;
+		$this->properties['type']	 			= 'column-author_name';
+		$this->properties['label']	 			= __( 'Display Author As', 'cpac' );
+		$this->properties['is_cloneable']		= true;
+		$this->properties['object_property']	= 'post_author';
 
 		// define additional options
 		$this->options['display_author_as'] = '';
@@ -84,12 +85,21 @@ class CPAC_Column_Post_Author_Name extends CPAC_Column {
 
 		$nametypes = $this->get_nametypes();
 		if ( isset( $nametypes[ $this->options->display_author_as ] ) ) {
-			if( $author = get_post_field( 'post_author', $post_id ) ) {
+			if( $author = $this->get_raw_value( $post_id ) ) {
 				$value = $this->get_display_name( $author );
 			}
 		}
 
 		return $value;
+	}
+
+	/**
+	 * @see CPAC_Column::get_raw_value()
+	 * @since 2.0.3
+	 */
+	function get_raw_value( $post_id ) {
+
+		return get_post_field( 'post_author', $post_id );
 	}
 
 	/**

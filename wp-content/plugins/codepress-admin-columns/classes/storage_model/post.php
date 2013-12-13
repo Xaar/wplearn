@@ -20,7 +20,7 @@ class CPAC_Storage_Model_Post extends CPAC_Storage_Model {
 		// add_action( 'admin_init', array( $this, 'set_columns' ) );
 		// also for the other types
 
-		$this->set_custom_columns();
+		$this->set_columns_filepath();
 
 		// Populate columns variable.
 		// This is used for manage_value. By storing these columns we greatly improve performance.
@@ -73,30 +73,30 @@ class CPAC_Storage_Model_Post extends CPAC_Storage_Model {
 	 * @return array
 	 */
 	public function get_default_columns() {
-		global $pagenow;
+
+		if ( ! function_exists('_get_list_table') ) return array();
+
+		//if ( ! $this->is_columns_screen() && ! $this->is_settings_page() )
+			//return array();
 
 		// You can use this filter to add thirdparty columns by hooking into this.
 		// See classes/third_party.php for an example.
 		do_action( "cac/columns/default/posts" );
 		do_action( "cac/columns/default/storage_key={$this->key}" );
 
-		// Get columns that have been set by other plugins. If a plugin use the hook "manage_edit-{$post_type}_columns"
+        // Get the WP default columns
+		$table 	 = _get_list_table( 'WP_Posts_List_Table', array( 'screen' => $this->key ) );
+        $columns = $table->get_columns();
+
+        // Get columns that have been set by other plugins. If a plugin use the hook "manage_edit-{$post_type}_columns"
 		// we know that the columns have been overwritten. Use these columns instead of the WP default ones.
-		//
+        //
 		// We have to make sure this filter only loads on the Admin Columns settings page. To prevent a loop
 		// when it's being called by CPAC_Storage_Model::add_headings()
-		$columns = array();
+		if ( $this->is_settings_page() )
+			$columns =  array_merge( get_column_headers( 'edit-' . $this->key ), $columns );
 
-		if ( 'options-general.php' == $pagenow && isset( $_GET['page'] ) && 'codepress-admin-columns' == $_GET['page'] )
-			$columns = get_column_headers( "edit-{$this->key}" );
-
-		// Get the WP default columns
-		$table 	 = _get_list_table( 'WP_Posts_List_Table', array( 'screen' => $this->key ) );
-
-		// Merge the available hooked columns with the WP default columns
-		$columns = array_filter( array_merge( $columns, $table->get_columns() ) );
-
-		return $columns;
+		return array_filter( $columns );
 	}
 
 	/**
@@ -130,8 +130,9 @@ class CPAC_Storage_Model_Post extends CPAC_Storage_Model {
 		if ( $column )
 			$value = $column->get_value( $post_id );
 
-		$value = apply_filters( "cac/column/value/posts", $value, $column );
-		$value = apply_filters( "cac/column/value/type={$this->key}", $value, $column );
+		// Filters
+		$value = apply_filters( "cac/column/value", $value, $post_id, $column, $this->key );
+		$value = apply_filters( "cac/column/value/{$this->type}", $value, $post_id, $column, $this->key );
 
 		echo $value;
 	}

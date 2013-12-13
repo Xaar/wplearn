@@ -594,7 +594,7 @@ function process_product_meta_variable( $post_id ) {
 		$variable_download_limit 			= $_POST['variable_download_limit'];
 		$variable_download_expiry   		= $_POST['variable_download_expiry'];
 		$variable_shipping_class 			= $_POST['variable_shipping_class'];
-		$variable_tax_class					= $_POST['variable_tax_class'];
+		$variable_tax_class					= isset( $_POST['variable_tax_class'] ) ? $_POST['variable_tax_class'] : array();
 		$variable_menu_order 				= $_POST['variation_menu_order'];
 		$variable_sale_price_dates_from 	= $_POST['variable_sale_price_dates_from'];
 		$variable_sale_price_dates_to 		= $_POST['variable_sale_price_dates_to'];
@@ -706,7 +706,7 @@ function process_product_meta_variable( $post_id ) {
 				update_post_meta( $variation_id, '_sale_price_dates_to', '' );
 			}
 
-			if ( $variable_tax_class[ $i ] !== 'parent' )
+			if ( isset( $variable_tax_class[ $i ] ) && $variable_tax_class[ $i ] !== 'parent' )
 				update_post_meta( $variation_id, '_tax_class', woocommerce_clean( $variable_tax_class[ $i ] ) );
 			else
 				delete_post_meta( $variation_id, '_tax_class' );
@@ -760,7 +760,7 @@ function process_product_meta_variable( $post_id ) {
 
 			}
 
-			do_action( 'woocommerce_save_product_variation', $variation_id );
+			do_action( 'woocommerce_save_product_variation', $variation_id, $i );
 
 		 }
 
@@ -817,6 +817,8 @@ function process_product_meta_variable( $post_id ) {
 	update_post_meta( $post_parent, '_max_variation_regular_price', $highest_regular_price );
 	update_post_meta( $post_parent, '_min_variation_sale_price', $lowest_sale_price );
 	update_post_meta( $post_parent, '_max_variation_sale_price', $highest_sale_price );
+
+	do_action( 'woocommerce_variable_product_sync', $post_parent );
 
 	// Update default attribute options setting
 	$default_attributes = array();

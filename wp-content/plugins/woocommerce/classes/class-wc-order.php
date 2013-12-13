@@ -315,7 +315,7 @@ class WC_Order {
 	 * Get the billing address in an array.
 	 *
 	 * @access public
-	 * @return array
+	 * @return string
 	 */
 	public function get_billing_address() {
 		if ( ! $this->billing_address ) {
@@ -654,7 +654,7 @@ class WC_Order {
 	 */
 	public function get_item_subtotal( $item, $inc_tax = false, $round = true ) {
 		if ( $inc_tax )
-			$price = ( $item['line_subtotal'] + $item['line_subtotal_tax'] / $item['qty'] );
+			$price = ( $item['line_subtotal'] + $item['line_subtotal_tax'] ) / $item['qty'];
 		else
 			$price = ( $item['line_subtotal'] / $item['qty'] );
 		return apply_filters( 'woocommerce_order_amount_item_subtotal', (($round) ? number_format( $price, 2, '.', '') : $price ), $this );
@@ -690,7 +690,7 @@ class WC_Order {
 	 */
 	public function get_item_total( $item, $inc_tax = false, $round = true ) {
 		if ( $inc_tax )
-			$price = ( ( $item['line_total'] + $item['line_tax'] ) / $item['qty'] );
+			$price = ( $item['line_total'] + $item['line_tax'] ) / $item['qty'];
 		else
 			$price = $item['line_total'] / $item['qty'];
 		return apply_filters( 'woocommerce_order_amount_item_total', ( ($round) ? number_format( $price, 2, '.', '') : $price ), $this );
@@ -1070,19 +1070,15 @@ class WC_Order {
 	 * @return bool
 	 */
 	public function has_downloadable_item() {
-		$has_downloadable_item = false;
-
-		foreach($this->get_items() as $item) :
-
+		foreach ( $this->get_items() as $item ) {
 			$_product = $this->get_product_from_item( $item );
 
-			if ($_product->exists() && $_product->is_downloadable()) :
-				$has_downloadable_item = true;
-			endif;
+			if ( false !== $_product && $_product->exists() && $_product->is_downloadable() ) {
+				return true;
+			}
+		}
 
-		endforeach;
-
-		return $has_downloadable_item;
+		return false;
 	}
 
 
@@ -1214,7 +1210,7 @@ class WC_Order {
 
 			wp_set_object_terms( $this->id, array( $new_status->slug ), 'shop_order_status', false );
 
-			if ( $this->status != $new_status->slug ) {
+			if ( $this->id && $this->status != $new_status->slug ) {
 
 				// Status was changed
 				do_action( 'woocommerce_order_status_' . $new_status->slug, $this->id );
@@ -1284,6 +1280,8 @@ class WC_Order {
 	public function payment_complete() {
 		global $woocommerce;
 
+		do_action( 'woocommerce_pre_payment_complete', $this->id );
+
 		if ( ! empty( $woocommerce->session->order_awaiting_payment ) )
 			unset( $woocommerce->session->order_awaiting_payment );
 
@@ -1329,6 +1327,11 @@ class WC_Order {
 				$this->reduce_order_stock(); // Payment is complete so reduce stock levels
 
 			do_action( 'woocommerce_payment_complete', $this->id );
+
+		} else {
+
+			do_action( 'woocommerce_payment_complete_order_status_' . $this->status, $this->id );
+
 		}
 	}
 
@@ -1535,4 +1538,21 @@ class WC_Order {
 
 	}
 
+	/**
+	 * Checks if an order needs payment, based on status and order total
+	 *
+	 * @access public
+	 * @return bool
+	 */
+	public function needs_payment() {
+
+		$valid_order_statuses = apply_filters( 'woocommerce_valid_order_statuses_for_payment', array( 'pending', 'failed' ), $this );
+
+		if ( in_array( $this->status, $valid_order_statuses ) && $this->get_total() > 0 )
+			$needs_payment = true;
+		else
+			$needs_payment = false;
+
+		return apply_filters( 'woocommerce_order_needs_payment', $needs_payment, $this, $valid_order_statuses );
+	}
 }

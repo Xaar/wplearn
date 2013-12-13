@@ -54,6 +54,16 @@ class CPAC_Column {
 	public function get_value( $id ) {}
 
 	/**
+	 * Get the raw, underlying value for the column
+	 * Not suitable for direct display, use get_value() for that
+	 *
+	 * @since 2.0.3
+	 * @param int $id ID
+	 * @return mixed Value
+	 */
+	public function get_raw_value( $id ) {}
+
+	/**
 	 * Display_settings
 	 *
 	 * @since 2.0.0
@@ -863,10 +873,11 @@ class CPAC_Column {
 	public function get_column_list( $columns = array(), $label = '' ) {
 
 		if ( empty( $columns ) )
-			return array();
+			return false;
 
 		$list = '';
 
+		// sort by alphabet
 		$_columns = array();
 		foreach ( $columns as $column ) {
 			$_columns[ $column->properties->type ] = 0 === strlen( strip_tags( $column->properties->label ) ) ? ucfirst( $column->properties->type ) : $column->properties->label;
@@ -894,8 +905,8 @@ class CPAC_Column {
 		$classes = implode( ' ', array_filter( array ( "cpac-box-{$this->properties->type}", $this->properties->classes ) ) );
 
 		// column list
-		$column_list = $this->get_column_list( $this->storage_model->get_custom_registered_columns(), __( 'Custom', 'cpac' ) );
-		$column_list .= $this->get_column_list( $this->storage_model->get_default_registered_columns(), __( 'Default', 'cpac' ) );
+		$column_list  = $this->get_column_list( $this->storage_model->custom_columns, __( 'Custom', 'cpac' ) );
+		$column_list .= $this->get_column_list( $this->storage_model->default_columns, __( 'Default', 'cpac' ) );
 
 		// clone attribute
 		$data_clone =  $this->properties->is_cloneable ? " data-clone='{$this->properties->clone}'" : '';
@@ -913,7 +924,7 @@ class CPAC_Column {
 								<div class="inner">
 									<div class="meta">
 
-									<?php do_action( 'cac/column/label', $this ); ?>
+										<?php do_action( 'cac/column/label', $this ); ?>
 
 									</div>
 									<a class="toggle" href="javascript:;">
@@ -939,7 +950,7 @@ class CPAC_Column {
 				<table class="widefat">
 					<tbody>
 						<tr class="column_type">
-							<?php $this->label_view( __( 'Type', 'cpac' ), __( 'Choose a column type.', 'cpac' ), 'type' ); ?>
+							<?php $this->label_view( __( 'Type', 'cpac' ), __( 'Choose a column type.', 'cpac' ) . '<em>' . __('ID','cpac') . ': ' . $this->properties->type . '</em>', 'type' ); ?>
 							<td class="input">
 								<select name="<?php $this->attr_name( 'type' ); ?>" id="<?php $this->attr_id( 'type' ); ?>">
 									<?php echo $column_list; ?>
@@ -981,7 +992,10 @@ class CPAC_Column {
 
 						<tr class="column_action">
 							<td colspan="2">
-								<p><a href="javascript:;" class="remove-button"><?php _e( 'Remove' );?></a></p>
+								<p>
+									<a href="javascript:;" class="remove-button"><?php _e( 'Remove' );?></a>
+									<!--<span class="description alignright"><?php _e('type','cpac'); ?>: <em><?php echo $this->properties->type; ?></em></span>-->
+								</p>
 							</td>
 						</tr>
 

@@ -14,7 +14,7 @@ class CPAC_Storage_Model_User extends CPAC_Storage_Model {
 		$this->type 	= 'user';
 		$this->page 	= 'users';
 
-		$this->set_custom_columns();
+		$this->set_columns_filepath();
 
 		// Populate columns variable.
 		// This is used for manage_value. By storing these columns we greatly improve performance.
@@ -24,7 +24,7 @@ class CPAC_Storage_Model_User extends CPAC_Storage_Model {
 		add_filter( "manage_{$this->page}_columns",  array( $this, 'add_headings' ) );
 
 		// values
-		add_filter( 'manage_users_custom_column', array( $this, 'manage_value' ), 10, 3 );
+		add_filter( 'manage_users_custom_column', array( $this, 'manage_value_callback' ), 10, 3 );
 
 		//@todo: remove parent::__construct();
 	}
@@ -39,6 +39,8 @@ class CPAC_Storage_Model_User extends CPAC_Storage_Model {
 	 */
 	public function get_default_columns() {
 
+		if ( ! function_exists('_get_list_table') ) return array();
+
 		// You can use this filter to add third_party columns by hooking into this.
 		do_action( "cac/columns/default/storage_key={$this->key}" );
 
@@ -52,13 +54,13 @@ class CPAC_Storage_Model_User extends CPAC_Storage_Model {
 	/**
 	 * Manage value
 	 *
-	 * @since 2.0.0
+	 * @since 2.0.2
 	 *
-	 * @param string $value
 	 * @param string $column_name
-	 * @param int $post_id
+	 * @param int $user_id
+	 * @param string $value
 	 */
-	public function manage_value( $value, $column_name, $user_id ) {
+	function manage_value( $column_name, $user_id, $value = '' ) {
 
 		// get column instance
 		$column = $this->get_column_by_name( $column_name );
@@ -69,13 +71,30 @@ class CPAC_Storage_Model_User extends CPAC_Storage_Model {
 		// get value
 		$custom_value = $column->get_value( $user_id );
 
-		// get value
 		// make sure it absolutely empty and check for (string) 0
-		if ( ! empty( $custom_value ) || $custom_value === '0' ) {
+		if ( ! empty( $custom_value ) || '0' === $custom_value ) {
 			$value = $custom_value;
 		}
 
-		return apply_filters( "cac/column/value/type={$this->key}", $value, $column );
+		// filters
+		$value = apply_filters( "cac/column/value", $value, $user_id, $column, $this->key );
+		$value = apply_filters( "cac/column/value/{$this->type}", $value, $user_id, $column, $this->key );
+
+		return $value;
+	}
+
+	/**
+	 * Callback Manage value
+	 *
+	 * @since 2.0.2
+	 *
+	 * @param string $value
+	 * @param string $column_name
+	 * @param int $user_id
+	 */
+	public function manage_value_callback( $value, $column_name, $user_id ) {
+
+		return $this->manage_value( $column_name, $user_id, $value );
 	}
 
 	/**

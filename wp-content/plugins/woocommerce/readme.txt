@@ -3,8 +3,8 @@ Contributors: woothemes, mikejolley, jameskoster, CoenJacobs
 Tags: ecommerce, e-commerce, commerce, woothemes, wordpress ecommerce, affiliate, store, sales, sell, shop, shopping, cart, checkout, configurable, variable, widgets, reports, download, downloadable, digital, inventory, stock, reports, shipping, tax
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@woothemes.com&item_name=Donation+for+WooCommerce
 Requires at least: 3.5
-Tested up to: 3.6
-Stable tag: 2.0.14
+Tested up to: 3.7
+Stable tag: 2.0.20
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -165,6 +165,71 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woothemes/wooc
 
 == Changelog ==
 
+= 2.0.20 - 21/11/2013 =
+* Tweaked paypal request
+* Check for WP Error when getting terms in breadcrumb file
+* Sanitize when searching in admin
+* Fix yard to cm conversion
+
+= 2.0.19 - 04/11/2013 =
+* Fix - get_item_subtotal() logic
+* Fix - Pass number of products variable to get_related for more then 5 related products
+* Fix - Email fatal error for orders with missing products
+* Fix - Local pickup base tax option on first calculation
+* Tweak - For paying customer column, use a dash #3971
+* Tweak - Added wordwrap to order notes
+* Localisation - Updated Portuguese, Slovak, French, Lithuanian, Finnish
+
+= 2.0.18 - 21/10/2013 =
+* Fix - Escaped the "hide-wc-extensions-message" link in admin.
+* Fix - CSS -mox- prefix. #3953
+* Fix - Remove sorting args after main query #3969
+* Tweak - Pass index to woocommerce_save_product_variation. #3962
+* Tweak - woocommerce_variable_product_sync hooks
+* Tweak - CH postcode validation
+* Tweak - Show layered nav widgets on any product taxonomy page
+* Localisation - Various corrections
+
+= 2.0.17 - 17/10/2013 =
+* Fix - Add missing doctype for email header #3921
+* Fix - 2 notices on the cart/checkout related to tax #3922
+* Fix - Allowed more tags to be saved in sharethis code
+* Fix - If no products on sale, don't show results in sale shortcode
+* Fix - During remove_product_query, remove ordering filters to prevent affecting other queries
+* Tweak - Min amount check takes taxes in consideration #3924
+* Tweak - Added validate_ID_field method check to settings API for special validation rules
+* Tweak - Added needs_payment() method. Checks if an order needs payment, based on status and order total.
+* Tweak - Key value pairs for order_meta (woocommerce_email_order_meta_keys)
+* Tweak - Added wc_variation_form trigger to variations javascript for 3rd party plugins
+
+= 2.0.16 - 14/10/2013 =
+* Fix - woocommerce_change_term_counts needs to always return terms. Fixes category display.
+* Fix - Attribute label display.
+* Fix - add_to_cart shortcode correct use of setup_product_data
+
+= 2.0.15 - 14/10/2013 =
+* Fix - Added missing line break in plain text email.
+* Fix - Strict standards warnings in category walkers
+* Fix - Remember which attributes get registered to minimize conflicts
+* Fix - Allow quotes in store name for display in emails
+* Fix - Regression bug throwing warning in ShareThis integration
+* Fix - Correct state code for Canadian state Newfoundland
+* Fix - Tweaked popularity sorting to work better when no sales are present.
+* Fix - Removed action from single add to cart templates to resolve issues with other plugins.
+* Fix - Unsetting active classes #3896
+* Fix - update_status checks if the order id exists #3904
+* Fix - the first matching variation should be used (replaced pop() with shift()) @eef86ab
+* Fix - get_children should get published products only for grouped products #3880
+* Fix - Clean the SKU, prevents variations breaking when &quot; was saved @dc6574b
+* Fix - Correctly check attribute label and name upon creation @31c34f6
+* Fix - Fixed Multiple Sets of Tabs on One Page @e584ea8
+* Fix - Add tax_rate_id to objects returned from cart->tax_totals @40c85ec
+* Fix - find_product_in_cart check if cart is array #3863
+* Fix - bump_request_timeout strict standards @4798cb8
+* Fix - Fix upload dir #3812
+* Fix - Remove accents from taxonomy names + run through filters #3832
+* Tweak - Always show returning customer login box.
+
 = 2.0.14 - 05/09/2013 =
 * Tweak - Update cart performance improvements
 * Fix - Google Analytics no longer identifies users using custom vars
@@ -229,14 +294,14 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woothemes/wooc
 * Fix - Replace deprecated wp_convert_bytes_to_hr() with size_format()
 
 = 2.0.9 - 02/05/2013 =
-* Feature - Added is_product_taxonomy() conditonal.
+* Feature - Added is_product_taxonomy() conditional.
 * Tweak - Notices during checkout for admin users if the checkout is mis-configured.
 * Tweak - Named charts on report page to make modifications easier.
 * Tweak - woocommerce_before_delete_order_item hook.
 * Fix - Disable autocomplete for checkout fields which refresh totals - no events get fired on autocomplete.
 * Fix - Clear rating transients when editing comments.
 * Fix - Screen ids when plugin name localised.
-* Fix - Brazillian state code BH -> BA. Data update required to update old values in orders.
+* Fix - Brazilian state code BH -> BA. Data update required to update old values in orders.
 * Fix - Fix incorrect CSS class being output in product image gallery.
 * Fix - Mijireh page slurp.
 * Fix - woocommerce_downloadable_product_name filter fixes.
@@ -273,11 +338,11 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woothemes/wooc
 * Fix - Allow extra flat rate options even if main rate is 0.
 * Fix - Fix email subject lines if options not set.
 * Fix - Prevent over-sanitization of attribute terms when editing products.
-* Fix - Santize terms when linking all variations.
+* Fix - Sanitize terms when linking all variations.
 * Fix - Sanitize coupon code names before checking/applying.
 
 = 2.0.6 - 10/04/2013 =
-* Tweak/Fix - Merge taxes by CODE so totals are displayed clearer. Also added additonal function for getting merged tax totals, and to keep compatibility with themes.
+* Tweak/Fix - Merge taxes by CODE so totals are displayed clearer. Also added additional function for getting merged tax totals, and to keep compatibility with themes.
 * Tweak/Fix - Recent reviews show actual review stars, and allowed get_rating_html() to be passed a rating. Also removed unused $location var.
 * Fix - Saving of meta values from paypal after payment.
 * Fix - woocommerce_nav_menu_items - only hide pages, not other objects.
@@ -285,7 +350,7 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woothemes/wooc
 * Fix - Find_rates now works with both postcode and city together.
 * Fix - PrettyPhoto content clearfixed.
 * Fix - Fix the download method when force SSL is on.
-* Fix - Put back sandbox pending fix. Aparently still needed for some accounts.
+* Fix - Put back sandbox pending fix. Apparently still needed for some accounts.
 * Fix - Do not sanitize old attribute name to not mess up comparing
 * Fix - Settings API empty value only used if set. In turn fixes blank values in flat rate shipping.
 * Fix - Ensure API Request URL scheme is not relative to the current page.
@@ -357,7 +422,7 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woothemes/wooc
 * Fix - Removed Sidebar Login Widget. Use http://wordpress.org/extend/plugins/sidebar-login/ instead. A potential security issue was found regarding logging of passwords (since GET was used instead of POST). Sidebar Login 2.5 resolves this and the widget has been removed from WC to prevent needing to maintain two (virtually identical) codebases.
 * Localization - Added indian rupees
 * Localization - Updated French translation by absoluteweb
-* Localization - Updated Brazilian translaction by Claudio Sanches
+* Localization - Updated Brazilian translation by Claudio Sanches
 * Localization - Updated Hungarian translation by béla.
 
 = 2.0.3 - 11/03/2013 =

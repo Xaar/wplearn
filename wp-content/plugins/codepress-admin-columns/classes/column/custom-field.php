@@ -34,7 +34,7 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 		// for retireving sorting preference
 		$this->user_settings = get_option( 'cpac_general_options' );
 
-		// call contruct
+		// call construct
 		parent::__construct( $storage_model );
 	}
 
@@ -44,13 +44,11 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 	 */
 	function sanitize_options( $options ) {
 
-		if ( ! empty( $options['before'] ) ) {
-			$options['before'] = trim( $options['before'] );
-		}
+		//if ( ! empty( $options['before'] ) )
+		//	$options['before'] = trim( $options['before'] );
 
-		if ( ! empty( $options['after'] ) ) {
-			$options['after'] = trim( $options['after'] );
-		}
+		//if ( ! empty( $options['after'] ) )
+		//	$options['after'] = trim( $options['after'] );
 
 		if ( empty( $options['date_format'] ) ) {
 			$options['date_format'] = get_option( 'date_format' );
@@ -70,19 +68,51 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 
 		$custom_field_types = array(
 			''				=> __( 'Default'),
-			'image'			=> __( 'Image', 'cpac' ),
-			'library_id'	=> __( 'Media Library', 'cpac' ),
-			'excerpt'		=> __( 'Excerpt'),
-			'array'			=> __( 'Multiple Values', 'cpac' ),
-			'numeric'		=> __( 'Numeric', 'cpac' ),
-			'date'			=> __( 'Date', 'cpac' ),
-			'title_by_id'	=> __( 'Post Title (Post ID\'s)', 'cpac' ),
-			'user_by_id'	=> __( 'Username (User ID\'s)', 'cpac' ),
 			'checkmark'		=> __( 'Checkmark (true/false)', 'cpac' ),
 			'color'			=> __( 'Color', 'cpac' ),
+			'count'			=> __( 'Counter', 'cpac' ),
+			'date'			=> __( 'Date', 'cpac' ),
+			'excerpt'		=> __( 'Excerpt'),
+			'image'			=> __( 'Image', 'cpac' ),
+			'library_id'	=> __( 'Media Library', 'cpac' ),
+			'array'			=> __( 'Multiple Values', 'cpac' ),
+			'numeric'		=> __( 'Numeric', 'cpac' ),
+			'title_by_id'	=> __( 'Post Title (Post ID\'s)', 'cpac' ),
+			'user_by_id'	=> __( 'Username (User ID\'s)', 'cpac' ),
 		);
 
-		return apply_filters( 'cpac_custom_field_types', $custom_field_types );
+		// deprecated. do not use, will be removed.
+		$custom_field_types = apply_filters( 'cpac_custom_field_types', $custom_field_types );
+
+		// Filter
+		$custom_field_types = apply_filters( 'cac/column/meta/types', $custom_field_types );
+
+		return $custom_field_types;
+	}
+
+	/**
+	 * Get First ID from array
+	 *
+	 * @since 1.0
+	 *
+	 * @param string $meta
+	 * @return string Titles
+	 */
+	public function get_ids_from_meta( $meta ) {
+
+		//remove white spaces and strip tags
+		$meta = $this->strip_trim( str_replace( ' ','', $meta ) );
+
+		// var
+		$ids = array();
+
+		// check for multiple id's
+		if ( strpos( $meta, ',' ) !== false )
+			$ids = explode( ',', $meta );
+		elseif ( is_numeric( $meta ) )
+			$ids[] = $meta;
+
+		return $ids;
 	}
 
 	/**
@@ -95,24 +125,15 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 	 */
 	private function get_titles_by_id( $meta ) {
 
-		//remove white spaces and strip tags
-		$meta = $this->strip_trim( str_replace( ' ','', $meta ) );
-
-		// var
-		$ids = $titles = array();
-
-		// check for multiple id's
-		if ( strpos( $meta, ',' ) !== false )
-			$ids = explode( ',', $meta );
-		elseif ( is_numeric( $meta ) )
-			$ids[] = $meta;
+		$ids = $this->get_ids_from_meta( $meta );
 
 		// display title with link
 		if ( $ids && is_array( $ids ) ) {
 			foreach ( $ids as $id ) {
-				$title = is_numeric( $id ) ? get_the_title( $id ) : '';
+				if ( ! is_numeric( $id ) ) continue;
+
 				$link  = get_edit_post_link( $id );
-				if ( $title )
+				if ( $title = get_the_title( $id ) )
 					$titles[] = $link ? "<a href='{$link}'>{$title}</a>" : $title;
 			}
 		}
@@ -130,25 +151,12 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 	 */
 	private function get_users_by_id( $meta )	{
 
-		//remove white spaces and strip tags
-		$meta = $this->strip_trim( str_replace( ' ', '', $meta ) );
-
-		// var
-		$ids = $names = array();
-
-		// check for multiple id's
-		if ( strpos( $meta, ',' ) !== false ) {
-			$ids = explode( ',',$meta );
-		}
-		elseif ( is_numeric( $meta ) ) {
-			$ids[] = $meta;
-		}
+		$ids = $this->get_ids_from_meta( $meta );
 
 		// display username
 		if ( $ids && is_array( $ids ) ) {
 			foreach ( $ids as $id ) {
-				if ( ! is_numeric( $id ) )
-					continue;
+				if ( ! is_numeric( $id ) ) continue;
 
 				$userdata = get_userdata( $id );
 				if ( is_object( $userdata ) && ! empty( $userdata->display_name ) ) {
@@ -169,10 +177,11 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param string $meta
+	 * @param string $meta Contains Meta Value
+	 * @param int $id Optional Object ID
 	 * @return string Users
 	 */
-	function get_value_by_meta( $meta ) {
+	function get_value_by_meta( $meta, $id = null ) {
 
 		switch ( $this->options->field_type ) :
 
@@ -220,6 +229,11 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 				}
 				break;
 
+			case "count" :
+				if ( $count = $this->get_raw_value( $id, false ) )
+					$meta = count( $count );
+				break;
+
 		endswitch;
 
 		return $meta;
@@ -260,20 +274,29 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 	}
 
 	/**
+	 * Get Field key
+	 *
+	 * @since 2.0.3
+	 *
+	 * @param string Custom Field Key
+	 */
+	function get_field_key() {
+
+		return substr( $this->options->field, 0, 10 ) == "cpachidden" ? str_replace( 'cpachidden', '', $this->options->field ) : $this->options->field;
+	}
+
+	/**
 	 * Get meta by ID
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 *
 	 * @param int $id ID
 	 * @return string Meta Value
 	 */
 	public function get_meta_by_id( $id ) {
 
-		// rename hidden custom fields to their original name
-		$field = substr( $this->options->field, 0, 10 ) == "cpachidden" ? str_replace( 'cpachidden', '', $this->options->field ) : $this->options->field;
-
 		// get metadata
-		$meta = get_metadata( $this->storage_model->type, $id, $field, true );
+		$meta = $this->get_raw_value( $id );
 
 		// try to turn any array into a comma seperated string for further use
 		if ( ( 'array' == $this->options->field_type && is_array( $meta ) ) || is_array( $meta ) ) {
@@ -287,6 +310,35 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 	}
 
 	/**
+	 * Get before value
+	 *
+	 * @since 1.0
+	 */
+	function get_before() {
+
+		return stripslashes( $this->options->before );
+	}
+
+	/**
+	 * Get after value
+	 *
+	 * @since 1.0
+	 */
+	function get_after() {
+
+		return stripslashes( $this->options->after );
+	}
+
+	/**
+	 * @see CPAC_Column::get_raw_value()
+	 * @since 2.0.3
+	 */
+	function get_raw_value( $id, $single = true ) {
+
+		return get_metadata( $this->storage_model->type, $id, $this->get_field_key(), $single );
+	}
+
+	/**
 	 * @see CPAC_Column::get_value()
 	 * @since 1.0
 	 */
@@ -297,14 +349,17 @@ class CPAC_Column_Custom_Field extends CPAC_Column {
 		if ( $meta = $this->get_meta_by_id( $id ) ) {
 
 			// get value by meta
-			$value = $this->get_value_by_meta( $meta );
+			$value = $this->get_value_by_meta( $meta, $id );
 		}
 
 		$value = apply_filters( 'cac/column/meta/value', $value, $id, $this );
 
+		$before = $this->get_before();
+		$after 	= $this->get_after();
+
 		// add before and after string
 		if ( $value ) {
-			$value = "{$this->options->before}{$value}{$this->options->after}";
+			$value = "{$before}{$value}{$after}";
 		}
 
 		return $value;
