@@ -49,14 +49,14 @@ wp_reset_postdata();
 
 <script type="text/javascript" src="<?=get_template_directory_uri();?>/js/easyModal.js"></script>
 
-<?=insert_videos(array('1162', '1154', '1158', '1152'));?>
+<?=insert_videos(array('961', '961', '961', '961'));?>
 
 <div class="hw-endorsements-wrapper">
   <div class="hw-endorsements row">
     <h4>SEE ENDORSEMENTS OF HEARTWORKS PRODUCTS FROM LEADING PROFESSIONALS</h4>
     <!-- ENDORSEMENTS GALLERY ADD HERE -->
     <div class="vid-thumb-wrapper">
-<?=insert_thumbs_endorsements(array('1162', '1154', '1158', '1152'));?>
+<?=insert_thumbs_endorsements(array('961', '961', '961', '961'));?>
     </div> <!-- div thumb wrapper -->
   </div> <!-- promo-band -->
 </div> <!-- promo-band-wrapper -->
