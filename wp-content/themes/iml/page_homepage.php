@@ -18,23 +18,24 @@ Template Name: IML Home
 	
 	<div id="home-mission" class="col">
 	<h1>Inventive Medical Limited</h1>
-	<p>IML is the acknowledged leader and preferred partner to teaching hospitals, medical institutions and companies across the globe engaged in the training and advancement of focused cardiac echocardiography.</p>
+	<p>IML is the acknowledged leader and preferred partner to<br />teaching hospitals, medical institutions and companies<br />across the globe engaged in the training and advancement <br />of focused cardiac echocardiography.</p>
 	</div>		
 	<div id="home-video-container">
 
 	<video id="heart-animation" class="video-js" data-setup='{ "controls": false, "autoplay": true, "preload": "auto", "width": 480, "height": 480, "loop": true }' 
       poster="<?php bloginfo('template_directory'); ?>/video/heartworks-heart-white.png"
       data-setup="{}">
-    <source src="<?php bloginfo('template_directory'); ?>/video/Home-Heart-white.mp4" type='video/mp4' />
+    <source src="<?php bloginfo('template_directory'); ?>/video/Home-Heart-Loop.mp4" type='video/mp4' />
    <!--  <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
     <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' /> -->
   </video>
+
   <div class="clearfix"></div>
 	</div>
 		</div><!-- hero-content -->
 	
 	
-
+<?php get_sidebar('quicklinks'); ?>
 
 				
 

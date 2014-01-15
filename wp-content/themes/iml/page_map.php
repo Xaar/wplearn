@@ -12,152 +12,211 @@ Template Name: map_new
 
   function set_places() {
     var places_setup = {
-        0: {
+      0: {
+          uid: "Global1",
+          name: "IML Global Sales Team",
+          distributor: "Craig Henshaw",
+          address: "Tel: +44 (0) 203 447 9360<br>Mob: +44 (0) 790 801 0253",
+          email: "craig.henshaw@inventivemedical.com",
+          color: "green",
+          radius: 35,
+          xpos: 0.18,
+          ypos: 0.55
+        },
+        1: {
+          uid: "Global2",
+          name: "IML Global Sales Team",
+          distributor: "Craig Henshaw",
+          address: "Tel: +44 (0) 203 447 9360<br>Mob: +44 (0) 790 801 0253",
+          email: "craig.henshaw@inventivemedical.com",
+          color: "green",
+          radius: 35,
+          xpos: 0.48,
+          ypos: 0.48
+        },
+        2: { 
+          uid: "Global3", 
+          name: "IML Global Sales Team",
+          distributor: "Craig Henshaw",
+          address: "Tel: +44 (0) 203 447 9360<br>Mob: +44 (0) 790 801 0253",
+          email: "craig.henshaw@inventivemedical.com",
+          color: "green",
+          radius: 35,
+          xpos: 0.64,
+          ypos: 0.12
+        },
+        3: {
+          uid: "Europe",
+          name: "IML European Sales Team",
+          distributor: "Jake Rahman",
+          address: "Tel: +44 (0) 203 447 9360<br>Mob: +44 (0) 7956 338 317",
+          email: "jake.rahman@inventivemedical.com",
+          color: "orange",
+          radius: 35,
+          xpos: 0.42,
+          ypos: 0.14
+         },
+        4: {
+          uid: "America",
+          name: "IML North American Sales Team",
+          distributor: "Thomas Brown",
+          address: "Tel: +44 (0) 203 447 9360<br>Mob: +44 (0) 790 801 0253",
+          email: "thomas.brown@inventivemedical.com",
+          color: "#0d7eef",
+          radius: 35,
+          xpos: 0.1,
+          ypos: 0.18
+         }   ,
+        5: {
           uid: "Japan",
           name: "Japan",
           distributor: "Nihon Light Inc",
           address: "3-42-1 Hongo,<br>Bunkyo-ku,<br>Tokyo,<br>113-0033,<br>Japan",
           email: "hiroshi@nlsinc.co.jp",
-          color: "green",
+          color: "#c00",
           radius: 25,
-          xpos: 0.83,
-          ypos: 0.22
+          xpos: 0.81,
+          ypos: 0.2
         },
-        1: {
+        6: {
           uid: "Indonesia",
           name: "Indonesia",
           distributor: "PT INTERGASTRA",
           address: "Jl. P. Jayakarta,<br>24/31-35,<br>Jakarta10730,<br>Indonesia",
           email: "karli@intergastra.co.id",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.78,
           ypos: 0.57
         },
-        2: { 
+        7: { 
           uid: "China", 
           name: "China",
           distributor: "V-MedEd",
           address: "Beijing,<br>China",
           email: "michelle.xiao@vmeded.com",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.74,
           ypos: 0.22
         },
-        3: {
+        8: {
           uid: "Australia",
           name: "Australia",
           distributor: "Inition – Asia Pacific",
           address: "Factory 31,<br>91 Moreland Street,<br>Footscray,<br>VIC,3011,<br>Australia",
           email: "christopher.sutton@inition.com.au",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.85,
           ypos: 0.8
          },
-        4: {
+        9: {
           uid: "Middle_East",
           name: "Middle East",
           distributor: "EWG International",
           address: "P.O.Box 18475,Jebel Ali <br>Dubai UAE",
           email: "kassemtofailli@gmail.comkassemtofailli@gmail.com",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.59,
           ypos: 0.33
          }, 
-         5: { 
+         10: { 
           uid: "Singapore_Malaysia",
           name: "Singapore and Malaysia",
           distributor: "United BMEC Pte Ltd",
           address: "No 2 Kim Chuan Drive,<br>06-01,CSI Distribution Centre,<br>Singapore,<br>537080",
           email: "chngken.bmec@uwhpl.com",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.77,
           ypos: 0.5
          }, 
-         6: { 
+         11: { 
           uid: "India",
           name: "India",
           distributor: "Prakash Medicos",
           address: "WZ-428C Nangal Raya,<br>New Delhi,<br>110046",
           email: "prakashmedicos@gmail.com",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.67,
           ypos: 0.4
          }, 
-        7: { 
+        12: { 
           uid: "Thailand",
           name: "Thailand",
           distributor: "Berli Jucker Public Company Limited",
           address: "Berli Jucker House, 99 <br>Soi Rubia, Sukhumvit 42 Road,<br>Phrakanong, Klongtoey,<br>Bangkok 10110,<br>Thailand",
           email: "PornchaK@bjc.co.th",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.75,
           ypos: 0.38
          }, 
-        8: {
+        13: {
           uid: "South_Korea",
           name: "South Korea",
           distributor: "KyongDo Medical Simulation Corp",
           address: "ShinWol B/D #202,<br>347-2,ShinDaeBang-Dong,<br>Dongjak-Gu and Seoul,<br>Korea 156-847",
           email: "leekd9595@hanmail.net",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.795,
           ypos: 0.24
          },
-        9: {
+        14: {
           uid: "Ireland",
           name: "Ireland",
           distributor: "Cardiac Services",
           address: "Dublin<br>www.cardiac-services.com",
           email: "g-dempsey@cardiac-services.com",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.38,
           ypos: 0.13
         },
-        10: {
+        15: {
           uid: "Russia",
           name: "Russia",
           distributor: "MedRescue LLC",
           address: "Moscow, Russia<br>http://mirmanekenov.ru",
           email: "nikolaj.krogh.jensen@mirmanekenov.ru",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.5,
           ypos: 0.12
         },
-        11: {
+        16: {
           uid: "Taiwan",
           name: "Taiwan",
           distributor: "Medsim Healthcare Education Ltd",
           address: "Hong Kong, Shanghai & Taiwan",
           email: "jaywalker4@gmail.com",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.804,
           ypos: 0.322
         },
-        12: {
+        17: {
           uid: "Romania",
           name: "Romania",
           distributor: "Tehnoplus Medical",
           address: "Romania<br>www.tehnoplus.ro",
           email: "irina.ban@tehnoplus.ro",
-          color: "green",
+          color: "#c00",
           radius: 25,
           xpos: 0.475,
           ypos: 0.19
-        }     
+        }  
+         
   }
   return places_setup;
 }
+
+
+
 
 function map_init () {
     //rest the dropdown list
@@ -208,7 +267,7 @@ function map_init () {
 
         function createPlace() {
 
-          if (place<13) {
+          if (place<18) {
 
         var pl=places[place];
         var pl_xpos=mapwidth*pl.xpos;
@@ -228,7 +287,7 @@ function map_init () {
                       .click(function (event) {
                             resetDots();
                             setInfo(this.data("id"));
-                            this.attr({fill: "#c00"});
+                            //this.attr({fill: "#c00"});
                             this.unhover();
                             event.stopPropagation();
 
@@ -237,18 +296,18 @@ function map_init () {
                       .touchstart(function (event) {
                             resetDots();
                             setInfo(this.data("id"));
-                            this.attr({fill: "#c00"});
+                            //this.attr({fill: "#c00"});
                             this.unhover();
                             event.stopPropagation();
 
 
                          })
                       .mouseover(function () {
-                            this.animate({fill: "#c00"} , 300);
+                            //this.animate({fill: "#c00"} , 300);
                             
                          })
                       .mouseout(function () {
-                            this.animate({fill: ""+pl.color+""}, 300)
+                            //this.animate({fill: ""+pl.color+""}, 300)
                          });   
 
             
@@ -342,18 +401,19 @@ function map_init () {
   }
 
 
+ map_init();
 
-  var mapDrawn = false;
+  /*var mapDrawn = false;
 
   $('.mapTab').click(function () {
     if(mapDrawn == false) {
-      map_init();
+      
       console.log('fired');
       mapDrawn = true;
     }
 
   });
-
+*/
 
 
 $(window).resize(function () {
@@ -371,8 +431,9 @@ function resetDots () {
       var dotId=places[place];
       var dotName=dotId.uid;
       var dot = $('#pl_'+dotName+' circle');
+      var col = dotId.color;
 
-      dot.attr({"fill": "green"});
+      dot.attr({"fill": col});
 
     }
   
@@ -455,67 +516,24 @@ function selectLoc (locId) {
     <div class="sales-tabs-wrapper">
       <div class="sales-tabs">
         <ul class="tabs">
-          <li><a href="#">The Team</a></li>
-          <li><a href="#">Sales and Support</a></li>
-          <li><a class="mapTab" href="#">Distribution</a></li>
+      <li><a class="mapTab" href="#">Sales Coverage</a></li>
+          <li><a href="#">Sales and Enquiries</a></li>
         </ul>
       </div><!-- sales-tabs -->
 
       <div class="panes">
-        <!-- MAP -->
-        <div class="pane pane-sales">
-          <div class="sales-team">
-
-          <h2>Contact our Sales Team Directly</h2>
-          <p>Inventive Medical are now present in most countries via their distribution partners below. If we do not currently have a distributor in your region then please contact us via the Sales and Support staff below.</p>
-        <div class="row">
-        <div class="contact-sales">
-          <h2>Craig Henshaw</h2>
-          <h3>Global Sales Manager</h3>
-          <p>Tel: +44 (0) 203 447 9360<br/>
-              Mob: +44 (0) 790 801 0253<br/>
-              <a href="mailto:craig.henshaw@inventivemedical.com">Email Craig</a></p>
-        </div>
-        <div class="contact-sales">
-          <h2>Thomas Brown</h2>
-          <h3>Vice President North American Sales (Eastern Region) </h3>
-          <p>Tel: +44 (0) 203 447 9360<br/>
-              Mob: +44 (0) 790 801 0253<br/>
-              <a href="mailto:thomas.brown@inventivemedical.com">Email Thomas</a></p>
-        </div>
-        <div class="contact-sales">
-          <h2>Jake Rahman</h2>
-          <h3>Sales Manager - Europe</h3>
-          <p>Tel: +44 (0) 203 447 9360<br/>
-              Mob: +44 (0) 7956 338 317<br/>
-              <a href="mailto:jake.rahman@inventivemedical.com">Email Michelle</a></p>
-        </div>
-      </div><!-- row -->
-
-      
-        </div><!-- sales-team -->
-          
-
-          
-        </div><!-- pane -->
-
-        <!-- FAQ's -->
-        <div class="pane pane-sales">
-         <h2>Submit a Sales Enquiries</h2>
-
-<?=do_shortcode('[si-contact-form form=\'1\']');?>
-
-         
-        </div><!-- pane -->
-      
+             
         <!-- Enquiries -->
         <div class="pane pane-sales">
           
-                     <h2>Find a Heartworks distributor</h2>
-          <p>Click on the map to find a Heartworks distributor in your region</p>
+                     <h2>Global sales coverage</h2>
+          <p>Click on the map to find a member of the IML team or a Heartworks distributor in your region</p>
 
   <select name="distributors" id="distributor-select"> 
 <option value="select">Please select</option>
+<option value="Global1">IML Global Sales</option>
+<option value="Europe">IML European Sales</option>
+<option value="America">IML North American Sales</option>
 <option value="Australia">Australia</option>
 <option value="China">China</option>
 <option value="India">India</option>
@@ -536,13 +554,34 @@ function selectLoc (locId) {
       <h2>Region Name</h2>
       <h3>Distributor Name</h3>
       <p class="addy">Address line one</p>
-      <a>Email Distributor &raquo;</a>
+      <a>Send email &raquo;</a>
     </div>
     <img class="click-close" src="<?php bloginfo('template_directory'); ?>/images/iml_map.png">
     
  </div>   
+  <div class="row">
+        <div class="map-key">
+          <h2>Key</h2>
+          <ul>
+        <li> <img src="<?php bloginfo('template_directory'); ?>/images/key-iml.png"><h3>- IML Sales teams</h3></li>
+         
+        <li> <img src="<?php bloginfo('template_directory'); ?>/images/key-distributor.png">  <h3>- IML Distributors</h3></li>
+        </ul>
+          
+        </div>
+      
+      </div><!-- row -->
           
         
+        </div><!-- pane -->
+
+
+        <div class="pane pane-sales">
+         <h2>Submit a sales enquiry</h2>
+
+<?=do_shortcode('[si-contact-form form=\'1\']');?>
+
+         
         </div><!-- pane -->
       </div> <!-- close panes -->
     </div><!-- products-tabs-wrapper -->

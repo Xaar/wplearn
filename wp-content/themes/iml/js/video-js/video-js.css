@@ -435,7 +435,7 @@ easily in the skin designer. http://designer.videojs.com/
   transition: all 0s;
 }
 .vjs-default-skin .vjs-big-play-button:before {
-  content: "\e001";
+  content: "PLAY";
   font-family: VideoJS;
   /* In order to center the play icon vertically we need to set the line height
      to the same as the button height */

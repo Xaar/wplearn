@@ -246,7 +246,6 @@ input[type="submit"] ,
 	border-color: #ccc #ccc #bbb #ccc;
 	border-radius: 3px;
 	background: #e6e6e6;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
 	color: rgba(0, 0, 0, .8);
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
@@ -261,7 +260,6 @@ button:hover,
 html input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa #bbb;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
 }
 .cta-grey:focus , 
@@ -273,8 +271,7 @@ button:active,
 html input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
-	border-color: #aaa #bbb #bbb #bbb;
-	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .cta-grey {
@@ -944,7 +941,7 @@ input[name="s"]:focus {
 
 
 .home-heart {
-	height: 670px;
+	height: 630px;
 }
 
 #home-video-container {
@@ -959,19 +956,19 @@ input[name="s"]:focus {
 #home-mission {
 
 	float: left;
-	text-align: center;
-	margin-top: 200px;
+	text-align: left;
+	margin-top: 220px;
 	display: inline-block;
 
 }
 
 #home-mission p {
-	font-size: 17px;
+	font-size: 18px;
 	}
 #home-mission h1 {
-	font-weight: normal;
-	font-size: 30px;
-	text-align: center;
+	font-weight: 200;
+	font-size: 42px;
+	text-align: left;
 	color: #c00;
 }
 .cta-green a , .cta-green-tabs a , .cta-green-inline a , button#catapultCookie {
@@ -1214,9 +1211,7 @@ Homepage promo styles Latest News, events etc.
 .quick-links-wrapper {
 	width: 100%;
 	background-color: #fff;
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+
 	padding: 20px 0;
 
 }
@@ -1235,8 +1230,9 @@ Homepage promo styles Latest News, events etc.
 }
 
 .quick-link	{
-	margin: 20px 0 20px 0;
+	margin: 30px 0 20px 0;
 	text-align: center;
+	width: 18%;
 }
 
 .quick-link h2 a {
@@ -1905,7 +1901,7 @@ a.hw-menu-link:hover > div.hw-menu-arrow {
 	right: 0.1% !important;
 	left: 0.1% !important;
 	width: 37%;
-	text-align: center;
+	text-align: left;
 	margin-bottom: 20px;
 
 
@@ -2067,7 +2063,7 @@ ul.tabs {
 
 .sales-tabs ul.tabs li  { 
 	
-	width: 32% !important;
+	width: 50% !important;
 	}
 
 .product-tabs ul.tabs li a , .sales-tabs ul.tabs li a {
@@ -3042,6 +3038,39 @@ h2.heading-leftcol {
 	padding-left: 10px;
 }
 
+.map-key {
+	text-align: left !important;
+	width: 25%;
+	position: relative;
+	float: left;
+}
+
+.map-key ul {
+	text-indent: 0;
+	display: block;
+	float: none;
+	padding: 0;
+	margin: 0;
+}
+
+.map-key h3 {
+	display: inline;
+	padding-left: 5px;
+}
+
+.map-key ul li {
+	list-style: none;
+	text-indent: 0;
+	float: left;
+	padding: 3px 0;
+	margin: 2px 0;
+	width: 100%;
+}
+
+.map-key ul li img {
+	display: inline;
+}
+
 
 /*:::::::::::::::::::: R E S P O N S I V E ::::::::::::::: S T Y L E S :::::::::::::::::::::*/
 
@@ -3549,11 +3578,7 @@ margin: 0 auto !important;
 #home-video-container {
 	position: relative;
 	}
-
-.home-heart {
-	height: 800px;
-
-}	
+	
 
 /*
 ::::::::::::::: About IML Mobile ::::::::::::::::
@@ -3673,13 +3698,13 @@ h2{
 .span_1 {
             width:6.5%;
         }
-.span_2 {
+.span_2  {
             width:15.0%;
         }
 .span_3  , .cta-gateway , .sidebar-wrapper {
             width:23.5%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote , #home-mission  {
+.span_4 , .heroTxtContent , .promo  , .product-quote , #home-mission  {
             width:32.0%;
         }
 .span_5  , .tabs-text {
@@ -3750,7 +3775,7 @@ h2{
 .span_3 , .cta-gateway   {
             width:24.0625%;
         }
-.span_4 , .heroTxtContent , .promo , .quick-link , .product-quote , .sidebar-wrapper {
+.span_4 , .heroTxtContent , .promo  , .product-quote , .sidebar-wrapper {
             width:32.5%;
         }
  .span_5  , .tabs-text {

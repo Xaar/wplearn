@@ -104,9 +104,9 @@ switch (get_post_meta($postid, ('product_type'), true)) {
                 <div id="more-info-link" class="cta-green">
                   <a>Learn more &raquo; </a>
                  </div>
-                <div class="cta-green">
+                <!-- <div class="cta-green">
                   <a href="<?php bloginfo('url'); ?>/sales-support">Contact us &raquo; </a>
-                 </div>
+                 </div> -->
     </div><!-- hero-product-listing-text -->
     <div class="hero-product-img">
      <img class='right hero-product-img' src="<?=wp_get_attachment_url(get_post_meta($postid, ('product_image'), true));?>"/>
@@ -179,9 +179,9 @@ if(get_post_meta($postid, ('product_type'), true)=='Pathologies') {
         <div class="tabs-text col">
           <h2>More About Heartworks <?=get_the_title($postid);?></h2>
           <?php the_field('product_overview', $postid); ?>
-          <div class="cta-green-inline">
+          <!-- <div class="cta-green-inline">
             <a href="<?=get_permalink(get_post_meta($postid, ('ask_a_question'), true)); ?>">Ask a Question</a>
-          </div>
+          </div> -->
         </div>
         <div class="tabs-gallery">
 

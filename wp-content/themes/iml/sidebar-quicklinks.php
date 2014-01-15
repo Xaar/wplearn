@@ -5,39 +5,44 @@
   </div>
 
   <div class="quick-links row">
+  <div class="quick-link col">
+      <a href="<?php bloginfo('url'); ?>/about-iml"><img src="<?php bloginfo('template_directory'); ?>/images/link-about.png"></a>
+      <h2><a href="<?php bloginfo('url'); ?>/about-iml">About IML</a></h2>
+      <p>Learn about what we do and meet our team.</p>
+     <!--  <div class="cta-grey">
+      <a href="<?php bloginfo('url'); ?>/about-iml">Learn more &raquo;</a>
+    </div> -->
+  </div><div class="quick-link col">
+      <a href="<?php bloginfo('url'); ?>/products-services"><img src="<?php bloginfo('template_directory'); ?>/images/link-products.png"></a>
+      <h2><a href="<?php bloginfo('url'); ?>/products-services">Products and Services</a></h2>
+     <p>Discover our industry leading echocardiography training products.</p> 
+     <!--  <div class="cta-grey">
+      <a href="<?php bloginfo('url'); ?>/products-services">Learn more &raquo;</a>
+    </div> -->
+  </div>
     <div class="quick-link col">
-      <img src="<?php bloginfo('template_directory'); ?>/images/link-pathology.png">
-      <h2><?php  $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Pathologies'));
-        while ( $wp_query->have_posts() ) : $wp_query->the_post();
-        ?>         <a href="<?=the_permalink();?>">Heartworks Pathology Modules</a></h2>
-      <p>HeartWorks now contains various examples of pathological cases which are being added to as regular updates to the system, these models can be seen via the ‘learn more’ button below</p>
-      <div class="cta-grey">
-        <a href="<?=the_permalink();?>">Learn more &raquo;</a>
-      </div>
-        <?php
-        endwhile;
-        ?> 
-      </div>
-    <div class="quick-link col">
-      <img src="<?php bloginfo('template_directory'); ?>/images/link-gateway.png">
-      <h2><?php  $wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'Gateway'));
-        while ( $wp_query->have_posts() ) : $wp_query->the_post();
-        ?>         <a href="<?=the_permalink();?>">Heartworks Gateway</a></h2>
-      <p>Gateway is our 12-month, or multi-year, fixed price subscription service, designed to ensure that Heartworks customers receive the latest software developments, including pathology modules, software updates and software support that keep your Heartworks system current.</p>
-      <div class="cta-grey">
-        <a href="<?=the_permalink();?>">Learn more &raquo;</a>
-         </div>
-        <?php
-        endwhile;
-        ?> 
-    </div>
-    <div class="quick-link col">
-      <img src="<?php bloginfo('template_directory'); ?>/images/link-sales.png">
-      <h2><a href="">Sales &amp; Support</a></h2>
-      <p>Find a Heartworks distributor in your region or contact a member of the IML team directly.</p>
-      <div class="cta-grey">
-      <a href="<?php bloginfo('url'); ?>/sales-support">Learn more &raquo;</a>
-    </div>
+      <a href="<?php bloginfo('url'); ?>/news"><img src="<?php bloginfo('template_directory'); ?>/images/link-news.png"></a>
+      <h2><a href="<?php bloginfo('url'); ?>/news">Latest News</a></h2>
+      <p>Latest news about IML and Heartworks.</p>
+      <!-- <div class="cta-grey">
+      <a href="<?php bloginfo('url'); ?>/news">Learn more &raquo;</a>
+    </div> -->
+  </div>
+  <div class="quick-link col">
+     <a href="<?php bloginfo('url'); ?>/events"> <img src="<?php bloginfo('template_directory'); ?>/images/link-events.png"></a>
+      <h2><a href="<?php bloginfo('url'); ?>/events">Events</a></h2>
+    <p>See IML products at one of the many events we attend around the globe.</p>
+      <!-- <div class="cta-grey">
+      <a href="<?php bloginfo('url'); ?>/events">Learn more &raquo;</a>
+    </div> -->
+  </div>
+  <div class="quick-link col">
+     <a href="<?php bloginfo('url'); ?>/contact-us"> <img src="<?php bloginfo('template_directory'); ?>/images/link-contact.png"></a>
+      <h2><a href="<?php bloginfo('url'); ?>/contact-us">Contact us</a></h2>
+  <p>Get in touch with us for support or sales information.</p> 
+      <!-- <div class="cta-grey">
+      <a href="<?php bloginfo('url'); ?>/contact-us">Learn more &raquo;</a>
+    </div> -->
   </div>
   </div> <!-- .quick-links row -->
 </div><!--  .quick-links-wrapper -->
