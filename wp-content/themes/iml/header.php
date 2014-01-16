@@ -50,6 +50,8 @@
   <script>
     $(document).ready(function () {
       if($(window).width()<=950) {
+        $('ul.sub-menu').css('display','none');
+        $('ul.sub-menu').css('left','-999px');
         $('.site-title').css('display', 'none');
         $('.mobile-site-title').css('display', 'inline');
         $('.mobile-nav-icon').css('display', 'inline');
@@ -66,8 +68,8 @@
         $('.clear-nav-mobile').removeClass('clear-nav');
 
         $('.hw-menu-collapsed').css('margin-top', '40px');
-
-        $(".mobile-menu-mainnav-container").slideUp(1);
+        
+        $(".mobile-menu-mainnav-container").slideUp(20);
       }
     });
 
@@ -88,6 +90,8 @@
       $('.clear-nav').addClass('clear-nav-mobile');
       $('.clear-nav-mobile').removeClass('clear-nav');
       $('.hw-menu-collapsed').css('margin-top', '40px');
+      $('ul.sub-menu').css('left','-999px');
+       $(".mobile-menu-mainnav-container").slideUp(20);
     }
 
     function desktop_view () {
@@ -104,6 +108,7 @@
       $('.clear-nav-mobile').addClass('clear-nav');
       $('.clear-nav').removeClass('clear-nav-mobile');
       $('.hw-menu-collapsed').css('margin-top', '96px');
+      $('ul.sub-menu').css('left','17%');
     }
 
     function resizedw(){

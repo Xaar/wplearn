@@ -3256,8 +3256,14 @@ h2.heading-leftcol {
 
 }
 
+@media screen and (min-width: 320px) and (max-width: 950px), screen and (min-width: 320px) and (max-width: 950px) and (-webkit-min-device-pixel-ratio: 2) {
 
+	ul.sub-menu {
+	position: absolute;
+	left: -999px;
+}
 
+}
  
     /* 1. 9 Column Grid 0px - 767px 
     ----------------------------------------------------------------------------- 
@@ -3281,11 +3287,6 @@ Screen Height = 568px (CSS Pixels)
 */
     @media screen and (min-width: 320px) and (max-width: 767px), screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
         
-        
-ul.sub-menu {
-	position: absolute;
-	left: -999px;
-}
 
 .row .col:first-child {
             margin-left:auto;
