@@ -2864,10 +2864,15 @@ h2.heading-leftcol {
 
 }
 
-.biog-wrapper {
+
+.team-member p  {
 	float: left;
 	width: 58%;
 	margin-left: 20px;
+}
+
+.about-sub {
+	margin-top: 30px;
 }
 
 
