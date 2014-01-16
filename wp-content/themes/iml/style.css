@@ -3649,6 +3649,7 @@ margin: 0 auto !important;
 
 .team-member {
 	margin: 20px 0;
+	display: inline-block;
 }
 
 .team-member img {
