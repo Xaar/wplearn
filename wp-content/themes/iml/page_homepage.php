@@ -30,8 +30,9 @@ Template Name: IML Home
     <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' /> -->
   </video>
 
-  <div class="clearfix"></div>
+ 
 	</div>
+	 <div class="clearfix"></div>
 		</div><!-- hero-content -->
 	
 	

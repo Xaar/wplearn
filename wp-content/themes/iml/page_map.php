@@ -53,7 +53,7 @@ Template Name: map_new
           email: "jake.rahman@inventivemedical.com",
           color: "orange",
           radius: 35,
-          xpos: 0.42,
+          xpos: 0.4,
           ypos: 0.14
          },
         4: {
@@ -73,7 +73,7 @@ Template Name: map_new
           distributor: "Nihon Light Inc",
           address: "3-42-1 Hongo,<br>Bunkyo-ku,<br>Tokyo,<br>113-0033,<br>Japan",
           email: "hiroshi@nlsinc.co.jp",
-          color: "#c00",
+          color: "#666",
           radius: 25,
           xpos: 0.81,
           ypos: 0.2
@@ -84,7 +84,7 @@ Template Name: map_new
           distributor: "PT INTERGASTRA",
           address: "Jl. P. Jayakarta,<br>24/31-35,<br>Jakarta10730,<br>Indonesia",
           email: "karli@intergastra.co.id",
-          color: "#c00",
+          color: "#666",
           radius: 25,
           xpos: 0.78,
           ypos: 0.57
@@ -95,7 +95,7 @@ Template Name: map_new
           distributor: "V-MedEd",
           address: "Beijing,<br>China",
           email: "michelle.xiao@vmeded.com",
-          color: "#c00",
+          color: "#666",
           radius: 25,
           xpos: 0.74,
           ypos: 0.22
@@ -106,9 +106,9 @@ Template Name: map_new
           distributor: "Inition – Asia Pacific",
           address: "Factory 31,<br>91 Moreland Street,<br>Footscray,<br>VIC,3011,<br>Australia",
           email: "christopher.sutton@inition.com.au",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.85,
+          xpos: 0.83,
           ypos: 0.8
          },
         9: {
@@ -117,9 +117,9 @@ Template Name: map_new
           distributor: "EWG International",
           address: "P.O.Box 18475,Jebel Ali <br>Dubai UAE",
           email: "kassemtofailli@gmail.comkassemtofailli@gmail.com",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.59,
+          xpos: 0.57,
           ypos: 0.33
          }, 
          10: { 
@@ -128,9 +128,9 @@ Template Name: map_new
           distributor: "United BMEC Pte Ltd",
           address: "No 2 Kim Chuan Drive,<br>06-01,CSI Distribution Centre,<br>Singapore,<br>537080",
           email: "chngken.bmec@uwhpl.com",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.77,
+          xpos: 0.75,
           ypos: 0.5
          }, 
          11: { 
@@ -139,9 +139,9 @@ Template Name: map_new
           distributor: "Prakash Medicos",
           address: "WZ-428C Nangal Raya,<br>New Delhi,<br>110046",
           email: "prakashmedicos@gmail.com",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.67,
+          xpos: 0.65,
           ypos: 0.4
          }, 
         12: { 
@@ -150,9 +150,9 @@ Template Name: map_new
           distributor: "Berli Jucker Public Company Limited",
           address: "Berli Jucker House, 99 <br>Soi Rubia, Sukhumvit 42 Road,<br>Phrakanong, Klongtoey,<br>Bangkok 10110,<br>Thailand",
           email: "PornchaK@bjc.co.th",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.75,
+          xpos: 0.73,
           ypos: 0.38
          }, 
         13: {
@@ -161,9 +161,9 @@ Template Name: map_new
           distributor: "KyongDo Medical Simulation Corp",
           address: "ShinWol B/D #202,<br>347-2,ShinDaeBang-Dong,<br>Dongjak-Gu and Seoul,<br>Korea 156-847",
           email: "leekd9595@hanmail.net",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.795,
+          xpos: 0.775,
           ypos: 0.24
          },
         14: {
@@ -172,9 +172,9 @@ Template Name: map_new
           distributor: "Cardiac Services",
           address: "Dublin<br>www.cardiac-services.com",
           email: "g-dempsey@cardiac-services.com",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.38,
+          xpos: 0.36,
           ypos: 0.13
         },
         15: {
@@ -183,9 +183,9 @@ Template Name: map_new
           distributor: "MedRescue LLC",
           address: "Moscow, Russia<br>http://mirmanekenov.ru",
           email: "nikolaj.krogh.jensen@mirmanekenov.ru",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.5,
+          xpos: 0.48,
           ypos: 0.12
         },
         16: {
@@ -194,9 +194,9 @@ Template Name: map_new
           distributor: "Medsim Healthcare Education Ltd",
           address: "Hong Kong, Shanghai & Taiwan",
           email: "jaywalker4@gmail.com",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.804,
+          xpos: 0.784,
           ypos: 0.322
         },
         17: {
@@ -205,9 +205,9 @@ Template Name: map_new
           distributor: "Tehnoplus Medical",
           address: "Romania<br>www.tehnoplus.ro",
           email: "irina.ban@tehnoplus.ro",
-          color: "#c00",
+          color: "#666",
           radius: 25,
-          xpos: 0.475,
+          xpos: 0.455,
           ypos: 0.19
         }  
          
@@ -287,7 +287,7 @@ function map_init () {
                       .click(function (event) {
                             resetDots();
                             setInfo(this.data("id"));
-                            //this.attr({fill: "#c00"});
+                            this.attr({fill: "#c00"});
                             this.unhover();
                             event.stopPropagation();
 
@@ -296,18 +296,18 @@ function map_init () {
                       .touchstart(function (event) {
                             resetDots();
                             setInfo(this.data("id"));
-                            //this.attr({fill: "#c00"});
+                            this.attr({fill: "#c00"});
                             this.unhover();
                             event.stopPropagation();
 
 
                          })
                       .mouseover(function () {
-                            //this.animate({fill: "#c00"} , 300);
+                            this.animate({fill: "#c00"} , 300);
                             
                          })
                       .mouseout(function () {
-                            //this.animate({fill: ""+pl.color+""}, 300)
+                            this.animate({fill: ""+pl.color+""}, 300)
                          });   
 
             
@@ -527,7 +527,7 @@ function selectLoc (locId) {
         <div class="pane pane-sales">
           
                      <h2>Global sales coverage</h2>
-          <p>Click on the map to find a member of the IML team or a Heartworks distributor in your region</p>
+                     <p>Inventive Medical Limited is present in most Countries throughout the World, either through its direct sales teams or via our Distribution Partners.</p>
 
   <select name="distributors" id="distributor-select"> 
 <option value="select">Please select</option>

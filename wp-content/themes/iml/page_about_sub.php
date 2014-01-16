@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: About
+Template Name: About_Sub_Page
 */
 ?>
 
@@ -14,21 +14,17 @@ Template Name: About
 	</div>
 
 	<div class="about-leftcol-wrapper">
-		<h2 class="heading-leftcol">The IML Story</h2>
-		<?php if ( has_post_thumbnail() ) { ?>
-    <div class="about_image"><?php the_post_thumbnail('sixteen-nine-large'); ?></div>
-<?php } ?>
-		<h1 class="about-section-title">Inventive Medical Ltd</h1>
-
+		<h2 class="heading-leftcol"><?php the_title(); ?></h2>
+    
  <?php if (have_posts()) : while (have_posts()) : the_post();
 
 the_content();
 
 endwhile; endif; ?>
-	<div class="clearfix"></div>
+  <div class="clearfix"></div>
 </div>
 
-	<div class="sidebar-wrapper">
+  <div class="sidebar-wrapper">
 <?php
 
   get_sidebar('upcoming-events');
@@ -40,3 +36,4 @@ endwhile; endif; ?>
 </div>
 
 <?php get_footer(); ?>
+

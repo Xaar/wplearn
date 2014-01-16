@@ -7,7 +7,7 @@ jQuery(document).ready(function($){
     Input.focus(function() {
         if(Input.val() == default_value) Input.val("");
     }).blur(function(){
-        if(Input.val().length == 0) Input.val(default_value);
+        if(Input.val().length == 0) Input.val(default_value);   
     });
 });
 
@@ -16,6 +16,12 @@ jQuery(document).ready(function($){
 * A minimal jQuery modal that works with your CSS.
 * Author: Flavius Matis - http://flaviusmatis.github.com/
 * URL: https://github.com/flaviusmatis/easyModal.js
+*/
+/*(function($){  
+   $(window).load(function(){
+       $('.sub-menu-link').append('<div class="sub-menu-arrow"></div>' );  
+   })
+})(jQuery);
 */
 
 (function(jQuery){

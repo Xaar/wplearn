@@ -52,6 +52,20 @@ endwhile;
 ?> 
      </ul>
       </div>
+       <div class="hw-menu-list">
+        <div id="elearn-icon" class="hw-menu-category-icon"></div>
+        <h2>Education</h2>
+        <ul>
+        <!-- write wp query for products > elearning -->
+<?php
+$wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'eLearn', 'orderby' => 'menu_order', 'order' => 'ASC'));
+while ( $wp_query->have_posts() ) : $wp_query->the_post();
+?>          <li><a href="<?=the_permalink();?>" class="hw-menu-link"><?=the_title();?><div class="hw-menu-arrow"></div></a></li>
+<?php
+endwhile;
+?>          <!-- <li><a class="hw-menu-link">Media store<div class="hw-menu-arrow"></div></a></li> -->
+        </ul>
+      </div>
       <div class="hw-menu-list">
         <div id="professional-icon" class="hw-menu-category-icon"></div>
         <h2>Industry Partnership</h2>
@@ -65,20 +79,7 @@ endwhile;
           ?>          
         </ul>
       </div>
-       <div class="hw-menu-list">
-        <div id="elearn-icon" class="hw-menu-category-icon"></div>
-        <h2>Education</h2>
-        <ul>
-        <!-- write wp query for products > elearning -->
-<?php
-$wp_query = new WP_Query( array ( 'post_type' => 'products', 'meta_key' => 'product_type', 'meta_compare' => '==', 'meta_value' => 'eLearn', 'orderby' => 'menu_order', 'order' => 'ASC'));
-while ( $wp_query->have_posts() ) : $wp_query->the_post();
-?>          <li><a href="<?=the_permalink();?>" class="hw-menu-link"><?=the_title();?><div class="hw-menu-arrow"></div></a></li>
-<?php
-endwhile;
-?>          <li><a class="hw-menu-link">Media store<div class="hw-menu-arrow"></div></a></li>
-        </ul>
-      </div>
+      
     </div> <!-- Expanded menu lists -->
   </div> <!-- Expanded menu content -->
 </div> <!-- Expanded menu wrapper -->

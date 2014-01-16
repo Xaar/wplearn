@@ -515,7 +515,7 @@ object {
 
 .site-content [class*="navigation"] {
 	margin: 0 0 1.5em;
-	overflow: hidden;
+	overflow: visible;
 }
 [class*="navigation"] .previous {
 	float: left;
@@ -683,8 +683,8 @@ p , a {
      width: 90%;
      min-width: 240px;
      max-width: 1280px;
-     overflow:hidden;
-     position:relative;
+/*     overflow:hidden;
+*/     position:relative;
      padding: 0;
      margin: 0 auto;
 }
@@ -711,6 +711,7 @@ body {
 	-moz-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.5);
 	z-index: 2002;
+	overflow: visible;
 
 }
 
@@ -747,39 +748,11 @@ body {
 
 	float: left;
 	width: 65%;
+	overflow: visible;
 
 }
 
-.menu-mainnav-container ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	display: none;
-	float: left;
-	position: absolute;
-		top: 1.5em;
-		left: 0;
-	z-index: 99999;
-}
-.menu-mainnav-container ul ul ul {
-	left: 100%;
-	top: 0;
-}
-.menu-mainnav-container ul ul a {
-	
-}
-/*.menu-mainnav-container ul ul li {
-}
-.menu-mainnav-container li:hover > a {
-}
-.menu-mainnav-container ul ul :hover > a {
-}
-.menu-mainnav-container ul ul a:hover {
-}*/
-.menu-mainnav-container ul li:hover > ul {
-	display: block;
-}
-/*.menu-mainnav-container li.current_page_item a,
-.menu-mainnav-container li.current-menu-item a {
-}*/
+
 
 /* Small menu */
 .menu-toggle {
@@ -837,7 +810,6 @@ body {
 	padding: 0;
 	text-decoration: none;
 	display: block;
-	 line-height: 1.2em;
 	 width: 100%;
 	 height: 100%;
 
@@ -860,17 +832,84 @@ li.current_page_item , li.current-menu-item {
 	
 }
 
-/*TO DO make this triggered with jquery in IML.js*/
-
-/*.main_nav_hover_class {
-	background: #484848;
-	color: #fff;
-
-}*/
 
 li.current_page_item:hover , li.current-menu-item:hover {
 	background-color: #585858 !important;
 }
+
+/* SUB MENU */
+
+.sub-menu-arrow {
+
+       display:inline-block;
+       position:relative;
+       top: 0px;
+       width: 16px;
+       height: 11px;
+       background: url('images/sub-menu-arrow.png');
+       margin: 0 auto;
+		padding: 0;
+		background-color: none;
+  }
+
+ul.sub-menu {
+	background: #333;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+	display: none;
+	position: absolute;
+	top: 63px;
+	left: 15%;
+	z-index: 99999;
+	width: auto;
+	padding: 0;
+	height: auto;
+	text-align: center;
+	max-width: none;
+	border-radius: 0 0 5px 5px;
+	vertical-align: middle;
+	overflow: visible;
+
+}
+.menu-mainnav-container ul ul ul {
+	left: 100%;
+	top: 0;
+}
+ul.sub-menu li a {
+	padding: 10px 20px !important;
+	width: 100%;
+	display: inline;
+	vertical-align: middle;
+	position: relative;
+	top: 25%;
+}
+ul.sub-menu li {
+	float: none;
+	border: none;
+	padding: 0;
+	width: 100%;
+	max-width: none;
+	vertical-align: middle;
+
+}
+
+ul.sub-menu li:last-child {
+	border-radius: 0 0 5px 5px;
+	}
+
+
+
+.menu-mainnav-container li:hover > a {
+}
+.menu-mainnav-container ul ul :hover > a {
+}
+.menu-mainnav-container ul ul a:hover {
+}
+.menu-mainnav-container ul li:hover > ul {
+	display: block;
+}
+/*.menu-mainnav-container li.current_page_item a,
+.menu-mainnav-container li.current-menu-item a {
+}*/
 
 .header_inner_wrapper .logo {
 
@@ -941,7 +980,7 @@ input[name="s"]:focus {
 
 
 .home-heart {
-	height: 630px;
+	min-height: 630px;
 }
 
 #home-video-container {
@@ -1232,7 +1271,7 @@ Homepage promo styles Latest News, events etc.
 .quick-link	{
 	margin: 30px 0 20px 0;
 	text-align: center;
-	width: 18%;
+	width: 18.75%;
 }
 
 .quick-link h2 a {
@@ -2844,7 +2883,7 @@ h2.heading-leftcol {
 .sales-tabs-wrapper {
 	margin: 0;
 	padding: 0;
-	text-align: center;
+	text-align: left;
 
 
 }
@@ -3040,9 +3079,9 @@ h2.heading-leftcol {
 
 .map-key {
 	text-align: left !important;
-	width: 25%;
 	position: relative;
 	float: left;
+	width: 100%;
 }
 
 .map-key ul {
@@ -3051,6 +3090,7 @@ h2.heading-leftcol {
 	float: none;
 	padding: 0;
 	margin: 0;
+	width: 100%;
 }
 
 .map-key h3 {
@@ -3062,10 +3102,14 @@ h2.heading-leftcol {
 	list-style: none;
 	text-indent: 0;
 	float: left;
-	padding: 3px 0;
+	padding: 3px 10px;
 	margin: 2px 0;
-	width: 100%;
+	display: inline;
 }
+
+.map-key ul li:first-child {
+	padding-left: 0;
+	}
 
 .map-key ul li img {
 	display: inline;
@@ -3232,7 +3276,28 @@ Screen Height = 568px (CSS Pixels)
 */
     @media screen and (min-width: 320px) and (max-width: 767px), screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
         
+        
+ul.sub-menu {
+	position: absolute;
+	left: -999px;
+}
 
+.row .col:first-child {
+            margin-left:auto;
+        }
+
+ .col , .quick-link {
+	margin: 0 auto;
+	padding: 10px;
+	display: inline-block;
+	position: relative;
+	float: none;
+}        
+
+.quick-links , .quick-links-wrapper {
+	text-align: center !important;
+}
+       
 
 .dk_container {
 	top: 0 !important;
@@ -3279,14 +3344,6 @@ h2{
 
 	}
 
-.col {
-            margin-left:2%;
-        	padding:0 0.5%;
-        }
-        
-.row .col:first-child {
-            margin-left:auto;
-        }
 
 .rsMainSlideImage {
 
@@ -3644,7 +3701,7 @@ margin: 0 auto !important;
 .span_8  , .heroTxtContent , .quick-links, .product-carousel, .gateway-promo-wrapper , 
 .hw-menu-collapsed , .hw-menu-expanded-wrapper , .products-tabs-wrapper , .tabs-text ,
 .news-leftcol-wrapper , .event-leftcol-wrapper ,.about-leftcol-wrapper , .sales-leftcol-wrapper , .hw-menu-lists ,
-.team-member , .hero-product-listing-text , .hero-product-img , .gateway-promo-bullets ul , .product-quote , #home-mission
+.team-member , .hero-product-listing-text , .hero-product-img , .gateway-promo-bullets ul , .product-quote , #home-mission , .quick-link , .col
 		{
             width:88.6666666667% !important;
         }
@@ -3676,7 +3733,7 @@ margin: 0 auto !important;
 @media screen and (min-width: 768px) and (max-width: 1099px) {
         
 .col {
-           margin-left:2%;
+           margin-left:1%;
         	padding:0 0.5%;
         }
         
@@ -3693,6 +3750,10 @@ h2{
 	font-size: 15px
 
 }	
+
+ul.sub-menu {
+	left: 18%;
+	}
 
 
 .span_1 {
