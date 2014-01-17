@@ -240,20 +240,7 @@ function create_post_type() {
                         'supports' => array('title', 'thumbnail', 'custom-fields')
                 )
         );
-           register_post_type( 'featured-products',
-                array(
-                        'labels' => array(
-                                'name' => __( 'Featured Products' ),
-                                'singular_name' => __( 'featured_product' )
-                        ),
-                        'public' => true,
-                        'taxonomies' => array('post_tag','category'),
-                        'has_archive' => true,
-                        'capability_type' => 'post',
-                        'hierarchical' => false,
-                        'supports' => array('title','editor','custom-fields','thumbnail')
-                )
-        );
+           
         register_post_type( 'faqs',
                 array(
                         'labels' => array(
