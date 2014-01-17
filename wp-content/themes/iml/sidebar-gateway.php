@@ -18,5 +18,5 @@
     <div class="clearfix"></div>
   </div><!-- gateway-promo-bullets -->
 	
-  <div class="cta-gateway"><a href="<?php bloginfo('url'); ?>/products/gateway-subscription-service">Find out more about GateWay</a></div>
+<!--   <div class="cta-gateway"><a href="<?php bloginfo('url'); ?>/products/gateway-subscription-service">Find out more about GateWay</a></div> -->
 </div><!-- gateway-promo-wrapper-->
