@@ -39,15 +39,13 @@ $(window).load(function() {
 <?=insert_videos(array('961', '961', '961', '961'));?>
 
 <div class="hw-endorsements-wrapper">
-  <div class="hw-endorsements row">
-    <h4>SEE ENDORSEMENTS OF HEARTWORKS PRODUCTS FROM LEADING PROFESSIONALS</h4>
-    <!-- ENDORSEMENTS GALLERY ADD HERE -->
-    <div class="vid-thumb-wrapper">
-<?=insert_thumbs_endorsements(array('961', '961', '961', '961'));?>
-    </div> <!-- div thumb wrapper -->
-  </div> <!-- promo-band -->
+	<div class="hw-endorsements row">
+		<h4>SEE ENDORSEMENTS OF HEARTWORKS PRODUCTS FROM LEADING PROFESSIONALS</h4>
+		<!-- ENDORSEMENTS GALLERY ADD HERE -->
+		<div class="vid-thumb-wrapper">
+			<?=insert_thumbs_endorsements(array('961', '961', '961', '961'));?>
+		</div><!-- div thumb wrapper -->
+	</div> <!-- promo-band -->
 </div> <!-- promo-band-wrapper -->
-
-<?php get_sidebar('quicklinks'); ?> 
 
 <?php get_footer(); ?>
