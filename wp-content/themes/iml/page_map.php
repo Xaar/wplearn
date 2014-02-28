@@ -506,96 +506,81 @@ function selectLoc (locId) {
 
   </script>
 
-  <div id="content" class="hero-content row clear-nav" role="main">
+<div id="content" class="hero-content row clear-nav" role="main">
+	<div class="page-title row">
+		<h1>Contact us</h1>
+	</div>
 
-  <div class="page-title row">
-    <h1>Contact us</h1>
-  </div>
+	<div class="sales-tabs-wrapper">
+		<div class="sales-tabs">
+			<ul class="tabs">
+				<li><a class="mapTab" href="#">Sales Coverage</a></li>
+				<li><a href="#">Sales and Enquiries</a></li>
+			</ul>
+		</div><!-- sales-tabs -->
 
-  <div class="sales-leftcol-wrapper">
-    <div class="sales-tabs-wrapper">
-      <div class="sales-tabs">
-        <ul class="tabs">
-      <li><a class="mapTab" href="#">Sales Coverage</a></li>
-          <li><a href="#">Sales and Enquiries</a></li>
-        </ul>
-      </div><!-- sales-tabs -->
+		<div class="panes">
+            
+		        <!-- Enquiries -->
+			<div class="pane pane-sales">
 
-      <div class="panes">
-             
-        <!-- Enquiries -->
-        <div class="pane pane-sales">
-          
-                     <h2>Global sales coverage</h2>
-                     <p>Inventive Medical Limited is present in most Countries throughout the World, either through its direct sales teams or via our Distribution Partners.</p>
+				<h2>Global sales coverage</h2>
+				<p>Inventive Medical Limited is present in most Countries throughout the World, either through its direct sales teams or via our Distribution Partners.</p>
 
-  <select name="distributors" id="distributor-select"> 
-<option value="select">Please select</option>
-<option value="Global1">IML Global Sales</option>
-<option value="Europe">IML European Sales</option>
-<option value="America">IML North American Sales</option>
-<option value="Australia">Australia</option>
-<option value="China">China</option>
-<option value="India">India</option>
-<option value="Indonesia">Indonesia</option>
-<option value="Ireland">Ireland</option>
-<option value="Japan">Japan</option>
-<option value="Middle_East">Middle East</option>
-<option value="Romania">Romania</option>
-<option value="Russia">Russia</option>
-<option value="Singapore_Malaysia">Singapore and Malaysia</option>
-<option value="South_Korea">South Korea</option>
-<option value="Taiwan">Taiwan</option>
-<option value="Thailand">Thailand</option>
-</select>
-  <div id="map_new">
-    <div id="distributor_info" class="hidden">
-      <div id="distributor-close" class="click-close"></div>
-      <h2>Region Name</h2>
-      <h3>Distributor Name</h3>
-      <p class="addy">Address line one</p>
-      <a>Send email &raquo;</a>
-    </div>
-    <img class="click-close" src="<?php bloginfo('template_directory'); ?>/images/iml_map.png">
-    
- </div>   
-  <div class="row">
-        <div class="map-key">
-          <h2>Key</h2>
-          <ul>
-        <li> <img src="<?php bloginfo('template_directory'); ?>/images/key-iml.png"><h3>- IML Sales teams</h3></li>
+				<select name="distributors" id="distributor-select"> 
+					<option value="select">Please select</option>
+					<option value="Global1">IML Global Sales</option>
+					<option value="Europe">IML European Sales</option>
+					<option value="America">IML North American Sales</option>
+					<option value="Australia">Australia</option>
+					<option value="China">China</option>
+					<option value="India">India</option>
+					<option value="Indonesia">Indonesia</option>
+					<option value="Ireland">Ireland</option>
+					<option value="Japan">Japan</option>
+					<option value="Middle_East">Middle East</option>
+					<option value="Romania">Romania</option>
+					<option value="Russia">Russia</option>
+					<option value="Singapore_Malaysia">Singapore and Malaysia</option>
+					<option value="South_Korea">South Korea</option>
+					<option value="Taiwan">Taiwan</option>
+					<option value="Thailand">Thailand</option>
+				</select>
+
+				<div id="map_new">
+
+					<div id="distributor_info" class="hidden">
+						<div id="distributor-close" class="click-close"></div>
+						<h2>Region Name</h2>
+						<h3>Distributor Name</h3>
+						<p class="addy">Address line one</p>
+						<a>Send email &raquo;</a>
+					</div>
+
+					<img class="click-close" src="<?php bloginfo('template_directory'); ?>/images/iml_map.png">
+				</div><!-- map_new -->
+   
+				<div class="row">
+					<div class="map-key">
+						<h2>Key</h2>
+						<ul>
+							<li><img src="<?php bloginfo('template_directory'); ?>/images/key-iml.png"><h3>- IML Sales teams</h3></li>
+							<li><img src="<?php bloginfo('template_directory'); ?>/images/key-distributor.png"><h3>- IML Distributors</h3></li>
+						</ul>
+       					</div>
+				</div><!-- row -->
          
-        <li> <img src="<?php bloginfo('template_directory'); ?>/images/key-distributor.png">  <h3>- IML Distributors</h3></li>
-        </ul>
-          
-        </div>
-      
-      </div><!-- row -->
-          
-        
-        </div><!-- pane -->
+		        </div><!-- pane -->
 
+			<div class="pane pane-sales">
+				<h2>Submit a sales enquiry</h2>
 
-        <div class="pane pane-sales">
-         <h2>Submit a sales enquiry</h2>
+				<?=do_shortcode('[si-contact-form form=\'1\']');?>
+       			</div><!-- pane -->
 
-<?=do_shortcode('[si-contact-form form=\'1\']');?>
+		</div> <!-- close panes -->
 
-         
-        </div><!-- pane -->
-      </div> <!-- close panes -->
-    </div><!-- products-tabs-wrapper -->
-    
+	</div><!-- products-tabs-wrapper -->
 
-
-  </div> <!-- leftcol -->
-
-
-<div class="sidebar-wrapper">
-<?php
-  get_sidebar('upcoming-events');
-  get_sidebar('news');
-?>
-  </div> <!-- sidebar wrapper -->
 </div>
 <?php get_footer(); ?>
